@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budhiworks - Interactive 3D Flow</title>
+    <style>
+        body {
+            margin: 0; padding: 0;
+            overflow: hidden;
+            background-color: #050505;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        canvas { display: block; width: 100vw; height: 100vh; }
+        .lil-gui { max-height: 95vh; overflow-y: auto; }
+
+        /* =====================================================
+           AAVE-STYLE GLASS — SVG feDisplacementMap refraction
+           Works in Chromium · Safari · Firefox
+           ===================================================== */
+        #glass-filters { position:absolute; width:0; height:0; overflow:hidden; pointer-events:none; }
+
+        .glass-panel {
+            position: fixed;
+            border-radius: 24px;
+            overflow: hidden;
+            z-index: 10;
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.18),
+                0 8px 40px rgba(0,0,0,0.6),
+                inset 0 1px 0 rgba(255,255,255,0.22);
+            animation: glass-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .glass-panel:nth-child(2) { animation-delay: 0.12s; }
+        .glass-panel:nth-child(3) { animation-delay: 0.24s; }
+
+        /* Frosted tint base — Aave uses backdrop-filter + their SVG trick */
+        .glass-bg {
+            position: absolute; inset: 0;
+            backdrop-filter: blur(28px) saturate(1.8) brightness(1.1);
+            -webkit-backdrop-filter: blur(28px) saturate(1.8) brightness(1.1);
+            background: rgba(255,255,255,0.06);
+        }
+
+        /* SVG feDisplacementMap refraction layer — the Aave magic */
+        .glass-refract {
+            position: absolute; inset: 0;
+            pointer-events: none;
+            will-change: filter;
+        }
+
+        /* Top-left specular shimmer — simulates light hitting curved glass */
+        .glass-shimmer {
+            position: absolute; inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.22) 0%,
+                rgba(255,255,255,0.07) 35%,
+                rgba(255,255,255,0.00) 55%,
+                rgba(255,255,255,0.04) 100%
+            );
+        }
+
+        /* Subtle colored edge glow on bottom edge (refracted light) */
+        .glass-caustic {
+            position: absolute;
+            bottom: 0; left: 10%; right: 10%; height: 2px;
+            border-radius: 0 0 24px 24px;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(120, 200, 255, 0.4) 30%,
+                rgba(180, 255, 220, 0.4) 70%,
+                transparent
+            );
+            filter: blur(2px);
+        }
+
+        .glass-border {
+            position: absolute; inset: 0;
+            border-radius: inherit;
+            border: 1px solid rgba(255,255,255,0.18);
+            pointer-events: none;
+        }
+
+        /* Content sits on top of all glass layers */
+        .glass-content {
+            position: relative; z-index: 2;
+            padding: 26px 30px;
+            color: #fff;
+        }
+        .glass-content h2 {
+            margin: 0 0 4px;
+            font-size: 11px; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: rgba(255,255,255,0.45);
+        }
+        .glass-content .value {
+            font-size: 40px; font-weight: 800;
+            letter-spacing: -0.02em; line-height: 1;
+            text-shadow: 0 2px 16px rgba(0,0,0,0.5);
+        }
+        .glass-content .sub {
+            margin-top: 6px;
+            font-size: 12px; color: rgba(255,255,255,0.45);
+            letter-spacing: 0.04em;
+        }
+
+        /* Mouse-following lens glow (Aave liquid glass cursor effect) */
+        .glass-lens {
+            position: fixed;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            pointer-events: none; z-index: 5;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
+            box-shadow: 0 0 80px 30px rgba(100,190,255,0.06);
+            transition: opacity 0.4s ease;
+            opacity: 0;
+        }
+
+        @keyframes glass-in {
+            from { opacity:0; transform: translateY(18px) scale(0.96); }
+            to   { opacity:1; transform: translateY(0)     scale(1); }
+        }
+    </style>
+
+    <!-- Using an Import Map to load Three.js and lil-gui via CDN -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "lil-gui": "https://unpkg.com/lil-gui@0.19.1/dist/lil-gui.esm.min.js"
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <!-- =====================================================
+         AAVE-STYLE GLASS — SVG feDisplacementMap filter defs
+         Hidden, referenced by each .glass-refract layer
+         ===================================================== -->
+    <svg id="glass-filters" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <!-- Panel 1 displacement filter -->
+            <filter id="glass-distort-1" filterUnits="objectBoundingBox"
+                    primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB"
+                    x="0" y="0" width="1" height="1">
+                <feTurbulence type="fractalNoise" baseFrequency="0.65 0.65"
+                              numOctaves="1" seed="2" result="noise"/>
+                <feDisplacementMap in="SourceGraphic" in2="noise"
+                                   scale="0.0" xChannelSelector="R" yChannelSelector="G"
+                                   id="disp-map-1" result="displaced"/>
+            </filter>
+            <!-- Panel 2 displacement filter -->
+            <filter id="glass-distort-2" filterUnits="objectBoundingBox"
+                    primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB"
+                    x="0" y="0" width="1" height="1">
+                <feTurbulence type="fractalNoise" baseFrequency="0.65 0.65"
+                              numOctaves="1" seed="5" result="noise"/>
+                <feDisplacementMap in="SourceGraphic" in2="noise"
+                                   scale="0.0" xChannelSelector="R" yChannelSelector="G"
+                                   id="disp-map-2" result="displaced"/>
+            </filter>
+            <!-- Panel 3 displacement filter -->
+            <filter id="glass-distort-3" filterUnits="objectBoundingBox"
+                    primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB"
+                    x="0" y="0" width="1" height="1">
+                <feTurbulence type="fractalNoise" baseFrequency="0.65 0.65"
+                              numOctaves="1" seed="9" result="noise"/>
+                <feDisplacementMap in="SourceGraphic" in2="noise"
+                                   scale="0.0" xChannelSelector="R" yChannelSelector="G"
+                                   id="disp-map-3" result="displaced"/>
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Mouse-tracking lens glow -->
+    <div class="glass-lens" id="glass-lens"></div>
+
+    <!-- =====================================================
+         GLASS PANELS — float over the 3D canvas
+         ===================================================== -->
+
+    <!-- Panel 1: Flow Rate -->
+    <div class="glass-panel" id="glass-p1"
+         style="bottom: 48px; left: 48px; min-width: 200px;">
+        <div class="glass-bg"></div>
+        <div class="glass-refract" style="filter: url(#glass-distort-1)"></div>
+        <div class="glass-shimmer"></div>
+        <div class="glass-caustic"></div>
+        <div class="glass-border"></div>
+        <div class="glass-content">
+            <h2>Particle Flow</h2>
+            <div class="value" id="stat-flow">300</div>
+            <div class="sub">particles in motion</div>
+        </div>
+    </div>
+
+    <!-- Panel 2: Cursor Glow -->
+    <div class="glass-panel" id="glass-p2"
+         style="bottom: 48px; left: 288px; min-width: 200px;">
+        <div class="glass-bg"></div>
+        <div class="glass-refract" style="filter: url(#glass-distort-2)"></div>
+        <div class="glass-shimmer"></div>
+        <div class="glass-caustic"></div>
+        <div class="glass-border"></div>
+        <div class="glass-content">
+            <h2>Refraction</h2>
+            <div class="value" style="font-size: 28px; padding-top: 6px;">Aave Glass</div>
+            <div class="sub">SVG feDisplacementMap</div>
+        </div>
+    </div>
+
+    <!-- Panel 3: Depth / Z Spread -->
+    <div class="glass-panel" id="glass-p3"
+         style="bottom: 48px; left: 528px; min-width: 200px;">
+        <div class="glass-bg"></div>
+        <div class="glass-refract" style="filter: url(#glass-distort-3)"></div>
+        <div class="glass-shimmer"></div>
+        <div class="glass-caustic"></div>
+        <div class="glass-border"></div>
+        <div class="glass-content">
+            <h2>3D Depth</h2>
+            <div class="value" id="stat-depth">8.0</div>
+            <div class="sub">z-axis spread</div>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         AAVE GLASS ENGINE — SVG feDisplacementMap system
+         Tracks mouse → updates displacement scale per frame
+         ===================================================== -->
+    <script>
+    (function AaveGlass() {
+        'use strict';
+
+        // --- Config ---
+        const MAX_SCALE   = 0.018;  // Maximum refraction strength (normalized, 0–1)
+        const EASE        = 0.09;   // Lerp factor — how fast distortion responds to mouse
+        const LENS_RADIUS = 260;    // Px radius that triggers max distortion on a panel
+
+        const lens    = document.getElementById('glass-lens');
+        const panels  = [
+            { el: document.getElementById('glass-p1'), filterId: 'disp-map-1', cur: 0 },
+            { el: document.getElementById('glass-p2'), filterId: 'disp-map-2', cur: 0 },
+            { el: document.getElementById('glass-p3'), filterId: 'disp-map-3', cur: 0 },
+        ];
+
+        let mx = -9999, my = -9999;
+        let lensVisible = false;
+
+        // Track mouse globally
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX;
+            my = e.clientY;
+            if (!lensVisible) {
+                lensVisible = true;
+                lens.style.opacity = '1';
+            }
+        });
+        document.addEventListener('mouseleave', () => {
+            lensVisible = false;
+            lens.style.opacity = '0';
+        });
+
+        // Helpers
+        function lerp(a, b, t) { return a + (b - a) * t; }
+
+        function getPanelCenter(el) {
+            const r = el.getBoundingClientRect();
+            return { cx: r.left + r.width  / 2,
+                     cy: r.top  + r.height / 2 };
+        }
+
+        function frame() {
+            // Move the lens glow
+            lens.style.left = mx + 'px';
+            lens.style.top  = my + 'px';
+
+            // Per-panel displacement update
+            panels.forEach(p => {
+                const { cx, cy } = getPanelCenter(p.el);
+                const dx = mx - cx, dy = my - cy;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                // Target scale: strongest at center, falls off to 0 outside LENS_RADIUS
+                const proximity = Math.max(0, 1 - dist / LENS_RADIUS);
+                const target = MAX_SCALE * proximity * proximity; // quadratic falloff
+
+                // Smooth lerp toward target
+                p.cur = lerp(p.cur, target, EASE);
+
+                // Apply to the SVG feDisplacementMap element
+                const dispEl = document.getElementById(p.filterId);
+                if (dispEl) {
+                    dispEl.setAttribute('scale', p.cur.toFixed(4));
+                }
+            });
+
+            requestAnimationFrame(frame);
+        }
+
+        requestAnimationFrame(frame);
+    })();
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import GUI from 'lil-gui';
+
+        // --------------------------------------------------------
+        // 1. CONFIGURATION & UI PARAMETERS
+        // --------------------------------------------------------
+        const config = {
+            particleCount: 300,
+            flowSpeed: 0.05,
+            arcCurvature: 3.0,       // How tall the S-curve goes
+            waveFrequency: 0.2,      // How many curves happen across the screen
+            riverWidth: 4.0,         // Vertical thickness of the flow
+            depthSpread: 8.0,        // 3D Z-axis spread (parallax effect)
+            baseSize: 0.15,
+            cursorRadius: 3.0,       // How close the mouse needs to be to push
+            repulsionStrength: 0.15, // How hard the mouse pushes
+            damping: 0.9,            // How quickly particles return to normal speed
+            lightIntensity: 50
+        };
+
+        // --------------------------------------------------------
+        // 2. SCENE SETUP
+        // --------------------------------------------------------
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2('#050505', 0.05); // Adds depth by fading distant particles to black
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.z = 15;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.body.appendChild(renderer.domElement);
+
+        // --------------------------------------------------------
+        // 3. LIGHTING
+        // --------------------------------------------------------
+        // Dim ambient light so particles aren't completely invisible in the dark
+        const ambientLight = new THREE.AmbientLight('#ffffff', 0.1);
+        scene.add(ambientLight);
+
+        // Warm, glowing point light attached to the cursor
+        const cursorLight = new THREE.PointLight('#ffccaa', config.lightIntensity, 20);
+        scene.add(cursorLight);
+
+        // --------------------------------------------------------
+        // 4. PARTICLES (COFFEE BEANS)
+        // --------------------------------------------------------
+        const geometry = new THREE.CapsuleGeometry(1, 1.5, 4, 8);
+        const material = new THREE.MeshStandardMaterial({
+            color: '#3b2818',
+            roughness: 0.7,
+            metalness: 0.1
+        });
+
+        const particles = [];
+
+        function createParticle() {
+            const mesh = new THREE.Mesh(geometry, material);
+            
+            // Randomize size
+            const scale = config.baseSize * (0.5 + Math.random() * 1.0);
+            mesh.scale.set(scale, scale, scale);
+
+            // Store custom data for each particle's unique path and math
+            mesh.userData = {
+                // X position starts way off-screen to the left
+                xProgress: -20 - (Math.random() * 20),
+                
+                // Random offsets to give the river "thickness" and "depth"
+                yOffset: (Math.random() - 0.5), 
+                zOffset: (Math.random() - 0.5),
+                
+                // Random tumble speed
+                rotSpeedX: (Math.random() - 0.5) * 0.05,
+                rotSpeedY: (Math.random() - 0.5) * 0.05,
+                rotSpeedZ: (Math.random() - 0.5) * 0.05,
+                
+                // Physics velocity for cursor repulsion
+                velocityX: 0,
+                velocityY: 0,
+                velocityZ: 0
+            };
+
+            scene.add(mesh);
+            particles.push(mesh);
+        }
+
+        // Generate the initial batch
+        for (let i = 0; i < config.particleCount; i++) {
+            createParticle();
+        }
+
+        // --------------------------------------------------------
+        // 5. INTERACTION (RAYCASTING & MOUSE)
+        // --------------------------------------------------------
+        const mouse = new THREE.Vector2(-100, -100);
+        const mouseWorldPos = new THREE.Vector3(0, 0, 0);
+        const raycaster = new THREE.Raycaster();
+        const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0); // Invisible 2D plane to track mouse in 3D
+
+        window.addEventListener('mousemove', (event) => {
+            // Normalize mouse coordinates (-1 to +1)
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            // Project mouse position into 3D space
+            raycaster.setFromCamera(mouse, camera);
+            raycaster.ray.intersectPlane(plane, mouseWorldPos);
+            
+            // Move the dynamic light to the cursor
+            cursorLight.position.copy(mouseWorldPos);
+            // Push the light slightly forward toward the camera so it illuminates the front of the beans
+            cursorLight.position.z += 2; 
+        });
+
+        // --------------------------------------------------------
+        // 6. ANIMATION LOOP
+        // --------------------------------------------------------
+        function animate() {
+            requestAnimationFrame(animate);
+
+            particles.forEach(p => {
+                const data = p.userData;
+
+                // Move forward along the X axis
+                data.xProgress += config.flowSpeed;
+
+                // --- THE CORE MATH: CALCULATE BASE POSITION ---
+                // Apply sine wave for the Arc/S-Curve shape
+                const targetY = Math.sin(data.xProgress * config.waveFrequency) * config.arcCurvature;
+                
+                // Apply the thickness (volume) and depth (parallax)
+                const finalY = targetY + (data.yOffset * config.riverWidth);
+                const finalZ = data.zOffset * config.depthSpread;
+
+                // --- CURSOR REPULSION PHYSICS ---
+                // Calculate distance between this particle and the mouse cursor
+                const dist = p.position.distanceTo(mouseWorldPos);
+                
+                if (dist < config.cursorRadius) {
+                    // Calculate a force vector pushing away from the mouse
+                    const forceDirection = new THREE.Vector3().subVectors(p.position, mouseWorldPos).normalize();
+                    // The closer the mouse, the stronger the force
+                    const forceMultiplier = (config.cursorRadius - dist) / config.cursorRadius;
+                    
+                    data.velocityX += forceDirection.x * config.repulsionStrength * forceMultiplier;
+                    data.velocityY += forceDirection.y * config.repulsionStrength * forceMultiplier;
+                    data.velocityZ += forceDirection.z * config.repulsionStrength * forceMultiplier;
+                }
+
+                // Apply Damping (Friction) so they don't fly away forever
+                data.velocityX *= config.damping;
+                data.velocityY *= config.damping;
+                data.velocityZ *= config.damping;
+
+                // Update final actual position (Base path + Repulsion Velocity)
+                p.position.set(
+                    data.xProgress + data.velocityX,
+                    finalY + data.velocityY,
+                    finalZ + data.velocityZ
+                );
+
+                // Apply constant tumbling rotation
+                p.rotation.x += data.rotSpeedX;
+                p.rotation.y += data.rotSpeedY;
+                p.rotation.z += data.rotSpeedZ;
+
+                // --- INFINITE RECYCLING ---
+                // If particle goes too far right, reset it back to the left
+                if (data.xProgress > 25) {
+                    data.xProgress = -20 - (Math.random() * 5);
+                    data.velocityX = 0;
+                    data.velocityY = 0;
+                    data.velocityZ = 0;
+                }
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // --------------------------------------------------------
+        // 7. RESPONSIVENESS
+        // --------------------------------------------------------
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // --------------------------------------------------------
+        // 8. CONTROL PANEL (lil-gui)
+        // --------------------------------------------------------
+        const gui = new GUI({ title: 'Visual Settings' });
+        
+        const folderFlow = gui.addFolder('Flow & Path');
+        folderFlow.add(config, 'flowSpeed', 0.01, 0.2).name('Flow Speed');
+        folderFlow.add(config, 'arcCurvature', 0, 10).name('Arc Curvature');
+        folderFlow.add(config, 'waveFrequency', 0.05, 1.0).name('Wave Frequency');
+        
+        const folderVol = gui.addFolder('Volume & Depth');
+        folderVol.add(config, 'riverWidth', 0, 15).name('River Width');
+        folderVol.add(config, 'depthSpread', 0, 30).name('3D Depth Spread');
+        
+        const folderPhysics = gui.addFolder('Cursor Physics');
+        folderPhysics.add(config, 'cursorRadius', 1, 10).name('Cursor Radius');
+        folderPhysics.add(config, 'repulsionStrength', 0.01, 0.5).name('Repulsion Force');
+        folderPhysics.add(config, 'damping', 0.8, 0.99).name('Return Damping');
+        
+        const folderLight = gui.addFolder('Lighting');
+        folderLight.add(config, 'lightIntensity', 0, 200).name('Cursor Glow').onChange(v => cursorLight.intensity = v);
+
+    </script>
+</body>
+</html>

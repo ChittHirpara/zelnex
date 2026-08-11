@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Navigation</title>
+    <style>
+      :root {
+        --navy-top: #002b70;
+        --navy: #001a4a;
+        --navy-deep: #000d28;
+        --navy-icon: #001f54;
+        --cyan: #25b5ff;
+        --label: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(ellipse 80% 60% at 50% 40%, #f4f7fc 0%, #e6edf6 100%);
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      .scene {
+        padding: 72px 64px;
+      }
+
+      .sidebar {
+        position: relative;
+        width: 148px;
+        overflow: visible;
+      }
+
+      .card-shape {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: visible;
+        pointer-events: none;
+        transform: translate(12px, 16px);
+      }
+
+      .sidebar-face {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        background: linear-gradient(180deg, var(--navy-top) 0%, var(--navy) 46%, var(--navy-deep) 100%);
+        clip-path: url(#nav-card);
+        -webkit-clip-path: url(#nav-card);
+      }
+
+      .sidebar-face::after {
+        content: "";
+        position: absolute;
+        top: -18%;
+        right: -28%;
+        width: 70%;
+        height: 42%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 68%);
+        pointer-events: none;
+      }
+
+      nav {
+        display: flex;
+        flex-direction: column;
+        padding: 28px 0 32px;
+      }
+
+      .nav-item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 156px;
+        padding: 22px 12px 18px;
+        color: var(--label);
+        text-decoration: none;
+        transition: background 0.2s ease;
+      }
+
+      .nav-item:first-child {
+        padding-top: 36px;
+      }
+
+      .nav-item:last-child {
+        padding-bottom: 40px;
+      }
+
+      .nav-item:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-item:hover {
+        background: rgba(255, 255, 255, 0.035);
+      }
+
+      .nav-item:focus-visible {
+        outline: 2px solid var(--cyan);
+        outline-offset: -4px;
+      }
+
+      .icon-wrapper {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        margin-bottom: 10px;
+        transition: background 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .icon {
+        width: 28px;
+        height: 28px;
+        background-color: var(--cyan);
+        -webkit-mask: var(--icon) center / contain no-repeat;
+        mask: var(--icon) center / contain no-repeat;
+        transition: background-color 0.25s ease;
+      }
+
+      .nav-item span {
+        font-size: 0.9rem;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+      }
+
+      .nav-item.active .icon-wrapper {
+        background: #ffffff;
+        box-shadow: 0 6px 16px rgba(0, 10, 30, 0.28);
+      }
+
+      .nav-item.active .icon {
+        background-color: var(--navy-icon);
+      }
+
+      .nav-item.active span {
+        font-weight: 600;
+      }
+
+      .active-indicator {
+        width: 22px;
+        height: 3px;
+        margin-top: 8px;
+        border-radius: 999px;
+        background: var(--cyan);
+        box-shadow: 0 0 10px rgba(37, 181, 255, 0.8);
+        opacity: 0;
+        transform: scaleX(0.4);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .nav-item.active .active-indicator {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+    </style>
+  </head>
+  <body>
+    <svg
+      width="0"
+      height="0"
+      style="position: absolute; width: 0; height: 0; overflow: hidden"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <clipPath id="nav-card" clipPathUnits="objectBoundingBox">
+          <path
+            d="M 0.20 0
+               L 0.82 0.038
+               C 0.94 0.038 1 0.052 1 0.078
+               L 1 0.922
+               C 1 0.948 0.94 0.962 0.82 0.962
+               L 0.20 1
+               C 0.06 1 0 0.982 0 0.948
+               L 0 0.052
+               C 0 0.018 0.06 0 0.20 0
+               Z"
+          />
+        </clipPath>
+        <linearGradient id="slab-fill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0563b8" />
+          <stop offset="48%" stop-color="#1494e8" />
+          <stop offset="100%" stop-color="#3cc4ff" />
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <div class="scene">
+      <div class="sidebar">
+        <svg class="card-shape" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path
+            d="M 20 0
+               L 82 3.8
+               C 94 3.8 100 5.2 100 7.8
+               L 100 92.2
+               C 100 94.8 94 96.2 82 96.2
+               L 20 100
+               C 6 100 0 98.2 0 94.8
+               L 0 5.2
+               C 0 1.8 6 0 20 0
+               Z"
+            fill="url(#slab-fill)"
+            style="filter: drop-shadow(8px 14px 16px rgba(37, 181, 255, 0.42))"
+          />
+        </svg>
+        <div class="sidebar-face">
+          <nav aria-label="Primary">
+            <a href="#products" class="nav-item active" data-item>
+              <div class="icon-wrapper">
+                <span class="icon" style="--icon: url('product.png')"></span>
+              </div>
+              <span>Products</span>
+              <div class="active-indicator"></div>
+            </a>
+
+            <a href="#enquiry" class="nav-item" data-item>
+              <div class="icon-wrapper">
+                <span class="icon" style="--icon: url('email.png')"></span>
+              </div>
+              <span>Enquiry</span>
+              <div class="active-indicator"></div>
+            </a>
+
+            <a href="#download" class="nav-item" data-item>
+              <div class="icon-wrapper">
+                <span class="icon" style="--icon: url('downloads.png')"></span>
+              </div>
+              <span>Download</span>
+              <div class="active-indicator"></div>
+            </a>
+
+            <a href="#location" class="nav-item" data-item>
+              <div class="icon-wrapper">
+                <span class="icon" style="--icon: url('location.png')"></span>
+              </div>
+              <span>Location</span>
+              <div class="active-indicator"></div>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const items = document.querySelectorAll("[data-item]");
+
+      items.forEach((item) => {
+        item.addEventListener("click", (event) => {
+          event.preventDefault();
+          items.forEach((node) => node.classList.remove("active"));
+          item.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>

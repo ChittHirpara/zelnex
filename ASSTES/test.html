@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budhiworks - Interactive 3D Flow</title>
+    <style>
+        /* Base styles to ensure a clean, full-screen canvas */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #050505;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+        /* Make sure the lil-gui panel doesn't get cut off on smaller screens */
+        .lil-gui { 
+            max-height: 95vh;
+            overflow-y: auto;
+        }
+    </style>
+    
+    <!-- Using an Import Map to load Three.js and lil-gui via CDN -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "lil-gui": "https://unpkg.com/lil-gui@0.19.1/dist/lil-gui.esm.min.js"
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import GUI from 'lil-gui';
+
+        // --------------------------------------------------------
+        // 1. CONFIGURATION & UI PARAMETERS
+        // --------------------------------------------------------
+        const config = {
+            particleCount: 300,
+            flowSpeed: 0.05,
+            arcCurvature: 3.0,       // How tall the S-curve goes
+            waveFrequency: 0.2,      // How many curves happen across the screen
+            riverWidth: 4.0,         // Vertical thickness of the flow
+            depthSpread: 8.0,        // 3D Z-axis spread (parallax effect)
+            baseSize: 0.15,
+            cursorRadius: 3.0,       // How close the mouse needs to be to push
+            repulsionStrength: 0.15, // How hard the mouse pushes
+            damping: 0.9,            // How quickly particles return to normal speed
+            lightIntensity: 50
+        };
+
+        // --------------------------------------------------------
+        // 2. SCENE SETUP
+        // --------------------------------------------------------
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2('#050505', 0.05); // Adds depth by fading distant particles to black
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.z = 15;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.body.appendChild(renderer.domElement);
+
+        // --------------------------------------------------------
+        // 3. LIGHTING
+        // --------------------------------------------------------
+        // Dim ambient light so particles aren't completely invisible in the dark
+        const ambientLight = new THREE.AmbientLight('#ffffff', 0.1);
+        scene.add(ambientLight);
+
+        // Warm, glowing point light attached to the cursor
+        const cursorLight = new THREE.PointLight('#ffccaa', config.lightIntensity, 20);
+        scene.add(cursorLight);
+
+        // --------------------------------------------------------
+        // 4. PARTICLES (COFFEE BEANS)
+        // --------------------------------------------------------
+        const geometry = new THREE.CapsuleGeometry(1, 1.5, 4, 8);
+        const material = new THREE.MeshStandardMaterial({
+            color: '#3b2818',
+            roughness: 0.7,
+            metalness: 0.1
+        });
+
+        const particles = [];
+
+        function createParticle() {
+            const mesh = new THREE.Mesh(geometry, material);
+            
+            // Randomize size
+            const scale = config.baseSize * (0.5 + Math.random() * 1.0);
+            mesh.scale.set(scale, scale, scale);
+
+            // Store custom data for each particle's unique path and math
+            mesh.userData = {
+                // X position starts way off-screen to the left
+                xProgress: -20 - (Math.random() * 20),
+                
+                // Random offsets to give the river "thickness" and "depth"
+                yOffset: (Math.random() - 0.5), 
+                zOffset: (Math.random() - 0.5),
+                
+                // Random tumble speed
+                rotSpeedX: (Math.random() - 0.5) * 0.05,
+                rotSpeedY: (Math.random() - 0.5) * 0.05,
+                rotSpeedZ: (Math.random() - 0.5) * 0.05,
+                
+                // Physics velocity for cursor repulsion
+                velocityX: 0,
+                velocityY: 0,
+                velocityZ: 0
+            };
+
+            scene.add(mesh);
+            particles.push(mesh);
+        }
+
+        // Generate the initial batch
+        for (let i = 0; i < config.particleCount; i++) {
+            createParticle();
+        }
+
+        // --------------------------------------------------------
+        // 5. INTERACTION (RAYCASTING & MOUSE)
+        // --------------------------------------------------------
+        const mouse = new THREE.Vector2(-100, -100);
+        const mouseWorldPos = new THREE.Vector3(0, 0, 0);
+        const raycaster = new THREE.Raycaster();
+        const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0); // Invisible 2D plane to track mouse in 3D
+
+        window.addEventListener('mousemove', (event) => {
+            // Normalize mouse coordinates (-1 to +1)
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            // Project mouse position into 3D space
+            raycaster.setFromCamera(mouse, camera);
+            raycaster.ray.intersectPlane(plane, mouseWorldPos);
+            
+            // Move the dynamic light to the cursor
+            cursorLight.position.copy(mouseWorldPos);
+            // Push the light slightly forward toward the camera so it illuminates the front of the beans
+            cursorLight.position.z += 2; 
+        });
+
+        // --------------------------------------------------------
+        // 6. ANIMATION LOOP
+        // --------------------------------------------------------
+        function animate() {
+            requestAnimationFrame(animate);
+
+            particles.forEach(p => {
+                const data = p.userData;
+
+                // Move forward along the X axis
+                data.xProgress += config.flowSpeed;
+
+                // --- THE CORE MATH: CALCULATE BASE POSITION ---
+                // Apply sine wave for the Arc/S-Curve shape
+                const targetY = Math.sin(data.xProgress * config.waveFrequency) * config.arcCurvature;
+                
+                // Apply the thickness (volume) and depth (parallax)
+                const finalY = targetY + (data.yOffset * config.riverWidth);
+                const finalZ = data.zOffset * config.depthSpread;
+
+                // --- CURSOR REPULSION PHYSICS ---
+                // Calculate distance between this particle and the mouse cursor
+                const dist = p.position.distanceTo(mouseWorldPos);
+                
+                if (dist < config.cursorRadius) {
+                    // Calculate a force vector pushing away from the mouse
+                    const forceDirection = new THREE.Vector3().subVectors(p.position, mouseWorldPos).normalize();
+                    // The closer the mouse, the stronger the force
+                    const forceMultiplier = (config.cursorRadius - dist) / config.cursorRadius;
+                    
+                    data.velocityX += forceDirection.x * config.repulsionStrength * forceMultiplier;
+                    data.velocityY += forceDirection.y * config.repulsionStrength * forceMultiplier;
+                    data.velocityZ += forceDirection.z * config.repulsionStrength * forceMultiplier;
+                }
+
+                // Apply Damping (Friction) so they don't fly away forever
+                data.velocityX *= config.damping;
+                data.velocityY *= config.damping;
+                data.velocityZ *= config.damping;
+
+                // Update final actual position (Base path + Repulsion Velocity)
+                p.position.set(
+                    data.xProgress + data.velocityX,
+                    finalY + data.velocityY,
+                    finalZ + data.velocityZ
+                );
+
+                // Apply constant tumbling rotation
+                p.rotation.x += data.rotSpeedX;
+                p.rotation.y += data.rotSpeedY;
+                p.rotation.z += data.rotSpeedZ;
+
+                // --- INFINITE RECYCLING ---
+                // If particle goes too far right, reset it back to the left
+                if (data.xProgress > 25) {
+                    data.xProgress = -20 - (Math.random() * 5);
+                    data.velocityX = 0;
+                    data.velocityY = 0;
+                    data.velocityZ = 0;
+                }
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // --------------------------------------------------------
+        // 7. RESPONSIVENESS
+        // --------------------------------------------------------
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // --------------------------------------------------------
+        // 8. CONTROL PANEL (lil-gui)
+        // --------------------------------------------------------
+        const gui = new GUI({ title: 'Visual Settings' });
+        
+        const folderFlow = gui.addFolder('Flow & Path');
+        folderFlow.add(config, 'flowSpeed', 0.01, 0.2).name('Flow Speed');
+        folderFlow.add(config, 'arcCurvature', 0, 10).name('Arc Curvature');
+        folderFlow.add(config, 'waveFrequency', 0.05, 1.0).name('Wave Frequency');
+        
+        const folderVol = gui.addFolder('Volume & Depth');
+        folderVol.add(config, 'riverWidth', 0, 15).name('River Width');
+        folderVol.add(config, 'depthSpread', 0, 30).name('3D Depth Spread');
+        
+        const folderPhysics = gui.addFolder('Cursor Physics');
+        folderPhysics.add(config, 'cursorRadius', 1, 10).name('Cursor Radius');
+        folderPhysics.add(config, 'repulsionStrength', 0.01, 0.5).name('Repulsion Force');
+        folderPhysics.add(config, 'damping', 0.8, 0.99).name('Return Damping');
+        
+        const folderLight = gui.addFolder('Lighting');
+        folderLight.add(config, 'lightIntensity', 0, 200).name('Cursor Glow').onChange(v => cursorLight.intensity = v);
+
+    </script>
+</body>
+</html>
