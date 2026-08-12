@@ -226,7 +226,8 @@ export function Hero() {
 
       {/* ── 3D Slanted Parallelogram Floating Sidebar (Single Component with Pure CSS Shadows) ── */}
       <aside
-        className="hz-sidebar absolute left-8 top-1/2 z-30 hidden -translate-y-1/2 md:flex flex-col items-center select-none"
+        className="hz-sidebar absolute left-4 lg:left-8 z-30 hidden md:flex flex-col items-center select-none"
+        style={{ top: "max(118px, calc(50% - 245px))" }}
       >
         <div
           className="sb-floating-panel relative group"
@@ -234,25 +235,26 @@ export function Hero() {
         >
           {/* Single Slanted Front Face Card Container — rgba(0, 26, 83) with Pure CSS 3D Shadows */}
           <div
-            className="relative flex flex-col items-center w-[86px] h-[480px] rounded-[18px] overflow-hidden transition-all duration-300 z-10"
+            className="relative flex flex-col items-center w-[112px] h-[555px] rounded-[22px] overflow-hidden transition-all duration-300 z-10"
             style={{
               background:
-                "linear-gradient(180deg, rgba(0, 32, 98, 0.98) 0%, rgba(0, 26, 83, 0.95) 50%, rgba(0, 18, 60, 0.98) 100%)",
+                "linear-gradient(180deg, rgba(0, 20, 68, 0.99) 0%, rgba(0, 15, 52, 0.97) 50%, rgba(0, 10, 38, 0.99) 100%)",
               backdropFilter: "blur(20px) saturate(1.5)",
               WebkitBackdropFilter: "blur(20px) saturate(1.5)",
               border: "1.2px solid rgba(255, 255, 255, 0.28)",
               boxShadow: `
-                5px 8px 18px rgba(0, 26, 83, 0.35),
-                2px 3px 8px rgba(0, 15, 50, 0.25),
-                inset 0 1.2px 0 rgba(255, 255, 255, 0.55),
-                inset -1px 0 2px rgba(255, 255, 255, 0.25),
-                inset 1px 0 2px rgba(0, 26, 83, 0.50)
+                26px 36px 68px -4px rgba(0, 8, 30, 0.88),
+                14px 20px 38px rgba(0, 24, 75, 0.65),
+                -4px -4px 16px rgba(255, 255, 255, 0.16),
+                inset 0 2px 1px rgba(255, 255, 255, 0.75),
+                inset -2px 0 4px rgba(255, 255, 255, 0.30),
+                inset 2px 0 4px rgba(0, 15, 50, 0.75)
               `,
             }}
           >
             {/* Top-Right Glowing Specular Lens Flare Dot */}
             <div
-              className="absolute -right-[2px] top-[25%] w-[5px] h-[5px] rounded-full pointer-events-none z-30"
+              className="absolute -right-[2px] top-[24%] w-[5px] h-[5px] rounded-full pointer-events-none z-30"
               style={{
                 background: "#ffffff",
                 boxShadow:
@@ -260,20 +262,20 @@ export function Hero() {
               }}
             />
 
-            {/* Seamless Bottom Edge Electric Cyan Glowing Rim */}
+            {/* Extended Bottom Edge Electric Cyan Glowing Rim */}
             <div
-              className="absolute bottom-0 inset-x-0 h-[4.5px] rounded-b-[18px] pointer-events-none z-20"
+              className="absolute bottom-0 inset-x-0 h-[8.5px] rounded-b-[22px] pointer-events-none z-20"
               style={{
                 background:
-                  "linear-gradient(90deg, #0044cc 0%, #00d2ff 50%, #0066ff 100%)",
+                  "linear-gradient(90deg, #0036b8 0%, #00d2ff 45%, #00e5ff 55%, #0055ff 100%)",
                 boxShadow:
-                  "0 -1px 8px rgba(0, 210, 255, 0.9), 0 -4px 14px rgba(0, 175, 255, 0.6)",
+                  "0 1px 6px rgba(0, 210, 255, 0.9), 0 -2px 10px rgba(0, 210, 255, 0.85), 0 -6px 18px rgba(0, 175, 255, 0.6)",
               }}
             />
 
             {/* Unskewed Sidebar Nav Items */}
             <div
-              className="w-full h-full flex flex-col justify-between items-center z-20 pb-1"
+              className="w-full h-full flex flex-col justify-between items-center z-20 py-2.5"
               style={{ transform: "skewY(10deg)" }}
             >
               {SIDEBAR_ITEMS.map((item, index) => {
@@ -283,7 +285,7 @@ export function Hero() {
                     key={item.label}
                     href={item.href}
                     onClick={() => setActiveSidebarIndex(index)}
-                    className="group/item relative flex flex-col items-center justify-center flex-1 w-full px-1.5 transition-all duration-300 hover:bg-white/[0.04]"
+                    className="group/item relative flex flex-col items-center justify-center flex-1 w-full px-2 transition-all duration-300 hover:bg-white/[0.05]"
                     style={{
                       borderBottom:
                         index < SIDEBAR_ITEMS.length - 1
@@ -295,13 +297,14 @@ export function Hero() {
                       <div
                         className="flex items-center justify-center transition-all duration-300 scale-105"
                         style={{
-                          width: "48px",
-                          height: "48px",
+                          width: "52px",
+                          height: "52px",
                           borderRadius: "50%",
-                          background: "#ffffff",
-                          color: "#05184a",
+                          background: "linear-gradient(145deg, #ffffff 0%, #e8f4ff 100%)",
+                          color: "#001A53",
+                          border: "1.2px solid rgba(255, 255, 255, 0.95)",
                           boxShadow:
-                            "0 5px 15px rgba(0, 0, 0, 0.35), inset 0 1.5px 0 #ffffff",
+                            "0 6px 18px rgba(0, 10, 35, 0.50), inset 0 2px 1px #ffffff, inset 0 -2px 5px rgba(0, 40, 120, 0.25)",
                         }}
                       >
                         {item.icon}
@@ -310,11 +313,17 @@ export function Hero() {
                       <div
                         className="flex items-center justify-center transition-all duration-300 group-hover/item:scale-110"
                         style={{
-                          width: "36px",
-                          height: "36px",
+                          width: "42px",
+                          height: "42px",
+                          borderRadius: "50%",
+                          background:
+                            "linear-gradient(145deg, rgba(0, 10, 36, 0.70) 0%, rgba(0, 18, 58, 0.45) 100%)",
                           color: "#00B8F2",
+                          border: "1px solid rgba(255, 255, 255, 0.12)",
+                          boxShadow:
+                            "inset 0 2px 4px rgba(0, 10, 35, 0.50), inset 0 -1px 1.5px rgba(255, 255, 255, 0.12), 0 2px 5px rgba(0, 0, 0, 0.20)",
                           filter:
-                            "drop-shadow(0 0 5px rgba(0, 184, 242, 0.5))",
+                            "drop-shadow(0 0 5px rgba(0, 184, 242, 0.50))",
                         }}
                       >
                         {item.icon}
@@ -333,10 +342,10 @@ export function Hero() {
 
                     {isActive && (
                       <div
-                        className="mt-1 w-5 h-[2.5px] rounded-full"
+                        className="mt-1 w-6 h-[2.5px] rounded-full"
                         style={{
                           background: "#00B8F2",
-                          boxShadow: "0 0 7px #00B8F2",
+                          boxShadow: "0 0 8px #00B8F2",
                         }}
                       />
                     )}
@@ -347,16 +356,16 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Short Ambient Drop Floor Shadow */}
+        {/* Deep Floor Drop Shadow */}
         <div
           className="pointer-events-none mt-3"
           style={{
-            width: "70px",
-            height: "12px",
+            width: "115px",
+            height: "22px",
             borderRadius: "50%",
             background:
-              "radial-gradient(ellipse at center, rgba(0, 20, 65, 0.4), rgba(0, 175, 255, 0.1) 50%, transparent 75%)",
-            filter: "blur(4px)",
+              "radial-gradient(ellipse at center, rgba(0, 8, 30, 0.95), rgba(0, 184, 242, 0.35) 45%, transparent 80%)",
+            filter: "blur(7px)",
           }}
         />
       </aside>
@@ -433,8 +442,8 @@ export function Hero() {
           <div
             className="relative z-[4] flex items-center w-full overflow-hidden"
             style={{
-              padding: "0 clamp(14px,3.2vw,36px)",
-              minHeight: 118,
+              padding: "clamp(18px, 2.4vw, 28px) clamp(20px, 3.8vw, 44px)",
+              minHeight: 136,
               borderRadius: "inherit",
             }}
           >
@@ -443,16 +452,16 @@ export function Hero() {
                 <div
                   key={stat.number}
                   className="gs-stat flex flex-1 items-center"
-                  style={{ gap: "clamp(10px,1.6vw,18px)", padding: "0 clamp(8px,1.4vw,18px)" }}
+                  style={{ gap: "clamp(12px, 1.8vw, 20px)", padding: "0 clamp(10px, 1.6vw, 22px)" }}
                 >
                   <div data-glass-bead className="glass-badge hz-stat-item">
                     <svg
                       className="relative z-[2]"
-                      style={{ width: "50%", height: "50%" }}
+                      style={{ width: "62%", height: "62%" }}
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke={stat.stroke}
-                      strokeWidth="1.6"
+                      strokeWidth="1.8"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
