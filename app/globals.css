@@ -25,12 +25,12 @@
   --glass-brand-bright: #00b8f2;
   --glass-brand-mid: #1e4fb8;
   --glass-ink: #0a1454;
-  --glass-tint: rgba(255, 255, 255, 0.18);
-  --glass-tint-strong: rgba(255, 255, 255, 0.44);
-  --glass-edge: rgba(255, 255, 255, 0.62);
-  --glass-edge-cool: rgba(186, 220, 255, 0.5);
-  --glass-inner: rgba(12, 44, 104, 0.14);
-  --glass-specular: rgba(232, 246, 255, 0.92);
+  --glass-tint: rgba(255, 255, 255, 0.08);
+  --glass-tint-strong: rgba(255, 255, 255, 0.20);
+  --glass-edge: rgba(255, 255, 255, 0.32);
+  --glass-edge-cool: rgba(186, 220, 255, 0.22);
+  --glass-inner: rgba(12, 44, 104, 0.08);
+  --glass-specular: rgba(232, 246, 255, 0.55);
   --glass-blur: 14px;
   --glass-saturate: 165%;
   --glass-cast: rgba(14, 46, 108, 0.18);

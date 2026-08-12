@@ -88,21 +88,21 @@ function roundedRectShape(width: number, height: number, radius: number) {
 }
 
 function buildSlabGeometry(width: number, height: number, radius: number, quality: number) {
-  const bevel = Math.max(9, Math.min(26, height * 0.2));
+  const bevel = Math.max(4, Math.min(10, height * 0.08));
   const shape = roundedRectShape(
     Math.max(12, width - bevel * 2),
     Math.max(12, height - bevel * 2),
     Math.max(1, radius - bevel),
   );
-  const depth = bevel * 1.15;
+  const depth = bevel * 0.8;
   const raw = new THREE.ExtrudeGeometry(shape, {
     depth,
     bevelEnabled: true,
-    bevelSegments: Math.round(11 * quality),
+    bevelSegments: Math.round(7 * quality),
     steps: 1,
     bevelSize: bevel,
-    bevelThickness: bevel * 0.9,
-    curveSegments: Math.round(14 * quality),
+    bevelThickness: bevel * 0.6,
+    curveSegments: Math.round(10 * quality),
   });
   raw.translate(0, 0, -depth);
   const geometry = mergeVertices(raw, 1e-4);
@@ -218,9 +218,9 @@ export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCan
         uCanvas: { value: new THREE.Vector2(1, 1) },
         uBar: { value: new THREE.Vector4() },
         uRadius: { value: 24 },
-        uVeil: { value: 0.24 },
+        uVeil: { value: 0.06 },
         uCausticColor: { value: new THREE.Color("#cfeaff") },
-        uCaustic: { value: 0.72 },
+        uCaustic: { value: 0.25 },
         uLightX: { value: 0.5 },
       },
       vertexShader: BG_VERTEX,
@@ -241,16 +241,16 @@ export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCan
     const glassMaterial = new THREE.MeshPhysicalMaterial({
       color: new THREE.Color("#ffffff"),
       metalness: 0,
-      roughness: 0.028,
+      roughness: 0.02,
       transmission: 1,
-      thickness: 30,
-      ior: 1.5,
-      dispersion: 2,
-      clearcoat: 1,
-      clearcoatRoughness: 0.015,
+      thickness: 10,
+      ior: 1.45,
+      dispersion: 1.2,
+      clearcoat: 0.8,
+      clearcoatRoughness: 0.01,
       attenuationColor: new THREE.Color("#dceeff"),
-      specularIntensity: 1,
-      envMapIntensity: 1.5,
+      specularIntensity: 0.6,
+      envMapIntensity: 0.9,
       transparent: true,
       side: THREE.DoubleSide,
     });
