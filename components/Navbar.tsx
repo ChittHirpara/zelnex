@@ -48,7 +48,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed left-1/2 top-4 z-50 w-[calc(100%-32px)] max-w-[1320px] -translate-x-1/2 transition-all duration-500 ${
+      className={`fixed left-1/2 top-4 z-50 w-[calc(100%-32px)] max-w-[1320px] -translate-x-1/2 overflow-hidden transition-all duration-500 ${
         open ? "rounded-3xl" : "rounded-full"
       }`}
       style={{
@@ -76,7 +76,7 @@ export function Navbar() {
     >
       {/* Top-left crystal highlight */}
       <div
-        className="pointer-events-none absolute top-0 left-0 w-2/5 h-full rounded-tl-full overflow-hidden"
+        className="pointer-events-none absolute top-0 left-0 w-2/5 h-full rounded-[inherit] overflow-hidden"
         style={{
           background:
             "linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 65%)",

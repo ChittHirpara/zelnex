@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { GlassmorphismCanvas } from "./GlassmorphismCanvas";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -159,115 +160,153 @@ export function Hero() {
         />
       </div>
 
-      {/* ── Exact 3D Slanted Parallelogram Glassmorphic Sidebar ── */}
+      {/* ── 3D Slanted Parallelogram Floating Sidebar (Slim & Sleek Profile) ── */}
       <aside
         className="hz-sidebar absolute left-8 top-1/2 z-30 hidden -translate-y-1/2 md:flex flex-col items-center select-none"
       >
         <div
-          className="relative flex flex-col items-center py-6 w-[98px] rounded-[26px] transition-all duration-300 hover:scale-[1.02]"
-          style={{
-            transform: "skewY(-9deg)",
-            background:
-              "linear-gradient(175deg, rgba(3, 16, 52, 0.96) 0%, rgba(7, 26, 78, 0.94) 60%, rgba(2, 12, 40, 0.98) 100%)",
-            backdropFilter: "blur(28px) saturate(1.8)",
-            WebkitBackdropFilter: "blur(28px) saturate(1.8)",
-            border: "1.5px solid rgba(255, 255, 255, 0.22)",
-            boxShadow: `
-              12px 24px 45px rgba(0, 0, 0, 0.55),
-              0 0 35px rgba(0, 166, 255, 0.35),
-              inset 0 1.5px 0 rgba(255, 255, 255, 0.5),
-              inset -1px 0 0 rgba(255, 255, 255, 0.2)
-            `,
-          }}
+          className="sb-floating-panel relative group"
+          style={{ transform: "skewY(-10deg)" }}
         >
-          {/* 3D Bottom Edge Extrusion Rim */}
+          {/* Seamless 3D Right Side Extrusion Wall */}
           <div
-            className="absolute -bottom-2 inset-x-0 h-4 rounded-b-[26px] pointer-events-none"
+            className="absolute top-[10px] bottom-[10px] -right-[5px] w-[6px] rounded-r-[10px] pointer-events-none z-0"
             style={{
               background:
-                "linear-gradient(90deg, #0055ff 0%, #00d2ff 50%, #0044cc 100%)",
-              boxShadow: "0 6px 20px rgba(0, 180, 255, 0.7)",
-              opacity: 0.9,
+                "linear-gradient(180deg, #020d2d 0%, #03143d 50%, #01081e 100%)",
+              borderRight: "1px solid rgba(255, 255, 255, 0.15)",
+              boxShadow: "inset -1px 0 3px rgba(0, 0, 0, 0.7)",
             }}
           />
 
-          {/* Inner Un-skewed Content Wrapper */}
+          {/* Main Slanted Front Face Card Container (Slim 86px Width) */}
           <div
-            className="w-full flex flex-col items-center"
-            style={{ transform: "skewY(9deg)" }}
+            className="relative flex flex-col items-center w-[86px] h-[480px] rounded-[18px] overflow-hidden transition-all duration-300 z-10"
+            style={{
+              background:
+                "linear-gradient(180deg, #052264 0%, #03184a 45%, #010c2c 100%)",
+              backdropFilter: "blur(20px) saturate(1.5)",
+              WebkitBackdropFilter: "blur(20px) saturate(1.5)",
+              border: "1.2px solid rgba(255, 255, 255, 0.20)",
+              boxShadow: `
+                10px 18px 35px rgba(0, 12, 45, 0.52),
+                inset 0 1.5px 0 rgba(255, 255, 255, 0.45),
+                inset -1px 0 0 rgba(255, 255, 255, 0.2)
+              `,
+            }}
           >
-            {SIDEBAR_ITEMS.map((item, index) => {
-              const isActive = activeSidebarIndex === index;
-              return (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setActiveSidebarIndex(index)}
-                  className="group relative flex flex-col items-center justify-center w-full py-4 transition-all duration-300"
-                  style={{
-                    borderBottom:
-                      index < SIDEBAR_ITEMS.length - 1
-                        ? "1px solid rgba(255, 255, 255, 0.1)"
-                        : "none",
-                  }}
-                >
-                  {/* Active White Circle Badge vs Inactive Cyan Icon */}
-                  {isActive ? (
-                    <div
-                      className="flex items-center justify-center transition-all duration-300 scale-105"
-                      style={{
-                        width: "52px",
-                        height: "52px",
-                        borderRadius: "50%",
-                        background:
-                          "radial-gradient(circle at 35% 30%, #ffffff 0%, #f0f8ff 65%, #e0ecff 100%)",
-                        color: "#05184a",
-                        boxShadow:
-                          "0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1.5px 0 rgba(255, 255, 255, 1)",
-                      }}
-                    >
-                      {item.icon}
-                    </div>
-                  ) : (
-                    <div
-                      className="flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-                      style={{
-                        width: "44px",
-                        height: "44px",
-                        color: "#00d2ff",
-                        filter: "drop-shadow(0 0 8px rgba(0, 210, 255, 0.6))",
-                      }}
-                    >
-                      {item.icon}
-                    </div>
-                  )}
+            {/* Top-Right Glowing Specular Lens Flare Dot */}
+            <div
+              className="absolute -right-[2px] top-[25%] w-[5px] h-[5px] rounded-full pointer-events-none z-30"
+              style={{
+                background: "#ffffff",
+                boxShadow:
+                  "0 0 6px #ffffff, 0 0 14px #00B8F2, 0 0 20px #00B8F2",
+              }}
+            />
 
-                  {/* Label */}
-                  <span
-                    className={`mt-2 text-[12px] tracking-wide transition-colors ${
-                      isActive
-                        ? "text-white font-semibold"
-                        : "text-white/85 font-medium group-hover:text-white"
-                    }`}
+            {/* Seamless Bottom Edge Electric Cyan Glowing Rim */}
+            <div
+              className="absolute bottom-0 inset-x-0 h-[4.5px] rounded-b-[18px] pointer-events-none z-20"
+              style={{
+                background:
+                  "linear-gradient(90deg, #0044cc 0%, #00d2ff 50%, #0066ff 100%)",
+                boxShadow:
+                  "0 -1px 8px rgba(0, 210, 255, 0.9), 0 -4px 14px rgba(0, 175, 255, 0.6)",
+              }}
+            />
+
+            {/* Inner Un-skewed Content Wrapper */}
+            <div
+              className="w-full h-full flex flex-col justify-between items-center z-20 pb-1"
+              style={{ transform: "skewY(10deg)" }}
+            >
+              {SIDEBAR_ITEMS.map((item, index) => {
+                const isActive = activeSidebarIndex === index;
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setActiveSidebarIndex(index)}
+                    className="group/item relative flex flex-col items-center justify-center flex-1 w-full px-1.5 transition-all duration-300 hover:bg-white/[0.04]"
+                    style={{
+                      borderBottom:
+                        index < SIDEBAR_ITEMS.length - 1
+                          ? "1px solid rgba(255, 255, 255, 0.12)"
+                          : "none",
+                    }}
                   >
-                    {item.label}
-                  </span>
+                    {/* Active White Circle Badge vs Inactive Cyan Icon */}
+                    {isActive ? (
+                      <div
+                        className="flex items-center justify-center transition-all duration-300 scale-105"
+                        style={{
+                          width: "48px",
+                          height: "48px",
+                          borderRadius: "50%",
+                          background: "#ffffff",
+                          color: "#05184a",
+                          boxShadow:
+                            "0 5px 15px rgba(0, 0, 0, 0.35), inset 0 1.5px 0 #ffffff",
+                        }}
+                      >
+                        {item.icon}
+                      </div>
+                    ) : (
+                      <div
+                        className="flex items-center justify-center transition-all duration-300 group-hover/item:scale-110"
+                        style={{
+                          width: "36px",
+                          height: "36px",
+                          color: "#00B8F2",
+                          filter:
+                            "drop-shadow(0 0 5px rgba(0, 184, 242, 0.5))",
+                        }}
+                      >
+                        {item.icon}
+                      </div>
+                    )}
 
-                  {/* Active Cyan Underline Pill */}
-                  {isActive && (
-                    <div
-                      className="mt-1.5 w-6 h-[3px] rounded-full"
-                      style={{
-                        background: "#00d2ff",
-                        boxShadow: "0 0 12px #00d2ff, 0 0 4px #00d2ff",
-                      }}
-                    />
-                  )}
-                </a>
-              );
-            })}
+                    {/* Label */}
+                    <span
+                      className={`mt-1.5 text-[12px] tracking-wide transition-colors ${
+                        isActive
+                          ? "text-white font-semibold"
+                          : "text-white/85 font-medium group-hover/item:text-white"
+                      }`}
+                    >
+                      {item.label}
+                    </span>
+
+                    {/* Active Cyan Underline Pill */}
+                    {isActive && (
+                      <div
+                        className="mt-1 w-5 h-[2.5px] rounded-full"
+                        style={{
+                          background: "#00B8F2",
+                          boxShadow: "0 0 7px #00B8F2",
+                        }}
+                      />
+                    )}
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
+
+        {/* Floor Atmospheric Soft Shadow */}
+        <div
+          className="pointer-events-none mt-3"
+          style={{
+            width: "70px",
+            height: "12px",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(ellipse at center, rgba(0, 20, 65, 0.4), rgba(0, 175, 255, 0.1) 50%, transparent 75%)",
+            filter: "blur(4px)",
+          }}
+        />
       </aside>
 
       {/* ── Hero content ──────────────────────────────────── */}
@@ -330,167 +369,275 @@ export function Hero() {
         </div>
       </div>
 
-      {/* ── Enterprise Pharmaceutical Glassmorphism Statistics Panel (Ultra High Clarity Native) ── */}
-      <div className="hz-stats absolute bottom-8 left-6 right-6 md:left-36 md:right-8 z-10 max-w-[980px] mx-auto">
-        {/* Background Atmospheric Glowing Caustics for Backdrop Blur */}
+      {/* ── Glass Stats Bar — full port of reference HTML ── */}
+      <div className="hz-stats absolute bottom-6 left-6 right-6 md:left-36 md:right-8 z-10 max-w-[1120px] mx-auto">
         <div
-          className="absolute -inset-2 rounded-[46px] pointer-events-none"
+          className="relative overflow-hidden select-none"
           style={{
-            background:
-              "radial-gradient(ellipse at 70% 50%, rgba(0, 180, 255, 0.35) 0%, rgba(0, 100, 220, 0.15) 50%, transparent 80%)",
-            filter: "blur(20px)",
-          }}
-        />
-
-        {/* Main Ultra-Clarity Glass Capsule Container Surface */}
-        <div
-          className="relative rounded-[42px] overflow-hidden px-6 py-5 md:px-10 md:py-6 select-none"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(238, 247, 255, 0.84) 0%, rgba(210, 238, 255, 0.72) 40%, rgba(145, 212, 255, 0.84) 100%)",
-            backdropFilter: "blur(30px) saturate(1.9)",
-            WebkitBackdropFilter: "blur(30px) saturate(1.9)",
-            border: "2.5px solid rgba(255, 255, 255, 0.98)",
-            boxShadow: `
-              0 22px 60px rgba(0, 75, 170, 0.22),
-              0 4px 16px rgba(0, 0, 0, 0.04),
-              inset 0 2px 3px rgba(255, 255, 255, 1),
-              inset 0 -2px 8px rgba(0, 166, 255, 0.35)
+            borderRadius: "clamp(16px, 4vw, 30px)",
+            background: `
+              radial-gradient(120% 140% at 14% -12%, rgba(255,255,255,.38), rgba(255,255,255,0) 55%),
+              radial-gradient(95% 130% at 102% 118%, rgba(60,115,205,.14), rgba(255,255,255,0) 60%),
+              linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.03))
             `,
+            backdropFilter: "blur(9px) saturate(150%)",
+            WebkitBackdropFilter: "blur(9px) saturate(150%)",
+            filter: "drop-shadow(0 18px 40px rgba(20,60,130,.16)) drop-shadow(0 3px 10px rgba(20,60,130,.10))",
           }}
         >
-          {/* Top Edge Specular Luminous Edge Line */}
+          {/* ::before — top-left light sheen */}
           <div
-            className="absolute top-0 inset-x-6 h-[2px] pointer-events-none"
+            className="absolute inset-0 pointer-events-none z-[2] rounded-[inherit]"
             style={{
-              background:
-                "linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.85) 100%)",
+              background: "linear-gradient(115deg, rgba(255,255,255,.45) 0%, rgba(255,255,255,.14) 16%, rgba(255,255,255,0) 34%)",
+              mixBlendMode: "screen",
             }}
           />
 
-          {/* Bottom Edge Glowing Electric Cyan Border Highlight */}
+          {/* ::after — crisp edge ring */}
           <div
-            className="absolute bottom-0 inset-x-0 h-[2.5px] pointer-events-none"
+            className="absolute inset-0 pointer-events-none z-[3] rounded-[inherit]"
             style={{
-              background:
-                "linear-gradient(90deg, #00d2ff 0%, #00bfff 50%, #0099ff 100%)",
-              boxShadow: "0 -2px 10px rgba(0, 210, 255, 0.9)",
+              boxShadow: `
+                inset 0 0 0 1px rgba(255,255,255,.55),
+                inset 0 1.5px 0 rgba(255,255,255,.9),
+                inset 0 -1px 0 rgba(20,60,130,.12),
+                inset 0 0 0 2.5px rgba(120,180,255,.10)
+              `,
             }}
           />
 
-          {/* 4 Statistics Horizontal Grid */}
-          <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-y-6 md:gap-0">
-            {STATS.map((stat, i) => (
+          {/* Grain micro-texture */}
+          <div
+            className="absolute inset-0 pointer-events-none z-[2] rounded-[inherit]"
+            style={{
+              opacity: 0.045,
+              mixBlendMode: "overlay",
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            }}
+          />
+
+          {/* Corner bracket accents */}
+          <div className="absolute inset-0 pointer-events-none z-[3]">
+            {/* TL */}
+            <svg style={{ position:"absolute", top:5, left:5, width:"clamp(20px,4.4cqw,36px)", height:"clamp(20px,4.4cqw,36px)", overflow:"visible" }} viewBox="0 0 40 40">
+              <path fill="none" stroke="rgba(64,128,220,.8)" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="3 5" d="M4 22 A18 18 0 0 1 22 4"/>
+            </svg>
+            {/* TR */}
+            <svg style={{ position:"absolute", top:5, right:5, width:"clamp(20px,4.4cqw,36px)", height:"clamp(20px,4.4cqw,36px)", overflow:"visible", transform:"scaleX(-1)" }} viewBox="0 0 40 40">
+              <path fill="none" stroke="rgba(64,128,220,.8)" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="3 5" d="M4 22 A18 18 0 0 1 22 4"/>
+            </svg>
+            {/* BL */}
+            <svg style={{ position:"absolute", bottom:5, left:5, width:"clamp(20px,4.4cqw,36px)", height:"clamp(20px,4.4cqw,36px)", overflow:"visible", transform:"scaleY(-1)" }} viewBox="0 0 40 40">
+              <path fill="none" stroke="rgba(64,128,220,.8)" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="3 5" d="M4 22 A18 18 0 0 1 22 4"/>
+            </svg>
+            {/* BR */}
+            <svg style={{ position:"absolute", bottom:5, right:5, width:"clamp(20px,4.4cqw,36px)", height:"clamp(20px,4.4cqw,36px)", overflow:"visible", transform:"scale(-1,-1)" }} viewBox="0 0 40 40">
+              <path fill="none" stroke="rgba(64,128,220,.8)" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="3 5" d="M4 22 A18 18 0 0 1 22 4"/>
+            </svg>
+          </div>
+
+          {/* Bottom glow line */}
+          <div
+            className="absolute pointer-events-none z-[3]"
+            style={{
+              left:"7%", right:"7%", bottom:0, height:3,
+              background: "linear-gradient(90deg, transparent, rgba(255,255,255,.95) 32%, rgba(178,216,255,.95) 60%, transparent)",
+              filter: "blur(1.2px)",
+              opacity: 0.85,
+            }}
+          />
+
+          {/* Animated sheen sweep */}
+          <div className="absolute inset-0 rounded-[inherit] overflow-hidden pointer-events-none z-[2]">
+            <span className="gs-sheen-span" />
+          </div>
+
+          {/* Stats row */}
+          <div
+            className="relative z-[4] flex items-center w-full"
+            style={{ padding: "0 clamp(14px,3.2vw,36px)", minHeight: 118 }}
+          >
+            {/* Stat 1 — Globe */}
+            <div className="gs-stat flex flex-1 items-center" style={{ gap:"clamp(10px,1.6vw,18px)", padding:"0 clamp(8px,1.4vw,18px)" }}>
               <div
-                key={stat.number}
-                className="hz-stat-item group relative flex items-center justify-start md:justify-center gap-4 px-2 md:px-4 transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px]"
+                className="gs-badge hz-stat-item relative flex-shrink-0 flex items-center justify-center rounded-full overflow-hidden transition-transform duration-[250ms]"
+                style={{
+                  width:"clamp(42px,6.2vw,72px)", aspectRatio:"1",
+                  background: "rgba(255,255,255,.34)",
+                  backdropFilter: "blur(10px) saturate(150%)",
+                  WebkitBackdropFilter: "blur(10px) saturate(150%)",
+                  border: "1px solid rgba(255,255,255,.55)",
+                  boxShadow: "0 1px 1px rgba(15,45,100,.28), 1px 7px 15px rgba(15,45,100,.16), inset 0 1.5px 1px rgba(255,255,255,.95), inset 0 -2px 3px rgba(15,55,120,.22)",
+                  isolation: "isolate",
+                }}
               >
-                {/* 3D Glossy Marble Sphere Orb */}
-                <div
-                  className="relative flex h-[70px] w-[70px] shrink-0 items-center justify-center rounded-full transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06] group-hover:shadow-[0_14px_30px_rgba(0,90,210,0.3)]"
-                  style={{
-                    background:
-                      "radial-gradient(circle at 35% 35%, #ffffff 0%, #edf7ff 50%, #cbe8ff 80%, #90d4ff 100%)",
-                    border: "2.5px solid #ffffff",
-                    boxShadow: `
-                      0 10px 24px rgba(0, 90, 200, 0.22),
-                      inset 3px 3px 5px rgba(255, 255, 255, 1),
-                      inset -3px -3px 8px rgba(0, 140, 255, 0.4)
-                    `,
-                  }}
-                >
-                  {/* Sphere Top-Left Specular Crescent */}
-                  <div
-                    className="absolute top-1.5 left-2 w-5 h-2.5 rounded-full pointer-events-none"
-                    style={{
-                      background: "rgba(255, 255, 255, 0.98)",
-                      filter: "blur(0.5px)",
-                      transform: "rotate(-35deg)",
-                    }}
-                  />
-
-                  {/* Sphere Bottom-Right Glowing Cyan Spot */}
-                  <div
-                    className="absolute bottom-2 right-2.5 w-3.5 h-2 rounded-full pointer-events-none"
-                    style={{
-                      background: "#00d2ff",
-                      filter: "blur(1px)",
-                      boxShadow: "0 0 8px #00d2ff",
-                      transform: "rotate(-25deg)",
-                    }}
-                  />
-
-                  {/* Asset PNG Icon inside Sphere */}
-                  <Image
-                    src={stat.iconSrc}
-                    alt={stat.alt}
-                    width={32}
-                    height={32}
-                    className="relative z-10 object-contain transition-transform duration-300 group-hover:scale-[1.06]"
-                    style={{
-                      filter:
-                        "invert(16%) sepia(85%) saturate(1400%) hue-rotate(205deg) brightness(0.75)",
-                    }}
-                  />
-                </div>
-
-                {/* Metric Content */}
-                <div className="flex flex-col">
-                  {/* Number */}
-                  <div
-                    className="font-display text-[30px] md:text-[34px] font-extrabold leading-none tracking-tight transition-all duration-300 group-hover:brightness-110"
-                    style={{ color: "#05184a" }}
-                  >
-                    {stat.number}
-                  </div>
-
-                  {/* Label */}
-                  <div
-                    className="mt-1.5 whitespace-pre-line text-[12px] md:text-[13px] font-medium leading-[1.3]"
-                    style={{ color: "#2d4a6b" }}
-                  >
-                    {stat.label}
-                  </div>
-
-                  {/* Micro Cyan Indicator Dots */}
-                  <div className="mt-2 flex gap-[5px]">
-                    <span
-                      className="h-[5px] w-[5px] rounded-full"
-                      style={{
-                        background: "#00d2ff",
-                        boxShadow: "0 0 6px rgba(0, 210, 255, 0.9)",
-                      }}
-                    />
-                    <span
-                      className="h-[5px] w-[5px] rounded-full"
-                      style={{
-                        background: "#00a2e8",
-                        boxShadow: "0 0 4px rgba(0, 162, 232, 0.7)",
-                      }}
-                    />
-                    <span
-                      className="h-[5px] w-[5px] rounded-full"
-                      style={{ background: "#80dcfb" }}
-                    />
-                  </div>
-                </div>
-
-                {/* Fading Vertical Glass Separator */}
-                {i < STATS.length - 1 && (
-                  <div
-                    className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 h-[56px] w-px pointer-events-none"
-                    style={{
-                      background:
-                        "linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, transparent 100%)",
-                      boxShadow: "1px 0 0 rgba(180, 220, 255, 0.45)",
-                    }}
-                  />
-                )}
+                {/* angled specular streak with icon colour tint */}
+                <div className="absolute inset-0 rounded-full pointer-events-none z-[1]" style={{ background: "radial-gradient(circle at 28% 24%, rgba(30,79,184,.16), transparent 62%), linear-gradient(to left top, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 55%)" }} />
+                {/* top-down sheen + curved vignette */}
+                <div className="absolute inset-0 rounded-full pointer-events-none z-[1]" style={{ background: "radial-gradient(circle at 50% 50%, transparent 52%, rgba(10,35,85,.14) 100%), linear-gradient(to bottom, rgba(255,255,255,.3) 0%, rgba(255,255,255,0) 62%)" }} />
+                {/* primary glint */}
+                <div className="absolute pointer-events-none z-[1]" style={{ top:"11%", left:"14%", width:"32%", height:"32%", borderRadius:"50%", background:"radial-gradient(circle at 35% 35%, rgba(255,255,255,.98), rgba(255,255,255,0) 72%)", filter:"blur(.5px)", mixBlendMode:"plus-lighter" }} />
+                {/* secondary bounce */}
+                <div className="absolute pointer-events-none z-[1]" style={{ bottom:"14%", right:"16%", width:"16%", height:"16%", borderRadius:"50%", background:"radial-gradient(circle at 45% 45%, rgba(255,255,255,.55), rgba(255,255,255,0) 75%)", opacity:0.7 }} />
+                {/* dashed ring */}
+                <svg className="absolute inset-0 w-full h-full z-0" viewBox="0 0 100 100" style={{ opacity:0.55 }}>
+                  <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(64,128,220,.8)" strokeWidth="1.3" strokeDasharray="2.6 4.6"/>
+                </svg>
+                {/* Globe icon */}
+                <svg className="relative z-[2]" style={{ width:"50%", height:"50%" }} viewBox="0 0 24 24" fill="none" stroke="#1e4fb8" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="9.4"/>
+                  <line x1="2.6" y1="12" x2="21.4" y2="12"/>
+                  <line x1="12" y1="2.6" x2="12" y2="21.4"/>
+                  <path d="M12 2.6c3.05 3.05 4.6 6.2 4.6 9.4s-1.55 6.35-4.6 9.4c-3.05-3.05-4.6-6.2-4.6-9.4S8.95 5.65 12 2.6z"/>
+                </svg>
               </div>
-            ))}
+              <div className="flex flex-col" style={{ gap:3, minWidth:0 }}>
+                <div style={{ fontWeight:800, fontSize:"clamp(17px,2.35vw,29px)", color:"#0a1454", lineHeight:1, letterSpacing:"-0.01em", whiteSpace:"nowrap" }}>65+</div>
+                <div style={{ fontWeight:600, fontSize:"clamp(10px,1.05vw,13px)", color:"#5b6089", lineHeight:1.25 }}>Countries<br/>Worldwide</div>
+                <div className="flex" style={{ gap:4, marginTop:3 }}>
+                  {[0,1,2].map(d=><i key={d} style={{ width:4, height:4, borderRadius:"50%", display:"block", background:"linear-gradient(135deg,#2f74e0,#123f9e)" }}/>)}
+                </div>
+              </div>
+            </div>
+
+            {/* Stat 2 — Products */}
+            <div className="gs-stat flex flex-1 items-center" style={{ gap:"clamp(10px,1.6vw,18px)", padding:"0 clamp(8px,1.4vw,18px)" }}>
+              <div
+                className="gs-badge hz-stat-item relative flex-shrink-0 flex items-center justify-center rounded-full overflow-hidden transition-transform duration-[250ms]"
+                style={{
+                  width:"clamp(42px,6.2vw,72px)", aspectRatio:"1",
+                  background: "rgba(255,255,255,.34)",
+                  backdropFilter: "blur(10px) saturate(150%)",
+                  WebkitBackdropFilter: "blur(10px) saturate(150%)",
+                  border: "1px solid rgba(255,255,255,.55)",
+                  boxShadow: "0 1px 1px rgba(15,45,100,.28), 1px 7px 15px rgba(15,45,100,.16), inset 0 1.5px 1px rgba(255,255,255,.95), inset 0 -2px 3px rgba(15,55,120,.22)",
+                  isolation: "isolate",
+                }}
+              >
+                <div className="absolute inset-0 rounded-full pointer-events-none z-[1]" style={{ background: "radial-gradient(circle at 28% 24%, rgba(46,146,192,.16), transparent 62%), linear-gradient(to left top, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 55%)" }} />
+                <div className="absolute inset-0 rounded-full pointer-events-none z-[1]" style={{ background: "radial-gradient(circle at 50% 50%, transparent 52%, rgba(10,35,85,.14) 100%), linear-gradient(to bottom, rgba(255,255,255,.3) 0%, rgba(255,255,255,0) 62%)" }} />
+                <div className="absolute pointer-events-none z-[1]" style={{ top:"11%", left:"14%", width:"32%", height:"32%", borderRadius:"50%", background:"radial-gradient(circle at 35% 35%, rgba(255,255,255,.98), rgba(255,255,255,0) 72%)", filter:"blur(.5px)", mixBlendMode:"plus-lighter" }} />
+                <div className="absolute pointer-events-none z-[1]" style={{ bottom:"14%", right:"16%", width:"16%", height:"16%", borderRadius:"50%", background:"radial-gradient(circle at 45% 45%, rgba(255,255,255,.55), rgba(255,255,255,0) 75%)", opacity:0.7 }} />
+                <svg className="absolute inset-0 w-full h-full z-0" viewBox="0 0 100 100" style={{ opacity:0.55 }}>
+                  <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(64,128,220,.8)" strokeWidth="1.3" strokeDasharray="2.6 4.6"/>
+                </svg>
+                {/* Pills bottle icon */}
+                <svg className="relative z-[2]" style={{ width:"50%", height:"50%" }} viewBox="0 0 24 24" fill="none" stroke="#2e92c0" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="9.3" y="2.3" width="5.0" height="2.6" rx="0.6"/>
+                  <path d="M8.3 4.9h7.0v2.05l1.55 2.2v7.65a1.9 1.9 0 0 1-1.9 1.9H8.65a1.9 1.9 0 0 1-1.9-1.9V9.15l1.55-2.2z"/>
+                  <line x1="6.9" y1="11.5" x2="16.7" y2="11.5"/>
+                  <path d="M10.6 13.2v2.6M9.3 14.5h2.6"/>
+                  <g transform="translate(14.2 15.6) rotate(35)">
+                    <rect x="-2.7" y="-1.15" width="5.4" height="2.3" rx="1.15"/>
+                    <line x1="0" y1="-1.15" x2="0" y2="1.15"/>
+                  </g>
+                </svg>
+              </div>
+              <div className="flex flex-col" style={{ gap:3, minWidth:0 }}>
+                <div style={{ fontWeight:800, fontSize:"clamp(17px,2.35vw,29px)", color:"#0a1454", lineHeight:1, letterSpacing:"-0.01em", whiteSpace:"nowrap" }}>350+</div>
+                <div style={{ fontWeight:600, fontSize:"clamp(10px,1.05vw,13px)", color:"#5b6089", lineHeight:1.25 }}>Quality<br/>Products</div>
+                <div className="flex" style={{ gap:4, marginTop:3 }}>
+                  {[0,1,2].map(d=><i key={d} style={{ width:4, height:4, borderRadius:"50%", display:"block", background:"linear-gradient(135deg,#2f74e0,#123f9e)" }}/>)}
+                </div>
+              </div>
+            </div>
+
+            {/* Stat 3 — Therapeutic Areas */}
+            <div className="gs-stat flex flex-1 items-center" style={{ gap:"clamp(10px,1.6vw,18px)", padding:"0 clamp(8px,1.4vw,18px)" }}>
+              <div
+                className="gs-badge hz-stat-item relative flex-shrink-0 flex items-center justify-center rounded-full overflow-hidden transition-transform duration-[250ms]"
+                style={{
+                  width:"clamp(42px,6.2vw,72px)", aspectRatio:"1",
+                  background: "rgba(255,255,255,.34)",
+                  backdropFilter: "blur(10px) saturate(150%)",
+                  WebkitBackdropFilter: "blur(10px) saturate(150%)",
+                  border: "1px solid rgba(255,255,255,.55)",
+                  boxShadow: "0 1px 1px rgba(15,45,100,.28), 1px 7px 15px rgba(15,45,100,.16), inset 0 1.5px 1px rgba(255,255,255,.95), inset 0 -2px 3px rgba(15,55,120,.22)",
+                  isolation: "isolate",
+                }}
+              >
+                <div className="absolute inset-0 rounded-full pointer-events-none z-[1]" style={{ background: "radial-gradient(circle at 28% 24%, rgba(46,146,192,.16), transparent 62%), linear-gradient(to left top, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 55%)" }} />
+                <div className="absolute inset-0 rounded-full pointer-events-none z-[1]" style={{ background: "radial-gradient(circle at 50% 50%, transparent 52%, rgba(10,35,85,.14) 100%), linear-gradient(to bottom, rgba(255,255,255,.3) 0%, rgba(255,255,255,0) 62%)" }} />
+                <div className="absolute pointer-events-none z-[1]" style={{ top:"11%", left:"14%", width:"32%", height:"32%", borderRadius:"50%", background:"radial-gradient(circle at 35% 35%, rgba(255,255,255,.98), rgba(255,255,255,0) 72%)", filter:"blur(.5px)", mixBlendMode:"plus-lighter" }} />
+                <div className="absolute pointer-events-none z-[1]" style={{ bottom:"14%", right:"16%", width:"16%", height:"16%", borderRadius:"50%", background:"radial-gradient(circle at 45% 45%, rgba(255,255,255,.55), rgba(255,255,255,0) 75%)", opacity:0.7 }} />
+                <svg className="absolute inset-0 w-full h-full z-0" viewBox="0 0 100 100" style={{ opacity:0.55 }}>
+                  <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(64,128,220,.8)" strokeWidth="1.3" strokeDasharray="2.6 4.6"/>
+                </svg>
+                {/* Molecule icon */}
+                <svg className="relative z-[2]" style={{ width:"50%", height:"50%" }} viewBox="0 0 24 24" fill="none" stroke="#2e92c0" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="4.6" r="2.15"/>
+                  <circle cx="5.4" cy="18.2" r="2.15"/>
+                  <circle cx="18.6" cy="18.2" r="2.15"/>
+                  <circle cx="12" cy="12" r="1.95"/>
+                  <line x1="12" y1="6.7" x2="12" y2="10.05"/>
+                  <line x1="10.45" y1="13.3" x2="6.95" y2="16.35"/>
+                  <line x1="13.55" y1="13.3" x2="17.05" y2="16.35"/>
+                </svg>
+              </div>
+              <div className="flex flex-col" style={{ gap:3, minWidth:0 }}>
+                <div style={{ fontWeight:800, fontSize:"clamp(17px,2.35vw,29px)", color:"#0a1454", lineHeight:1, letterSpacing:"-0.01em", whiteSpace:"nowrap" }}>18+</div>
+                <div style={{ fontWeight:600, fontSize:"clamp(10px,1.05vw,13px)", color:"#5b6089", lineHeight:1.25 }}>Therapeutic<br/>Areas</div>
+                <div className="flex" style={{ gap:4, marginTop:3 }}>
+                  {[0,1,2].map(d=><i key={d} style={{ width:4, height:4, borderRadius:"50%", display:"block", background:"linear-gradient(135deg,#2f74e0,#123f9e)" }}/>)}
+                </div>
+              </div>
+            </div>
+
+            {/* Stat 4 — Manufacturing */}
+            <div className="gs-stat flex flex-1 items-center" style={{ gap:"clamp(10px,1.6vw,18px)", padding:"0 clamp(8px,1.4vw,18px)" }}>
+              <div
+                className="gs-badge hz-stat-item relative flex-shrink-0 flex items-center justify-center rounded-full overflow-hidden transition-transform duration-[250ms]"
+                style={{
+                  width:"clamp(42px,6.2vw,72px)", aspectRatio:"1",
+                  background: "rgba(255,255,255,.34)",
+                  backdropFilter: "blur(10px) saturate(150%)",
+                  WebkitBackdropFilter: "blur(10px) saturate(150%)",
+                  border: "1px solid rgba(255,255,255,.55)",
+                  boxShadow: "0 1px 1px rgba(15,45,100,.28), 1px 7px 15px rgba(15,45,100,.16), inset 0 1.5px 1px rgba(255,255,255,.95), inset 0 -2px 3px rgba(15,55,120,.22)",
+                  isolation: "isolate",
+                }}
+              >
+                <div className="absolute inset-0 rounded-full pointer-events-none z-[1]" style={{ background: "radial-gradient(circle at 28% 24%, rgba(30,79,184,.16), transparent 62%), linear-gradient(to left top, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 55%)" }} />
+                <div className="absolute inset-0 rounded-full pointer-events-none z-[1]" style={{ background: "radial-gradient(circle at 50% 50%, transparent 52%, rgba(10,35,85,.14) 100%), linear-gradient(to bottom, rgba(255,255,255,.3) 0%, rgba(255,255,255,0) 62%)" }} />
+                <div className="absolute pointer-events-none z-[1]" style={{ top:"11%", left:"14%", width:"32%", height:"32%", borderRadius:"50%", background:"radial-gradient(circle at 35% 35%, rgba(255,255,255,.98), rgba(255,255,255,0) 72%)", filter:"blur(.5px)", mixBlendMode:"plus-lighter" }} />
+                <div className="absolute pointer-events-none z-[1]" style={{ bottom:"14%", right:"16%", width:"16%", height:"16%", borderRadius:"50%", background:"radial-gradient(circle at 45% 45%, rgba(255,255,255,.55), rgba(255,255,255,0) 75%)", opacity:0.7 }} />
+                <svg className="absolute inset-0 w-full h-full z-0" viewBox="0 0 100 100" style={{ opacity:0.55 }}>
+                  <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(64,128,220,.8)" strokeWidth="1.3" strokeDasharray="2.6 4.6"/>
+                </svg>
+                {/* Factory icon */}
+                <svg className="relative z-[2]" style={{ width:"50%", height:"50%" }} viewBox="0 0 24 24" fill="none" stroke="#1e4fb8" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M2.7 20.3V12.6l4.3 2.9v-2.9l4.3 2.9v-2.9l4.3 2.9V9.4c0-.5.4-.9.9-.9h3.6c.5 0 .9.4.9.9v10.9"/>
+                  <path d="M17.1 8.5V5.1c0-.55.6-.9 1.1-.6l1.9 1.35V8.5"/>
+                  <line x1="2" y1="20.3" x2="22" y2="20.3"/>
+                  <rect x="6" y="16.6" width="1.5" height="1.5"/>
+                  <rect x="10.3" y="16.6" width="1.5" height="1.5"/>
+                  <rect x="14.6" y="16.6" width="1.5" height="1.5"/>
+                </svg>
+              </div>
+              <div className="flex flex-col" style={{ gap:3, minWidth:0 }}>
+                <div style={{ fontWeight:800, fontSize:"clamp(17px,2.35vw,29px)", color:"#0a1454", lineHeight:1, letterSpacing:"-0.01em", whiteSpace:"nowrap" }}>12+</div>
+                <div style={{ fontWeight:600, fontSize:"clamp(10px,1.05vw,13px)", color:"#5b6089", lineHeight:1.25 }}>Manufacturing<br/>Facilities</div>
+                <div className="flex" style={{ gap:4, marginTop:3 }}>
+                  {[0,1,2].map(d=><i key={d} style={{ width:4, height:4, borderRadius:"50%", display:"block", background:"linear-gradient(135deg,#2f74e0,#123f9e)" }}/>)}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Floor shadow — grounds the panel */}
+        <div
+          className="pointer-events-none"
+          style={{
+            width:"82%", height:22,
+            margin:"-4px auto 0",
+            borderRadius:"50%",
+            background:"radial-gradient(ellipse at center, rgba(15,45,100,.24), rgba(15,45,100,0) 72%)",
+            filter:"blur(5px)",
+          }}
+        />
       </div>
     </section>
   );
-}
+}

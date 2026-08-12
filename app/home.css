@@ -428,3 +428,59 @@
   .stats-glass { flex-wrap: wrap; gap: 16px; border-radius: 24px; }
   .stat-divider { display: none; }
 }
+
+/* ─────────────────────────────────────────────────────────
+   GLASS STATS BAR — animations
+   ───────────────────────────────────────────────────────── */
+
+@keyframes gs-sweep {
+  0%,60%,100% { transform: translateX(-160%) rotate(12deg); }
+  35%          { transform: translateX(420%)  rotate(12deg); }
+}
+
+.gs-sheen-span {
+  position: absolute;
+  top: -40%; bottom: -40%;
+  width: 22%;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.55), rgba(255,255,255,0));
+  transform: translateX(-160%) rotate(12deg);
+  animation: gs-sweep 7s ease-in-out infinite;
+  animation-delay: 1.2s;
+  pointer-events: none;
+}
+
+.gs-stat {
+  position: relative;
+}
+
+.gs-stat:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0; top: 18%; bottom: 18%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(30,70,140,.22), transparent);
+}
+
+.gs-badge:hover {
+  transform: translateY(-2px);
+}
+
+/* ─────────────────────────────────────────────────────────
+   FLOATING PHARMACEUTICAL SIDEBAR — Premium Slim Navigation
+   ───────────────────────────────────────────────────────── */
+
+@keyframes sb-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.sb-floating-panel {
+  animation: sb-float 6s ease-in-out infinite;
+}
+
+
+
