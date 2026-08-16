@@ -8,7 +8,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { CrystalButton } from "@/components/ui/CrystalButton";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(useGSAP, ScrollTrigger);
+}
 
 const CARDS = [
   {
@@ -70,7 +72,7 @@ export function WhoWeAre() {
     <section
       id="about"
       ref={rootRef}
-      className="section-pad relative scroll-mt-24 bg-navy py-20 md:py-24"
+      className="section-pad relative scroll-mt-24 bg-navy py-20 md:py-28"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-30"
@@ -81,6 +83,7 @@ export function WhoWeAre() {
         aria-hidden
       />
       <div className="relative z-10 mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_1.35fr] lg:items-center lg:gap-14">
+        {/* Left Column */}
         <div className="who-copy">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-bright">
             Who We Are
@@ -101,6 +104,7 @@ export function WhoWeAre() {
           </div>
         </div>
 
+        {/* Right Column: 3 Cards */}
         <div className="grid gap-4 sm:grid-cols-3">
           {CARDS.map((card) => {
             if (card.tone === "teal") {
@@ -108,7 +112,7 @@ export function WhoWeAre() {
                 <div
                   key={card.id}
                   id={card.id}
-                  className="who-card relative flex min-h-[280px] flex-col justify-end overflow-hidden rounded-3xl bg-teal p-5 scroll-mt-28"
+                  className="who-card relative flex min-h-[300px] flex-col justify-end overflow-hidden rounded-3xl bg-teal p-6 scroll-mt-28 shadow-lg transition-transform duration-300 hover:-translate-y-1.5"
                 >
                   <WorldMapPattern />
                   <p className="relative z-10 font-display text-2xl font-bold text-white">
@@ -125,38 +129,38 @@ export function WhoWeAre() {
               <div
                 key={card.id}
                 id={card.id}
-                className="who-card group relative min-h-[280px] overflow-hidden rounded-3xl scroll-mt-28"
+                className="who-card group relative min-h-[300px] overflow-hidden rounded-3xl scroll-mt-28 shadow-lg transition-transform duration-300 hover:-translate-y-1.5"
               >
                 {card.image ? (
                   <Image
                     src={card.image}
-                    alt=""
+                    alt={card.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 280px"
+                    sizes="(max-width: 768px) 100vw, 320px"
                   />
                 ) : null}
                 <div
                   className={`absolute inset-0 ${
                     card.tone === "photo-overlay"
-                      ? "bg-gradient-to-t from-navy/85 via-navy/25 to-transparent"
-                      : "bg-gradient-to-t from-navy/80 via-transparent to-transparent"
+                      ? "bg-gradient-to-t from-navy/90 via-navy/30 to-transparent"
+                      : "bg-gradient-to-t from-navy/85 via-navy/20 to-transparent"
                   }`}
                 />
-                <div className="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-2 p-5">
+                <div className="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-2 p-6">
                   <div>
-                    <p className="font-display text-lg font-semibold text-white">
+                    <p className="font-display text-xl font-bold text-white leading-snug">
                       {card.title}
                     </p>
                     {card.subtitle ? (
-                      <p className="mt-1 text-xs leading-relaxed text-white/80">
+                      <p className="mt-1.5 text-xs leading-relaxed text-white/80">
                         {card.subtitle}
                       </p>
                     ) : null}
                   </div>
                   <Link
                     href="#contact"
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-teal text-sm text-white"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal text-base text-white shadow-md transition-transform duration-300 hover:scale-110"
                     aria-label={`Learn more about ${card.title}`}
                   >
                     →

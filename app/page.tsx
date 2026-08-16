@@ -9,7 +9,7 @@ import { Categories } from "@/components/Categories";
 import { Packaging } from "@/components/Packaging";
 import { Certifications } from "@/components/Certifications";
 import { GrowingNetwork } from "@/components/GrowingNetwork";
-import { CtaFooter } from "@/components/CtaFooter";
+import { DigitalEpochSection } from "@/components/DigitalEpochSection";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
         {/* Clean Hero section — free of vector overlays */}
         <Hero />
 
-        {/* Scroll-animated S-curve neon vector line starts at Overview section */}
+        {/* Scroll-animated flowing SVG vector vine with 5 blooming botanical nodes */}
         <div id="vector-wrapper" className="relative">
           <FlowingVector />
           <Overview />
@@ -31,7 +31,7 @@ export default function Home() {
           <Packaging />
           <Certifications />
           <GrowingNetwork />
-          <CtaFooter />
+          <DigitalEpochSection />
         </div>
       </main>
       <Footer />

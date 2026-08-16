@@ -15,12 +15,32 @@ const NAV_LINKS = [
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [activeHash, setActiveHash] = useState("/#home");
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY <= 60) {
+        setVisible(true);
+        setScrolled(false);
+      } else {
+        setScrolled(true);
+        if (open) {
+          setVisible(true);
+        } else if (currentScrollY > lastScrollY && currentScrollY - lastScrollY > 6) {
+          // Scrolling down -> hide navbar
+          setVisible(false);
+        } else if (lastScrollY - currentScrollY > 6) {
+          // Scrolling up -> show navbar
+          setVisible(true);
+        }
+      }
+      lastScrollY = currentScrollY;
     };
 
     const handleHashChange = () => {
@@ -37,7 +57,7 @@ export function Navbar() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("hashchange", handleHashChange);
     };
-  }, []);
+  }, [open]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -48,8 +68,12 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed left-1/2 top-4 z-50 w-[calc(100%-32px)] max-w-[1320px] -translate-x-1/2 overflow-hidden transition-all duration-500 ${
+      className={`fixed left-1/2 top-4 z-50 w-[calc(100%-32px)] max-w-[1320px] -translate-x-1/2 overflow-hidden transition-all duration-500 ease-out ${
         open ? "rounded-3xl" : "rounded-full"
+      } ${
+        visible
+          ? "translate-y-0 opacity-100 pointer-events-auto"
+          : "-translate-y-28 opacity-0 pointer-events-none"
       }`}
       style={{
         background:

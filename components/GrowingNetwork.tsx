@@ -1,35 +1,20 @@
 "use client";
 
-import { useRef } from "react";
+import { useState, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { EarthGlobe3D, type MarketLocation } from "./EarthGlobe3D";
+import { Globe2, ShieldCheck, Plane, CheckCircle2 } from "lucide-react";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
-
-/** Approximate marker positions on a simplified equirectangular world map */
-const MARKETS = [
-  { name: "Kenya", x: 58, y: 58 },
-  { name: "Nigeria", x: 50, y: 55 },
-  { name: "Ghana", x: 47.5, y: 54 },
-  { name: "Uganda", x: 57.5, y: 57 },
-  { name: "Ivory Coast", x: 46, y: 54 },
-  { name: "Congo", x: 53, y: 60 },
-  { name: "Sudan", x: 56, y: 50 },
-  { name: "Zambia", x: 55, y: 68 },
-  { name: "Iraq", x: 60, y: 42 },
-  { name: "Yemen", x: 62, y: 50 },
-  { name: "Afghanistan", x: 66, y: 40 },
-  { name: "India", x: 68, y: 48 },
-  { name: "Sri Lanka", x: 69, y: 56 },
-  { name: "Myanmar", x: 73, y: 48 },
-  { name: "Cambodia", x: 76, y: 52 },
-  { name: "Vietnam", x: 77.5, y: 50 },
-  { name: "Mauritius", x: 61, y: 72 },
-] as const;
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(useGSAP, ScrollTrigger);
+}
 
 export function GrowingNetwork() {
   const rootRef = useRef<HTMLElement>(null);
+  const [selectedMarket, setSelectedMarket] = useState<MarketLocation | null>(null);
 
   useGSAP(
     () => {
@@ -38,22 +23,65 @@ export function GrowingNetwork() {
       ).matches;
       if (reduce) return;
 
-      gsap.from(".network-copy", {
-        y: 24,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: { trigger: rootRef.current, start: "top 75%" },
-      });
+      // Header entrance
+      gsap.fromTo(
+        ".network-header",
+        { y: -24, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: { trigger: rootRef.current, start: "top 80%" },
+        }
+      );
 
-      gsap.from(".network-pin", {
-        scale: 0,
-        opacity: 0,
-        duration: 0.45,
-        stagger: 0.04,
-        ease: "back.out(1.6)",
-        scrollTrigger: { trigger: rootRef.current, start: "top 70%" },
-      });
+      // Left Cloud & Card drift on scroll (Move closer to Earth)
+      gsap.fromTo(
+        ".cloud-left-box",
+        { x: -140, opacity: 0.4 },
+        {
+          x: 90,
+          opacity: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: rootRef.current,
+            start: "top 80%",
+            end: "bottom 70%",
+            scrub: 1.2,
+          },
+        }
+      );
+
+      // Right Cloud & Card drift on scroll (Move closer to Earth)
+      gsap.fromTo(
+        ".cloud-right-box",
+        { x: 140, opacity: 0.4 },
+        {
+          x: -90,
+          opacity: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: rootRef.current,
+            start: "top 80%",
+            end: "bottom 70%",
+            scrub: 1.2,
+          },
+        }
+      );
+
+      // Metrics Row entrance
+      gsap.fromTo(
+        ".network-metrics",
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: { trigger: rootRef.current, start: "top 60%" },
+        }
+      );
     },
     { scope: rootRef },
   );
@@ -62,55 +90,146 @@ export function GrowingNetwork() {
     <section
       id="network"
       ref={rootRef}
-      className="relative section-pad scroll-mt-24 bg-white/80 backdrop-blur-sm py-20 md:py-24"
+      className="relative section-pad scroll-mt-24 py-20 md:py-28 overflow-hidden bg-white"
     >
-      <div className="relative z-20 mx-auto max-w-7xl">
-        <div className="network-copy max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal">
-            Our Global Presence
-          </p>
-          <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-navy md:text-4xl">
-            Growing Network
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted">
-            Expanding across emerging and regulated markets with reliable supply
-            chains and long-term distributor partnerships.
-          </p>
+      {/* ── Left Flank: Cinematic Parallax Cloud Plume & Corridor Badge ── */}
+      <div className="cloud-left-box pointer-events-none absolute left-0 top-[20%] z-10 hidden lg:flex flex-col items-start w-[440px] max-w-[32vw]">
+        <div className="relative w-full h-[360px] opacity-85">
+          <Image
+            src="/cloud-left.jpg"
+            alt="Atmospheric Clouds"
+            fill
+            sizes="(max-width: 1200px) 300px, 440px"
+            className="object-contain object-left mix-blend-multiply"
+          />
         </div>
 
-        <div className="relative mt-12 overflow-hidden rounded-3xl glass-card">
-          <svg
-            viewBox="0 0 1000 480"
-            className="h-auto w-full"
-            role="img"
-            aria-label="World map showing Zelnex global presence"
-          >
-            <rect width="1000" height="480" fill="#eef4f8" />
-            <g fill="#c5d4e3" stroke="#a8bcd0" strokeWidth="1">
-              <ellipse cx="220" cy="180" rx="140" ry="90" opacity="0.85" />
-              <ellipse cx="280" cy="300" rx="70" ry="100" opacity="0.7" />
-              <ellipse cx="480" cy="160" rx="90" ry="70" opacity="0.8" />
-              <ellipse cx="520" cy="280" rx="80" ry="120" opacity="0.75" />
-              <ellipse cx="700" cy="200" rx="160" ry="100" opacity="0.85" />
-              <ellipse cx="820" cy="320" rx="90" ry="60" opacity="0.65" />
-              <ellipse cx="180" cy="380" rx="50" ry="35" opacity="0.5" />
-            </g>
+        {/* Floating Glassmorphic Corridor Card */}
+        <div className="pointer-events-auto -mt-24 ml-10 p-4 rounded-2xl bg-white/90 backdrop-blur-xl border border-slate-200/90 shadow-xl max-w-[300px] text-[#082B61]">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#006EDC] text-white text-xs font-bold">
+              <Globe2 className="w-3.5 h-3.5" />
+            </span>
+            <h4 className="font-display text-xs font-extrabold tracking-tight text-[#082B61]">
+              Africa & Middle East Corridor
+            </h4>
+          </div>
+          <p className="text-[11.5px] leading-relaxed text-slate-600 mb-2">
+            Direct regulatory clearances across 25+ nations with Zone IVb stability testing.
+          </p>
+          <div className="flex items-center gap-1.5 text-[10.5px] font-bold text-teal">
+            <CheckCircle2 className="w-3.5 h-3.5" />
+            <span>WHO-GMP Batches Active</span>
+          </div>
+        </div>
+      </div>
 
-            {MARKETS.map((m) => (
-              <g
-                key={m.name}
-                className="network-pin"
-                transform={`translate(${(m.x / 100) * 1000}, ${(m.y / 100) * 480})`}
-              >
-                <circle r="10" fill="rgba(0,166,166,0.2)" className="network-pulse" />
-                <circle r="5" fill="#00a6a6" />
-                <circle r="2" fill="#ffffff" />
-                <title>{m.name}</title>
-              </g>
-            ))}
-          </svg>
+      {/* ── Right Flank: Cinematic Parallax Cloud Plume & Supply Badge ── */}
+      <div className="cloud-right-box pointer-events-none absolute right-0 top-[20%] z-10 hidden lg:flex flex-col items-end w-[440px] max-w-[32vw]">
+        <div className="relative w-full h-[360px] opacity-85">
+          <Image
+            src="/cloud-right.jpg"
+            alt="Atmospheric Clouds"
+            fill
+            sizes="(max-width: 1200px) 300px, 440px"
+            className="object-contain object-right mix-blend-multiply"
+          />
+        </div>
+
+        {/* Floating Glassmorphic Corridor Card */}
+        <div className="pointer-events-auto -mt-24 mr-10 p-4 rounded-2xl bg-white/90 backdrop-blur-xl border border-slate-200/90 shadow-xl max-w-[300px] text-[#082B61] text-right">
+          <div className="flex items-center justify-end gap-2 mb-2">
+            <h4 className="font-display text-xs font-extrabold tracking-tight text-[#082B61]">
+              Asia & Regional Hubs
+            </h4>
+            <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-teal text-white text-xs font-bold">
+              <Plane className="w-3.5 h-3.5" />
+            </span>
+          </div>
+          <p className="text-[11.5px] leading-relaxed text-slate-600 mb-2">
+            High-speed air freight & full eCTD dossier support for hospital and tender supply.
+          </p>
+          <div className="flex items-center justify-end gap-1.5 text-[10.5px] font-bold text-[#006EDC]">
+            <span>Cold-Chain Logistics Ready</span>
+            <ShieldCheck className="w-3.5 h-3.5" />
+          </div>
+        </div>
+      </div>
+
+      <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Top Centered Section Header */}
+        <div className="network-header flex flex-col items-center text-center">
+          <p className="text-sm md:text-base font-semibold tracking-wide text-slate-500 mb-1">
+            Global Supply Network
+          </p>
+
+          {/* Hero Highlight Metric */}
+          <h2
+            className="font-display text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-none mb-3"
+            style={{
+              background: "linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 50%, #ff5252 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              filter: "drop-shadow(0 12px 24px rgba(255, 107, 107, 0.28))",
+            }}
+          >
+            50+ Countries
+          </h2>
+
+          {/* Small Sub-Pill */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200/90 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
+            <span className="text-xs font-bold text-[#082B61] tracking-wide">
+              Active Global Distribution & WHO-GMP Facilities
+            </span>
+          </div>
+        </div>
+
+        {/* 3D Realistic Earth Globe Dome Emerging Naturally from Clouds */}
+        <div className="relative mt-2 sm:mt-4 w-full flex justify-center">
+          <div className="w-full max-w-5xl">
+            <EarthGlobe3D
+              selectedMarket={selectedMarket}
+              onSelectMarket={(market) => setSelectedMarket(market)}
+            />
+          </div>
+        </div>
+
+        {/* Bottom 3-Column High-Impact Metrics Row */}
+        <div className="network-metrics relative z-20 -mt-8 sm:-mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto text-center pt-6 border-t border-slate-100">
+          {/* Metric 1 */}
+          <div className="flex flex-col items-center">
+            <div className="font-display text-4xl sm:text-5xl font-extrabold text-[#082B61] tracking-tight">
+              1.2<span className="text-teal">M+</span>
+            </div>
+            <p className="mt-1 text-xs sm:text-sm font-semibold text-slate-500">
+              Units Supplied Monthly
+            </p>
+          </div>
+
+          {/* Metric 2 */}
+          <div className="flex flex-col items-center">
+            <div className="font-display text-4xl sm:text-5xl font-extrabold text-[#082B61] tracking-tight">
+              800<span className="text-[#ff6b6b]">+</span>
+            </div>
+            <p className="mt-1 text-xs sm:text-sm font-semibold text-slate-500">
+              Approved Formulations
+            </p>
+          </div>
+
+          {/* Metric 3 */}
+          <div className="flex flex-col items-center">
+            <div className="font-display text-4xl sm:text-5xl font-extrabold text-[#082B61] tracking-tight">
+              100<span className="text-[#f59e0b]">%</span>
+            </div>
+            <p className="mt-1 text-xs sm:text-sm font-semibold text-slate-500">
+              WHO-GMP & CTD Compliance
+            </p>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
+export default GrowingNetwork;
