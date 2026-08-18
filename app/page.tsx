@@ -21,7 +21,7 @@ export default function Home() {
         <Hero />
 
         {/* Scroll-animated flowing SVG vector vine with 5 blooming botanical nodes */}
-        <div id="vector-wrapper" className="relative">
+        <div id="vector-wrapper" className="relative overflow-hidden">
           <FlowingVector />
           <Overview />
           <WhoWeAre />
