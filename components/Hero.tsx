@@ -372,7 +372,7 @@ export function Hero() {
 
       {/* Main Content Area */}
       <div className="relative z-10 flex min-h-[100svh] flex-col justify-center pb-32 sm:pb-40 pt-24 sm:pt-28 px-4 sm:section-pad">
-        <div className="ml-0 max-w-[520px] md:ml-36">
+        <div className="ml-0 max-w-[540px] md:ml-48 lg:ml-56 xl:ml-64">
           <h1
             className="hz-reveal font-display text-[2rem] font-extrabold leading-[1.08] tracking-tight sm:text-[2.6rem] lg:text-[3.4rem]"
             style={{ color: "#082B61" }}
@@ -431,7 +431,7 @@ export function Hero() {
 
       {/* ── Bhadwo-Kaach WebGL & CSS Liquid Glass Stats Engine ── */}
       <LiquidEdgeFilter scale={22} />
-      <div className="hz-stats absolute bottom-4 sm:bottom-6 left-2 right-2 sm:left-6 sm:right-6 md:left-36 md:right-8 z-10 max-w-[1120px] mx-auto">
+      <div className="hz-stats absolute bottom-4 sm:bottom-6 left-2 right-2 sm:left-6 sm:right-6 md:left-48 lg:left-56 xl:left-64 md:right-8 z-10 max-w-[1120px]">
         <div
           ref={statsSurfaceRef}
           className={`glass-surface select-none ${glassLive ? "glass-live" : ""}`}

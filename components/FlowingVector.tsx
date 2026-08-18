@@ -15,23 +15,7 @@ export function FlowingVector() {
     path.style.strokeDasharray = `${len}`;
     path.style.strokeDashoffset = `${len}`;
 
-    // ── Build accurate monotonically increasing Max-Y mapping table (1000 samples) ──
-    const SAMPLES = 1000;
-    const table: { l: number; y: number }[] = [];
-    let currentMaxY = 0;
-
-    for (let i = 0; i <= SAMPLES; i++) {
-      const l = (i / SAMPLES) * len;
-      const pt = path.getPointAtLength(l);
-      currentMaxY = Math.max(currentMaxY, pt.y);
-      table.push({ l, y: currentMaxY });
-    }
-
-    const startSvgY = table[0].y;
-    const endSvgY = table[table.length - 1].y;
-
     let rafId: number;
-
     const update = () => {
       const parent = document.getElementById("vector-wrapper");
       if (!parent) return;
@@ -39,38 +23,13 @@ export function FlowingVector() {
       const rect = parent.getBoundingClientRect();
       const winH = window.innerHeight;
 
-      // Active screen drawing target: leads ahead at 85% down the viewport
-      const scrollProgress = (-rect.top + winH * 0.85) / rect.height;
-      const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
-      const targetSvgY = startSvgY + clampedProgress * (endSvgY - startSvgY);
+      // Lead ahead into the viewport (80% down the screen) so the tip of the line is always visible right where user is looking
+      const totalScroll = rect.height;
+      const scrolled = -rect.top + winH * 0.80;
+      const progress = Math.max(0, Math.min(1, scrolled / totalScroll));
 
-      // Binary search the exact stroke length where path reaches targetSvgY
-      let low = 0;
-      let high = table.length - 1;
-      let best = 0;
-
-      while (low <= high) {
-        const mid = (low + high) >> 1;
-        if (table[mid].y <= targetSvgY) {
-          best = mid;
-          low = mid + 1;
-        } else {
-          high = mid - 1;
-        }
-      }
-
-      // Linear interpolation between table samples for 120fps fluid motion
-      let currentLength = table[best].l;
-      if (best < table.length - 1) {
-        const dy = table[best + 1].y - table[best].y;
-        if (dy > 0.001) {
-          const t = Math.max(0, Math.min(1, (targetSvgY - table[best].y) / dy));
-          currentLength = table[best].l + t * (table[best + 1].l - table[best].l);
-        }
-      }
-
-      currentLength = Math.max(40, Math.min(len, currentLength));
-      path.style.strokeDashoffset = `${len - currentLength}`;
+      // Direct continuous drawing — zero lag, zero pauses on loops
+      path.style.strokeDashoffset = `${len * (1 - progress)}`;
     };
 
     const handleScroll = () => {
@@ -80,12 +39,23 @@ export function FlowingVector() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll, { passive: true });
+
+    const parent = document.getElementById("vector-wrapper");
+    let ro: ResizeObserver | null = null;
+    if (parent) {
+      ro = new ResizeObserver(() => {
+        handleScroll();
+      });
+      ro.observe(parent);
+    }
+
     update();
 
     return () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
+      if (ro) ro.disconnect();
     };
   }, []);
 
