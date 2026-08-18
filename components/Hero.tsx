@@ -371,10 +371,10 @@ export function Hero() {
       </aside>
 
       {/* Main Content Area */}
-      <div className="relative z-10 flex min-h-[100svh] flex-col justify-center pb-40 pt-28 section-pad">
+      <div className="relative z-10 flex min-h-[100svh] flex-col justify-center pb-32 sm:pb-40 pt-24 sm:pt-28 px-4 sm:section-pad">
         <div className="ml-0 max-w-[520px] md:ml-36">
           <h1
-            className="hz-reveal font-display text-[2.6rem] font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.4rem]"
+            className="hz-reveal font-display text-[2rem] font-extrabold leading-[1.08] tracking-tight sm:text-[2.6rem] lg:text-[3.4rem]"
             style={{ color: "#082B61" }}
           >
             Better Health
@@ -431,7 +431,7 @@ export function Hero() {
 
       {/* ── Bhadwo-Kaach WebGL & CSS Liquid Glass Stats Engine ── */}
       <LiquidEdgeFilter scale={22} />
-      <div className="hz-stats absolute bottom-6 left-6 right-6 md:left-36 md:right-8 z-10 max-w-[1120px] mx-auto">
+      <div className="hz-stats absolute bottom-4 sm:bottom-6 left-2 right-2 sm:left-6 sm:right-6 md:left-36 md:right-8 z-10 max-w-[1120px] mx-auto">
         <div
           ref={statsSurfaceRef}
           className={`glass-surface select-none ${glassLive ? "glass-live" : ""}`}
@@ -440,10 +440,10 @@ export function Hero() {
           {glassLive && <GlassmorphismCanvas surfaceRef={statsSurfaceRef} />}
 
           <div
-            className="relative z-[4] flex items-center w-full overflow-hidden"
+            className="relative z-[4] grid grid-cols-1 sm:flex items-center w-full overflow-hidden"
             style={{
-              padding: "clamp(18px, 2.4vw, 28px) clamp(20px, 3.8vw, 44px)",
-              minHeight: 136,
+              padding: "clamp(14px, 2.4vw, 28px) clamp(14px, 3.8vw, 44px)",
+              minHeight: 100,
               borderRadius: "inherit",
             }}
           >
@@ -451,8 +451,8 @@ export function Hero() {
               return (
                 <div
                   key={stat.number}
-                  className="gs-stat flex flex-1 items-center"
-                  style={{ gap: "clamp(12px, 1.8vw, 20px)", padding: "0 clamp(10px, 1.6vw, 22px)" }}
+                  className="gs-stat flex flex-1 items-center border-b sm:border-b-0 sm:border-l last:border-b-0 first:border-l-0 border-slate-200/40 py-3 sm:py-0"
+                  style={{ gap: "clamp(12px, 1.8vw, 20px)", padding: "clamp(10px, 1.6vw, 22px) clamp(10px, 1.6vw, 22px)" }}
                 >
                   <div data-glass-bead className="glass-badge hz-stat-item">
                     <svg

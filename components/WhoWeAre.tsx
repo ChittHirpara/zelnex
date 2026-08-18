@@ -82,7 +82,7 @@ export function WhoWeAre() {
         }}
         aria-hidden
       />
-      <div className="relative z-10 mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_1.35fr] lg:items-center lg:gap-14">
+      <div className="relative z-10 mx-auto grid max-w-7xl px-4 sm:px-6 lg:px-8 gap-12 lg:grid-cols-[1fr_1.35fr] lg:items-center lg:gap-14">
         {/* Left Column */}
         <div className="who-copy">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-bright">
@@ -112,7 +112,7 @@ export function WhoWeAre() {
                 <div
                   key={card.id}
                   id={card.id}
-                  className="who-card relative flex min-h-[300px] flex-col justify-end overflow-hidden rounded-3xl bg-teal p-6 scroll-mt-28 shadow-lg transition-transform duration-300 hover:-translate-y-1.5"
+                  className="who-card relative flex min-h-[220px] sm:min-h-[300px] flex-col justify-end overflow-hidden rounded-3xl bg-teal p-6 scroll-mt-28 shadow-lg transition-transform duration-300 hover:-translate-y-1.5"
                 >
                   <WorldMapPattern />
                   <p className="relative z-10 font-display text-2xl font-bold text-white">
@@ -129,7 +129,7 @@ export function WhoWeAre() {
               <div
                 key={card.id}
                 id={card.id}
-                className="who-card group relative min-h-[300px] overflow-hidden rounded-3xl scroll-mt-28 shadow-lg transition-transform duration-300 hover:-translate-y-1.5"
+                className="who-card group relative min-h-[220px] sm:min-h-[300px] overflow-hidden rounded-3xl scroll-mt-28 shadow-lg transition-transform duration-300 hover:-translate-y-1.5"
               >
                 {card.image ? (
                   <Image

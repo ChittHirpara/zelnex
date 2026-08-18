@@ -177,23 +177,24 @@ export function LiquidGlassCard({
         ...style,
         borderRadius: `${borderRadius}px`,
         background: `
-          radial-gradient(130% 150% at 10% -10%, rgba(255, 255, 255, 0.92), rgba(246, 251, 255, 0.82) 45%, rgba(232, 244, 255, 0.72) 100%)
+          radial-gradient(130% 150% at 10% -10%, rgba(255, 255, 255, 0.72), rgba(244, 250, 255, 0.40) 45%, rgba(224, 242, 255, 0.24) 100%),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.58), rgba(228, 244, 255, 0.22))
         `,
-        backdropFilter: "blur(28px) saturate(190%)",
-        WebkitBackdropFilter: "blur(28px) saturate(190%)",
-        border: "2.5px solid rgba(255, 255, 255, 0.95)",
+        backdropFilter: "blur(28px) saturate(200%)",
+        WebkitBackdropFilter: "blur(28px) saturate(200%)",
+        border: "1.8px solid rgba(255, 255, 255, 0.92)",
         boxShadow: `
-          0 35px 70px -15px rgba(0, 80, 180, 0.18),
-          0 12px 28px -5px rgba(0, 80, 180, 0.10),
-          inset 0 3px 6px rgba(255, 255, 255, 1),
-          inset 0 -3px 8px rgba(0, 110, 220, 0.15),
-          inset 0 0 0 2px rgba(186, 225, 255, 0.7)
+          0 30px 70px -15px rgba(0, 80, 180, 0.15),
+          0 10px 25px -5px rgba(0, 50, 130, 0.08),
+          inset 0 2.5px 5px rgba(255, 255, 255, 1),
+          inset 0 -2.5px 6px rgba(0, 110, 220, 0.12),
+          inset 0 0 0 1.5px rgba(186, 225, 255, 0.55)
         `,
       }}
     >
       {/* Specular Liquid Edge Flare */}
-      <div className="absolute top-0 inset-x-8 h-[3px] bg-gradient-to-r from-transparent via-white to-transparent opacity-95 pointer-events-none" />
-      <div className="absolute bottom-0 inset-x-12 h-[3px] bg-gradient-to-r from-transparent via-[#00B8F2] to-transparent opacity-80 pointer-events-none" />
+      <div className="absolute top-0 inset-x-8 h-[2px] bg-gradient-to-r from-transparent via-white to-transparent opacity-95 pointer-events-none" />
+      <div className="absolute bottom-0 inset-x-12 h-[2.5px] bg-gradient-to-r from-transparent via-[#00B8F2] to-transparent opacity-90 pointer-events-none shadow-[0_0_14px_rgba(0,184,242,0.85)]" />
 
       {/* Internal Content */}
       <div className="relative z-10 w-full h-full">
@@ -220,27 +221,50 @@ interface LiquidGlassProps {
 export function LiquidGlass({
   children,
   onClick,
-  variant = "default",
+  variant = "bold",
   className = "",
   borderRadius = 9999,
-  textClassName = "text-[#082B61] font-bold text-lg",
+  textClassName = "text-[#082B61] font-bold text-base sm:text-lg",
   disabled = false,
 }: LiquidGlassProps) {
+  const isPrimary = variant === "bold";
   return (
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`group active:scale-95 transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 ${className}`}
+      className={`group relative overflow-hidden active:scale-95 hover:scale-103 transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 flex items-center justify-center px-8 py-4 sm:px-10 sm:py-4.5 select-none ${className}`}
+      style={{
+        borderRadius: `${borderRadius}px`,
+        background: isPrimary
+          ? "radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.95), rgba(186, 230, 255, 0.80) 55%, rgba(135, 206, 250, 0.65) 100%)"
+          : "radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.85), rgba(235, 246, 255, 0.60) 55%, rgba(200, 230, 255, 0.45) 100%)",
+        backdropFilter: "blur(20px) saturate(190%)",
+        WebkitBackdropFilter: "blur(20px) saturate(190%)",
+        border: "1.5px solid rgba(255, 255, 255, 0.95)",
+        boxShadow: isPrimary
+          ? "0 14px 35px -5px rgba(0, 140, 240, 0.38), 0 4px 12px rgba(0, 50, 130, 0.12), inset 0 2px 4px #ffffff, inset 0 -2px 5px rgba(0, 110, 220, 0.30), inset 0 0 0 1px rgba(186, 225, 255, 0.7)"
+          : "0 12px 28px -5px rgba(0, 80, 180, 0.22), 0 4px 10px rgba(0, 50, 130, 0.08), inset 0 2px 4px #ffffff, inset 0 -2px 4px rgba(0, 110, 220, 0.18), inset 0 0 0 1px rgba(186, 225, 255, 0.5)",
+      }}
     >
-      <Glass
-        variant={variant}
-        borderRadius={borderRadius}
-        className="px-10 py-5 sm:px-12 sm:py-5.5 hover:shadow-[0_25px_60px_-10px_rgba(0,184,242,0.45)] transition-shadow duration-300"
-      >
-        <span className={`${textClassName} tracking-tight drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)] group-hover:scale-105 transition-transform duration-300`}>
-          {children}
-        </span>
-      </Glass>
+      {/* Top Glossy Reflection Curve */}
+      <div
+        className="absolute top-1 inset-x-3 h-[42%] rounded-full pointer-events-none transition-opacity duration-300 group-hover:opacity-100 opacity-80"
+        style={{
+          background: "linear-gradient(to bottom, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.05))",
+        }}
+      />
+      {/* Bottom Caustic Rim Accent */}
+      <div
+        className="absolute bottom-0 inset-x-4 h-[1.5px] pointer-events-none opacity-70"
+        style={{
+          background: "linear-gradient(90deg, transparent, #00B8F2, transparent)",
+          boxShadow: "0 0 8px #00b8f2",
+        }}
+      />
+
+      <span className={`relative z-10 ${textClassName} transition-transform duration-300 group-hover:scale-104`}>
+        {children}
+      </span>
     </button>
   );
 }

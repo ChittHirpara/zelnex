@@ -144,7 +144,7 @@ export function DigitalEpochSection() {
   return (
     <section className="relative w-full py-16 px-4 md:px-8 overflow-hidden">
       {/* 2. Main Hero Container & Video Background */}
-      <div className="relative w-full max-w-[1400px] mx-auto rounded-[48px] bg-white border border-slate-200/50 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)] overflow-hidden h-[600px] flex flex-col">
+      <div className="relative w-full max-w-[1400px] mx-auto rounded-[32px] md:rounded-[48px] bg-white border border-slate-200/50 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)] overflow-hidden min-h-[480px] sm:min-h-[560px] md:h-[600px] flex flex-col">
         {/* Absolutely positioned underlying layer for the background video */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
           <video
@@ -170,7 +170,7 @@ export function DigitalEpochSection() {
               <span>Direct Global Export Inquiries</span>
             </div>
 
-            <h2 className="font-display text-[42px] md:text-[56px] font-medium tracking-tight text-[#0a1b33] leading-[1.1]">
+            <h2 className="font-display text-[28px] sm:text-[36px] md:text-[56px] font-medium tracking-tight text-[#0a1b33] leading-[1.1]">
               Partner with Zelnex for
               <br />
               reliable global supply

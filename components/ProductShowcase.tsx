@@ -225,93 +225,111 @@ export function ProductShowcase() {
       </div>
 
       {/* ══════════════════════════════════════════════════════════
-          FULL-LENGTH EDGE-TO-EDGE LIQUID GLASS CARD CONTAINER
-          (No Excessive Side Margins · Spans Full Viewport Width)
+          NEUMORPHIC LIGHT-MORPHISM CAREERS & PARTNERSHIPS CARD
+          (Exact Same Design System as Certifications Accreditations)
          ══════════════════════════════════════════════════════════ */}
       <div id="careers" className="mt-24 scroll-mt-28 relative z-20 mx-auto w-full max-w-[1680px] px-3 sm:px-6 md:px-8 lg:px-12">
-        {/* Ambient Colored Backing Orbs to Fuel Liquid Glass Refraction */}
-        <div className="pointer-events-none absolute -left-12 -top-12 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-cyan-300/45 via-blue-400/35 to-teal-300/35 blur-3xl opacity-80" />
-        <div className="pointer-events-none absolute -right-12 -bottom-12 w-[600px] h-[600px] rounded-full bg-gradient-to-bl from-blue-500/35 via-cyan-400/35 to-indigo-300/35 blur-3xl opacity-80" />
-
-        <LiquidGlassCard
-          borderRadius={36}
-          className="p-8 sm:p-12 md:p-16 lg:p-20 xl:p-24 select-none w-full"
+        <div
+          className="rounded-[36px] sm:rounded-[44px] p-8 sm:p-12 md:p-16 lg:p-20 xl:p-24 select-none w-full bg-[#E0E5EC] transition-all duration-300 relative overflow-hidden"
+          style={{
+            boxShadow:
+              "14px 14px 28px rgb(163,177,198,0.65), -14px -14px 28px rgba(255,255,255,0.7)",
+          }}
         >
-          {/* Top-Right Glowing Specular Lens Flare */}
-          <div
-            className="absolute right-10 top-10 w-4 h-4 rounded-full pointer-events-none"
-            style={{
-              background: "#006EDC",
-              boxShadow: "0 0 14px #006EDC, 0 0 28px rgba(0, 184, 242, 0.9)",
-            }}
-          />
-
-          {/* Inner 2-Column Full-Length Swiss-Style Grid */}
+          {/* Inner 2-Column Grid */}
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center w-full">
-            {/* Left Side: Swiss-Style Ultra-Bold Black Headline & Description (7 cols) */}
+            {/* Left Side: Headline & Light-morphic CTAs (7 cols) */}
             <div className="lg:col-span-7 flex flex-col">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#006EDC]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#006EDC] border border-[#006EDC]/25 backdrop-blur-md shadow-xs w-fit mb-6">
-                <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-                <span>Careers & Global Partnerships</span>
+              {/* Inset Deep Tag Pill */}
+              <div
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E0E5EC] mb-6 w-fit"
+                style={{
+                  boxShadow:
+                    "inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5)",
+                }}
+              >
+                <span className="w-2 h-2 rounded-full bg-[#38B2AC] animate-pulse" />
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#38B2AC]">
+                  Careers & Global Partnerships
+                </span>
               </div>
 
-              {/* Swiss-Style Headline */}
-              <h2 className="text-4xl sm:text-6xl lg:text-7xl xl:text-[84px] font-black text-[#082B61] leading-[0.92] tracking-tighter mb-6">
+              {/* Headline */}
+              <h2
+                className="text-3xl sm:text-5xl lg:text-6xl xl:text-[72px] font-extrabold text-[#3D4852] leading-[1.02] tracking-tight mb-6"
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              >
                 Build your global healthcare footprint with Zelnex
               </h2>
 
-              <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-2xl leading-relaxed font-normal">
+              <p className="text-base sm:text-lg lg:text-xl text-[#6B7280] max-w-2xl leading-relaxed font-normal">
                 Join a dynamic pharmaceutical export powerhouse dedicated to quality,
                 compliance, and expanding international healthcare access across 50+ countries.
               </p>
 
-              {/* Liquid Glass CTAs Row with Enhanced Transparency & Size */}
-              <div className="mt-12 flex flex-col sm:flex-row items-center gap-6 relative">
-                {/* Subtle backlight prism beneath the buttons to show off liquid transparency */}
-                <div className="pointer-events-none absolute -inset-4 bg-gradient-to-r from-cyan-400/20 via-blue-500/15 to-teal-400/20 rounded-full blur-xl opacity-75" />
-
-                <Link href="#contact" className="w-full sm:w-auto relative z-10">
-                  <LiquidGlass
-                    variant="bold"
-                    borderRadius={9999}
-                    textClassName="text-[#082B61] font-black text-base sm:text-lg lg:text-[1.125rem] flex items-center gap-3"
-                    className="w-full sm:w-auto shadow-[0_15px_35px_-8px_rgba(0,110,220,0.25)]"
-                  >
-                    <span>Enquire for Partnership</span>
-                    <span className="text-lg">→</span>
-                  </LiquidGlass>
+              {/* Neumorphic / Light-Morphism Buttons Row */}
+              <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-5">
+                <Link
+                  href="#contact"
+                  className="inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4.5 rounded-full bg-[#E0E5EC] text-[#3D4852] font-extrabold text-base sm:text-lg transition-all duration-300 hover:text-[#38B2AC] active:scale-95 cursor-pointer"
+                  style={{
+                    boxShadow:
+                      "6px 6px 14px rgb(163,177,198,0.7), -6px -6px 14px rgba(255,255,255,0.8)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow =
+                      "inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.8)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow =
+                      "6px 6px 14px rgb(163,177,198,0.7), -6px -6px 14px rgba(255,255,255,0.8)";
+                  }}
+                >
+                  <span>Enquire for Partnership</span>
+                  <span className="text-xl text-[#38B2AC] font-black">→</span>
                 </Link>
 
-                <Link href="#contact" className="w-full sm:w-auto relative z-10">
-                  <LiquidGlass
-                    variant="subtle"
-                    borderRadius={9999}
-                    textClassName="text-[#1A365D] font-extrabold text-sm sm:text-base lg:text-[1rem] flex items-center gap-2"
-                    className="w-full sm:w-auto shadow-[0_12px_28px_-8px_rgba(0,80,180,0.18)]"
-                  >
-                    <span>Explore Careers</span>
-                    <span>↗</span>
-                  </LiquidGlass>
+                <Link
+                  href="#contact"
+                  className="inline-flex items-center justify-center gap-2 px-8 sm:px-10 py-4.5 rounded-full bg-[#E0E5EC] text-[#6B7280] font-extrabold text-base transition-all duration-300 hover:text-[#3D4852] active:scale-95 cursor-pointer"
+                  style={{
+                    boxShadow:
+                      "inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow =
+                      "6px 6px 12px rgb(163,177,198,0.6), -6px -6px 12px rgba(255,255,255,0.8)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow =
+                      "inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5)";
+                  }}
+                >
+                  <span>Explore Careers</span>
+                  <span className="text-sm font-black">↗</span>
                 </Link>
               </div>
             </div>
 
-            {/* Right Side: Swiss-Style Metrics with Cursor-Following Image Hover Popups (5 cols) */}
-            <div className="lg:col-span-5 flex flex-col gap-10 md:gap-14 pt-4 lg:pt-0 w-full">
-              {PARTNERSHIP_METRICS.map((metric) => (
+            {/* Right Side: Metrics with Cursor Popups (5 cols) */}
+            <div className="lg:col-span-5 flex flex-col gap-8 md:gap-10 pt-4 lg:pt-0 w-full">
+              {PARTNERSHIP_METRICS.map((metric, idx) => (
                 <div
                   key={metric.id}
-                  className="relative group cursor-pointer w-full"
+                  className={`relative group cursor-pointer w-full ${idx > 0 ? "pt-6 border-t border-[#A3B1C6]/30" : ""}`}
                   onMouseEnter={() => setHoveredMetricId(metric.id)}
                   onMouseLeave={() => setHoveredMetricId(null)}
                   onMouseMove={handleMouseMove}
                 >
                   {/* Metric Value & Label */}
                   <div className="relative z-10 transition-transform duration-300 group-hover:scale-105 w-fit">
-                    <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[84px] font-black text-[#082B61] leading-none select-none tracking-tighter">
+                    <span
+                      className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[84px] font-black text-[#3D4852] leading-none select-none tracking-tighter"
+                      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                    >
                       {metric.value}
                     </span>
-                    <span className="block text-base sm:text-lg lg:text-xl text-slate-600 font-semibold mt-2 select-none group-hover:text-[#006EDC] transition-colors">
+                    <span className="block text-base sm:text-lg lg:text-xl text-[#6B7280] font-semibold mt-2 select-none group-hover:text-[#38B2AC] transition-colors">
                       {metric.label}
                     </span>
                   </div>
@@ -355,7 +373,7 @@ export function ProductShowcase() {
               ))}
             </div>
           </div>
-        </LiquidGlassCard>
+        </div>
       </div>
     </section>
   );

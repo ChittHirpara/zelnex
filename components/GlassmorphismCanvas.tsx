@@ -9,6 +9,7 @@ import gsap from "gsap";
 type GlassmorphismCanvasProps = {
   surfaceRef: React.RefObject<HTMLDivElement | null>;
   bleed?: number;
+  crystal?: boolean;
 };
 
 const BACKDROP_SELECTOR = ".hz-bg-img";
@@ -156,7 +157,7 @@ function tintEnvironment(envScene: THREE.Scene) {
   };
 }
 
-export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCanvasProps) {
+export function GlassmorphismCanvas({ surfaceRef, bleed = 32, crystal = false }: GlassmorphismCanvasProps) {
   const holderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -164,9 +165,8 @@ export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCan
     const surface = surfaceRef.current;
     if (!holder || !surface) return;
 
-    const backdrop = document.querySelector<HTMLElement>(BACKDROP_SELECTOR);
+    const backdrop = crystal ? null : document.querySelector<HTMLElement>(BACKDROP_SELECTOR);
     const sourceImage = backdrop?.querySelector("img") ?? null;
-    if (!backdrop || !sourceImage) return;
 
     let disposed = false;
     let renderer: THREE.WebGLRenderer;
@@ -196,7 +196,7 @@ export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCan
     const releaseLamps = tintEnvironment(envScene);
     const envTarget = pmrem.fromScene(envScene, 0.035);
     scene.environment = envTarget.texture;
-    scene.environmentIntensity = 0.9;
+    scene.environmentIntensity = 0.95;
     releaseLamps();
     envScene.dispose();
     pmrem.dispose();
@@ -218,9 +218,9 @@ export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCan
         uCanvas: { value: new THREE.Vector2(1, 1) },
         uBar: { value: new THREE.Vector4() },
         uRadius: { value: 24 },
-        uVeil: { value: 0.06 },
-        uCausticColor: { value: new THREE.Color("#cfeaff") },
-        uCaustic: { value: 0.25 },
+        uVeil: { value: crystal ? 0.04 : 0.16 },
+        uCausticColor: { value: new THREE.Color("#d8f0ff") },
+        uCaustic: { value: 0.38 },
         uLightX: { value: 0.5 },
       },
       vertexShader: BG_VERTEX,
@@ -241,16 +241,16 @@ export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCan
     const glassMaterial = new THREE.MeshPhysicalMaterial({
       color: new THREE.Color("#ffffff"),
       metalness: 0,
-      roughness: 0.05,
-      transmission: 0.99,
-      thickness: 10,
-      ior: 1.45,
-      dispersion: 1.2,
-      clearcoat: 0.75,
-      clearcoatRoughness: 0.05,
-      attenuationColor: new THREE.Color("#dceeff"),
-      specularIntensity: 0.55,
-      envMapIntensity: 0.80,
+      roughness: 0.02,
+      transmission: 0.998,
+      thickness: 5,
+      ior: 1.48,
+      dispersion: 1.4,
+      clearcoat: 0.95,
+      clearcoatRoughness: 0.03,
+      attenuationColor: new THREE.Color("#ffffff"),
+      specularIntensity: 0.95,
+      envMapIntensity: 1.2,
       transparent: true,
       side: THREE.DoubleSide,
     });
@@ -258,16 +258,16 @@ export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCan
     const beadMaterial = new THREE.MeshPhysicalMaterial({
       color: new THREE.Color("#ffffff"),
       metalness: 0,
-      roughness: 0.08,
+      roughness: 0.03,
       transmission: 1,
-      thickness: 0.05,
-      ior: 1.33,
-      dispersion: 0.5,
-      clearcoat: 0.04,
-      clearcoatRoughness: 0.1,
-      specularIntensity: 0.35,
+      thickness: 0.04,
+      ior: 1.35,
+      dispersion: 0.6,
+      clearcoat: 0.12,
+      clearcoatRoughness: 0.06,
+      specularIntensity: 0.85,
       attenuationColor: new THREE.Color("#ffffff"),
-      envMapIntensity: 0.04,
+      envMapIntensity: 0.25,
       transparent: true,
       side: THREE.FrontSide,
     });
@@ -285,7 +285,6 @@ export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCan
 
     const bakeBackdrop = (rect: DOMRect) => {
       if (!bakeContext || rect.width < 2 || rect.height < 2) return;
-      if (!sourceImage.complete || sourceImage.naturalWidth === 0) return;
 
       const scale = Math.min(
         Math.max(1, Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO)),
@@ -299,35 +298,57 @@ export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCan
         bakeTexture.dispose();
       }
 
-      const cover = Math.max(
-        width / sourceImage.naturalWidth,
-        height / sourceImage.naturalHeight,
-      );
-      const drawWidth = sourceImage.naturalWidth * cover;
-      const drawHeight = sourceImage.naturalHeight * cover;
       bakeContext.clearRect(0, 0, width, height);
-      bakeContext.drawImage(
-        sourceImage,
-        width - drawWidth,
-        (height - drawHeight) / 2,
-        drawWidth,
-        drawHeight,
-      );
 
-      const horizontal = bakeContext.createLinearGradient(0, 0, width, 0);
-      horizontal.addColorStop(0, "rgba(234,246,255,0.85)");
-      horizontal.addColorStop(0.4, "rgba(234,246,255,0.4)");
-      horizontal.addColorStop(0.65, "rgba(234,246,255,0)");
-      horizontal.addColorStop(1, "rgba(234,246,255,0)");
-      bakeContext.fillStyle = horizontal;
-      bakeContext.fillRect(0, 0, width, height);
+      if (crystal || !sourceImage || !sourceImage.complete || sourceImage.naturalWidth === 0) {
+        // Pure Crystal Clear White & Ice Gradient with Glass Caustics
+        const crystalGrad = bakeContext.createLinearGradient(0, 0, width, height);
+        crystalGrad.addColorStop(0, "rgba(255, 255, 255, 0.95)");
+        crystalGrad.addColorStop(0.4, "rgba(244, 250, 255, 0.90)");
+        crystalGrad.addColorStop(0.8, "rgba(232, 244, 255, 0.85)");
+        crystalGrad.addColorStop(1, "rgba(248, 252, 255, 0.92)");
+        bakeContext.fillStyle = crystalGrad;
+        bakeContext.fillRect(0, 0, width, height);
 
-      const vertical = bakeContext.createLinearGradient(0, 0, 0, height);
-      vertical.addColorStop(0, "rgba(234,246,255,0.85)");
-      vertical.addColorStop(0.6, "rgba(234,246,255,0.45)");
-      vertical.addColorStop(1, "rgba(180,215,245,0.15)");
-      bakeContext.fillStyle = vertical;
-      bakeContext.fillRect(0, 0, width, height);
+        const highlight = bakeContext.createRadialGradient(
+          width * 0.2, height * 0.2, 0,
+          width * 0.2, height * 0.2, Math.max(width, height) * 0.7
+        );
+        highlight.addColorStop(0, "rgba(255, 255, 255, 0.8)");
+        highlight.addColorStop(0.5, "rgba(255, 255, 255, 0.15)");
+        highlight.addColorStop(1, "rgba(255, 255, 255, 0)");
+        bakeContext.fillStyle = highlight;
+        bakeContext.fillRect(0, 0, width, height);
+      } else {
+        const cover = Math.max(
+          width / sourceImage.naturalWidth,
+          height / sourceImage.naturalHeight,
+        );
+        const drawWidth = sourceImage.naturalWidth * cover;
+        const drawHeight = sourceImage.naturalHeight * cover;
+        bakeContext.drawImage(
+          sourceImage,
+          width - drawWidth,
+          (height - drawHeight) / 2,
+          drawWidth,
+          drawHeight,
+        );
+
+        const horizontal = bakeContext.createLinearGradient(0, 0, width, 0);
+        horizontal.addColorStop(0, "rgba(234,246,255,0.85)");
+        horizontal.addColorStop(0.4, "rgba(234,246,255,0.4)");
+        horizontal.addColorStop(0.65, "rgba(234,246,255,0)");
+        horizontal.addColorStop(1, "rgba(234,246,255,0)");
+        bakeContext.fillStyle = horizontal;
+        bakeContext.fillRect(0, 0, width, height);
+
+        const vertical = bakeContext.createLinearGradient(0, 0, 0, height);
+        vertical.addColorStop(0, "rgba(234,246,255,0.85)");
+        vertical.addColorStop(0.6, "rgba(234,246,255,0.45)");
+        vertical.addColorStop(1, "rgba(180,215,245,0.15)");
+        bakeContext.fillStyle = vertical;
+        bakeContext.fillRect(0, 0, width, height);
+      }
 
       bakeTexture.needsUpdate = true;
       bakedWidth = rect.width;
@@ -403,7 +424,7 @@ export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCan
         bead.position.set(centerX * beadFit, centerY * beadFit, beadZ);
       });
 
-      const backdropRect = backdrop.getBoundingClientRect();
+      const backdropRect = backdrop ? backdrop.getBoundingClientRect() : holder.getBoundingClientRect();
       if (
         Math.abs(backdropRect.width - bakedWidth) > 1 ||
         Math.abs(backdropRect.height - bakedHeight) > 1
@@ -413,17 +434,22 @@ export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCan
     };
 
     const syncBackdropUniforms = () => {
-      const backdropRect = backdrop.getBoundingClientRect();
+      const backdropRect = backdrop ? backdrop.getBoundingClientRect() : holder.getBoundingClientRect();
       if (backdropRect.width < 2 || backdropRect.height < 2) return;
       const holderRect = holder.getBoundingClientRect();
-      backdropMaterial.uniforms.uMapScale.value.set(
-        holderRect.width / backdropRect.width,
-        holderRect.height / backdropRect.height,
-      );
-      backdropMaterial.uniforms.uMapOffset.value.set(
-        (holderRect.left - backdropRect.left) / backdropRect.width,
-        1 - (holderRect.top - backdropRect.top + holderRect.height) / backdropRect.height,
-      );
+      if (crystal || !backdrop) {
+        backdropMaterial.uniforms.uMapScale.value.set(1, 1);
+        backdropMaterial.uniforms.uMapOffset.value.set(0, 0);
+      } else {
+        backdropMaterial.uniforms.uMapScale.value.set(
+          holderRect.width / backdropRect.width,
+          holderRect.height / backdropRect.height,
+        );
+        backdropMaterial.uniforms.uMapOffset.value.set(
+          (holderRect.left - backdropRect.left) / backdropRect.width,
+          1 - (holderRect.top - backdropRect.top + holderRect.height) / backdropRect.height,
+        );
+      }
     };
 
     let visible = true;
@@ -442,7 +468,9 @@ export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCan
       bakedWidth = 0;
       layout();
     };
-    sourceImage.addEventListener("load", onImageReady);
+    if (sourceImage) {
+      sourceImage.addEventListener("load", onImageReady);
+    }
 
     const sheen = { x: 0.5 };
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -468,7 +496,9 @@ export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCan
     };
 
     layout();
-    if (sourceImage.complete && sourceImage.naturalWidth > 0) bakeBackdrop(backdrop.getBoundingClientRect());
+    if (sourceImage && sourceImage.complete && sourceImage.naturalWidth > 0 && backdrop) {
+      bakeBackdrop(backdrop.getBoundingClientRect());
+    }
     renderLoop();
 
     return () => {
@@ -477,7 +507,9 @@ export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCan
       cancelAnimationFrame(frame);
       observer.disconnect();
       resizeObserver.disconnect();
-      sourceImage.removeEventListener("load", onImageReady);
+      if (sourceImage) {
+        sourceImage.removeEventListener("load", onImageReady);
+      }
       window.removeEventListener("pointermove", onPointerMove);
       gsap.killTweensOf(sheen);
       beadMeshes.forEach((bead) => scene.remove(bead));
@@ -495,7 +527,7 @@ export function GlassmorphismCanvas({ surfaceRef, bleed = 32 }: GlassmorphismCan
       renderer.dispose();
       renderer.forceContextLoss();
     };
-  }, [surfaceRef, bleed]);
+  }, [surfaceRef, bleed, crystal]);
 
   return (
     <div

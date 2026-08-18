@@ -195,7 +195,7 @@ export function FlowingVector() {
   return (
     <div
       ref={wrapRef}
-      className="pointer-events-none absolute inset-0 z-50 w-full h-full overflow-visible"
+      className="pointer-events-none absolute inset-0 z-50 w-full h-full overflow-visible hidden md:block"
     >
       <svg
         viewBox="0 0 1440 8600"

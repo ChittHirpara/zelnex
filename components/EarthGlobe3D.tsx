@@ -388,12 +388,12 @@ export function EarthGlobe3D({
   const activeData = hoveredMarket || selectedMarket;
 
   return (
-    <div className="relative w-full h-[620px] sm:h-[680px] md:h-[740px] flex items-center justify-center select-none">
+    <div className="relative w-full h-[480px] sm:h-[620px] md:h-[740px] flex items-center justify-center select-none">
       {/* 3D Canvas Mount Element */}
       <div ref={containerRef} className="w-full h-full cursor-grab active:cursor-grabbing relative z-10" />
 
       {/* ── Seamless Ethereal Fluffy Cloud Bed at Bottom of Globe (Zero Square Box Cutoff) ── */}
-      <div className="pointer-events-none absolute bottom-0 inset-x-0 z-20 h-[240px] md:h-[280px] flex items-end">
+      <div className="pointer-events-none absolute bottom-0 inset-x-0 z-20 h-[180px] sm:h-[240px] md:h-[280px] flex items-end">
         <div className="relative w-full h-full">
           <Image
             src="/cloud-bed.jpg"
@@ -418,10 +418,10 @@ export function EarthGlobe3D({
       </div>
 
       {/* Floating Interactive Controls Pill */}
-      <div className="absolute top-4 right-4 z-30 flex items-center gap-2 bg-white/80 backdrop-blur-md p-1.5 rounded-full border border-slate-200/80 shadow-md">
+      <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 flex items-center gap-1.5 sm:gap-2 bg-white/80 backdrop-blur-md p-1 sm:p-1.5 rounded-full border border-slate-200/80 shadow-md">
         <button
           onClick={() => setAutoRotate(!autoRotate)}
-          className={`px-3 py-1 text-xs font-bold rounded-full transition-all ${
+          className={`px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-bold rounded-full transition-all ${
             autoRotate ? "bg-[#006EDC] text-white shadow-xs" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
           }`}
           title="Toggle Auto Rotation"
@@ -430,7 +430,7 @@ export function EarthGlobe3D({
         </button>
         <button
           onClick={handleResetCamera}
-          className="p-1.5 text-slate-500 hover:text-[#006EDC] hover:bg-slate-100 rounded-full transition-colors"
+          className="p-1 sm:p-1.5 text-slate-500 hover:text-[#006EDC] hover:bg-slate-100 rounded-full transition-colors"
           title="Reset Camera View"
         >
           <RotateCcw className="w-3.5 h-3.5" />
@@ -439,7 +439,7 @@ export function EarthGlobe3D({
 
       {/* Dynamic Hover/Click Inspection Card */}
       {activeData && (
-        <div className="absolute top-16 right-6 z-40 w-80 rounded-2xl bg-white/95 p-4 text-[#082B61] backdrop-blur-2xl border border-slate-200 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+        <div className="absolute top-14 right-4 sm:top-16 sm:right-6 z-40 w-[calc(100%-32px)] max-w-sm sm:w-80 rounded-2xl bg-white/95 p-4 text-[#082B61] backdrop-blur-2xl border border-slate-200 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
           <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 mb-2.5">
             <div className="flex items-center gap-2">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#006EDC] text-white font-extrabold text-xs">

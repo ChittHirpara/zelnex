@@ -530,7 +530,7 @@ export function Certifications() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-2xl bg-[#E0E5EC] rounded-[32px] p-6 sm:p-8 overflow-hidden max-h-[90vh] flex flex-col justify-between"
+            className="relative w-full max-w-2xl bg-[#E0E5EC] rounded-[28px] sm:rounded-[32px] p-5 sm:p-8 overflow-y-auto max-h-[92vh] flex flex-col justify-between"
             style={{
               boxShadow:
                 "16px 16px 32px rgb(163,177,198,0.8), -16px -16px 32px rgba(255,255,255,0.8)",
