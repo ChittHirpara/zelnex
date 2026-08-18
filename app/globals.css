@@ -533,6 +533,14 @@ h4,
     0 0 20px rgba(0, 166, 166, 0.06);
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* ═══════════════════════════════════════
    REDUCED MOTION
    ═══════════════════════════════════════ */

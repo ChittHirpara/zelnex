@@ -340,7 +340,7 @@ export function Certifications() {
           </div>
 
           {/* Right Category Filter Buttons */}
-          <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-1 md:pb-0">
+          <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-1 md:pb-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {["All", "Global", "Africa", "Asia", "Middle East", "Quality"].map((cat) => {
               const isActive = selectedCategory === cat;
 
