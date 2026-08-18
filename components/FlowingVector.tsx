@@ -23,12 +23,12 @@ export function FlowingVector() {
       const rect = parent.getBoundingClientRect();
       const winH = window.innerHeight;
 
-      // Lead ahead into the viewport (80% down the screen) so the tip of the line is always visible right where user is looking
-      const totalScroll = rect.height;
-      const scrolled = -rect.top + winH * 0.80;
-      const progress = Math.max(0, Math.min(1, scrolled / totalScroll));
+      // Accelerated scroll drawing: leads 1.25 viewports ahead and draws with 1.35x fast speed multiplier
+      const totalScroll = Math.max(1, rect.height - winH * 0.5);
+      const scrolled = -rect.top + winH * 1.25;
+      const progress = Math.max(0, Math.min(1, (scrolled * 1.35) / totalScroll));
 
-      // Direct continuous drawing — zero lag, zero pauses on loops
+      // Direct continuous fast drawing — leads ahead briskly as you scroll
       path.style.strokeDashoffset = `${len * (1 - progress)}`;
     };
 
