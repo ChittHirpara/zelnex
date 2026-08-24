@@ -2,11 +2,29 @@
 
 import { useState, useRef } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { EarthGlobe3D, type MarketLocation } from "./EarthGlobe3D";
+import type { MarketLocation } from "./EarthGlobe3D";
 import { Globe2, ShieldCheck, Plane, CheckCircle2 } from "lucide-react";
+
+const EarthGlobe3D = dynamic(
+  () => import("./EarthGlobe3D").then((mod) => mod.EarthGlobe3D),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="relative w-full h-[480px] sm:h-[620px] md:h-[740px] flex flex-col items-center justify-center select-none animate-pulse">
+        <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full bg-gradient-to-tr from-[#006EDC]/20 via-[#00B8F2]/10 to-transparent border border-[#006EDC]/30 shadow-[0_0_50px_rgba(0,110,220,0.15)] flex items-center justify-center">
+          <div className="w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-full bg-gradient-to-bl from-[#006EDC]/15 via-transparent to-slate-100/50 border border-white/40 animate-spin [animation-duration:8s]" />
+        </div>
+        <p className="mt-4 text-xs font-semibold text-slate-400 tracking-wider uppercase">
+          Loading 3D Global Network...
+        </p>
+      </div>
+    ),
+  }
+);
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger);

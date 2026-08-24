@@ -2,14 +2,12 @@
 
 import React, { useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import { GradientCard } from "@/components/ui/gradient-card";
 import { BentoHub } from "@/components/BentoHub";
-import { LiquidGlass, LiquidGlassCard } from "@/components/ui/liquid-glass";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger);

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -9,7 +8,7 @@ const NAV_LINKS = [
   { label: "About Us", href: "/#overview" },
   { label: "Products", href: "/#products" },
   { label: "R&D", href: "/#expertise" },
-  { label: "Careers", href: "/#careers" },
+  { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#contact" },
 ] as const;
 
@@ -204,7 +203,7 @@ export function Navbar() {
         </ul>
 
         {/* Right CTA Actions */}
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/#contact"
             className="group inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-[13px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5"
@@ -302,39 +301,52 @@ export function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile Drawer Menu */}
-      {open && (
-        <div className="border-t border-slate-200/60 p-4 lg:hidden">
-          <ul className="flex flex-col gap-1">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="block rounded-xl px-4 py-2.5 text-sm font-medium text-slate-800 transition-colors hover:bg-[#1e59d4]/10 hover:text-[#1e59d4]"
-                  onClick={() => {
-                    setActiveHash(link.href);
-                    setOpen(false);
-                  }}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-3 flex items-center justify-between border-t border-slate-200/60 pt-3">
-            <Link
-              href="/#contact"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold text-white"
-              style={{
-                background: "linear-gradient(135deg, #1e59d4 0%, #1241a8 100%)",
-              }}
-              onClick={() => setOpen(false)}
-            >
-              Get in Touch →
-            </Link>
+      {/* Mobile Drawer Menu with smooth accordion slide */}
+      <div
+        className={`grid transition-all duration-300 ease-in-out lg:hidden ${
+          open
+            ? "grid-rows-[1fr] opacity-100 border-t border-slate-200/60"
+            : "grid-rows-[0fr] opacity-0 border-t-0 pointer-events-none"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="p-4 pt-3">
+            <ul className="flex flex-col gap-1">
+              {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="block rounded-xl px-4 py-2.5 text-sm font-medium text-slate-800 transition-colors hover:bg-[#1e59d4]/10 hover:text-[#1e59d4]"
+                    onClick={() => {
+                      setActiveHash(link.href);
+                      setOpen(false);
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-3 flex items-center gap-2 border-t border-slate-200/60 pt-3">
+              <Link
+                href="/#contact"
+                className="inline-flex flex-1 items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold text-white shadow-md"
+                style={{
+                  background: "linear-gradient(135deg, #006EDC 0%, #082B61 100%)",
+                }}
+                onClick={() => setOpen(false)}
+              >
+                <span>Get in Touch</span>
+                <span>→</span>
+              </Link>
+              <div className="flex items-center gap-1 px-3 py-2 rounded-full bg-slate-100 text-xs font-semibold text-[#0b1e48] border border-slate-200">
+                <span>🌐</span>
+                <span>EN</span>
+              </div>
+            </div>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

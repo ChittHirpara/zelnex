@@ -50,7 +50,6 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
       description,
       ctaText,
       ctaHref,
-      imageUrl,
       bullets,
       ...props
     },

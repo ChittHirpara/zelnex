@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import Image from "next/image";
-import { ShieldCheck, RotateCcw, Compass } from "lucide-react";
+import { ShieldCheck, RotateCcw } from "lucide-react";
 
 export interface MarketLocation {
   name: string;
@@ -55,6 +55,7 @@ export function EarthGlobe3D({
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredMarket, setHoveredMarket] = useState<MarketLocation | null>(null);
   const [autoRotate, setAutoRotate] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
   const controlsRef = useRef<OrbitControls | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
 
@@ -118,9 +119,12 @@ export function EarthGlobe3D({
     const hemiLight = new THREE.HemisphereLight(0xffffff, 0xd0e8ff, 0.6);
     scene.add(hemiLight);
 
-    // 6. Earth Geometry & High-Res Texture
+    // 6. Earth Geometry & High-Res Texture with LoadingManager
     const globeRadius = 1.32;
-    const textureLoader = new THREE.TextureLoader();
+    const loadingManager = new THREE.LoadingManager(() => {
+      setIsLoaded(true);
+    });
+    const textureLoader = new THREE.TextureLoader(loadingManager);
 
     const earthMap = textureLoader.load(
       "https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
@@ -327,20 +331,23 @@ export function EarthGlobe3D({
     });
     resizeObserver.observe(container);
 
-    // 12. Animation Loop
+    // 12. Animation Loop (using standard performance.now for smooth 60fps)
     let animationFrameId: number;
-    const clock = new THREE.Clock();
+    let lastTime = performance.now();
+    let totalTime = 0;
 
     const animate = () => {
-      const delta = clock.getDelta();
-      const time = clock.getElapsedTime();
+      const now = performance.now();
+      const delta = Math.min((now - lastTime) / 1000, 0.1);
+      lastTime = now;
+      totalTime += delta;
 
       // Rotate clouds
       cloudsMesh.rotation.y += delta * 0.016;
 
       // Pulse Radar Rings
       pinMeshes.forEach((p, idx) => {
-        const scale = 1 + 0.3 * Math.sin(time * 3 + idx);
+        const scale = 1 + 0.3 * Math.sin(totalTime * 3 + idx);
         p.ring.scale.set(scale, scale, 1);
       });
 
@@ -389,8 +396,25 @@ export function EarthGlobe3D({
 
   return (
     <div className="relative w-full h-[480px] sm:h-[620px] md:h-[740px] flex items-center justify-center select-none">
+      {/* Loading Skeleton */}
+      {!isLoaded && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-20 animate-pulse">
+          <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full bg-gradient-to-tr from-[#006EDC]/20 via-[#00B8F2]/10 to-transparent border border-[#006EDC]/30 shadow-[0_0_50px_rgba(0,110,220,0.15)] flex items-center justify-center">
+            <div className="w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-full bg-gradient-to-bl from-[#006EDC]/15 via-transparent to-slate-100/50 border border-white/40 animate-spin [animation-duration:8s]" />
+          </div>
+          <p className="mt-4 text-xs font-semibold text-slate-400 tracking-wider uppercase">
+            Loading 3D Global Network...
+          </p>
+        </div>
+      )}
+
       {/* 3D Canvas Mount Element */}
-      <div ref={containerRef} className="w-full h-full cursor-grab active:cursor-grabbing relative z-10" />
+      <div
+        ref={containerRef}
+        className={`w-full h-full cursor-grab active:cursor-grabbing relative z-10 transition-opacity duration-700 ${
+          isLoaded ? "opacity-100" : "opacity-0"
+        }`}
+      />
 
       {/* ── Seamless Ethereal Fluffy Cloud Bed at Bottom of Globe (Zero Square Box Cutoff) ── */}
       <div className="pointer-events-none absolute bottom-0 inset-x-0 z-20 h-[180px] sm:h-[240px] md:h-[280px] flex items-end">

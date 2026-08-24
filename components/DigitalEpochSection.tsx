@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, type FormEvent } from "react";
+import { useState, useEffect, useRef, type FormEvent } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronRight, X, CheckCircle2, User, Mail, Globe, FileText, Sparkles } from "lucide-react";
 
@@ -115,6 +115,26 @@ const PHARMA_STANDARDS: PharmaBrandItem[] = [
 export function DigitalEpochSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [inView, setInView] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Lazy-load video when section enters near viewport
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          obs.disconnect();
+        }
+      },
+      { rootMargin: "300px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   // Close on ESC key
   useEffect(() => {
@@ -142,19 +162,24 @@ export function DigitalEpochSection() {
   };
 
   return (
-    <section className="relative w-full py-16 px-4 md:px-8 overflow-hidden">
+    <section ref={sectionRef} id="contact" className="relative w-full py-16 px-4 md:px-8 overflow-hidden">
       {/* 2. Main Hero Container & Video Background */}
       <div className="relative w-full max-w-[1400px] mx-auto rounded-[32px] md:rounded-[48px] bg-white border border-slate-200/50 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)] overflow-hidden min-h-[480px] sm:min-h-[560px] md:h-[600px] flex flex-col">
         {/* Absolutely positioned underlying layer for the background video */}
-        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
-          <video
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260505_101331_74f9b798-3f00-4e86-8a01-377aa16ffeaa.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover scale-105 transition-transform duration-1000"
-          />
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none bg-slate-50">
+          {inView && (
+            <video
+              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260505_101331_74f9b798-3f00-4e86-8a01-377aa16ffeaa.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              onLoadedData={() => setVideoLoaded(true)}
+              className={`w-full h-full object-cover scale-105 transition-opacity duration-1000 ${
+                videoLoaded ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          )}
         </div>
 
         {/* 3. Hero Text Content */}

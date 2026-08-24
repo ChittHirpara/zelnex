@@ -2,12 +2,10 @@
 
 import dynamic from "next/dynamic";
 import React, { useRef, useSyncExternalStore } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   FileCheck2,
   ShieldCheck,
-  PackageCheck,
   CheckCircle2,
   Globe2,
   Boxes,
@@ -120,54 +118,41 @@ export function Overview() {
       ref={rootRef}
       className="relative scroll-mt-24 py-16 sm:py-24 overflow-hidden bg-white select-none text-[#111111]"
     >
-      {/* Scoped Google Fonts */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-      />
-
       <div className="relative z-20 mx-auto max-w-[1300px] px-4 sm:px-6 md:px-8">
         {/* ── Outer Bordered Deck Container ── */}
         <div className="border border-[#DCDCD2] bg-white rounded-[24px] overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.02)] flex flex-col mb-12">
           {/* ══════════════════════════════════════════════════════════
               HEADER BLOCK (bg #FAFBF9)
              ══════════════════════════════════════════════════════════ */}
-          <div className="grid grid-cols-1 md:grid-cols-[12px_1fr_12px] border-b border-[#DCDCD2]">
-            <div className="hidden md:block border-r border-[#DCDCD2] bg-[#FAFBF9]" />
-            <div className="pt-16 pb-14 px-6 md:px-12 text-center flex flex-col items-center bg-[#FAFBF9]">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/20 mb-3.5 shadow-xs">
-                <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#006EDC]">
-                  Company Overview
-                </p>
-              </div>
-
-              <h2
-                className="text-3xl sm:text-4xl lg:text-[44px] font-semibold text-[#111111] leading-[1.18] tracking-[-0.02em] max-w-[850px] mb-4"
-                style={{ fontFamily: "'Syne', sans-serif" }}
-              >
-                Building a Trusted Export-Oriented Pharmaceutical Brand
-              </h2>
-
-              <p className="text-base text-[#555555] max-w-[780px] font-['Inter',sans-serif] leading-relaxed">
-                Zelnex Pharmaceuticals Pvt. Ltd. delivers high-quality, affordable, and globally compliant generic healthcare formulations—specializing in regulatory dossier support, WHO-GMP contract manufacturing, and international distribution across 50+ countries.
+          <div className="border-b border-[#DCDCD2] pt-8 pb-7 px-6 md:px-12 text-center flex flex-col items-center bg-[#FAFBF9]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/20 mb-3.5 shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#006EDC]">
+                Company Overview
               </p>
             </div>
-            <div className="hidden md:block border-l border-[#DCDCD2] bg-[#FAFBF9]" />
+
+            <h2
+              className="text-[28px] sm:text-[36px] lg:text-[46px] font-bold text-[#111111] leading-[1.12] tracking-[-0.03em] max-w-[820px] mb-3"
+              style={{ fontFamily: "'Syne', sans-serif" }}
+            >
+              Building a Trusted Export-Oriented Pharmaceutical Brand
+            </h2>
+
+            <p className="text-base text-[#555555] max-w-[780px] font-['Inter',sans-serif] leading-relaxed">
+              Zelnex Pharmaceuticals Pvt. Ltd. delivers high-quality, affordable, and globally compliant generic healthcare formulations—specializing in regulatory dossier support, WHO-GMP contract manufacturing, and international distribution across 50+ countries.
+            </p>
           </div>
 
           {/* ══════════════════════════════════════════════════════════
               PANEL 01: Regulatory Affairs & CTD Dossier Compilation
               (Layout: Left = Visual Card, Right = Text)
              ══════════════════════════════════════════════════════════ */}
-          <div className="grid grid-cols-1 md:grid-cols-[12px_1fr_12px] border-b border-[#DCDCD2]">
-            <div className="hidden md:block border-r border-[#DCDCD2] bg-white" />
+          <div className="border-b border-[#DCDCD2]">
             <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-[#DCDCD2]">
               {/* Left Visual Card */}
-              <div className="bg-[#FAFBF9]/60 p-6 md:p-10 flex flex-col items-center justify-center min-h-[440px]">
-                <div className="w-full max-w-[440px] bg-white border border-[#DCDCD2] rounded-[20px] p-6 shadow-[0_8px_24px_rgba(0,0,0,0.03)] flex flex-col justify-between h-full">
+              <div className="bg-[#FAFBF9]/60 p-5 md:p-8 flex flex-col items-center justify-center min-h-[340px]">
+                <div className="w-full max-w-[440px] bg-white border border-[#DCDCD2] rounded-[20px] p-5 shadow-[0_8px_24px_rgba(0,0,0,0.03)] flex flex-col gap-0">
                   <div>
                     <div className="flex items-center justify-between pb-4 border-b border-[#E5E5E5] mb-5">
                       <div className="flex items-center gap-3">
@@ -208,7 +193,7 @@ export function Overview() {
                     </div>
                   </div>
 
-                  <div className="pt-5 mt-5 border-t border-[#E5E5E5] flex items-center justify-between text-xs text-[#666666]">
+                  <div className="pt-4 mt-4 border-t border-[#E5E5E5] flex items-center justify-between text-xs text-[#666666]">
                     <span>Global MOH Filing Support</span>
                     <span className="font-semibold text-[#111111]">50+ Regulatory Authorities</span>
                   </div>
@@ -216,14 +201,14 @@ export function Overview() {
               </div>
 
               {/* Right Content */}
-              <div className="p-8 md:p-14 flex flex-col justify-center bg-white">
+              <div className="p-6 md:p-9 flex flex-col justify-center bg-white">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAFBF9] border border-[#DCDCD2] w-fit mb-4 text-xs font-semibold text-[#555555]">
                   <span>01</span>
                   <span>/</span>
                   <span>Regulatory Services</span>
                 </div>
                 <h3
-                  className="text-2xl sm:text-3xl font-semibold text-[#111111] mb-4 leading-snug"
+                  className="text-[22px] sm:text-[28px] font-bold text-[#111111] mb-3 leading-[1.15] tracking-[-0.025em]"
                   style={{ fontFamily: "'Syne', sans-serif" }}
                 >
                   Accelerated Market Approvals with Complete CTD Dossiers
@@ -231,7 +216,7 @@ export function Overview() {
                 <p className="text-sm sm:text-base text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-6">
                   Navigating foreign Ministry of Health (MOH) registration requires uncompromising documentation. Zelnex prepares full Common Technical Document (CTD) and electronic CTD (eCTD) dossiers formatted for ASEAN, LATAM, GCC, and African regulatory authorities.
                 </p>
-                <div className="space-y-3 font-['Inter',sans-serif] text-sm text-[#444444] mb-8">
+                <div className="space-y-2.5 font-['Inter',sans-serif] text-sm text-[#444444] mb-5">
                   <div className="flex items-center gap-2.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#006EDC]" />
                     <span>Real-time and accelerated Zone IVb stability testing data</span>
@@ -261,18 +246,17 @@ export function Overview() {
               PANEL 02: WHO-GMP Manufacturing & Quality Control
               (Layout: Left = Text, Right = Visual Card)
              ══════════════════════════════════════════════════════════ */}
-          <div className="grid grid-cols-1 md:grid-cols-[12px_1fr_12px] border-b border-[#DCDCD2]">
-            <div className="hidden md:block border-r border-[#DCDCD2] bg-white" />
+          <div className="border-b border-[#DCDCD2]">
             <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-[#DCDCD2]">
               {/* Left Content */}
-              <div className="p-8 md:p-14 flex flex-col justify-center bg-white order-2 lg:order-1">
+              <div className="p-6 md:p-9 flex flex-col justify-center bg-white order-2 lg:order-1">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAFBF9] border border-[#DCDCD2] w-fit mb-4 text-xs font-semibold text-[#555555]">
                   <span>02</span>
                   <span>/</span>
                   <span>Contract Manufacturing</span>
                 </div>
                 <h3
-                  className="text-2xl sm:text-3xl font-semibold text-[#111111] mb-4 leading-snug"
+                  className="text-[22px] sm:text-[28px] font-bold text-[#111111] mb-3 leading-[1.15] tracking-[-0.025em]"
                   style={{ fontFamily: "'Syne', sans-serif" }}
                 >
                   WHO-GMP Certified Facilities & Scalable Batch Production
@@ -280,7 +264,7 @@ export function Overview() {
                 <p className="text-sm sm:text-base text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-6">
                   We manufacture through accredited, state-of-the-art sterile and oral formulation plants. Equipped with high-speed automated packaging, computerized HVAC Grade A/B cleanrooms, and fully validated analytical laboratories ensuring strict IP & pharmacopeial compliance.
                 </p>
-                <div className="space-y-3 font-['Inter',sans-serif] text-sm text-[#444444] mb-8">
+                <div className="space-y-2.5 font-['Inter',sans-serif] text-sm text-[#444444] mb-5">
                   <div className="flex items-center gap-2.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#008A8A]" />
                     <span>Tablets, Capsules, Dry Injections, Syrups, and Sachets</span>
@@ -304,8 +288,8 @@ export function Overview() {
               </div>
 
               {/* Right Visual Card */}
-              <div className="bg-[#FAFBF9]/60 p-6 md:p-10 flex flex-col items-center justify-center min-h-[440px] order-1 lg:order-2">
-                <div className="w-full max-w-[440px] bg-white border border-[#DCDCD2] rounded-[20px] p-6 shadow-[0_8px_24px_rgba(0,0,0,0.03)] flex flex-col justify-between h-full">
+              <div className="bg-[#FAFBF9]/60 p-5 md:p-8 flex flex-col items-center justify-center min-h-[340px] order-1 lg:order-2">
+                <div className="w-full max-w-[440px] bg-white border border-[#DCDCD2] rounded-[20px] p-5 shadow-[0_8px_24px_rgba(0,0,0,0.03)] flex flex-col gap-0">
                   <div>
                     <div className="flex items-center justify-between pb-4 border-b border-[#E5E5E5] mb-5">
                       <div className="flex items-center gap-3">
@@ -357,7 +341,7 @@ export function Overview() {
                     </div>
                   </div>
 
-                  <div className="pt-5 mt-5 border-t border-[#E5E5E5] flex items-center justify-between text-xs text-[#666666]">
+                  <div className="pt-4 mt-4 border-t border-[#E5E5E5] flex items-center justify-between text-xs text-[#666666]">
                     <span>Batch Release Protocol</span>
                     <span className="font-semibold text-[#008A8A] flex items-center gap-1">
                       <CheckCircle2 className="w-3.5 h-3.5" /> 100% QA Inspection
@@ -366,19 +350,17 @@ export function Overview() {
                 </div>
               </div>
             </div>
-            <div className="hidden md:block border-l border-[#DCDCD2] bg-white" />
           </div>
 
           {/* ══════════════════════════════════════════════════════════
               PANEL 03: Global Supply Chain & International Distribution
               (Layout: Left = Visual Card, Right = Text)
              ══════════════════════════════════════════════════════════ */}
-          <div className="grid grid-cols-1 md:grid-cols-[12px_1fr_12px] border-b border-[#DCDCD2]">
-            <div className="hidden md:block border-r border-[#DCDCD2] bg-white" />
+          <div className="border-b border-[#DCDCD2]">
             <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-[#DCDCD2]">
               {/* Left Visual Card */}
-              <div className="bg-[#FAFBF9]/60 p-6 md:p-10 flex flex-col items-center justify-center min-h-[440px]">
-                <div className="w-full max-w-[440px] bg-white border border-[#DCDCD2] rounded-[20px] p-6 shadow-[0_8px_24px_rgba(0,0,0,0.03)] flex flex-col justify-between h-full">
+              <div className="bg-[#FAFBF9]/60 p-5 md:p-8 flex flex-col items-center justify-center min-h-[340px]">
+                <div className="w-full max-w-[440px] bg-white border border-[#DCDCD2] rounded-[20px] p-5 shadow-[0_8px_24px_rgba(0,0,0,0.03)] flex flex-col gap-0">
                   <div>
                     <div className="flex items-center justify-between pb-4 border-b border-[#E5E5E5] mb-5">
                       <div className="flex items-center gap-3">
@@ -422,7 +404,7 @@ export function Overview() {
                     </div>
                   </div>
 
-                  <div className="pt-5 mt-5 border-t border-[#E5E5E5] flex items-center justify-between text-xs text-[#666666]">
+                  <div className="pt-4 mt-4 border-t border-[#E5E5E5] flex items-center justify-between text-xs text-[#666666]">
                     <span>Transit Security</span>
                     <span className="font-semibold text-[#111111]">Temperature-Monitored Dispatch</span>
                   </div>
@@ -430,14 +412,14 @@ export function Overview() {
               </div>
 
               {/* Right Content */}
-              <div className="p-8 md:p-14 flex flex-col justify-center bg-white">
+              <div className="p-6 md:p-9 flex flex-col justify-center bg-white">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAFBF9] border border-[#DCDCD2] w-fit mb-4 text-xs font-semibold text-[#555555]">
                   <span>03</span>
                   <span>/</span>
                   <span>Supply Chain</span>
                 </div>
                 <h3
-                  className="text-2xl sm:text-3xl font-semibold text-[#111111] mb-4 leading-snug"
+                  className="text-[22px] sm:text-[28px] font-bold text-[#111111] mb-3 leading-[1.15] tracking-[-0.025em]"
                   style={{ fontFamily: "'Syne', sans-serif" }}
                 >
                   Reliable Worldwide Transit & Tropical Packaging Barrier
@@ -445,7 +427,7 @@ export function Overview() {
                 <p className="text-sm sm:text-base text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-6">
                   Pharmaceutical export demands specialized packaging engineered for tropical maritime transport. Zelnex utilizes Alu-Alu cold form blister, induction-sealed HDPE bottles, and triple-wall corrugated export shippers to guarantee 36-month stability in hot, humid Zone IVb climates.
                 </p>
-                <div className="space-y-3 font-['Inter',sans-serif] text-sm text-[#444444] mb-8">
+                <div className="space-y-2.5 font-['Inter',sans-serif] text-sm text-[#444444] mb-5">
                   <div className="flex items-center gap-2.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#1E3A8A]" />
                     <span>Tamper-evident primary barrier seals & serialization</span>
@@ -468,25 +450,23 @@ export function Overview() {
                 </Link>
               </div>
             </div>
-            <div className="hidden md:block border-l border-[#DCDCD2] bg-white" />
           </div>
 
           {/* ══════════════════════════════════════════════════════════
               PANEL 04: Product Range & Commercial Formulary
               (Layout: Left = Text, Right = Visual Card)
              ══════════════════════════════════════════════════════════ */}
-          <div className="grid grid-cols-1 md:grid-cols-[12px_1fr_12px]">
-            <div className="hidden md:block border-r border-[#DCDCD2] bg-white" />
+          <div>
             <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-[#DCDCD2]">
               {/* Left Content */}
-              <div className="p-8 md:p-14 flex flex-col justify-center bg-white order-2 lg:order-1">
+              <div className="p-6 md:p-9 flex flex-col justify-center bg-white order-2 lg:order-1">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAFBF9] border border-[#DCDCD2] w-fit mb-4 text-xs font-semibold text-[#555555]">
                   <span>04</span>
                   <span>/</span>
                   <span>Formulary</span>
                 </div>
                 <h3
-                  className="text-2xl sm:text-3xl font-semibold text-[#111111] mb-4 leading-snug"
+                  className="text-[22px] sm:text-[28px] font-bold text-[#111111] mb-3 leading-[1.15] tracking-[-0.025em]"
                   style={{ fontFamily: "'Syne', sans-serif" }}
                 >
                   800+ Commercial Generic Molecules Across 10+ Categories
@@ -494,7 +474,7 @@ export function Overview() {
                 <p className="text-sm sm:text-base text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-6">
                   Our comprehensive export catalog encompasses high-demand therapeutic areas: Anti-Infectives, Cardiology, Central Nervous System (CNS), Gastrointestinal, Respiratory, Diabetes, Dermatology, Oncology, and Critical Care Injectables.
                 </p>
-                <div className="space-y-3 font-['Inter',sans-serif] text-sm text-[#444444] mb-8">
+                <div className="space-y-2.5 font-['Inter',sans-serif] text-sm text-[#444444] mb-5">
                   <div className="flex items-center gap-2.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#006EDC]" />
                     <span>Ready commercial dossiers for immediate importation visa filing</span>
@@ -518,7 +498,7 @@ export function Overview() {
               </div>
 
               {/* Right Visual Card */}
-              <div className="bg-[#FAFBF9]/60 p-6 md:p-10 flex flex-col items-center justify-center min-h-[440px] order-1 lg:order-2">
+              <div className="bg-[#FAFBF9]/60 p-5 md:p-8 flex flex-col items-center justify-center min-h-[340px] order-1 lg:order-2">
                 <div className="w-full max-w-[440px] bg-white border border-[#DCDCD2] rounded-[20px] p-6 shadow-[0_8px_24px_rgba(0,0,0,0.03)] flex flex-col justify-between h-full">
                   <div>
                     <div className="flex items-center justify-between pb-4 border-b border-[#E5E5E5] mb-5">
@@ -558,14 +538,13 @@ export function Overview() {
                     </div>
                   </div>
 
-                  <div className="pt-5 mt-5 border-t border-[#E5E5E5] flex items-center justify-between text-xs text-[#666666]">
+                  <div className="pt-4 mt-4 border-t border-[#E5E5E5] flex items-center justify-between text-xs text-[#666666]">
                     <span>Commercial Readiness</span>
                     <span className="font-semibold text-[#006EDC]">Immediate Export Clearance</span>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="hidden md:block border-l border-[#DCDCD2] bg-white" />
           </div>
         </div>
 

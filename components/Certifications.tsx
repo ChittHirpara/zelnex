@@ -1,19 +1,17 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { PillNav } from "@/components/ui/PillNav";
 import {
-  Search,
   ShieldCheck,
-  Bookmark,
-  Share2,
   ExternalLink,
   CheckCircle2,
   X,
+  FileCheck2,
+  ArrowRight,
   Globe2,
   Award,
-  FileCheck2,
-  Check,
-  SlidersHorizontal,
 } from "lucide-react";
 
 interface CertItem {
@@ -21,14 +19,22 @@ interface CertItem {
   code: string;
   name: string;
   country: string;
-  category: "Global" | "Africa" | "Asia" | "Middle East" | "Quality";
-  tag: string;
+  flag: string;
+  category: "Global" | "Africa" | "Asia & Middle East";
+  status: string;
   domain: string;
   scope: string;
-  auditYear: string;
   description: string;
   modules: string[];
+  featured?: boolean;
 }
+
+const METRICS = [
+  { label: "Manufacturing Facility", value: "WHO-GMP & ISO 9001", icon: ShieldCheck },
+  { label: "Export Stability", value: "Zone IVb (30°C / 75% RH)", icon: Award },
+  { label: "Dossier Readiness", value: "CTD / eCTD Modules 1–5", icon: FileCheck2 },
+  { label: "Active Registrations", value: "50+ Global Health Ministries", icon: Globe2 },
+];
 
 const CERTIFICATIONS: CertItem[] = [
   {
@@ -36,651 +42,376 @@ const CERTIFICATIONS: CertItem[] = [
     code: "WHO-GMP",
     name: "World Health Organization",
     country: "Global Standard",
+    flag: "🌐",
     category: "Global",
-    tag: "Quality Certified",
+    status: "Active Facility Benchmark",
     domain: "who.int",
-    scope: "Sterile injectables, oral solids, lyophilized vials, and active QA systems.",
-    auditYear: "Annual WHO-GMP Audit",
+    scope: "Sterile injectables, oral solid dosage, lyophilized vials, and HVAC Grade A/B cleanroom QA systems.",
+    featured: true,
     description:
-      "Global benchmark accreditation verifying that manufacturing facilities adhere to strict World Health Organization sterile cleanroom protocols and international pharmacopeias.",
-    modules: ["Module 1: Admin Data", "Module 2: Quality Summaries", "Module 3: Chemical Quality", "Grade A Cleanroom"],
+      "Global benchmark accreditation verifying that manufacturing facilities adhere to strict World Health Organization sterile cleanroom protocols and international pharmacopoeial standards.",
+    modules: ["Module 1: Admin & Prescribing Info", "Module 2: Overall Quality Summary", "Module 3: Chemical & Biological Quality", "Grade A Cleanroom Protocols"],
   },
   {
     id: "iso-9001",
     code: "ISO 9001:2015",
-    name: "Quality Management System",
+    name: "Quality Management Systems",
     country: "International Standard",
-    category: "Quality",
-    tag: "Audited & Verified",
+    flag: "🏅",
+    category: "Global",
+    status: "Audited & Certified",
     domain: "iso.org",
-    scope: "Supply chain quality assurance, vendor qualification, and batch record traceability.",
-    auditYear: "ISO 9001:2015 Certified",
+    scope: "Supply chain quality assurance, vendor qualification, batch serialization, and risk mitigation.",
+    featured: true,
     description:
-      "Standard for organizational quality management, rigorous risk mitigation, and international freight batch integrity.",
-    modules: ["Risk Mitigation", "Batch Traceability", "SOP Adherence", "Audit Trail Verification"],
+      "Accreditation for rigorous organizational quality management, full raw material traceability, and audited batch records.",
+    modules: ["Vendor Qualification SOPs", "Batch Record Traceability", "Risk Mitigation & CAPA", "International Audit Trails"],
   },
   {
-    id: "nafdac",
+    id: "nafdac-ng",
     code: "NAFDAC",
-    name: "Food & Drug Administration",
+    name: "National Agency for Food & Drug Administration",
     country: "Nigeria",
+    flag: "🇳🇬",
     category: "Africa",
-    tag: "MOH Registered",
+    status: "Product Visas Issued",
     domain: "nafdac.gov.ng",
-    scope: "Commercial pharmaceutical registration and importation clearance for therapeutic formulations.",
-    auditYear: "NAFDAC Authorized",
+    scope: "Commercial pharmaceutical registration and importation clearance for essential therapeutic formulations.",
     description:
-      "Product registration licenses issued by Nigeria's NAFDAC following exhaustive chemical assay and analytical testing.",
-    modules: ["Certificate of Registration", "Clean Import Visa", "Zone IVb Stability Passed"],
+      "Product registration licenses approved by Nigeria's NAFDAC following exhaustive chemical assay verification and stability compliance.",
+    modules: ["Certificate of Registration", "Clean Import Visa", "Zone IVb Stability Validated"],
   },
   {
-    id: "ppb-kenya",
+    id: "ppb-ke",
     code: "PPB Kenya",
-    name: "Pharmacy & Poisons Board",
+    name: "Pharmacy and Poisons Board",
     country: "Kenya MOH",
+    flag: "🇰🇪",
     category: "Africa",
-    tag: "MOH Registered",
+    status: "EAC Harmonized",
     domain: "pharmacyboardkenya.org",
-    scope: "Marketing authorization for East African Community (EAC) public tenders and private distribution.",
-    auditYear: "EAC Harmonized",
+    scope: "Marketing authorization for East African Community (EAC) public hospital tenders and private distribution.",
     description:
-      "Registration with Kenya's Pharmacy and Poisons Board adhering to EAC regional technical harmonization standards.",
-    modules: ["EAC Harmonized Dossier", "GMP Inspection Cleared", "36M Shelf-Life Data"],
+      "Registered with Kenya's PPB adhering to harmonized East African regional technical dossier standards.",
+    modules: ["EAC Harmonized CTD", "GMP Inspection Cleared", "36-Month Real-Time Stability"],
   },
   {
-    id: "nda-uganda",
+    id: "nda-ug",
     code: "NDA Uganda",
     name: "National Drug Authority",
     country: "Uganda MOH",
+    flag: "🇺🇬",
     category: "Africa",
-    tag: "MOH Registered",
+    status: "MOH Registered",
     domain: "nda.or.ug",
     scope: "Hospital supply authorizations, anti-infective formulations, and essential medicines list compliance.",
-    auditYear: "NDA Verified",
     description:
-      "Authorized by Uganda's National Drug Authority ensuring clinical safety, therapeutic efficacy, and tropical packaging barrier.",
-    modules: ["CTD Modules 1–5", "Zone IVb Tropical Foil", "Finished Product CoA"],
+      "Authorized by Uganda's National Drug Authority ensuring clinical efficacy, therapeutic safety, and tropical packaging barrier integrity.",
+    modules: ["CTD Modules 1–5", "Zone IVb Tropical Blister Foil", "Batch Certificate of Analysis"],
   },
   {
-    id: "moh-vietnam",
-    code: "MOH-VN",
-    name: "Ministry of Health (DAV)",
-    country: "Vietnam",
-    category: "Asia",
-    tag: "Market Authorized",
-    domain: "dav.gov.vn",
-    scope: "Drug Administration of Vietnam (DAV) visa numbers and hospital tender qualification.",
-    auditYear: "DAV Visa Issued",
-    description:
-      "Approved for nationwide distribution across Vietnamese healthcare institutions following rigorous bioequivalence evaluation.",
-    modules: ["DAV Visa Registration", "ACTD Guidelines", "Bilingual Export Pack"],
-  },
-  {
-    id: "fssai",
-    code: "FSSAI",
-    name: "Food Safety Authority",
-    country: "India Compliance",
-    category: "Quality",
-    tag: "Nutra Certified",
-    domain: "fssai.gov.in",
-    scope: "Dietary supplements, multivitamins, nutraceutical capsules, and functional wellness formulations.",
-    auditYear: "Nutra Approved",
-    description:
-      "Regulatory compliance for nutraceutical and food-supplement export formulations under strict safety and labeling rules.",
-    modules: ["Nutra License", "Heavy Metal Testing", "Microbial Purity Assured"],
-  },
-  {
-    id: "dpm-ivory-coast",
-    code: "DPM",
-    name: "Direction de la Pharmacie",
-    country: "Ivory Coast",
-    category: "Africa",
-    tag: "MOH Approved",
-    domain: "dpm.gouv.ci",
-    scope: "UEMOA francophone West African regulatory approvals and commercial distribution licenses.",
-    auditYear: "UEMOA Standard",
-    description:
-      "Product visa registrations cleared for Ivory Coast and regional French-speaking markets adhering to Zone IVb stability.",
-    modules: ["Dossier en Français", "Visa d'Enregistrement", "Zone IVb Validé"],
-  },
-  {
-    id: "moh-iraq",
-    code: "MOH-IQ",
-    name: "Ministry of Health (Kimadia)",
-    country: "Iraq",
-    category: "Middle East",
-    tag: "Import Cleared",
-    domain: "moh.gov.iq",
-    scope: "National institutional procurement, Kimadia tender supply, and private pharmaceutical distribution.",
-    auditYear: "Kimadia Registered",
-    description:
-      "Import authorizations approved by Iraq's Ministry of Health for bulk generic oral and sterile therapeutic categories.",
-    modules: ["National MOH Registry", "Kimadia Prequalification", "Batch Assay Verified"],
-  },
-  {
-    id: "moh-cambodia",
-    code: "MOH-KH",
-    name: "Department of Drugs & Medical",
-    country: "Cambodia",
-    category: "Asia",
-    tag: "MOH Authorized",
-    domain: "ddfcambodia.com",
-    scope: "ASEAN Common Technical Dossier (ACTD) compliance and Southeast Asian market registration.",
-    auditYear: "ACTD Format",
-    description:
-      "Approved by Cambodia's Ministry of Health for hospital and commercial pharmacy distribution across Southeast Asia.",
-    modules: ["ACTD Dossier", "Dissolution In Vitro", "Export Artwork Cleared"],
-  },
-  {
-    id: "moh-yemen",
-    code: "MOH-YE",
-    name: "Supreme Board of Drugs",
-    country: "Yemen",
-    category: "Middle East",
-    tag: "MOH Registered",
-    domain: "sbd-ye.org",
-    scope: "Emergency medical supply, NGO tenders, and ongoing commercial essential medicine imports.",
-    auditYear: "SBD Registered",
-    description:
-      "Official registration with the Supreme Board of Drugs and Medical Appliances for vital healthcare solutions.",
-    modules: ["Fast-Track Tender Clearance", "High-Barrier Foil", "CoA Certified"],
-  },
-  {
-    id: "moh-ghana",
+    id: "fda-gh",
     code: "FDA Ghana",
     name: "Food and Drugs Authority",
     country: "Ghana",
+    flag: "🇬🇭",
     category: "Africa",
-    tag: "FDA Approved",
+    status: "Marketing License",
     domain: "fdaghana.gov.gh",
-    scope: "West African market authorization, hospital procurement, and commercial distribution.",
-    auditYear: "FDA Approved",
+    scope: "West African marketing authorizations, public health institution procurement, and distributor supply.",
     description:
-      "Accredited marketing license granted by Ghana's FDA confirming full pharmacopeial compliance and clinical stability.",
+      "Approved pharmaceutical dossiers ensuring strict pharmacopeial compliance, child-resistant packaging, and batch assay verification.",
     modules: ["Marketing Authorisation", "Quality Audit Cleared", "Tamper-Evident Packaging"],
+  },
+  {
+    id: "dav-vn",
+    code: "DAV Vietnam",
+    name: "Drug Administration of Vietnam (MOH)",
+    country: "Vietnam",
+    flag: "🇻🇳",
+    category: "Asia & Middle East",
+    status: "DAV Visa Active",
+    domain: "dav.gov.vn",
+    scope: "Drug Administration of Vietnam (DAV) visa numbers and national hospital tender qualification.",
+    description:
+      "Approved for nationwide commercial distribution across Vietnamese healthcare networks adhering to ACTD format guidelines.",
+    modules: ["DAV Visa Registration", "ACTD Guidelines", "Bilingual Export Artwork"],
+  },
+  {
+    id: "kimadia-iq",
+    code: "Kimadia",
+    name: "Ministry of Health (State Company for Drugs)",
+    country: "Iraq",
+    flag: "🇮🇶",
+    category: "Asia & Middle East",
+    status: "Kimadia Prequalified",
+    domain: "moh.gov.iq",
+    scope: "National institutional procurement, Kimadia tender supply, and private pharmaceutical distribution.",
+    description:
+      "Import authorizations cleared by Iraq's Ministry of Health for generic oral solid dosages and sterile vials.",
+    modules: ["National MOH Registry", "Kimadia Prequalification", "Batch Assay Verified"],
+  },
+  {
+    id: "sbd-ye",
+    code: "SBD Yemen",
+    name: "Supreme Board of Drugs & Medical Appliances",
+    country: "Yemen",
+    flag: "🇾🇪",
+    category: "Asia & Middle East",
+    status: "SBD Registered",
+    domain: "sbd-ye.org",
+    scope: "Essential generic medical supply, NGO healthcare tenders, and commercial distributor supply.",
+    description:
+      "Official registration with the Supreme Board of Drugs for vital therapeutics and high-barrier tropical packaging formats.",
+    modules: ["Fast-Track Tender Clearance", "High-Barrier Tropical Foil", "CoA Certified Batches"],
   },
 ];
 
+const CATEGORIES = ["All", "Global", "Africa", "Asia & Middle East"] as const;
+
 export function Certifications() {
-  const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [selectedCert, setSelectedCert] = useState<CertItem | null>(null);
-  const [savedCerts, setSavedCerts] = useState<Record<string, boolean>>({});
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
-
-  const showToast = (msg: string) => {
-    setToastMessage(msg);
-    setTimeout(() => setToastMessage(null), 3000);
-  };
-
-  const toggleSave = (id: string, name: string) => {
-    setSavedCerts((prev) => {
-      const nextState = !prev[id];
-      showToast(nextState ? `Saved ${name} to Dossier` : `Removed from Dossier`);
-      return { ...prev, [id]: nextState };
-    });
-  };
 
   // Close modal on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setSelectedCert(null);
-      }
+      if (e.key === "Escape") setSelectedCert(null);
     };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+    if (selectedCert) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
+    };
+  }, [selectedCert]);
 
   const filteredCerts = useMemo(() => {
-    return CERTIFICATIONS.filter((cert) => {
-      const matchesCategory =
-        selectedCategory === "All" || cert.category === selectedCategory;
-      const q = searchQuery.toLowerCase().trim();
-      const matchesSearch =
-        !q ||
-        cert.code.toLowerCase().includes(q) ||
-        cert.name.toLowerCase().includes(q) ||
-        cert.country.toLowerCase().includes(q) ||
-        cert.tag.toLowerCase().includes(q) ||
-        cert.scope.toLowerCase().includes(q);
-      return matchesCategory && matchesSearch;
-    });
-  }, [searchQuery, selectedCategory]);
+    if (selectedCategory === "All") return CERTIFICATIONS;
+    return CERTIFICATIONS.filter((c) => c.category === selectedCategory);
+  }, [selectedCategory]);
 
   return (
     <section
       id="certifications"
-      className="relative w-full bg-[#E0E5EC] text-[#3D4852] py-20 sm:py-28 px-4 sm:px-6 md:px-8 select-none font-['DM_Sans',sans-serif]"
+      className="relative w-full bg-white text-[#181B1F] py-20 sm:py-28 px-4 sm:px-6 md:px-8 select-none font-sans overflow-hidden"
     >
-      {/* Scoped Google Fonts */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
-        rel="stylesheet"
-      />
-
-      {/* ── Toast Notification ── */}
-      {toastMessage && (
-        <div
-          className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-[#E0E5EC] text-[#3D4852] text-xs font-bold transition-all"
-          style={{
-            boxShadow:
-              "9px 9px 16px rgb(163,177,198,0.7), -9px -9px 16px rgba(255,255,255,0.7)",
-          }}
-        >
-          <CheckCircle2 className="w-4 h-4 text-[#38B2AC]" />
-          <span>{toastMessage}</span>
-        </div>
-      )}
-
-      <div className="max-w-7xl mx-auto">
-        {/* ── Header ── */}
+      <div className="relative z-10 max-w-6xl mx-auto">
+        {/* ── Minimal Section Header ── */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E0E5EC] mb-4"
-            style={{
-              boxShadow:
-                "inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5)",
-            }}
-          >
-            <span className="w-2 h-2 rounded-full bg-[#38B2AC] animate-pulse" />
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#38B2AC]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/20 mb-3 shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#006EDC]">
               Regulatory Accreditations
             </p>
           </div>
 
           <h2
-            className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-[#3D4852] tracking-tight leading-[1.15]"
-            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#111111] tracking-tight leading-[1.15]"
+            style={{ fontFamily: "'Syne', sans-serif" }}
           >
             Where Global Quality Meets Regulatory Compliance
           </h2>
 
-          <p className="mt-4 text-base text-[#6B7280] max-w-2xl mx-auto leading-relaxed font-normal">
-            Sourced strictly from WHO-GMP accredited facilities with full CTD/eCTD documentation support for international health authority approvals.
+          <p className="mt-4 text-base text-[#6B7280] max-w-2xl mx-auto leading-relaxed">
+            Sourced strictly from WHO-GMP accredited facilities with verified CTD/eCTD dossier readiness across 50+ international health ministries.
           </p>
         </div>
 
-        {/* ══════════════════════════════════════════════════════════
-            NEUMORPHIC TOP SEARCH & CATEGORY FILTER DECK
-           ══════════════════════════════════════════════════════════ */}
-        <div
-          className="bg-[#E0E5EC] rounded-[32px] p-4 sm:p-6 mb-10 flex flex-col md:flex-row items-center justify-between gap-5"
-          style={{
-            boxShadow:
-              "9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255,0.5)",
-          }}
-        >
-          {/* Left Inset Deep Search Well (400-500px) */}
-          <div
-            className="relative w-full md:w-[460px] flex items-center rounded-2xl bg-[#E0E5EC] px-4 py-3"
-            style={{
-              boxShadow:
-                "inset 6px 6px 12px rgb(163,177,198,0.6), inset -6px -6px 12px rgba(255,255,255,0.5)",
-            }}
-          >
-            <Search className="w-4 h-4 text-[#6B7280] mr-3 shrink-0" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by MOH, country, authority, or keyword..."
-              className="w-full bg-transparent text-sm font-medium text-[#3D4852] placeholder:text-[#A0AEC0] focus:outline-none"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery("")}
-                className="text-[#6B7280] hover:text-[#3D4852] ml-2"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            )}
-          </div>
-
-          {/* Right Category Filter Buttons */}
-          <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-1 md:pb-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-            {["All", "Global", "Africa", "Asia", "Middle East", "Quality"].map((cat) => {
-              const isActive = selectedCategory === cat;
-
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all duration-300 cursor-pointer whitespace-nowrap ${
-                    isActive
-                      ? "text-[#6C63FF] translate-y-[0.5px]"
-                      : "text-[#6B7280] hover:text-[#3D4852] hover:-translate-y-[1px]"
-                  }`}
-                  style={{
-                    backgroundColor: "#E0E5EC",
-                    boxShadow: isActive
-                      ? "inset 4px 4px 8px rgb(163,177,198,0.7), inset -4px -4px 8px rgba(255,255,255,0.6)"
-                      : "5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5)",
-                  }}
-                >
-                  {cat}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* ══════════════════════════════════════════════════════════
-            NEUMORPHIC 4-COLUMN CARDS GRID
-           ══════════════════════════════════════════════════════════ */}
-        <div
-          role="list"
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-stretch"
-        >
-          {filteredCerts.map((cert) => {
-            const isSaved = !!savedCerts[cert.id];
-
+        {/* ── Ultra-Clean 4-Item Proof Bar ── */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-12">
+          {METRICS.map((m, i) => {
+            const Icon = m.icon;
             return (
               <div
-                key={cert.id}
-                role="listitem"
-                onClick={() => setSelectedCert(cert)}
-                className="group relative flex flex-col justify-between rounded-[32px] p-6 bg-[#E0E5EC] transition-all duration-300 cursor-pointer hover:-translate-y-1 select-none"
-                style={{
-                  boxShadow:
-                    "9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255,0.5)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow =
-                    "12px 12px 20px rgb(163,177,198,0.7), -12px -12px 20px rgba(255,255,255,0.6)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow =
-                    "9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255,0.5)";
-                }}
+                key={i}
+                className="flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-[#FAFBF9] border border-[#EBEBEB] shadow-xs"
               >
-                {/* ── Top Group: Inset Deep Well + Status Pill ── */}
-                <div className="flex items-center justify-between mb-5">
-                  {/* Inset Deep Well for Emblem */}
-                  <div
-                    className="w-12 h-12 rounded-2xl bg-[#E0E5EC] flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
-                    style={{
-                      boxShadow:
-                        "inset 4px 4px 8px rgb(163,177,198,0.6), inset -4px -4px 8px rgba(255,255,255,0.5)",
-                    }}
-                  >
-                    <ShieldCheck className="w-6 h-6 text-[#6C63FF]" />
-                  </div>
-
-                  {/* Inset Small Tag Pill */}
-                  <div
-                    className="px-3 py-1 rounded-full bg-[#E0E5EC] text-[11px] font-bold text-[#38B2AC]"
-                    style={{
-                      boxShadow:
-                        "inset 2px 2px 4px rgb(163,177,198,0.6), inset -2px -2px 4px rgba(255,255,255,0.5)",
-                    }}
-                  >
-                    {cert.tag}
-                  </div>
+                <div className="w-9 h-9 rounded-xl bg-white border border-[#E0E0E0] flex items-center justify-center text-[#006EDC] shrink-0 shadow-xs">
+                  <Icon className="w-4 h-4" />
                 </div>
-
-                {/* ── Card Content ── */}
-                <div className="flex flex-col flex-1">
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#6B7280] mb-1">
-                    {cert.country}
-                  </div>
-                  <h3
-                    className="text-xl font-extrabold text-[#3D4852] tracking-tight group-hover:text-[#6C63FF] transition-colors leading-snug"
-                    style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-                  >
-                    {cert.code}
-                  </h3>
-                  <p className="text-xs font-medium text-[#6B7280] mt-1 line-clamp-1">
-                    {cert.name}
-                  </p>
-
-                  <p className="text-xs leading-relaxed text-[#3D4852]/80 mt-3 line-clamp-2">
-                    {cert.scope}
-                  </p>
-                </div>
-
-                {/* ── Bottom Inset Tray / Actions ── */}
-                <div
-                  className="mt-5 pt-3.5 flex items-center justify-between"
-                  style={{
-                    borderTop: "1px solid rgba(163,177,198,0.3)",
-                  }}
-                >
-                  <span className="text-[11px] font-bold text-[#6B7280] flex items-center gap-1">
-                    <Globe2 className="w-3.5 h-3.5 text-[#6C63FF]" />
-                    <span>{cert.domain}</span>
-                  </span>
-
-                  {/* Tactile Extruded Save Button */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleSave(cert.id, cert.code);
-                    }}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
-                      isSaved
-                        ? "text-[#38B2AC]"
-                        : "text-[#6B7280] hover:text-[#6C63FF]"
-                    }`}
-                    style={{
-                      backgroundColor: "#E0E5EC",
-                      boxShadow: isSaved
-                        ? "inset 3px 3px 6px rgb(163,177,198,0.7), inset -3px -3px 6px rgba(255,255,255,0.6)"
-                        : "3px 3px 6px rgb(163,177,198,0.6), -3px -3px 6px rgba(255,255,255,0.5)",
-                    }}
-                  >
-                    <Bookmark
-                      className={`w-3.5 h-3.5 ${isSaved ? "fill-current" : ""}`}
-                    />
-                    <span>{isSaved ? "Saved" : "Save"}</span>
-                  </button>
+                <div className="min-w-0">
+                  <div className="text-xs font-bold text-[#111111] truncate">{m.value}</div>
+                  <div className="text-[11px] text-slate-500 truncate">{m.label}</div>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* ── Empty State ── */}
-        {filteredCerts.length === 0 && (
-          <div
-            className="text-center py-16 bg-[#E0E5EC] rounded-[32px] p-8"
-            style={{
-              boxShadow:
-                "inset 6px 6px 12px rgb(163,177,198,0.6), inset -6px -6px 12px rgba(255,255,255,0.5)",
-            }}
-          >
-            <Search className="w-10 h-10 text-[#6B7280] mx-auto mb-3" />
-            <h4
-              className="text-lg font-bold text-[#3D4852]"
-              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-            >
-              No accreditations found
-            </h4>
-            <p className="text-xs text-[#6B7280] mt-1">
-              Try searching with another keyword like &quot;WHO&quot;, &quot;Africa&quot;, &quot;MOH&quot;, or &quot;ISO&quot;.
-            </p>
-            <button
-              onClick={() => {
-                setSearchQuery("");
-                setSelectedCategory("All");
-              }}
-              className="mt-5 px-5 py-2.5 rounded-2xl bg-[#E0E5EC] text-xs font-bold text-[#6C63FF] hover:-translate-y-[1px] transition-all"
-              style={{
-                boxShadow:
-                  "5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5)",
-              }}
-            >
-              Reset Filters
-            </button>
-          </div>
-        )}
+        {/* ── Category Filter Tabs with GSAP PillNav ── */}
+        <div className="flex items-center justify-center mb-10">
+          <PillNav
+            items={CATEGORIES.map((cat) => ({
+              id: cat,
+              label: cat,
+            }))}
+            activeId={selectedCategory}
+            onSelect={(id) => setSelectedCategory(id)}
+            baseColor="#082B61"
+            pillColor="#FAFBF9"
+            pillTextColor="#2A3447"
+            hoveredPillTextColor="#FFFFFF"
+          />
+        </div>
+
+        {/* ── Clean Minimal 3-Column Cards Grid ── */}
+        <motion.div
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredCerts.map((cert) => (
+              <motion.div
+                key={cert.id}
+                layout
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.2 }}
+                onClick={() => setSelectedCert(cert)}
+                className="group relative flex flex-col justify-between rounded-2xl p-6 bg-white border border-[#E8E8E8] transition-all duration-300 hover:border-[#006EDC]/50 hover:shadow-[0_12px_30px_rgba(0,110,220,0.06)] hover:-translate-y-1 cursor-pointer"
+              >
+                {/* Header: Flag/Icon + Status */}
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-2xl">{cert.flag}</span>
+                      <div>
+                        <div className="text-xs font-bold text-[#111111]">{cert.country}</div>
+                        <div className="text-[11px] text-slate-400">{cert.category}</div>
+                      </div>
+                    </div>
+
+                    <span className="text-[10.5px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">
+                      {cert.status}
+                    </span>
+                  </div>
+
+                  {/* Title & Scope */}
+                  <h3
+                    className="text-xl font-bold text-[#111111] group-hover:text-[#006EDC] transition-colors leading-tight mb-1"
+                    style={{ fontFamily: "'Syne', sans-serif" }}
+                  >
+                    {cert.code}
+                  </h3>
+                  <p className="text-xs text-slate-500 font-medium line-clamp-1 mb-3">
+                    {cert.name}
+                  </p>
+                  <p className="text-xs leading-relaxed text-slate-600 line-clamp-2">
+                    {cert.scope}
+                  </p>
+                </div>
+
+                {/* Footer Action */}
+                <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#006EDC]">
+                  <span className="group-hover:underline">View Dossier Specs</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
 
-      {/* ══════════════════════════════════════════════════════════
-          NEUMORPHIC LIGHTBOX / DETAIL MODAL
-         ══════════════════════════════════════════════════════════ */}
-      {selectedCert && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/40 backdrop-blur-sm animate-fade-in"
-          onClick={() => setSelectedCert(null)}
-        >
+      {/* ── Minimal Dossier Lightbox Modal ── */}
+      <AnimatePresence>
+        {selectedCert && (
           <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-2xl bg-[#E0E5EC] rounded-[28px] sm:rounded-[32px] p-5 sm:p-8 overflow-y-auto max-h-[92vh] flex flex-col justify-between"
-            style={{
-              boxShadow:
-                "16px 16px 32px rgb(163,177,198,0.8), -16px -16px 32px rgba(255,255,255,0.8)",
-            }}
+            role="dialog"
+            aria-modal="true"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/50 backdrop-blur-sm"
+            onClick={() => setSelectedCert(null)}
           >
-            {/* Close Button */}
-            <button
-              onClick={() => setSelectedCert(null)}
-              className="absolute top-6 right-6 p-2.5 rounded-2xl bg-[#E0E5EC] text-[#3D4852] hover:text-[#6C63FF] transition-all cursor-pointer"
-              style={{
-                boxShadow:
-                  "4px 4px 8px rgb(163,177,198,0.6), -4px -4px 8px rgba(255,255,255,0.5)",
-              }}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-lg bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-y-auto max-h-[85vh]"
             >
-              <X className="w-4 h-4" />
-            </button>
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedCert(null)}
+                className="absolute top-5 right-5 p-2 rounded-full bg-slate-100 text-slate-500 hover:text-slate-900 hover:bg-slate-200 transition-colors cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
 
-            {/* Modal Header */}
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <div
-                  className="w-12 h-12 rounded-2xl bg-[#E0E5EC] flex items-center justify-center"
-                  style={{
-                    boxShadow:
-                      "inset 4px 4px 8px rgb(163,177,198,0.6), inset -4px -4px 8px rgba(255,255,255,0.5)",
-                  }}
-                >
-                  <ShieldCheck className="w-6 h-6 text-[#6C63FF]" />
-                </div>
+              {/* Modal Header */}
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-3xl">{selectedCert.flag}</span>
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#38B2AC]">
-                    {selectedCert.country} · {selectedCert.tag}
-                  </span>
+                  <div className="text-xs font-bold text-[#006EDC] uppercase tracking-wider">
+                    {selectedCert.country} · {selectedCert.status}
+                  </div>
                   <h3
-                    className="text-2xl font-extrabold text-[#3D4852] tracking-tight"
-                    style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                    className="text-2xl font-bold text-[#111111] leading-tight"
+                    style={{ fontFamily: "'Syne', sans-serif" }}
                   >
                     {selectedCert.code}
                   </h3>
                 </div>
               </div>
 
-              <p className="text-xs font-bold text-[#6B7280] mb-4">
+              <p className="text-xs text-slate-500 font-medium mb-5 pb-3 border-b border-slate-100">
                 {selectedCert.name}
               </p>
-            </div>
 
-            {/* Modal Scroll Content */}
-            <div className="overflow-y-auto space-y-4 my-2 pr-1">
-              {/* Inset Deep Well for Overview */}
-              <div
-                className="p-4 rounded-2xl bg-[#E0E5EC]"
-                style={{
-                  boxShadow:
-                    "inset 5px 5px 10px rgb(163,177,198,0.6), inset -5px -5px 10px rgba(255,255,255,0.5)",
-                }}
-              >
-                <div className="text-xs font-bold text-[#3D4852] mb-1">
-                  Accreditation Overview
+              {/* Description */}
+              <div className="space-y-4 text-xs text-slate-600 leading-relaxed mb-6">
+                <div>
+                  <div className="font-bold text-[#111111] mb-1">Accreditation Overview</div>
+                  <p>{selectedCert.description}</p>
                 </div>
-                <p className="text-xs text-[#6B7280] leading-relaxed">
-                  {selectedCert.description}
-                </p>
-              </div>
 
-              {/* Compliance Scope Well */}
-              <div
-                className="p-4 rounded-2xl bg-[#E0E5EC]"
-                style={{
-                  boxShadow:
-                    "inset 5px 5px 10px rgb(163,177,198,0.6), inset -5px -5px 10px rgba(255,255,255,0.5)",
-                }}
-              >
-                <div className="text-xs font-bold text-[#3D4852] mb-1">
-                  Compliance & Scope
+                <div>
+                  <div className="font-bold text-[#111111] mb-1">Therapeutic & Supply Scope</div>
+                  <p>{selectedCert.scope}</p>
                 </div>
-                <p className="text-xs text-[#6B7280] leading-relaxed">
-                  {selectedCert.scope}
-                </p>
-              </div>
 
-              {/* Modules Grid */}
-              <div>
-                <div className="text-xs font-bold text-[#3D4852] mb-2">
-                  Validated Dossier Modules & Standards
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {selectedCert.modules.map((mod) => (
-                    <div
-                      key={mod}
-                      className="flex items-center gap-2 p-2.5 rounded-xl bg-[#E0E5EC] text-xs font-bold text-[#3D4852]"
-                      style={{
-                        boxShadow:
-                          "3px 3px 6px rgb(163,177,198,0.6), -3px -3px 6px rgba(255,255,255,0.5)",
-                      }}
-                    >
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#38B2AC] shrink-0" />
-                      <span>{mod}</span>
-                    </div>
-                  ))}
+                <div>
+                  <div className="font-bold text-[#111111] mb-2">Available Dossier Modules</div>
+                  <div className="space-y-1.5">
+                    {selectedCert.modules.map((mod, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center gap-2 p-2 rounded-lg bg-[#FAFBF9] border border-[#EAEAEA] text-slate-700 font-medium"
+                      >
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#008A8A] shrink-0" />
+                        <span>{mod}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Modal Bottom Actions */}
-            <div
-              className="mt-4 pt-4 flex items-center justify-between"
-              style={{
-                borderTop: "1px solid rgba(163,177,198,0.3)",
-              }}
-            >
-              <a
-                href={`https://${selectedCert.domain}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#6C63FF] hover:underline"
-              >
-                <span>Agency Portal: {selectedCert.domain}</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
+              {/* Action */}
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <a
+                  href={`https://${selectedCert.domain}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#006EDC]"
+                >
+                  <span>{selectedCert.domain}</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
 
-              <button
-                onClick={() => {
-                  toggleSave(selectedCert.id, selectedCert.code);
-                }}
-                className={`px-5 py-2.5 rounded-2xl text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
-                  savedCerts[selectedCert.id]
-                    ? "text-[#38B2AC]"
-                    : "text-[#3D4852] hover:text-[#6C63FF]"
-                }`}
-                style={{
-                  backgroundColor: "#E0E5EC",
-                  boxShadow: savedCerts[selectedCert.id]
-                    ? "inset 4px 4px 8px rgb(163,177,198,0.7), inset -4px -4px 8px rgba(255,255,255,0.6)"
-                    : "5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5)",
-                }}
-              >
-                <Bookmark
-                  className={`w-3.5 h-3.5 ${
-                    savedCerts[selectedCert.id] ? "fill-current" : ""
-                  }`}
-                />
-                <span>
-                  {savedCerts[selectedCert.id] ? "Saved to Dossier" : "Save Dossier"}
-                </span>
-              </button>
-            </div>
+                <button
+                  onClick={() => setSelectedCert(null)}
+                  className="px-5 py-2 rounded-full bg-[#082B61] text-xs font-bold text-white hover:bg-[#006EDC] transition-colors"
+                >
+                  Close Specification
+                </button>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </section>
   );
 }

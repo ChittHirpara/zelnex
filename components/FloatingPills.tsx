@@ -19,7 +19,7 @@ export function FloatingPills({ active }: { active: boolean }) {
       };
     };
 
-    let { w, h } = getDimensions();
+    const { w, h } = getDimensions();
 
     // 1. SCENE SETUP
     const scene = new THREE.Scene();
@@ -114,7 +114,21 @@ export function FloatingPills({ active }: { active: boolean }) {
     ];
 
     const numCapsules = 55;
-    const capsulesData: any[] = [];
+    interface CapsuleDatum {
+      group: THREE.Group;
+      baseX: number;
+      baseY: number;
+      baseZ: number;
+      phase: number;
+      floatSpeed: number;
+      rotSpeedX: number;
+      rotSpeedY: number;
+      rotSpeedZ: number;
+      vx: number;
+      vy: number;
+      vz: number;
+    }
+    const capsulesData: CapsuleDatum[] = [];
 
     // Spread across entire section width and height
     for (let i = 0; i < numCapsules; i++) {

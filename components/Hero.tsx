@@ -525,6 +525,14 @@ export function Hero() {
           }}
         />
       </div>
+
+      {/* Smooth bottom feather/fade to seamlessly blend with white Overview section */}
+      <div
+        className="pointer-events-none absolute bottom-0 inset-x-0 h-28 z-20"
+        style={{
+          background: "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 60%, #ffffff 100%)",
+        }}
+      />
     </section>
   );
 }

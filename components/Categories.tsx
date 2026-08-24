@@ -103,94 +103,90 @@ export function Categories() {
   return (
     <section
       id="categories"
-      className="relative w-full overflow-hidden py-10 sm:py-14 md:py-16 text-slate-200 select-none"
+      className="relative w-full overflow-hidden py-12 sm:py-16 md:py-20 text-slate-100 select-none"
       style={{
-        background: "radial-gradient(ellipse 90% 70% at 50% 15%, #081d45 0%, #040d22 55%, #020712 100%)",
+        background: "linear-gradient(180deg, #0b224d 0%, #081a3d 50%, #061533 100%)",
       }}
     >
-      {/* ── Black, Blue & White Ambient Lighting Atmosphere ── */}
+      {/* ── Soft Ambient Lighting Flares ── */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
-        {/* Cyan-Blue Glow Top-Left */}
+        {/* Soft Cyan Glow Top-Left */}
         <div
-          className="absolute -top-20 -left-20 w-[540px] h-[540px] rounded-full blur-[100px] opacity-40"
+          className="absolute -top-20 -left-20 w-[540px] h-[540px] rounded-full blur-[100px] opacity-35"
           style={{
-            background: "radial-gradient(circle, #00b8f2 0%, #006edc 45%, transparent 70%)",
+            background: "radial-gradient(circle, #00f2fe 0%, #006edc 50%, transparent 70%)",
           }}
         />
 
-        {/* Deep Sapphire Glow Bottom-Right */}
+        {/* Soft Blue Glow Bottom-Right */}
         <div
-          className="absolute -bottom-24 -right-24 w-[600px] h-[600px] rounded-full blur-[110px] opacity-40"
+          className="absolute -bottom-24 -right-24 w-[600px] h-[600px] rounded-full blur-[110px] opacity-30"
           style={{
-            background: "radial-gradient(circle, #082b61 0%, #031538 50%, transparent 70%)",
+            background: "radial-gradient(circle, #006edc 0%, #082b61 50%, transparent 70%)",
           }}
         />
 
-        {/* Central Luminous Cyan-White Ellipse */}
+        {/* Central Luminous Cyan Highlight */}
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[300px] rounded-full blur-[110px] opacity-30"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[280px] rounded-full blur-[110px] opacity-25"
           style={{
-            background: "radial-gradient(ellipse at center, rgba(0, 242, 254, 0.35) 0%, rgba(0, 110, 220, 0.2) 50%, transparent 75%)",
+            background: "radial-gradient(ellipse at center, rgba(0, 242, 254, 0.4) 0%, rgba(0, 110, 220, 0.2) 50%, transparent 75%)",
           }}
         />
 
         {/* Subtle Grid Texture */}
         <div
-          className="absolute inset-0 opacity-[0.06]"
+          className="absolute inset-0 opacity-[0.05]"
           style={{
             backgroundImage: `
-              linear-gradient(to right, rgba(255,255,255,0.3) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(255,255,255,0.3) 1px, transparent 1px)
+              linear-gradient(to right, rgba(255, 255, 255, 0.4) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 1px, transparent 1px)
             `,
-            backgroundSize: "56px 56px",
-            maskImage: "radial-gradient(ellipse 90% 65% at 50% 40%, #000 20%, transparent 75%)",
-            WebkitMaskImage: "radial-gradient(ellipse 90% 65% at 50% 40%, #000 20%, transparent 75%)",
+            backgroundSize: "48px 48px",
           }}
         />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* ── Compact Header ── */}
+        {/* ── Header ── */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
           {/* Status Pill */}
-          <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-900/25 px-3 py-0.5 text-[11px] font-medium text-cyan-300 backdrop-blur-md shadow-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#00f2fe]" />
+          <div className="mb-2.5 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-white/10 px-3.5 py-1 text-[11px] font-bold text-cyan-300 backdrop-blur-md shadow-sm">
+            <span className="h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#00f2fe] animate-pulse" />
             <span>Interactive Formulary · 800+ Formulations</span>
           </div>
 
-          <h2 className="font-['Space_Grotesk'] text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-[1.1]">
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-[1.1]"
+            style={{ fontFamily: "'Syne', sans-serif" }}
+          >
             Therapeutic segments that{" "}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(110deg, #ffffff 0%, #7dd3fc 45%, #00b8f2 100%)",
-              }}
-            >
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-300 to-[#00b8f2]">
               lead the world.
             </span>
           </h2>
 
-          <p className="mt-1.5 text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed">
+          <p className="mt-2 text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed font-normal">
             Hover and swipe across our certified pharmaceutical portfolios. WHO-GMP accredited facilities with full eCTD registration dossiers.
           </p>
 
           {/* Search Input */}
-          <div className="mt-3.5 w-full max-w-sm">
+          <div className="mt-4 w-full max-w-sm">
             <div className="relative w-full">
-              <Search className="absolute left-3.5 top-2.5 h-3.5 w-3.5 text-slate-400" />
+              <Search className="absolute left-3.5 top-3 h-3.5 w-3.5 text-slate-300" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search category or therapeutic specialty..."
-                className="w-full rounded-full bg-white/[0.08] border border-white/15 px-3.5 py-1.5 pl-9 text-xs text-white placeholder:text-slate-400 outline-none backdrop-blur-xl focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-all shadow-inner"
+                className="w-full rounded-full bg-white/10 border border-white/20 px-3.5 py-2 pl-9 text-xs text-white placeholder:text-slate-300 outline-none backdrop-blur-xl shadow-xs focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/25 transition-all"
               />
             </div>
           </div>
         </div>
 
-        {/* ── Compact Elastic Card Fan Carousel ── */}
-        <div className="mt-4 sm:mt-6 w-full flex justify-center">
+        {/* ── Elastic Card Fan Carousel ── */}
+        <div className="mt-6 sm:mt-8 w-full flex justify-center">
           <SocialCards cards={cardsToRender} />
         </div>
       </div>

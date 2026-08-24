@@ -68,7 +68,7 @@ function getSlotConfig(totalCards: number, slot: number) {
 }
 
 const ARROW_CLASSES =
-  "relative flex items-center justify-center rounded-full border border-white/15 bg-white/10 backdrop-blur-[16px] text-white/80 cursor-pointer shrink-0 z-30 outline-none shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:border-cyan-400 hover:bg-cyan-500/20 hover:text-white active:scale-95 transition-all duration-300";
+  "relative flex items-center justify-center rounded-full border border-slate-200/90 bg-white/95 backdrop-blur-[16px] text-[#082B61] cursor-pointer shrink-0 z-30 outline-none shadow-[0_4px_16px_rgba(0,110,220,0.12)] hover:border-[#006EDC] hover:bg-[#006EDC] hover:text-white active:scale-95 transition-all duration-300";
 
 export default function SocialCards({ cards, className = "" }: SocialCardsProps) {
   const containerRef = useRef<HTMLDivElement>(null);

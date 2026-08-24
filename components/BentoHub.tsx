@@ -19,7 +19,6 @@ import {
   Layers,
   FlaskConical,
   Check,
-  HeartHandshake,
 } from "lucide-react";
 
 export function BentoHub() {

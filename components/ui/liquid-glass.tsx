@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useId, useMemo } from "react";
+import React, { useEffect, useRef, useId, useMemo, useCallback } from "react";
 
 // ============================================================================
 // GLASS PRESETS (High Optical Transparency & Vibrant Refraction)
@@ -71,7 +71,7 @@ export const Glass: React.FC<GlassProps> = ({
 
   const v = useMemo(() => GLASS_PRESETS[variant] || GLASS_PRESETS.default, [variant]);
 
-  const generateMap = () => {
+  const generateMap = useCallback(() => {
     if (!containerRef.current) return "";
     const rect = containerRef.current.getBoundingClientRect();
     const w = Math.max(rect.width || 240, 20);
@@ -90,7 +90,7 @@ export const Glass: React.FC<GlassProps> = ({
       </svg>
     `;
     return `data:image/svg+xml,${encodeURIComponent(svgContent)}`;
-  };
+  }, [uniqueId, borderRadius]);
 
   useEffect(() => {
     const update = () => {
@@ -104,7 +104,7 @@ export const Glass: React.FC<GlassProps> = ({
     const obs = new ResizeObserver(update);
     if (containerRef.current) obs.observe(containerRef.current);
     return () => obs.disconnect();
-  }, [v, variant, uniqueId, borderRadius]);
+  }, [v, generateMap]);
 
   return (
     <div
@@ -160,7 +160,6 @@ export interface LiquidGlassCardProps {
   className?: string;
   style?: React.CSSProperties;
   borderRadius?: number;
-  variant?: GlassVariant;
 }
 
 export function LiquidGlassCard({
@@ -168,7 +167,6 @@ export function LiquidGlassCard({
   className = "",
   style = {},
   borderRadius = 36,
-  variant = "bold",
 }: LiquidGlassCardProps) {
   return (
     <div

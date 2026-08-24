@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, PackageCheck, Sparkles, ShieldCheck } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface TestimonialItem {
   text: string;
@@ -250,18 +250,6 @@ export function Packaging({ className = "" }: { className?: string }) {
       id="packaging"
       className={`w-full bg-white flex flex-col items-center py-[70px] md:py-[110px] overflow-hidden select-none ${className}`}
     >
-      {/* Scoped Fonts */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossOrigin="anonymous"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-      />
-
       {/* ── Header Block ── */}
       <div className="flex flex-col items-center gap-4 max-w-[920px] text-center mb-[35px] md:mb-[60px] px-6">
         <motion.div

@@ -11,12 +11,6 @@ import {
   ShieldCheck,
   Layers,
   ArrowUpRight,
-  Sparkles,
-  CheckCircle2,
-  Activity,
-  Globe2,
-  Microscope,
-  Pill,
 } from "lucide-react";
 
 if (typeof window !== "undefined") {
@@ -155,18 +149,6 @@ export function Expertise() {
       ref={rootRef}
       className="relative scroll-mt-24 py-16 sm:py-24 overflow-hidden bg-white"
     >
-      {/* Google font scope */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossOrigin="anonymous"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-      />
-
       <div className="relative z-20 mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8 font-['Inter_Tight',sans-serif]">
         {/* Section Header */}
         <div className="expertise-header max-w-3xl mb-12">
