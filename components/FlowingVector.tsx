@@ -1,6 +1,7 @@
-﻿"use client";
+"use client";
 
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 
 export function FlowingVector() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -78,24 +79,28 @@ export function FlowingVector() {
       {/* 1. First iteration of new.svg (Top Half: Overview -> Product Showcase)
           Scaled to 131% so active artwork fills 100% of the top half with no blank bottom gap */}
       <div className="absolute top-0 left-0 w-full h-[50%] overflow-hidden">
-        <img
+        <Image
           src="/new.svg"
           alt="Zelnex Vector Art Top"
+          fill
+          unoptimized
+          priority
           className="w-full h-[131%] object-fill pointer-events-none select-none opacity-95"
           style={{ objectPosition: "top" }}
-          loading="eager"
         />
       </div>
 
       {/* 2. Repeated iteration of new.svg (Bottom Half: Categories -> Digital Epoch)
           Scaled to 131% so active artwork fills 100% of the bottom half with no missing sections */}
       <div className="absolute top-[50%] left-0 w-full h-[50%] overflow-hidden">
-        <img
+        <Image
           src="/new.svg"
           alt="Zelnex Vector Art Bottom"
+          fill
+          unoptimized
+          priority
           className="w-full h-[131%] object-fill pointer-events-none select-none opacity-95"
           style={{ objectPosition: "top" }}
-          loading="eager"
         />
       </div>
     </div>

@@ -11,7 +11,6 @@ import {
   Calendar,
   Clock,
   ArrowRight,
-  Sparkles,
   FileCheck2,
   ShieldCheck,
   Truck,
@@ -139,9 +138,11 @@ export function BlogsSection() {
                     {/* Author row */}
                     <div className="pt-4 border-t border-slate-200/80 flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <img
+                        <Image
                           src={post.author.avatar}
                           alt={post.author.name}
+                          width={28}
+                          height={28}
                           className="w-7 h-7 rounded-full object-cover border border-slate-200"
                         />
                         <span className="text-xs font-semibold text-[#111111]">

@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import {
   FileCheck2,
-  ShieldCheck,
   CheckCircle2,
   Globe2,
   Boxes,

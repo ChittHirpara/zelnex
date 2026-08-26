@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
@@ -6,25 +6,23 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { PillNav } from "@/components/ui/PillNav";
-import { BLOG_POSTS, type BlogPost } from "@/data/blogs";
+import { SectionDivider } from "@/components/SectionDivider";
+import { BLOG_POSTS } from "@/data/blogs";
 import {
   Search,
   BookOpen,
-  Calendar,
   Clock,
   ArrowRight,
-  Sparkles,
   FileCheck2,
   ShieldCheck,
   Truck,
   Globe2,
   X,
-  FileDown,
-  HelpCircle,
-  ChevronDown,
+  Plus,
   Boxes,
   FileText,
+  HelpCircle,
+  CheckCircle2,
 } from "lucide-react";
 
 // ── BLOG CATEGORIES ──
@@ -32,8 +30,42 @@ const BLOG_CATEGORIES = [
   { id: "all", label: "All Insights", icon: BookOpen },
   { id: "Regulatory & Dossiers", label: "Regulatory & Dossiers", icon: FileCheck2 },
   { id: "Quality & GMP", label: "Quality & GMP", icon: ShieldCheck },
-  { id: "Cold-Chain & Logistics", label: "Cold-Chain & Logistics", icon: Truck },
+  { id: "Cold-Chain & Logistics", label: "Cold-Chain", icon: Truck },
   { id: "Market Expansion", label: "Market Expansion", icon: Globe2 },
+];
+
+// ── HORIZONTAL SCENARIO CARDS ──
+const SCENARIO_CARDS = [
+  {
+    id: "sc-1",
+    timestamp: "MOH Fast-Track",
+    title: "Accelerating Module 1–5 approvals across 50+ global ministries",
+    accentColor: "#FFB7B2",
+  },
+  {
+    id: "sc-2",
+    timestamp: "Zone IVb Stability",
+    title: "36-month real-time testing under extreme tropical 30°C/75% RH",
+    accentColor: "#A3D9C9",
+  },
+  {
+    id: "sc-3",
+    timestamp: "WHO-GMP Auditing",
+    title: "End-to-end Grade A cleanroom formulation & batch traceability",
+    accentColor: "#C7B8EA",
+  },
+  {
+    id: "sc-4",
+    timestamp: "Cold-Chain 2°C–8°C",
+    title: "Passive temperature shippers with real-time digital trip telemetry",
+    accentColor: "#FFD199",
+  },
+  {
+    id: "sc-5",
+    timestamp: "COPP Legalization",
+    title: "Apostille authentication & diplomatic embassy consular validation",
+    accentColor: "#B5E2FA",
+  },
 ];
 
 // ── FAQ DATA ──
@@ -130,7 +162,7 @@ const FAQ_CATEGORIES = [
   { id: "legalization", label: "FSC & Legalization", icon: FileText },
 ];
 
-export default function KnowledgePage() {
+export default function SoftlyBlogsAndFAQPage() {
   // Blog State
   const [blogSearchQuery, setBlogSearchQuery] = useState("");
   const [selectedBlogCategory, setSelectedBlogCategory] = useState<string>("all");
@@ -140,10 +172,21 @@ export default function KnowledgePage() {
   const [activeFaqCategory, setActiveFaqCategory] = useState<string>("all");
   const [openFaqIds, setOpenFaqIds] = useState<string[]>(["faq-1", "faq-2"]);
 
+  // Newsletter State
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
+
   const toggleFAQ = (id: string) => {
     setOpenFaqIds((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
+  };
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newsletterEmail) {
+      setNewsletterSubscribed(true);
+    }
   };
 
   const filteredPosts = useMemo(() => {
@@ -163,10 +206,6 @@ export default function KnowledgePage() {
     });
   }, [selectedBlogCategory, blogSearchQuery]);
 
-  const featuredPost = useMemo(() => {
-    return BLOG_POSTS.find((p) => p.featured) || BLOG_POSTS[0];
-  }, []);
-
   const filteredFAQs = useMemo(() => {
     return FAQ_DATA.filter((faq) => {
       const matchesCategory =
@@ -184,430 +223,469 @@ export default function KnowledgePage() {
   }, [activeFaqCategory, faqSearchQuery]);
 
   return (
-    <>
+    <div className="relative min-h-screen bg-[#FDFCF8] text-[#292524] antialiased selection:bg-[#FFB7B2] selection:text-[#292524] overflow-x-hidden font-['Outfit',sans-serif]">
+      {/* ── Global Google Fonts ── */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Reenie+Beanie&display=swap');
+
+        .font-reenie {
+          font-family: 'Reenie Beanie', cursive;
+        }
+
+        .font-outfit {
+          font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        /* Hide scrollbars for scenario card track */
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+
+      {/* ── Global Persistent Grain Texture Overlay (0.35 opacity) ── */}
+      <div
+        className="pointer-events-none fixed inset-0 z-50 opacity-35 mix-blend-overlay"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
+        aria-hidden="true"
+      />
+
       <Navbar />
 
-      <main className="min-h-screen bg-gradient-to-b from-[#FAFBF9] via-white to-[#FAFBF9] pt-28 pb-20 select-none">
+      <main className="relative pt-32 pb-24">
         {/* ══════════════════════════════════════════════════════════════
-            SECTION 1: BLOGS & REGULATORY INSIGHTS (FIRST)
+            HERO SECTION: 'Softly' Living Room Vibe + Blobs
         ══════════════════════════════════════════════════════════════ */}
-        <section id="blogs" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-          {/* ── Blog Header ── */}
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/20 mb-4 shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#006EDC]">
-                Zelnex Regulatory Insights
-              </p>
+        <section className="relative max-w-5xl mx-auto px-6 sm:px-8 pt-8 pb-16 text-center">
+          {/* Floating High-Blur Background Blobs */}
+          <div
+            className="pointer-events-none absolute -top-12 left-1/4 w-80 h-80 rounded-full blur-[90px] opacity-60 animate-pulse [animation-duration:8s]"
+            style={{ background: "#FFE4E1" }}
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute top-10 right-1/4 w-88 h-88 rounded-full blur-[100px] opacity-55 animate-pulse [animation-duration:10s]"
+            style={{ background: "#E6E6FA" }}
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute top-44 left-1/3 w-72 h-72 rounded-full blur-[90px] opacity-50"
+            style={{ background: "#E8EFE8" }}
+            aria-hidden="true"
+          />
+
+          {/* Hero Content */}
+          <div className="relative z-10 space-y-5">
+            {/* Pill Tag */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8EFE8] border border-[#D8E3D8] text-[#292524] text-xs font-semibold shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-[#006EDC]" />
+              <span>Zelnex Knowledge &amp; Regulatory Desk</span>
             </div>
 
-            <h1
-              className="text-4xl sm:text-5xl font-bold text-[#111111] tracking-tight leading-[1.15] mb-4"
-              style={{ fontFamily: "'Syne', sans-serif" }}
-            >
-              Pharmaceutical Insights & Knowledge Hub
+            {/* Main Headline with Reenie Beanie Cursive Accent */}
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#292524] leading-[1.08] max-w-4xl mx-auto">
+              Insightful thinking for{" "}
+              <span className="font-reenie text-5xl sm:text-7xl md:text-8xl font-normal text-[#006EDC] inline-block -rotate-2 transform">
+                mindful
+              </span>{" "}
+              global healthcare.
             </h1>
 
-            <p className="text-base text-[#6B7280] leading-relaxed">
-              Technical guides, eCTD submission guidelines, Zone IVb stability protocols, and cold-chain logistics for international distributors and hospital procurement authorities.
+            {/* Subtitle */}
+            <p className="text-base sm:text-lg text-[#78716C] max-w-[520px] mx-auto leading-relaxed font-normal">
+              Technical guides, eCTD submission insights, Zone IVb stability protocols, and cold-chain supply architecture.
             </p>
 
-            {/* Blog Search Input */}
-            <div className="mt-8 relative max-w-xl mx-auto">
-              <div className="relative flex items-center rounded-2xl bg-white border border-[#DCDCD2] px-4 py-3.5 shadow-sm focus-within:border-[#006EDC] focus-within:ring-2 focus-within:ring-[#006EDC]/10 transition-all">
-                <Search className="w-4 h-4 text-[#6B7280] mr-3 shrink-0" />
+            {/* Dual Pill CTA & Search Controls */}
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-xl mx-auto">
+              {/* Search Bar */}
+              <div className="relative w-full flex items-center rounded-full bg-white border border-[#E7E5E4] px-5 py-3 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] focus-within:border-[#006EDC] focus-within:ring-2 focus-within:ring-[#006EDC]/15 transition-all">
+                <Search className="w-4 h-4 text-[#78716C] mr-3 shrink-0" />
                 <input
                   type="text"
                   value={blogSearchQuery}
                   onChange={(e) => setBlogSearchQuery(e.target.value)}
-                  placeholder="Search articles by topic, eCTD, WHO-GMP, cold-chain..."
-                  className="w-full bg-transparent text-sm font-medium text-[#111111] placeholder:text-[#9CA3AF] focus:outline-none"
+                  placeholder="Search CTD, WHO-GMP, stability..."
+                  className="w-full bg-transparent text-sm font-medium text-[#292524] placeholder:text-[#A8A29E] focus:outline-none"
                 />
                 {blogSearchQuery && (
                   <button
                     onClick={() => setBlogSearchQuery("")}
-                    className="text-slate-400 hover:text-slate-700 ml-2 transition-colors cursor-pointer"
+                    className="text-[#78716C] hover:text-[#292524] ml-2 transition-colors cursor-pointer"
                   >
                     <X className="w-4 h-4" />
                   </button>
                 )}
               </div>
-            </div>
-          </div>
 
-          {/* ── Category PillNav ── */}
-          <div className="mb-12 flex justify-center">
-            <PillNav
-              items={BLOG_CATEGORIES.map((cat) => ({
-                id: cat.id,
-                label: cat.label,
-                icon: cat.icon,
-              }))}
-              activeId={selectedBlogCategory}
-              onSelect={(id) => setSelectedBlogCategory(id)}
-              baseColor="#082B61"
-              pillColor="#FAFBF9"
-              pillTextColor="#2A3447"
-              hoveredPillTextColor="#FFFFFF"
-            />
-          </div>
-
-          {/* ── Flagship Featured Article (When on 'all' and no search) ── */}
-          {selectedBlogCategory === "all" && !blogSearchQuery && featuredPost && (
-            <div className="mb-14">
-              <Link
-                href={`/blogs/${featuredPost.slug}`}
-                className="group relative block overflow-hidden rounded-3xl bg-white border border-[#E5E5E5] shadow-[0_12px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(0,110,220,0.12)] hover:border-[#006EDC]/40 transition-all duration-300"
+              {/* Jump to FAQ Button */}
+              <a
+                href="#faq"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#006EDC] text-white text-xs sm:text-sm font-semibold tracking-tight shadow-sm hover:bg-[#005bb8] hover:scale-105 active:scale-95 transition-all duration-300 shrink-0 cursor-pointer"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-center">
-                  {/* Image */}
-                  <div className="relative h-64 sm:h-80 lg:h-full lg:min-h-[380px] lg:col-span-6 overflow-hidden">
-                    <Image
-                      src={featuredPost.coverImage}
-                      alt={featuredPost.title}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#082B61] text-white text-[11px] font-bold shadow-md">
-                      <Sparkles className="w-3.5 h-3.5 text-[#00f2fe]" />
-                      <span>Featured Guide</span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6 sm:p-8 lg:p-10 lg:col-span-6 flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center gap-3 text-xs font-semibold text-[#006EDC] mb-3">
-                        <span>{featuredPost.category}</span>
-                        <span>•</span>
-                        <span className="text-slate-400 flex items-center gap-1">
-                          <Clock className="w-3.5 h-3.5" />
-                          {featuredPost.readTime}
-                        </span>
-                      </div>
-
-                      <h2
-                        className="text-2xl sm:text-3xl font-bold text-[#111111] group-hover:text-[#006EDC] transition-colors leading-tight mb-3"
-                        style={{ fontFamily: "'Syne', sans-serif" }}
-                      >
-                        {featuredPost.title}
-                      </h2>
-
-                      <p className="text-sm text-[#4B5563] leading-relaxed mb-6">
-                        {featuredPost.excerpt}
-                      </p>
-                    </div>
-
-                    {/* Author & CTA */}
-                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={featuredPost.author.avatar}
-                          alt={featuredPost.author.name}
-                          className="w-10 h-10 rounded-full object-cover border border-slate-200"
-                        />
-                        <div>
-                          <div className="text-xs font-bold text-[#111111]">
-                            {featuredPost.author.name}
-                          </div>
-                          <div className="text-[11px] text-slate-500">
-                            {featuredPost.date}
-                          </div>
-                        </div>
-                      </div>
-
-                      <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#006EDC] group-hover:translate-x-1 transition-transform">
-                        <span>Read Guide</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+                <span>Jump to FAQ</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
             </div>
-          )}
-
-          {/* ── Articles Grid ── */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <AnimatePresence mode="popLayout">
-              {filteredPosts.map((post) => (
-                <motion.article
-                  key={post.slug}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.25 }}
-                  className="group flex flex-col justify-between rounded-3xl overflow-hidden bg-white border border-[#E5E5E5] hover:border-[#006EDC]/40 shadow-xs hover:shadow-[0_16px_36px_rgba(0,110,220,0.08)] hover:-translate-y-1 transition-all duration-300"
-                >
-                  <Link href={`/blogs/${post.slug}`} className="block flex-1 flex flex-col">
-                    {/* Cover Image */}
-                    <div className="relative h-48 w-full overflow-hidden bg-slate-100">
-                      <Image
-                        src={post.coverImage}
-                        alt={post.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute top-3 left-3 z-10 px-2.5 py-0.5 rounded-full bg-white/90 backdrop-blur-md border border-white/50 text-[10.5px] font-bold text-[#082B61]">
-                        {post.category}
-                      </div>
-                    </div>
-
-                    {/* Body */}
-                    <div className="p-6 flex-1 flex flex-col justify-between">
-                      <div>
-                        <div className="flex items-center gap-3 text-[11px] text-slate-400 font-medium mb-2.5">
-                          <span className="flex items-center gap-1">
-                            <Calendar className="w-3 h-3" />
-                            {post.date}
-                          </span>
-                          <span>•</span>
-                          <span className="flex items-center gap-1">
-                            <Clock className="w-3 h-3" />
-                            {post.readTime}
-                          </span>
-                        </div>
-
-                        <h3
-                          className="text-lg font-bold text-[#111111] group-hover:text-[#006EDC] transition-colors leading-snug mb-2.5"
-                          style={{ fontFamily: "'Syne', sans-serif" }}
-                        >
-                          {post.title}
-                        </h3>
-
-                        <p className="text-xs text-[#555555] leading-relaxed line-clamp-3 mb-4">
-                          {post.excerpt}
-                        </p>
-                      </div>
-
-                      {/* Author row */}
-                      <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <img
-                            src={post.author.avatar}
-                            alt={post.author.name}
-                            className="w-7 h-7 rounded-full object-cover border border-slate-200"
-                          />
-                          <span className="text-xs font-semibold text-[#111111]">
-                            {post.author.name}
-                          </span>
-                        </div>
-
-                        <span className="inline-flex items-center gap-1 text-xs font-bold text-[#006EDC]">
-                          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.article>
-              ))}
-            </AnimatePresence>
-          </div>
-
-          {/* ── Whitepaper Callout ── */}
-          <div className="mt-16 rounded-3xl p-8 sm:p-10 bg-gradient-to-r from-[#0b1e48] via-[#082b61] to-[#040d22] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-white/10">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[11px] font-bold text-[#00f2fe] uppercase tracking-wider mb-2">
-                <FileDown className="w-3.5 h-3.5" />
-                <span>2026 Pharmaceutical Export Whitepaper</span>
-              </div>
-              <h3
-                className="text-2xl font-bold text-white mb-2"
-                style={{ fontFamily: "'Syne', sans-serif" }}
-              >
-                Download Complete Global Regulatory Dossier Checklist
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
-                Get our technical guide on eCTD preparation, bioequivalence protocols, and stability parameters for emerging market drug registrations.
-              </p>
-            </div>
-
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#00f2fe] to-[#006edc] text-[#040d22] font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-[0_0_30px_rgba(0,242,254,0.5)] transition-all shrink-0 cursor-pointer"
-            >
-              <span>Request Full Dossier Pack</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
           </div>
         </section>
 
         {/* ══════════════════════════════════════════════════════════════
-            SECTION 2: FREQUENTLY ASKED QUESTIONS (THEN FAQ)
+            HORIZONTAL SCENARIO SCROLL
         ══════════════════════════════════════════════════════════════ */}
-        <section id="faq" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 border-t border-slate-200/80">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/20 mb-4 shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#006EDC]">
-                Frequently Asked Questions
-              </p>
+        <section className="py-8 border-y border-[#E7E5E4]/60 bg-[#F5F4EE]/40 my-8">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#78716C]">
+                Key Scenarios &amp; Capabilities
+              </span>
+              <span className="text-xs text-[#78716C] font-mono">← Scroll horizontally →</span>
             </div>
 
-            <h2
-              className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#111111] tracking-tight leading-[1.15] mb-4"
-              style={{ fontFamily: "'Syne', sans-serif" }}
-            >
-              Technical & Regulatory Knowledge Base
-            </h2>
+            {/* Horizontal Track */}
+            <div className="flex items-center gap-4 overflow-x-auto no-scrollbar pb-2 pt-1">
+              {SCENARIO_CARDS.map((card) => (
+                <div
+                  key={card.id}
+                  className="group flex-shrink-0 w-[288px] h-[160px] p-5 rounded-[24px] bg-white border border-[#E7E5E4] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_-2px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between cursor-pointer"
+                >
+                  <span className="text-xs font-semibold text-[#78716C] font-mono">
+                    {card.timestamp}
+                  </span>
+                  <p className="text-[17px] font-bold text-[#292524] leading-snug tracking-tight group-hover:text-[#006EDC] transition-colors duration-200">
+                    {card.title}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-            <p className="text-base text-[#6B7280] leading-relaxed">
-              Find detailed specifications regarding our dossier support, WHO-GMP quality certificates, minimum order quantities, and temperature-controlled logistics.
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION: TECHNICAL INSIGHTS & ARTICLES (DIARY STYLE)
+        ══════════════════════════════════════════════════════════════ */}
+        <section id="blogs" className="max-w-7xl mx-auto px-6 sm:px-8 py-12">
+          {/* Category Filter Pills */}
+          <div className="flex items-center justify-center gap-2 flex-wrap mb-12">
+            {BLOG_CATEGORIES.map((cat) => {
+              const isActive = selectedBlogCategory === cat.id;
+              const Icon = cat.icon;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedBlogCategory(cat.id)}
+                  className={`inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full text-xs font-semibold tracking-tight transition-all duration-300 cursor-pointer ${
+                    isActive
+                      ? "bg-[#006EDC] text-white shadow-sm scale-105"
+                      : "bg-white text-[#78716C] border border-[#E7E5E4] hover:border-[#006EDC]/40 hover:text-[#292524]"
+                  }`}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  <span>{cat.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Article Cards Grid (Diary Notes with Organic Rotation) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+            {filteredPosts.map((post, idx) => {
+              const rotClass =
+                idx % 3 === 0
+                  ? "-rotate-[0.8deg] hover:rotate-0"
+                  : idx % 3 === 1
+                  ? "rotate-[0.9deg] hover:rotate-0"
+                  : "-rotate-[0.5deg] hover:rotate-0";
+
+              return (
+                <article
+                  key={post.slug}
+                  className={`group relative flex flex-col justify-between p-7 sm:p-8 rounded-[32px] bg-white border border-[#E7E5E4] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_32px_-4px_rgba(0,0,0,0.09)] transition-all duration-300 ${rotClass} transform overflow-hidden`}
+                >
+                  <div>
+                    {/* Top Metadata */}
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <span className="px-3 py-1 rounded-full bg-[#E8EFE8] text-[#292524] text-[11px] font-semibold tracking-wide">
+                        {post.category}
+                      </span>
+                      <span className="text-xs text-[#78716C] font-mono flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {post.readTime}
+                      </span>
+                    </div>
+
+                    {/* Article Title */}
+                    <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#292524] leading-snug group-hover:text-[#006EDC] transition-colors duration-200 mb-3">
+                      {post.title}
+                    </h3>
+
+                    {/* Excerpt */}
+                    <p className="text-sm text-[#78716C] leading-relaxed line-clamp-3 mb-6 font-normal">
+                      {post.excerpt}
+                    </p>
+                  </div>
+
+                  {/* Bottom Author & Signature Style */}
+                  <div className="pt-4 border-t border-[#F5F4EE]">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2.5">
+                        <Image
+                          src={post.author.avatar}
+                          alt={post.author.name}
+                          width={32}
+                          height={32}
+                          className="w-8 h-8 rounded-full object-cover border border-[#E7E5E4]"
+                        />
+                        <div>
+                          <span className="text-xs font-semibold text-[#292524] block">
+                            {post.author.name}
+                          </span>
+                          <span className="text-[10px] text-[#78716C] font-mono">
+                            {post.date}
+                          </span>
+                        </div>
+                      </div>
+
+                      <Link
+                        href={`/blogs/${post.slug}`}
+                        className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#F5F4EE] text-[#292524] group-hover:bg-[#006EDC] group-hover:text-white transition-all duration-200"
+                        aria-label={`Read ${post.title}`}
+                      >
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+
+                    {/* Reenie Beanie Cursive Signature Line */}
+                    <div className="flex items-center gap-2 text-[#78716C]/80">
+                      <div className="w-8 h-px bg-[#E7E5E4]" />
+                      <span className="font-reenie text-xl text-[#78716C]">
+                        verified regulatory guide
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════════════
+            SIGNATURE ZELNEX BLUE WAVE RIBBON (Organic Divider Between Sections)
+        ══════════════════════════════════════════════════════════════ */}
+        <div className="my-10 relative overflow-hidden py-2" aria-hidden="true">
+          {/* Top subtle blue ribbon wave */}
+          <SectionDivider from="#006EDC" to="#FDFCF8" height={42} />
+          {/* Bottom flipped blue ribbon wave */}
+          <SectionDivider from="#FDFCF8" to="#006EDC" flip height={42} />
+        </div>
+
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION: INTERACTIVE FAQ ACCORDION (SOFTLY THEME)
+        ══════════════════════════════════════════════════════════════ */}
+        <section id="faq" className="max-w-5xl mx-auto px-6 sm:px-8 py-12">
+          {/* Header */}
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#EFEDF4] border border-[#DDD8E8] text-[#292524] text-xs font-semibold mb-3">
+              <span className="w-2 h-2 rounded-full bg-[#006EDC]" />
+              <span>Common Inquiries &amp; Technical Support</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#292524] leading-tight">
+              Frequently asked{" "}
+              <span className="font-reenie text-4xl sm:text-6xl text-[#006EDC]">
+                questions
+              </span>
+            </h2>
+            <p className="text-sm sm:text-base text-[#78716C] mt-2">
+              Direct answers regarding dossier formatting, stability data, manufacturing audits, and shipping logistics.
             </p>
 
-            {/* FAQ Search Well */}
-            <div className="mt-8 relative max-w-xl mx-auto">
-              <div className="relative flex items-center rounded-2xl bg-white border border-[#DCDCD2] px-4 py-3.5 shadow-sm focus-within:border-[#006EDC] focus-within:ring-2 focus-within:ring-[#006EDC]/10 transition-all">
-                <Search className="w-4 h-4 text-[#6B7280] mr-3 shrink-0" />
+            {/* FAQ Search Bar */}
+            <div className="mt-6 relative max-w-md mx-auto">
+              <div className="relative flex items-center rounded-full bg-white border border-[#E7E5E4] px-4 py-2.5 shadow-xs focus-within:border-[#006EDC] transition-all">
+                <Search className="w-4 h-4 text-[#78716C] mr-2.5 shrink-0" />
                 <input
                   type="text"
                   value={faqSearchQuery}
                   onChange={(e) => setFaqSearchQuery(e.target.value)}
-                  placeholder="Search FAQ: eCTD, Zone IVb, MOQ, Cold-chain, Legalization..."
-                  className="w-full bg-transparent text-sm font-medium text-[#111111] placeholder:text-[#9CA3AF] focus:outline-none"
+                  placeholder="Filter questions by keyword..."
+                  className="w-full bg-transparent text-xs sm:text-sm font-medium text-[#292524] placeholder:text-[#A8A29E] focus:outline-none"
                 />
                 {faqSearchQuery && (
                   <button
                     onClick={() => setFaqSearchQuery("")}
-                    className="text-slate-400 hover:text-slate-700 ml-2 transition-colors cursor-pointer"
+                    className="text-[#78716C] hover:text-[#292524] ml-2 transition-colors cursor-pointer"
                   >
-                    <X className="w-4 h-4" />
+                    <X className="w-3.5 h-3.5" />
                   </button>
                 )}
               </div>
             </div>
           </div>
 
-          {/* ── FAQ Category PillNav ── */}
-          <div className="mb-10 flex justify-center">
-            <PillNav
-              items={FAQ_CATEGORIES.map((cat) => ({
-                id: cat.id,
-                label: cat.label,
-                icon: cat.icon,
-              }))}
-              activeId={activeFaqCategory}
-              onSelect={(id) => setActiveFaqCategory(id)}
-              baseColor="#082B61"
-              pillColor="#FAFBF9"
-              pillTextColor="#2A3447"
-              hoveredPillTextColor="#FFFFFF"
-            />
+          {/* FAQ Category Pills */}
+          <div className="flex items-center justify-center gap-2 flex-wrap mb-8">
+            {FAQ_CATEGORIES.map((cat) => {
+              const isActive = activeFaqCategory === cat.id;
+              const Icon = cat.icon;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveFaqCategory(cat.id)}
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold tracking-tight transition-all duration-200 cursor-pointer ${
+                    isActive
+                      ? "bg-[#006EDC] text-white shadow-xs"
+                      : "bg-white text-[#78716C] border border-[#E7E5E4] hover:text-[#292524] hover:border-[#006EDC]/30"
+                  }`}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  <span>{cat.label}</span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* ── FAQ Accordions ── */}
-          <div className="space-y-4 max-w-4xl mx-auto">
-            <AnimatePresence mode="popLayout">
-              {filteredFAQs.map((faq) => {
-                const isOpen = openFaqIds.includes(faq.id);
+          {/* Accordion Container */}
+          <div className="space-y-3.5">
+            {filteredFAQs.map((faq) => {
+              const isOpen = openFaqIds.includes(faq.id);
 
-                return (
-                  <motion.div
-                    key={faq.id}
-                    layout
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.25 }}
-                    className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
-                      isOpen
-                        ? "bg-white border-[#006EDC]/40 shadow-[0_12px_32px_rgba(0,110,220,0.08)]"
-                        : "bg-white/80 border-[#E5E5E5] hover:border-[#006EDC]/30 hover:bg-white"
-                    }`}
+              return (
+                <div
+                  key={faq.id}
+                  className="rounded-[20px] bg-white border border-[#E7E5E4] shadow-[0_2px_12px_-2px_rgba(0,0,0,0.03)] overflow-hidden transition-all duration-300"
+                >
+                  <button
+                    onClick={() => toggleFAQ(faq.id)}
+                    className="w-full flex items-center justify-between text-left p-6 sm:p-7 gap-4 cursor-pointer select-none"
+                    aria-expanded={isOpen}
                   >
-                    <button
-                      onClick={() => toggleFAQ(faq.id)}
-                      className="w-full p-5 sm:p-6 text-left flex items-start justify-between gap-4 cursor-pointer select-none"
-                      aria-expanded={isOpen}
+                    <div className="space-y-1">
+                      <span className="inline-block text-[10.5px] font-semibold text-[#006EDC] uppercase font-mono tracking-wider">
+                        {faq.badge}
+                      </span>
+                      <h3 className="text-base sm:text-lg font-medium text-[#292524] leading-snug">
+                        {faq.question}
+                      </h3>
+                    </div>
+
+                    {/* Plus Icon that Rotates 45 Degrees */}
+                    <div
+                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#F5F4EE] text-[#292524] transition-transform duration-300 ${
+                        isOpen ? "rotate-45 bg-[#006EDC] text-white" : "rotate-0"
+                      }`}
                     >
-                      <div className="flex-1">
-                        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#006EDC]/10 text-[11px] font-bold text-[#006EDC] mb-2 border border-[#006EDC]/20">
-                          <span>{faq.badge}</span>
-                        </div>
-                        <h3
-                          className="text-base sm:text-lg font-bold text-[#111111] leading-snug tracking-tight hover:text-[#006EDC] transition-colors"
-                          style={{ fontFamily: "'Syne', sans-serif" }}
-                        >
-                          {faq.question}
-                        </h3>
-                      </div>
+                      <Plus className="w-4 h-4" />
+                    </div>
+                  </button>
 
-                      <div
-                        className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
-                          isOpen
-                            ? "rotate-180 bg-[#006EDC] text-white shadow-sm"
-                            : "bg-slate-100 text-slate-500 hover:bg-slate-200"
-                        }`}
+                  {/* Smooth Framer Motion Collapse/Expand */}
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden"
                       >
-                        <ChevronDown className="w-4 h-4" />
-                      </div>
-                    </button>
-
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                        >
-                          <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-[#4B5563] leading-relaxed border-t border-slate-100/80">
-                            <p>{faq.answer}</p>
-
-                            {/* Tag Chips */}
-                            <div className="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-1.5">
+                        <div className="px-6 sm:px-7 pb-6 pt-0 text-sm sm:text-[15px] text-[#78716C] leading-relaxed border-t border-[#F5F4EE] pt-4">
+                          <p>{faq.answer}</p>
+                          {faq.tags && (
+                            <div className="flex items-center gap-2 flex-wrap mt-4">
                               {faq.tags.map((tag) => (
                                 <span
                                   key={tag}
-                                  className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-[#FAFBF9] border border-slate-200 text-slate-600"
+                                  className="text-[11px] font-mono text-[#006EDC] bg-blue-50 px-2.5 py-0.5 rounded-md border border-blue-100"
                                 >
                                   #{tag}
                                 </span>
                               ))}
                             </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
-
-          {/* ── Direct Inquiry Callout ── */}
-          <div className="mt-16 max-w-4xl mx-auto rounded-3xl p-8 sm:p-10 bg-gradient-to-br from-[#082B61] via-[#0B1E48] to-[#040D22] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-white/10">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[11px] font-bold text-[#00f2fe] uppercase tracking-wider mb-2">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>24-Hour Regulatory Response SLA</span>
-              </div>
-              <h3
-                className="text-2xl font-bold text-white mb-2"
-                style={{ fontFamily: "'Syne', sans-serif" }}
-              >
-                Have a specific regulatory or quotation inquiry?
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
-                Our export team provides complete CTD dossier lists, COPP legalization, and customized commercial batch pricing within 24 hours.
-              </p>
-            </div>
-
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#00f2fe] to-[#006edc] text-[#040d22] font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-[0_0_30px_rgba(0,242,254,0.5)] transition-all shrink-0 cursor-pointer"
-            >
-              <span>Contact Export Team</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+                          )}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
         </section>
+
+        {/* ══════════════════════════════════════════════════════════════
+            WAITLIST / REGULATORY CONVERSION (SOFTLY STYLE)
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="max-w-4xl mx-auto px-6 sm:px-8 py-16">
+          <div className="relative rounded-[36px] bg-[#292524] text-white p-8 sm:p-14 text-center overflow-hidden shadow-xl">
+            {/* Soft Floating Blobs inside the dark container */}
+            <div
+              className="pointer-events-none absolute -top-20 -left-20 w-64 h-64 rounded-full blur-[80px] opacity-25"
+              style={{ background: "#006EDC" }}
+              aria-hidden="true"
+            />
+            <div
+              className="pointer-events-none absolute -bottom-20 -right-20 w-64 h-64 rounded-full blur-[80px] opacity-20"
+              style={{ background: "#00bfb5" }}
+              aria-hidden="true"
+            />
+
+            <div className="relative z-10 space-y-4 max-w-lg mx-auto">
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 border border-white/15 mb-2">
+                <span className="w-3.5 h-3.5 rounded-full bg-[#006EDC]" />
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
+                Stay updated on{" "}
+                <span className="font-reenie text-4xl sm:text-5xl text-cyan-300">
+                  global approvals
+                </span>
+              </h2>
+
+              <p className="text-sm text-stone-300 leading-relaxed font-normal">
+                Receive quarterly eCTD filing summaries, Zone IVb stability updates, and new formulation releases directly to your inbox.
+              </p>
+
+              {newsletterSubscribed ? (
+                <div className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-white">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-300" />
+                  <span>Thank you for subscribing to Zelnex insights.</span>
+                </div>
+              ) : (
+                <form
+                  onSubmit={handleNewsletterSubmit}
+                  className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-2.5 max-w-md mx-auto"
+                >
+                  <input
+                    type="email"
+                    required
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    placeholder="Enter your corporate email..."
+                    className="w-full px-5 py-3 rounded-full bg-stone-800 border border-stone-700 text-sm text-white placeholder:text-stone-400 focus:outline-none focus:border-[#006EDC] transition-colors"
+                  />
+                  <button
+                    type="submit"
+                    className="w-full sm:w-auto px-7 py-3 rounded-full bg-[#006EDC] text-white text-xs sm:text-sm font-bold tracking-tight hover:bg-[#005bb8] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer shrink-0"
+                  >
+                    Subscribe
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* ── SectionDivider Wave directly into the Deep Dark Footer ── */}
+        <SectionDivider from="#FDFCF8" to="#06132d" flip height={72} />
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }

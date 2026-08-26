@@ -1,11 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import React, { useState } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { FlowingVector } from "@/components/FlowingVector";
 import { SectionDivider } from "@/components/SectionDivider";
 import { useLanguage } from "@/context/LanguageContext";
 import {
@@ -252,9 +250,8 @@ export default function ServicesPage() {
         <SectionDivider from="#04112B" to="#FCFBF9" height={72} />
       </section>
 
-      {/* ── FLOWING BOTANICAL VECTOR WRAPPER (Connecting Sections) ── */}
-      <div id="vector-wrapper" className="relative overflow-hidden bg-[#FCFBF9]">
-        <FlowingVector />
+      {/* ── MAIN CONTENT CONTAINER (Connecting Sections) ── */}
+      <div className="relative overflow-hidden bg-[#FCFBF9]">
 
         {/* ════════════════════════════════════════════════════════════════════
             2. WORK / CAPABILITIES GRID (Staggered 2-Column Cards with Intelligent Hover)

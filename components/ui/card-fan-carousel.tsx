@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 
 export interface CardItem {
@@ -321,11 +322,12 @@ export default function SocialCards({ cards, className = "" }: SocialCardsProps)
             const cardContent = (
               <div className="relative w-full h-full rounded-[20px] overflow-hidden border border-white/15 bg-[#06142e] shadow-[0_20px_50px_rgba(0,0,0,0.7)]">
                 {/* Background Image */}
-                <img
+                <Image
                   src={card.imgUrl}
-                  loading="lazy"
                   alt={card.alt || `Card ${index}`}
-                  className="absolute inset-0 w-full h-full object-cover z-10"
+                  fill
+                  sizes="(max-width: 768px) 260px, 320px"
+                  className="object-cover z-10"
                 />
 
                 {/* Subtle dark sapphire gradient overlay */}

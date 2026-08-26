@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 
 // ============================================================================
@@ -113,10 +114,12 @@ export function SwissStyleCard({
                   }}
                   className="absolute top-0 left-0 pointer-events-none z-20 w-[280px] h-[200px] rounded-2xl overflow-hidden shadow-2xl"
                 >
-                  <img 
+                  <Image 
                     src={metric.image} 
                     alt={metric.label}
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="280px"
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 ring-1 ring-inset ring-black/10" />
                 </motion.div>

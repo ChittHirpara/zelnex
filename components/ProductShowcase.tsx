@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import gsap from "gsap";
@@ -332,10 +333,12 @@ export function ProductShowcase() {
                         }}
                         className="absolute top-0 left-0 pointer-events-none z-30 w-[320px] h-[210px] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,50,150,0.35)] border-2 border-white"
                       >
-                        <img
+                        <Image
                           src={metric.image}
                           alt={metric.label}
-                          className="w-full h-full object-cover"
+                          fill
+                          sizes="320px"
+                          className="object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                         <div className="absolute bottom-2 left-3 right-3 text-[12px] font-bold text-white drop-shadow-md">

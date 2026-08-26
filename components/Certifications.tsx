@@ -30,12 +30,6 @@ interface CertItem {
   featured?: boolean;
 }
 
-const METRICS = [
-  { label: "Manufacturing Facility", value: "WHO-GMP & ISO 9001", icon: ShieldCheck },
-  { label: "Export Stability", value: "Zone IVb (30°C / 75% RH)", icon: Award },
-  { label: "Dossier Readiness", value: "CTD / eCTD Modules 1–5", icon: FileCheck2 },
-  { label: "Active Registrations", value: "50+ Global Health Ministries", icon: Globe2 },
-];
 
 const CERTIFICATIONS: CertItem[] = [
   {

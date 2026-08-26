@@ -24,6 +24,8 @@ export interface TranslationSchema {
     products: string;
     categories: string;
     certifications: string;
+    blogs: string;
+    faq: string;
     contact: string;
     getInTouch: string;
   };
@@ -320,6 +322,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       products: "Products",
       categories: "Categories",
       certifications: "Certifications",
+      blogs: "Blogs & FAQ",
+      faq: "FAQ",
       contact: "Contact",
       getInTouch: "Get in Touch",
     },
@@ -332,7 +336,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       exploreProducts: "Explore Our Products",
       contactDesk: "Export Desk",
       sidebar: {
-        therapeutics: "Therapeutics",
+        therapeutics: "Products",
         enquiry: "Enquiry",
         social: "Social",
         location: "Location",
@@ -864,6 +868,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       products: "Productos",
       categories: "Categorías",
       certifications: "Certificaciones",
+      blogs: "Blogs y FAQ",
+      faq: "Preguntas",
       contact: "Contacto",
       getInTouch: "Contáctenos",
     },
@@ -876,7 +882,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       exploreProducts: "Explorar Productos",
       contactDesk: "Mesa de Exportación",
       sidebar: {
-        therapeutics: "Terapéutica",
+        therapeutics: "Productos",
         enquiry: "Consulta",
         social: "Redes",
         location: "Ubicación",
@@ -1415,6 +1421,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       products: "Produtos",
       categories: "Categorias",
       certifications: "Acreditações",
+      blogs: "Blogs e FAQ",
+      faq: "Perguntas",
       contact: "Contato",
       getInTouch: "Entrar em Contato",
     },
@@ -1427,7 +1435,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       exploreProducts: "Explorar Nossos Produtos",
       contactDesk: "Mesa de Exportação",
       sidebar: {
-        therapeutics: "Terapêutica",
+        therapeutics: "Produtos",
         enquiry: "Consulta",
         social: "Social",
         location: "Localização",
@@ -1954,6 +1962,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       products: "Produits",
       categories: "Catégories",
       certifications: "Certifications",
+      blogs: "Blogs & FAQ",
+      faq: "FAQ",
       contact: "Contact",
       getInTouch: "Nous Contacter",
     },
@@ -1966,7 +1976,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       exploreProducts: "Explorer Nos Produits",
       contactDesk: "Pôle Export",
       sidebar: {
-        therapeutics: "Thérapeutique",
+        therapeutics: "Produits",
         enquiry: "Demande",
         social: "Réseaux",
         location: "Localisation",
