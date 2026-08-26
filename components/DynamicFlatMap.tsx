@@ -92,7 +92,7 @@ const WorldCountries = memo(function WorldCountries({ activeId }: { activeId: st
         const isActive = c.name.toLowerCase().includes(activeId.toLowerCase());
         return (
           <path
-            key={`wc-${c.id || i}`}
+            key={`wc-${c.id || 'country'}-${i}`}
             d={c.d}
             fill={isActive ? "rgba(100,140,200,0.18)" : "rgba(40,60,100,0.45)"}
             stroke={isActive ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.22)"}
