@@ -3,6 +3,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PillNav } from "@/components/ui/PillNav";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   ShieldCheck,
   ExternalLink,
@@ -167,11 +168,24 @@ const CERTIFICATIONS: CertItem[] = [
   },
 ];
 
-const CATEGORIES = ["All", "Global", "Africa", "Asia & Middle East"] as const;
-
 export function Certifications() {
+  const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [selectedCert, setSelectedCert] = useState<CertItem | null>(null);
+
+  const metrics = [
+    { label: t.certifications.metrics[0]?.label || "Manufacturing Facility", value: t.certifications.metrics[0]?.value || "WHO-GMP & ISO 9001", icon: ShieldCheck },
+    { label: t.certifications.metrics[1]?.label || "Export Stability", value: t.certifications.metrics[1]?.value || "Zone IVb (30°C / 75% RH)", icon: Award },
+    { label: t.certifications.metrics[2]?.label || "Dossier Readiness", value: t.certifications.metrics[2]?.value || "CTD / eCTD Modules 1–5", icon: FileCheck2 },
+    { label: t.certifications.metrics[3]?.label || "Active Registrations", value: t.certifications.metrics[3]?.value || "50+ Global Health Ministries", icon: Globe2 },
+  ];
+
+  const categories = [
+    { id: "All", label: t.certifications.tabs.all },
+    { id: "Global", label: t.certifications.tabs.global },
+    { id: "Africa", label: t.certifications.tabs.africa },
+    { id: "Asia & Middle East", label: t.certifications.tabs.asia },
+  ];
 
   // Close modal on Escape key
   useEffect(() => {
@@ -204,7 +218,7 @@ export function Certifications() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/20 mb-3 shadow-xs">
             <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#006EDC]">
-              Regulatory Accreditations
+              {t.certifications.badge}
             </p>
           </div>
 
@@ -212,17 +226,17 @@ export function Certifications() {
             className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#111111] tracking-tight leading-[1.15]"
             style={{ fontFamily: "'Syne', sans-serif" }}
           >
-            Where Global Quality Meets Regulatory Compliance
+            {t.certifications.title}
           </h2>
 
           <p className="mt-4 text-base text-[#6B7280] max-w-2xl mx-auto leading-relaxed">
-            Sourced strictly from WHO-GMP accredited facilities with verified CTD/eCTD dossier readiness across 50+ international health ministries.
+            {t.certifications.subtitle}
           </p>
         </div>
 
         {/* ── Ultra-Clean 4-Item Proof Bar ── */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-12">
-          {METRICS.map((m, i) => {
+          {metrics.map((m, i) => {
             const Icon = m.icon;
             return (
               <div
@@ -244,9 +258,9 @@ export function Certifications() {
         {/* ── Category Filter Tabs with GSAP PillNav ── */}
         <div className="flex items-center justify-center mb-10">
           <PillNav
-            items={CATEGORIES.map((cat) => ({
-              id: cat,
-              label: cat,
+            items={categories.map((cat) => ({
+              id: cat.id,
+              label: cat.label,
             }))}
             activeId={selectedCategory}
             onSelect={(id) => setSelectedCategory(id)}

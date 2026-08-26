@@ -409,8 +409,8 @@ export default function SocialCards({ cards, className = "" }: SocialCardsProps)
                 key={i}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
                   i === centerIndex
-                    ? "w-6 bg-gradient-to-r from-[#00b8f2] to-[#006edc] shadow-[0_0_10px_rgba(0,184,242,0.8)]"
-                    : "w-1.5 bg-white/25"
+                    ? "w-6 bg-gradient-to-r from-cyan-300 to-white shadow-[0_0_12px_rgba(56,189,248,0.9)]"
+                    : "w-1.5 bg-white/35"
                 }`}
               />
             ))}

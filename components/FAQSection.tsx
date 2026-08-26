@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { PillNav } from "@/components/ui/PillNav";
 import {
@@ -12,6 +13,7 @@ import {
   Truck,
   Boxes,
   X,
+  ArrowRight,
 } from "lucide-react";
 
 interface FAQItem {
@@ -327,6 +329,17 @@ export function FAQSection() {
               </button>
             </motion.div>
           )}
+        </div>
+
+        {/* ── Link to Dedicated Full FAQ Page ── */}
+        <div className="mt-10 text-center">
+          <Link
+            href="/faq"
+            className="inline-flex items-center gap-2 text-xs font-bold text-[#006EDC] hover:text-[#082B61] transition-colors py-2.5 px-5 rounded-full bg-[#006EDC]/5 hover:bg-[#006EDC]/10 border border-[#006EDC]/15 cursor-pointer shadow-xs"
+          >
+            <span>Explore Complete Regulatory Knowledge Base & FAQs</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </div>
     </section>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRef, useState, useSyncExternalStore } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -36,122 +37,8 @@ function subscribeToWebgl2() {
   return () => {};
 }
 
-const STATS_DATA = [
-  {
-    number: "65+",
-    labelTop: "Countries",
-    labelBottom: "Worldwide",
-    stroke: "#1e4fb8",
-    icon: (
-      <>
-        <circle cx="12" cy="12" r="9.4" />
-        <line x1="2.6" y1="12" x2="21.4" y2="12" />
-        <line x1="12" y1="2.6" x2="12" y2="21.4" />
-        <path d="M12 2.6c3.05 3.05 4.6 6.2 4.6 9.4s-1.55 6.35-4.6 9.4c-3.05-3.05-4.6-6.2-4.6-9.4S8.95 5.65 12 2.6z" />
-      </>
-    ),
-  },
-  {
-    number: "350+",
-    labelTop: "Quality",
-    labelBottom: "Products",
-    stroke: "#2e92c0",
-    icon: (
-      <>
-        <rect x="9.3" y="2.3" width="5.0" height="2.6" rx="0.6" />
-        <path d="M8.3 4.9h7.0v2.05l1.55 2.2v7.65a1.9 1.9 0 0 1-1.9 1.9H8.65a1.9 1.9 0 0 1-1.9-1.9V9.15l1.55-2.2z" />
-        <line x1="6.9" y1="11.5" x2="16.7" y2="11.5" />
-        <path d="M10.6 13.2v2.6M9.3 14.5h2.6" />
-        <g transform="translate(14.2 15.6) rotate(35)">
-          <rect x="-2.7" y="-1.15" width="5.4" height="2.3" rx="1.15" />
-          <line x1="0" y1="-1.15" x2="0" y2="1.15" />
-        </g>
-      </>
-    ),
-  },
-  {
-    number: "18+",
-    labelTop: "Therapeutic",
-    labelBottom: "Areas",
-    stroke: "#2e92c0",
-    icon: (
-      <>
-        <circle cx="12" cy="4.6" r="2.15" />
-        <circle cx="5.4" cy="18.2" r="2.15" />
-        <circle cx="18.6" cy="18.2" r="2.15" />
-        <circle cx="12" cy="12" r="1.95" />
-        <line x1="12" y1="6.7" x2="12" y2="10.05" />
-        <line x1="10.45" y1="13.3" x2="6.95" y2="16.35" />
-        <line x1="13.55" y1="13.3" x2="17.05" y2="16.35" />
-      </>
-    ),
-  },
-  {
-    number: "12+",
-    labelTop: "Manufacturing",
-    labelBottom: "Facilities",
-    stroke: "#1e4fb8",
-    icon: (
-      <>
-        <path d="M2.7 20.3V12.6l4.3 2.9v-2.9l4.3 2.9v-2.9l4.3 2.9V9.4c0-.5.4-.9.9-.9h3.6c.5 0 .9.4.9.9v10.9" />
-        <path d="M17.1 8.5V5.1c0-.55.6-.9 1.1-.6l1.9 1.35V8.5" />
-        <line x1="2" y1="20.3" x2="22" y2="20.3" />
-        <rect x="6" y="16.6" width="1.5" height="1.5" />
-        <rect x="10.3" y="16.6" width="1.5" height="1.5" />
-        <rect x="14.6" y="16.6" width="1.5" height="1.5" />
-      </>
-    ),
-  },
-];
-
-const SIDEBAR_ITEMS = [
-  {
-    label: "Products",
-    href: "#products",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="7" width="18" height="14" rx="3"/>
-        <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
-        <line x1="12" y1="11" x2="12" y2="17"/>
-        <line x1="9" y1="14" x2="15" y2="14"/>
-      </svg>
-    ),
-  },
-  {
-    label: "Enquiry",
-    href: "#contact",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-        <line x1="9" y1="11" x2="15" y2="11"/>
-        <line x1="9" y1="14" x2="13" y2="14"/>
-      </svg>
-    ),
-  },
-  {
-    label: "Download",
-    href: "#",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-        <polyline points="7 10 12 15 17 10"/>
-        <line x1="12" y1="15" x2="12" y2="3"/>
-      </svg>
-    ),
-  },
-  {
-    label: "Location",
-    href: "#network",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-        <circle cx="12" cy="10" r="3"/>
-      </svg>
-    ),
-  },
-];
-
 export function Hero() {
+  const { t } = useLanguage();
   const rootRef = useRef<HTMLElement>(null);
   const statsSurfaceRef = useRef<HTMLDivElement>(null);
   const [activeSidebarIndex, setActiveSidebarIndex] = useState(0);
@@ -160,6 +47,123 @@ export function Hero() {
     readWebgl2Support,
     readServerWebgl2Support,
   );
+
+  const sidebarItems = [
+    {
+      label: t.hero.sidebar.therapeutics,
+      href: "#products",
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="7" width="18" height="14" rx="3"/>
+          <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+          <line x1="12" y1="11" x2="12" y2="17"/>
+          <line x1="9" y1="14" x2="15" y2="14"/>
+        </svg>
+      ),
+    },
+    {
+      label: t.hero.sidebar.enquiry,
+      href: "#contact",
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          <line x1="9" y1="11" x2="15" y2="11"/>
+          <line x1="9" y1="14" x2="13" y2="14"/>
+        </svg>
+      ),
+    },
+    {
+      label: t.hero.sidebar.social,
+      href: "#footer",
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="18" cy="5" r="3"/>
+          <circle cx="6" cy="12" r="3"/>
+          <circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+      ),
+    },
+    {
+      label: t.hero.sidebar.location,
+      href: "#network",
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      ),
+    },
+  ];
+
+  const statsData = [
+    {
+      number: t.hero.stats.stat1Number,
+      labelTop: t.hero.stats.stat1Top,
+      labelBottom: t.hero.stats.stat1Bottom,
+      stroke: "#1e4fb8",
+      icon: (
+        <>
+          <circle cx="12" cy="12" r="9.4" />
+          <line x1="2.6" y1="12" x2="21.4" y2="12" />
+          <line x1="12" y1="2.6" x2="12" y2="21.4" />
+          <path d="M12 2.6c3.05 3.05 4.6 6.2 4.6 9.4s-1.55 6.35-4.6 9.4c-3.05-3.05-4.6-6.2-4.6-9.4S8.95 5.65 12 2.6z" />
+        </>
+      ),
+    },
+    {
+      number: t.hero.stats.stat2Number,
+      labelTop: t.hero.stats.stat2Top,
+      labelBottom: t.hero.stats.stat2Bottom,
+      stroke: "#2e92c0",
+      icon: (
+        <>
+          <rect x="9.3" y="2.3" width="5.0" height="2.6" rx="0.6" />
+          <path d="M8.3 4.9h7.0v2.05l1.55 2.2v7.65a1.9 1.9 0 0 1-1.9 1.9H8.65a1.9 1.9 0 0 1-1.9-1.9V9.15l1.55-2.2z" />
+          <line x1="6.9" y1="11.5" x2="16.7" y2="11.5" />
+          <path d="M10.6 13.2v2.6M9.3 14.5h2.6" />
+          <g transform="translate(14.2 15.6) rotate(35)">
+            <rect x="-2.7" y="-1.15" width="5.4" height="2.3" rx="1.15" />
+            <line x1="0" y1="-1.15" x2="0" y2="1.15" />
+          </g>
+        </>
+      ),
+    },
+    {
+      number: t.hero.stats.stat3Number,
+      labelTop: t.hero.stats.stat3Top,
+      labelBottom: t.hero.stats.stat3Bottom,
+      stroke: "#2e92c0",
+      icon: (
+        <>
+          <circle cx="12" cy="4.6" r="2.15" />
+          <circle cx="5.4" cy="18.2" r="2.15" />
+          <circle cx="18.6" cy="18.2" r="2.15" />
+          <circle cx="12" cy="12" r="1.95" />
+          <line x1="12" y1="6.7" x2="12" y2="10.05" />
+          <line x1="10.45" y1="13.3" x2="6.95" y2="16.35" />
+          <line x1="13.55" y1="13.3" x2="17.05" y2="16.35" />
+        </>
+      ),
+    },
+    {
+      number: t.hero.stats.stat4Number,
+      labelTop: t.hero.stats.stat4Top,
+      labelBottom: t.hero.stats.stat4Bottom,
+      stroke: "#1e4fb8",
+      icon: (
+        <>
+          <path d="M2.7 20.3V12.6l4.3 2.9v-2.9l4.3 2.9v-2.9l4.3 2.9V9.4c0-.5.4-.9.9-.9h3.6c.5 0 .9.4.9.9v10.9" />
+          <path d="M17.1 8.5V5.1c0-.55.6-.9 1.1-.6l1.9 1.35V8.5" />
+          <line x1="2" y1="20.3" x2="22" y2="20.3" />
+          <rect x="6" y="16.6" width="1.5" height="1.5" />
+          <rect x="10.3" y="16.6" width="1.5" height="1.5" />
+          <rect x="14.6" y="16.6" width="1.5" height="1.5" />
+        </>
+      ),
+    },
+  ];
 
   useGSAP(
     () => {
@@ -278,7 +282,7 @@ export function Hero() {
               className="w-full h-full flex flex-col justify-between items-center z-20 py-2.5"
               style={{ transform: "skewY(10deg)" }}
             >
-              {SIDEBAR_ITEMS.map((item, index) => {
+              {sidebarItems.map((item, index) => {
                 const isActive = activeSidebarIndex === index;
                 return (
                   <a
@@ -288,7 +292,7 @@ export function Hero() {
                     className="group/item relative flex flex-col items-center justify-center flex-1 w-full px-2 transition-all duration-300 hover:bg-white/[0.05]"
                     style={{
                       borderBottom:
-                        index < SIDEBAR_ITEMS.length - 1
+                        index < sidebarItems.length - 1
                           ? "1px solid rgba(255, 255, 255, 0.12)"
                           : "none",
                     }}
@@ -377,9 +381,9 @@ export function Hero() {
             className="hz-reveal font-display text-[2rem] font-extrabold leading-[1.08] tracking-tight sm:text-[2.6rem] lg:text-[3.4rem]"
             style={{ color: "#082B61" }}
           >
-            Better Health
+            {t.hero.titleLine1}
             <br />
-            for a Better World
+            {t.hero.titleLine2}
           </h1>
 
           <div
@@ -390,27 +394,23 @@ export function Hero() {
           />
 
           <p
-            className="hz-reveal text-base leading-relaxed md:text-[17px]"
+            className="hz-reveal text-base leading-relaxed md:text-[17px] max-w-lg"
             style={{ color: "rgba(15, 45, 85, 0.85)" }}
           >
-            We are committed to improving lives
-            <br />
-            through innovative medicines and
-            <br />
-            trusted healthcare solutions.
+            {t.hero.subheading}
           </p>
 
           <div className="hz-reveal mt-9">
             <Link
               href="#products"
-              className="inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-[15px] font-semibold text-white transition-all hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-[15px] font-semibold text-white transition-all hover:-translate-y-0.5 shadow-lg"
               style={{
                 background: "linear-gradient(135deg, #006EDC 0%, #082B61 100%)",
                 boxShadow:
                   "0 6px 20px rgba(0, 110, 220, 0.35), 0 2px 4px rgba(0,0,0,0.08)",
               }}
             >
-              Explore Our Products
+              <span>{t.hero.exploreProducts}</span>
               <svg
                 width="16"
                 height="16"
@@ -447,7 +447,7 @@ export function Hero() {
               borderRadius: "inherit",
             }}
           >
-            {STATS_DATA.map((stat) => {
+            {statsData.map((stat) => {
               return (
                 <div
                   key={stat.number}

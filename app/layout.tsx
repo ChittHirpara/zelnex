@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat, Outfit } from "next/font/google";
+import { LanguageProvider } from "@/context/LanguageContext";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -104,7 +105,7 @@ const jsonLd = {
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "Customer Support & Export Inquiries",
-    email: "contact@zelnexpharma.com",
+    email: "zyrastudios02@gmail.com",
   },
   sameAs: [
     "https://www.linkedin.com/company/zelnex-pharmaceuticals",
@@ -133,7 +134,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col font-sans text-slate overflow-x-hidden">
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

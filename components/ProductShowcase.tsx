@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -13,92 +14,73 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger);
 }
 
-const CATEGORIES = [
-  {
-    title: "Tablets & Oral Solid Dosage",
-    badgeText: "High Capacity",
-    badgeColor: "#006EDC",
-    gradient: "blue" as const,
-    description: "Uncoated, film-coated, enteric-coated, sustained-release, and chewable tablets manufactured to stringent pharmacopeial standards.",
-    bullets: [
-      "Immediate & Modified Release Profiles",
-      "Alu-Alu & PVC/PVDC Blister Packaging",
-      "Bulk Bottle & Custom Export Pack Sizes",
-      "WHO-GMP Batch Traceability",
-    ],
-    ctaText: "View Formulations",
-    ctaHref: "#contact",
-  },
-  {
-    title: "Capsules & Pellets",
-    badgeText: "Extended Release",
-    badgeColor: "#00bfb5",
-    gradient: "teal" as const,
-    description: "Hard gelatin and HPMC vegetarian capsules with precision powder, pellet, or beadlet filling for targeted therapeutic release.",
-    bullets: [
-      "Size 00 to 4 Hard Gelatin & Veg Capsules",
-      "Time-Release & Enteric Coated Pellets",
-      "Moisture-Protected Tropical Packaging",
-      "100% In Vitro Dissolution Compliance",
-    ],
-    ctaText: "Explore Capsules",
-    ctaHref: "#contact",
-  },
-  {
-    title: "Nutraceuticals & Wellness",
-    badgeText: "Nutra Certified",
-    badgeColor: "#38ef7d",
-    gradient: "green" as const,
-    description: "Vitamins, minerals, dietary supplements, and therapeutic herbal formulations supporting preventive and restorative health globally.",
-    bullets: [
-      "Multivitamin & Mineral Combinations",
-      "Effervescent Tablets & Powders",
-      "FSSAI & Export Grade Formulations",
-      "Custom Flavor & Formulation Development",
-    ],
-    ctaText: "Discover Nutra",
-    ctaHref: "#contact",
-  },
-  {
-    title: "Injectables & Sterile Liquids",
-    badgeText: "Sterile Grade A",
-    badgeColor: "#7928ca",
-    gradient: "purple" as const,
-    description: "Aseptic small-volume parenterals, lyophilized dry powder vials, and liquid ampoules produced in certified cleanroom environments.",
-    bullets: [
-      "Lyophilized Vials & Liquid Ampoules",
-      "Terminal Sterilization & Aseptic Filling",
-      "Type I Glass Vials & Rubber Closures",
-      "Complete Sterility & Endotoxin Testing",
-    ],
-    ctaText: "Inspect Sterile Range",
-    ctaHref: "#contact",
-  },
-];
-
-const PARTNERSHIP_METRICS = [
-  {
-    id: "markets",
-    value: "50+",
-    label: "Global Healthcare Markets",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000",
-  },
-  {
-    id: "dossiers",
-    value: "100%",
-    label: "CTD / eCTD Dossier Readiness",
-    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1000",
-  },
-  {
-    id: "dispatch",
-    value: "24/7",
-    label: "Global Temperature-Controlled Dispatch",
-    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1000",
-  },
-];
-
 export function ProductShowcase() {
+  const { t } = useLanguage();
   const rootRef = useRef<HTMLElement>(null);
+
+  const categories = [
+    {
+      title: t.products.categories.tablets.title,
+      badgeText: t.products.categories.tablets.badge,
+      badgeColor: "#006EDC",
+      gradient: "blue" as const,
+      description: t.products.categories.tablets.desc,
+      bullets: t.products.categories.tablets.bullets,
+      ctaText: t.products.categories.tablets.cta,
+      ctaHref: "#contact",
+    },
+    {
+      title: t.products.categories.capsules.title,
+      badgeText: t.products.categories.capsules.badge,
+      badgeColor: "#00bfb5",
+      gradient: "teal" as const,
+      description: t.products.categories.capsules.desc,
+      bullets: t.products.categories.capsules.bullets,
+      ctaText: t.products.categories.capsules.cta,
+      ctaHref: "#contact",
+    },
+    {
+      title: t.products.categories.syrups.title,
+      badgeText: t.products.categories.syrups.badge,
+      badgeColor: "#38ef7d",
+      gradient: "green" as const,
+      description: t.products.categories.syrups.desc,
+      bullets: t.products.categories.syrups.bullets,
+      ctaText: t.products.categories.syrups.cta,
+      ctaHref: "#contact",
+    },
+    {
+      title: t.products.categories.injectables.title,
+      badgeText: t.products.categories.injectables.badge,
+      badgeColor: "#7928ca",
+      gradient: "purple" as const,
+      description: t.products.categories.injectables.desc,
+      bullets: t.products.categories.injectables.bullets,
+      ctaText: t.products.categories.injectables.cta,
+      ctaHref: "#contact",
+    },
+  ];
+
+  const PARTNERSHIP_METRICS = [
+    {
+      id: "markets",
+      value: "50+",
+      label: t.network.stat1Label,
+      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000",
+    },
+    {
+      id: "dossiers",
+      value: "100%",
+      label: t.certifications.metrics[2]?.label || "CTD / eCTD Dossier Readiness",
+      image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1000",
+    },
+    {
+      id: "dispatch",
+      value: "24/7",
+      label: t.network.stat4Label,
+      image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1000",
+    },
+  ];
 
   // Cursor position for spring image following
   const [hoveredMetricId, setHoveredMetricId] = useState<string | null>(null);
@@ -177,12 +159,12 @@ export function ProductShowcase() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-teal/10 border border-teal/20 mb-3.5 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-teal">
-              Our Products
+              {t.products.badge}
             </p>
           </div>
 
           <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-[#082B61] md:text-4xl lg:text-[2.65rem] leading-[1.18]">
-            Pharmaceutical categories we deliver worldwide
+            {t.products.title}
           </h2>
 
           <div
@@ -193,14 +175,13 @@ export function ProductShowcase() {
           />
 
           <p className="mt-4 text-base leading-relaxed text-[#4A5568] md:text-[1.05rem]">
-            A focused range of high-quality formulations for distributors, importers,
-            and healthcare institutions seeking reliable global supply and regulatory readiness.
+            {t.products.subtitle}
           </p>
         </div>
 
         {/* 4 High-Contrast Product Category Gradient Cards */}
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {CATEGORIES.map((cat) => (
+          {categories.map((cat) => (
             <div key={cat.title} className="product-card-item h-full">
               <GradientCard
                 badgeText={cat.badgeText}
@@ -248,7 +229,7 @@ export function ProductShowcase() {
               >
                 <span className="w-2 h-2 rounded-full bg-[#38B2AC] animate-pulse" />
                 <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#38B2AC]">
-                  Careers & Global Partnerships
+                  {t.products.careers.badge}
                 </span>
               </div>
 
@@ -257,12 +238,11 @@ export function ProductShowcase() {
                 className="text-3xl sm:text-5xl lg:text-6xl xl:text-[72px] font-extrabold text-[#3D4852] leading-[1.02] tracking-tight mb-6"
                 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               >
-                Build your global healthcare footprint with Zelnex
+                {t.products.careers.title}
               </h2>
 
               <p className="text-base sm:text-lg lg:text-xl text-[#6B7280] max-w-2xl leading-relaxed font-normal">
-                Join a dynamic pharmaceutical export powerhouse dedicated to quality,
-                compliance, and expanding international healthcare access across 50+ countries.
+                {t.products.careers.desc}
               </p>
 
               {/* Neumorphic / Light-Morphism Buttons Row */}
@@ -283,7 +263,7 @@ export function ProductShowcase() {
                       "6px 6px 14px rgb(163,177,198,0.7), -6px -6px 14px rgba(255,255,255,0.8)";
                   }}
                 >
-                  <span>Enquire for Partnership</span>
+                  <span>{t.products.careers.cta1}</span>
                   <span className="text-xl text-[#38B2AC] font-black">→</span>
                 </Link>
 
@@ -303,7 +283,7 @@ export function ProductShowcase() {
                       "inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5)";
                   }}
                 >
-                  <span>Explore Careers</span>
+                  <span>{t.products.careers.cta2}</span>
                   <span className="text-sm font-black">↗</span>
                 </Link>
               </div>

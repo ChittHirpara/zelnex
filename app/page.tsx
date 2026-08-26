@@ -3,13 +3,10 @@ import { Hero } from "@/components/Hero";
 import { FlowingVector } from "@/components/FlowingVector";
 import { Overview } from "@/components/Overview";
 import { WhoWeAre } from "@/components/WhoWeAre";
-import { Expertise } from "@/components/Expertise";
 import { ProductShowcase } from "@/components/ProductShowcase";
 import { Categories } from "@/components/Categories";
-import { Packaging } from "@/components/Packaging";
 import { Certifications } from "@/components/Certifications";
 import { GrowingNetwork } from "@/components/GrowingNetwork";
-import { FAQSection } from "@/components/FAQSection";
 import { DigitalEpochSection } from "@/components/DigitalEpochSection";
 import { Footer } from "@/components/Footer";
 import { SectionDivider } from "@/components/SectionDivider";
@@ -26,44 +23,29 @@ export default function Home() {
         <div id="vector-wrapper" className="relative overflow-hidden">
           <FlowingVector />
 
-          {/* Overview: bg-white */}
+          {/* Overview Section */}
           <Overview />
 
-          {/* Overview (white) → WhoWeAre (dark navy) */}
-          <SectionDivider from="#ffffff" to="#0b1e48" flip />
-
-          {/* WhoWeAre: bg-navy */}
+          {/* WhoWeAre Reference Section */}
           <WhoWeAre />
 
-          {/* WhoWeAre (dark navy) → Expertise (white) */}
-          <SectionDivider from="#0b1e48" to="#ffffff" />
-
-          {/* Expertise: bg-white */}
-          <Expertise />
-
-          {/* ProductShowcase: bg-white */}
+          {/* ProductShowcase Section */}
           <ProductShowcase />
 
-          {/* ProductShowcase (white) → Categories (rich sapphire navy #0b224d) */}
-          <SectionDivider from="#ffffff" to="#0b224d" flip />
+          {/* ProductShowcase (white) → Categories (luminous sapphire #164e96) */}
+          <SectionDivider from="#ffffff" to="#164e96" flip />
 
-          {/* Categories: rich sapphire navy atmosphere */}
+          {/* Categories: luminous sapphire blue */}
           <Categories />
 
-          {/* Categories (#061533) → Certifications (white) */}
-          <SectionDivider from="#061533" to="#ffffff" />
+          {/* Categories (#0d3063) → Certifications (white) */}
+          <SectionDivider from="#0d3063" to="#ffffff" />
 
           {/* Certifications: bg-white */}
           <Certifications />
 
-          {/* Packaging: bg-white */}
-          <Packaging />
-
           {/* GrowingNetwork: bg-white */}
           <GrowingNetwork />
-
-          {/* Highly Animated FAQ Section: bg-white */}
-          <FAQSection />
 
           {/* DigitalEpochSection / Contact: bg-white with embedded video card */}
           <DigitalEpochSection />

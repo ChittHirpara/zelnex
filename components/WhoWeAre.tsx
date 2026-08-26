@@ -1,44 +1,19 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { CrystalButton } from "@/components/ui/CrystalButton";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger);
 }
 
-const CARDS = [
-  {
-    id: "rnd",
-    title: "Advanced Manufacturing",
-    subtitle: undefined as string | undefined,
-    image:
-      "https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=800&q=80",
-    tone: "photo" as const,
-  },
-  {
-    id: "global-reach",
-    title: "50+ Countries",
-    subtitle: "Expanding access to essential medicines across international markets.",
-    image: undefined,
-    tone: "teal" as const,
-  },
-  {
-    id: "quality",
-    title: "300+ Quality Products",
-    subtitle: "A broad therapeutic range for partners who demand reliability.",
-    image:
-      "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=800&q=80",
-    tone: "photo-overlay" as const,
-  },
-] as const;
-
 export function WhoWeAre() {
+  const { t } = useLanguage();
   const rootRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -48,21 +23,12 @@ export function WhoWeAre() {
       ).matches;
       if (reduce) return;
 
-      gsap.from(".who-copy", {
-        x: -28,
+      gsap.from(".who-card-content", {
+        y: 36,
         opacity: 0,
         duration: 0.8,
         ease: "power2.out",
-        scrollTrigger: { trigger: rootRef.current, start: "top 75%" },
-      });
-
-      gsap.from(".who-card", {
-        y: 32,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: "power2.out",
-        scrollTrigger: { trigger: rootRef.current, start: "top 70%" },
+        scrollTrigger: { trigger: rootRef.current, start: "top 80%" },
       });
     },
     { scope: rootRef },
@@ -70,134 +36,102 @@ export function WhoWeAre() {
 
   return (
     <section
-      id="about"
+      id="who-we-are"
       ref={rootRef}
-      className="section-pad relative scroll-mt-24 bg-navy py-20 md:py-28"
+      className="relative scroll-mt-24 py-10 sm:py-14 md:py-16 px-4 sm:px-6 lg:px-8 max-w-[1340px] mx-auto z-10"
     >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-30"
-        style={{
-          background:
-            "radial-gradient(ellipse 50% 40% at 80% 20%, rgba(0,166,166,0.35), transparent)",
-        }}
-        aria-hidden
-      />
-      <div className="relative z-10 mx-auto grid max-w-7xl px-4 sm:px-6 lg:px-8 gap-12 lg:grid-cols-[1fr_1.35fr] lg:items-center lg:gap-14">
-        {/* Left Column */}
-        <div className="who-copy">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-bright">
-            Who We Are
-          </p>
-          <h2 className="mt-3 font-display text-3xl font-semibold leading-tight tracking-tight text-white md:text-4xl">
-            Dedicated to Global Health & Wellness
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-white/70">
-            Zelnex Pharmaceuticals Pvt. Ltd. specializes in sourcing, marketing,
-            and export of high-quality pharmaceutical products—building long-term
-            partnerships with distributors, importers, and healthcare institutions
-            worldwide.
-          </p>
-          <div className="mt-8">
-            <CrystalButton href="#contact" variant="outline-light">
-              More About Us
-            </CrystalButton>
-          </div>
+      <div className="who-card-content relative overflow-hidden rounded-[28px] sm:rounded-[36px] border border-[#D5E4C8] bg-gradient-to-br from-[#FAFDF6] via-[#F4F9EE] to-[#EBF4E2] p-8 sm:p-12 md:p-16 shadow-[0_12px_44px_rgba(110,140,80,0.07)]">
+        {/* Halftone Dot Matrix Pattern (Top Left) */}
+        <div
+          className="pointer-events-none absolute -left-4 -top-4 w-72 h-72 opacity-35"
+          style={{
+            backgroundImage: "radial-gradient(#7E9A60 1.8px, transparent 1.8px)",
+            backgroundSize: "14px 14px",
+          }}
+          aria-hidden
+        />
+
+        {/* Halftone Dot Matrix Pattern (Bottom Right) */}
+        <div
+          className="pointer-events-none absolute -right-8 -bottom-8 w-64 h-64 opacity-25"
+          style={{
+            backgroundImage: "radial-gradient(#7E9A60 1.8px, transparent 1.8px)",
+            backgroundSize: "14px 14px",
+          }}
+          aria-hidden
+        />
+
+        {/* Delicate Botanical Vine / Petal Outline on Left Edge */}
+        <div className="pointer-events-none absolute -left-6 top-1/2 -translate-y-1/2 hidden md:block opacity-60">
+          <svg
+            width="120"
+            height="260"
+            viewBox="0 0 120 260"
+            fill="none"
+            stroke="#6D8A4E"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M10,10 Q60,80 15,140 T40,240" />
+            <path d="M15,140 C-10,120 -5,160 15,140" />
+            <path d="M15,140 C40,120 35,160 15,140" />
+            <path d="M15,140 C10,110 30,115 15,140" />
+            <path d="M15,140 C5,170 30,165 15,140" />
+            <circle cx="15" cy="140" r="3" fill="#6D8A4E" />
+          </svg>
         </div>
 
-        {/* Right Column: 3 Cards */}
-        <div className="grid gap-4 sm:grid-cols-3">
-          {CARDS.map((card) => {
-            if (card.tone === "teal") {
-              return (
-                <div
-                  key={card.id}
-                  id={card.id}
-                  className="who-card relative flex min-h-[220px] sm:min-h-[300px] flex-col justify-end overflow-hidden rounded-3xl bg-teal p-6 scroll-mt-28 shadow-lg transition-transform duration-300 hover:-translate-y-1.5"
-                >
-                  <WorldMapPattern />
-                  <p className="relative z-10 font-display text-2xl font-bold text-white">
-                    {card.title}
-                  </p>
-                  <p className="relative z-10 mt-2 text-sm leading-relaxed text-white/85">
-                    {card.subtitle}
-                  </p>
-                </div>
-              );
-            }
+        {/* Main Content */}
+        <div className="relative z-10 max-w-3xl ml-0 md:ml-4">
+          <p className="text-sm sm:text-base font-semibold text-[#4F5D3E] tracking-wide mb-1.5 font-['Inter',sans-serif]">
+            {t.overview.refWelcome || "Welcome to"}
+          </p>
 
-            return (
-              <div
-                key={card.id}
-                id={card.id}
-                className="who-card group relative min-h-[220px] sm:min-h-[300px] overflow-hidden rounded-3xl scroll-mt-28 shadow-lg transition-transform duration-300 hover:-translate-y-1.5"
-              >
-                {card.image ? (
-                  <Image
-                    src={card.image}
-                    alt={card.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 320px"
-                  />
-                ) : null}
-                <div
-                  className={`absolute inset-0 ${
-                    card.tone === "photo-overlay"
-                      ? "bg-gradient-to-t from-navy/90 via-navy/30 to-transparent"
-                      : "bg-gradient-to-t from-navy/85 via-navy/20 to-transparent"
-                  }`}
-                />
-                <div className="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-2 p-6">
-                  <div>
-                    <p className="font-display text-xl font-bold text-white leading-snug">
-                      {card.title}
-                    </p>
-                    {card.subtitle ? (
-                      <p className="mt-1.5 text-xs leading-relaxed text-white/80">
-                        {card.subtitle}
-                      </p>
-                    ) : null}
-                  </div>
-                  <Link
-                    href="#contact"
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal text-base text-white shadow-md transition-transform duration-300 hover:scale-110"
-                    aria-label={`Learn more about ${card.title}`}
-                  >
-                    →
-                  </Link>
-                </div>
-              </div>
-            );
-          })}
+          <h2
+            className="text-[30px] sm:text-[40px] md:text-[48px] font-extrabold text-[#1F2917] tracking-[-0.03em] leading-[1.12] mb-4"
+            style={{ fontFamily: "'Syne', sans-serif" }}
+          >
+            {t.overview.refCompany || "Zelnex Pharmaceuticals Pvt. Ltd."}
+          </h2>
+
+          {/* Green Wavy Underline Divider */}
+          <div className="mb-6 flex items-center">
+            <svg width="56" height="14" viewBox="0 0 52 14" fill="none" className="text-[#6D8A4E]">
+              <path
+                d="M2 7C5 3 7 3 10 7C13 11 15 11 18 7C21 3 23 3 26 7C29 11 31 11 34 7C37 3 39 3 42 7C45 11 47 11 50 7"
+                stroke="currentColor"
+                strokeWidth="2.8"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+
+          <p className="text-base sm:text-lg md:text-[19px] font-semibold text-[#222F19] leading-relaxed mb-4 font-['Inter',sans-serif]">
+            {t.overview.refLead}
+          </p>
+
+          <p className="text-sm sm:text-[15.5px] text-[#4F5D3E] font-normal leading-relaxed mb-8 font-['Inter',sans-serif]">
+            {t.overview.refSummary}
+          </p>
+
+          <div>
+            <Link
+              href="#contact"
+              className="group inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:scale-105 active:scale-95 shadow-md cursor-pointer select-none"
+              style={{
+                background: "linear-gradient(135deg, #879762 0%, #6E7D4C 100%)",
+                boxShadow: "0 8px 24px rgba(110, 125, 76, 0.35)",
+              }}
+            >
+              <span>{t.overview.refReadMore || "READ MORE"}</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function WorldMapPattern() {
-  return (
-    <svg
-      className="pointer-events-none absolute inset-0 h-full w-full opacity-25"
-      viewBox="0 0 300 400"
-      preserveAspectRatio="xMidYMid slice"
-      aria-hidden
-    >
-      {Array.from({ length: 80 }).map((_, i) => {
-        const x = (i * 47) % 300;
-        const y = (i * 31) % 400;
-        return <circle key={i} cx={x} cy={y} r="1.5" fill="white" />;
-      })}
-      <ellipse
-        cx="150"
-        cy="180"
-        rx="90"
-        ry="55"
-        fill="none"
-        stroke="white"
-        strokeWidth="1"
-        opacity="0.5"
-      />
-    </svg>
-  );
-}
+export default WhoWeAre;

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface TestimonialItem {
   text: string;
@@ -233,6 +234,7 @@ function AnimatedRow({
 }
 
 export function Packaging({ className = "" }: { className?: string }) {
+  const { t } = useLanguage();
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -261,7 +263,7 @@ export function Packaging({ className = "" }: { className?: string }) {
         >
           <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#006EDC]">
-            Packaging Excellence & Stability
+            {t.packaging.badge}
           </p>
         </motion.div>
 
@@ -272,7 +274,7 @@ export function Packaging({ className = "" }: { className?: string }) {
           transition={{ duration: 0.6, delay: 0.05 }}
           className="font-['Figtree',sans-serif] text-[32px] md:text-[54px] font-bold leading-[1.12] tracking-[-1.2px] md:tracking-[-2.5px] text-[#181B1F]"
         >
-          Formats Engineered for Global Stability
+          {t.packaging.title}
         </motion.h2>
 
         <motion.p
@@ -280,9 +282,9 @@ export function Packaging({ className = "" }: { className?: string }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-['Inter',sans-serif] text-[15px] md:text-[17px] leading-[24px] md:leading-[27px] text-[#63717E] max-w-[800px]"
+          className="font-['Inter',sans-serif] text-[15px] md:text-[19px] leading-[1.6] text-[#6B7280] font-normal"
         >
-          See how international distributors and hospital procurement networks rely on Zelnex for primary and secondary packaging matching Zone IVb tropical humidity barriers, child safety, and multi-market MOH compliance.
+          {t.packaging.subtitle}
         </motion.p>
       </div>
 

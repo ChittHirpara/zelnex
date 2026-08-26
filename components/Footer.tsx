@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   X,
   CheckCircle2,
@@ -19,42 +20,18 @@ import {
   Send,
 } from "lucide-react";
 
-interface Sitelink {
-  label: string;
-  href: string;
-}
-
-const COMPANY_LINKS: Sitelink[] = [
-  { label: "Company Overview", href: "/overview" },
-  { label: "Our Expertise", href: "/#expertise" },
-  { label: "Regulatory Services", href: "/#expertise" },
-  { label: "Contract Manufacturing", href: "/#expertise" },
-  { label: "Product Portfolio", href: "/#products" },
-];
-
-const RESOURCE_LINKS: Sitelink[] = [
-  { label: "Packaging Formats", href: "/#packaging" },
-  { label: "Global Accreditations", href: "/#certifications" },
-  { label: "Growing Network", href: "/#network" },
-  { label: "Therapeutic Areas", href: "/#therapeutics" },
-  { label: "Direct Inquiries", href: "/#contact" },
-];
-
-const QUALITY_LINKS: Sitelink[] = [
-  { label: "WHO-GMP Facilities", href: "/#certifications" },
-  { label: "ISO 9001:2015 Certified", href: "/#certifications" },
-  { label: "CTD and eCTD Dossiers", href: "/#certifications" },
-  { label: "Zone IVb Stability Tested", href: "/#certifications" },
-  { label: "Export Market Clearance", href: "/#network" },
-];
-
 export function Footer() {
+  const { t } = useLanguage();
   // Modal & Newsletter States
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalSubmitted, setModalSubmitted] = useState(false);
 
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
+
+  const companyLinks = t.footer.companyLinks;
+  const resourceLinks = t.footer.resourceLinks;
+  const qualityLinks = t.footer.qualityLinks;
 
   // Mobile Accordion state (first column open by default for crawlability)
   const [openAccordion, setOpenAccordion] = useState<number | null>(0);
@@ -81,7 +58,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative w-full bg-[#06132d] text-white overflow-hidden select-none">
+    <footer id="footer" className="relative w-full bg-[#06132d] text-white overflow-hidden select-none">
       {/* ── Signature Radial Light Cyan & Luminous Blue Glow (50% 115%) ── */}
       <div
         className="pointer-events-none absolute inset-0 z-0 select-none overflow-hidden"
@@ -123,13 +100,13 @@ export function Footer() {
         {/* ── Top Context Bar ── */}
         <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/15">
           <div className="flex items-center gap-3">
-            <div className="relative p-1.5 rounded-xl bg-white/15 border border-white/20 backdrop-blur-md shadow-sm">
+            <div className="relative px-3 py-1.5 rounded-xl bg-white/95 border border-white/40 shadow-sm backdrop-blur-md">
               <Image
-                src="/brand/zelnex-logo.png"
-                alt="Zelnex Pharmaceuticals"
-                width={120}
-                height={34}
-                className="h-6 w-auto brightness-0 invert"
+                src="/brand/zelnex-official-logo.png"
+                alt="Zelnex Pharmaceuticals Pvt. Ltd."
+                width={130}
+                height={36}
+                className="h-6 w-auto object-contain"
               />
             </div>
             <span className="text-xs font-semibold tracking-wide text-cyan-100">
@@ -141,7 +118,7 @@ export function Footer() {
             <Link href="/overview" className="hover:text-white transition-colors">Overview</Link>
             <Link href="/#expertise" className="hover:text-white transition-colors">Expertise</Link>
             <Link href="/#products" className="hover:text-white transition-colors">Products</Link>
-            <Link href="/#packaging" className="hover:text-white transition-colors">Packaging</Link>
+            <Link href="/#categories" className="hover:text-white transition-colors">Categories</Link>
             <Link href="/#certifications" className="hover:text-white transition-colors">Certifications</Link>
             <Link href="/#network" className="hover:text-white transition-colors">Network</Link>
           </div>
@@ -173,20 +150,19 @@ export function Footer() {
             </h3>
 
             <p className="mt-3 text-xs sm:text-[13.5px] leading-relaxed text-cyan-50/90 max-w-lg font-sans">
-              High-quality, affordable, and globally compliant healthcare solutions from India to the world.
-              Products sourced from WHO-GMP certified facilities with full CTD documentation.
+              {t.footer.newsletterDesc}
             </p>
 
             {/* Newsletter Pill Capture */}
             <div className="mt-5 w-full max-w-md">
               <span className="block text-[11px] font-semibold text-cyan-100 mb-1.5 font-sans">
-                Product catalog and dossier updates, every month.
+                {t.footer.newsletterTitle}
               </span>
 
               {newsletterSubscribed ? (
                 <div className="flex items-center gap-2 rounded-full bg-cyan-950/60 border border-cyan-300/40 px-4 py-2.5 text-xs text-white backdrop-blur-md">
                   <CheckCircle2 className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span>Subscribed successfully. You will receive our next catalog dispatch.</span>
+                  <span>{t.footer.newsletterSuccess}</span>
                 </div>
               ) : (
                 <form
@@ -199,14 +175,14 @@ export function Footer() {
                     required
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
-                    placeholder="partner@distributor.com"
+                    placeholder={t.footer.newsletterPlaceholder}
                     className="w-full bg-transparent px-3 py-1.5 text-xs sm:text-[13px] text-white placeholder:italic placeholder:text-white/50 outline-none font-sans"
                   />
                   <button
                     type="submit"
                     className="shrink-0 flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-bold text-[#06132d] shadow-md transition-all duration-300 hover:scale-[1.03] cursor-pointer bg-white hover:bg-cyan-50"
                   >
-                    <span>Subscribe</span>
+                    <span>{t.footer.newsletterBtn}</span>
                     <ArrowRight className="w-3.5 h-3.5 text-[#06132d]" />
                   </button>
                 </form>
@@ -225,10 +201,10 @@ export function Footer() {
               {/* Column 1: Company */}
               <div>
                 <h4 className="font-['Space_Grotesk'] text-[11.5px] font-extrabold uppercase tracking-[0.2em] text-cyan-200 mb-4">
-                  Company
+                  {t.footer.companyCol}
                 </h4>
                 <ul className="flex flex-col gap-2.5">
-                  {COMPANY_LINKS.map((link) => (
+                  {companyLinks.map((link) => (
                     <li key={link.label}>
                       <Link
                         href={link.href}
@@ -250,10 +226,10 @@ export function Footer() {
               {/* Column 2: Resources */}
               <div>
                 <h4 className="font-['Space_Grotesk'] text-[11.5px] font-extrabold uppercase tracking-[0.2em] text-cyan-200 mb-4">
-                  Resources
+                  {t.footer.resourcesCol}
                 </h4>
                 <ul className="flex flex-col gap-2.5">
-                  {RESOURCE_LINKS.map((link) => (
+                  {resourceLinks.map((link) => (
                     <li key={link.label}>
                       <Link
                         href={link.href}
@@ -275,10 +251,10 @@ export function Footer() {
               {/* Column 3: Quality */}
               <div>
                 <h4 className="font-['Space_Grotesk'] text-[11.5px] font-extrabold uppercase tracking-[0.2em] text-cyan-200 mb-4">
-                  Quality
+                  {t.footer.qualityCol}
                 </h4>
                 <ul className="flex flex-col gap-2.5">
-                  {QUALITY_LINKS.map((link) => (
+                  {qualityLinks.map((link) => (
                     <li key={link.label}>
                       <Link
                         href={link.href}
@@ -306,12 +282,12 @@ export function Footer() {
                   onClick={() => toggleAccordion(0)}
                   className="w-full flex items-center justify-between text-xs font-extrabold uppercase tracking-[0.16em] text-white py-1 cursor-pointer font-['Space_Grotesk']"
                 >
-                  <span>Company</span>
+                  <span>{t.footer.companyCol}</span>
                   {openAccordion === 0 ? <Minus className="w-4 h-4 text-cyan-300" /> : <Plus className="w-4 h-4" />}
                 </button>
                 {openAccordion === 0 && (
                   <ul className="mt-2.5 flex flex-col gap-2 pl-2">
-                    {COMPANY_LINKS.map((link) => (
+                    {companyLinks.map((link) => (
                       <li key={link.label}>
                         <Link href={link.href} className="text-xs text-white/80 hover:text-white font-sans">
                           {link.label}
@@ -328,12 +304,12 @@ export function Footer() {
                   onClick={() => toggleAccordion(1)}
                   className="w-full flex items-center justify-between text-xs font-extrabold uppercase tracking-[0.16em] text-white py-1 cursor-pointer font-['Space_Grotesk']"
                 >
-                  <span>Resources</span>
+                  <span>{t.footer.resourcesCol}</span>
                   {openAccordion === 1 ? <Minus className="w-4 h-4 text-cyan-300" /> : <Plus className="w-4 h-4" />}
                 </button>
                 {openAccordion === 1 && (
                   <ul className="mt-2.5 flex flex-col gap-2 pl-2">
-                    {RESOURCE_LINKS.map((link) => (
+                    {resourceLinks.map((link) => (
                       <li key={link.label}>
                         <Link href={link.href} className="text-xs text-white/80 hover:text-white font-sans">
                           {link.label}
@@ -350,12 +326,12 @@ export function Footer() {
                   onClick={() => toggleAccordion(2)}
                   className="w-full flex items-center justify-between text-xs font-extrabold uppercase tracking-[0.16em] text-white py-1 cursor-pointer font-['Space_Grotesk']"
                 >
-                  <span>Quality</span>
+                  <span>{t.footer.qualityCol}</span>
                   {openAccordion === 2 ? <Minus className="w-4 h-4 text-cyan-300" /> : <Plus className="w-4 h-4" />}
                 </button>
                 {openAccordion === 2 && (
                   <ul className="mt-2.5 flex flex-col gap-2 pl-2">
-                    {QUALITY_LINKS.map((link) => (
+                    {qualityLinks.map((link) => (
                       <li key={link.label}>
                         <Link href={link.href} className="text-xs text-white/80 hover:text-white font-sans">
                           {link.label}
@@ -390,22 +366,22 @@ export function Footer() {
             className="pointer-events-none absolute inset-0 -top-6 -bottom-6 -mx-10 bg-gradient-to-t from-[#06132d] via-[#06132d]/85 to-transparent z-0"
           />
 
-          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-cyan-100/80 font-sans">
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-cyan-100/80 font-sans">
             {/* Copyright */}
-            <p className="text-center sm:text-left">
-              © {new Date().getFullYear()} Zelnex Pharmaceuticals Pvt. Ltd. All rights reserved.
+            <p className="text-center md:text-left">
+              © {new Date().getFullYear()} Zelnex Pharmaceuticals Pvt. Ltd. {t.footer.allRightsReserved}
             </p>
 
             {/* Legal Links */}
-            <div className="flex flex-wrap items-center justify-center gap-6 text-cyan-100/75">
+            <div className="flex flex-wrap items-center justify-center gap-5 text-cyan-100/75">
               <Link href="/#certifications" className="hover:text-white transition-colors">
-                Privacy Policy
+                {t.footer.privacy}
               </Link>
               <Link href="/#certifications" className="hover:text-white transition-colors">
-                Terms of Supply
+                {t.footer.terms}
               </Link>
               <Link href="/#certifications" className="hover:text-white transition-colors">
-                WHO-GMP Status
+                {t.footer.whoGmp}
               </Link>
             </div>
 
@@ -424,9 +400,9 @@ export function Footer() {
               </a>
 
               <a
-                href="mailto:info@zelnex.com"
+                href="mailto:zyrastudios02@gmail.com"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white border border-white/20 transition-all duration-300 hover:scale-110 hover:bg-white hover:text-[#06132d] hover:shadow-[0_0_14px_rgba(255,255,255,0.7)] cursor-pointer"
-                aria-label="Email"
+                aria-label="Email: zyrastudios02@gmail.com"
               >
                 <Mail className="w-3.5 h-3.5" />
               </a>

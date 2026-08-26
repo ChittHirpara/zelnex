@@ -13,7 +13,7 @@ Build a comprehensive **Sustainability Engine** that tracks environmental impact
 
 ## Feature Description
 
-### Core Metrics
+Core Metrics
 
 1. **Water Saved**: 2,700 liters per rental (vs. buying new)
 2. **CO₂ Saved**: 6.5 kg per rental (vs. manufacturing & transportation)

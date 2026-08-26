@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import React, { useRef, useSyncExternalStore } from "react";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   FileCheck2,
   ShieldCheck,
@@ -38,72 +39,8 @@ function subscribeToWebgl2() {
   return () => {};
 }
 
-const STATS_DATA = [
-  {
-    number: "8+",
-    labelTop: "Years of",
-    labelBottom: "Global Expertise",
-    stroke: "#1e4fb8",
-    icon: (
-      <path
-        d="M12 2.5l2.9 6.2 6.8.9-5 4.7 1.3 6.7L12 17.7l-6 3.3 1.3-6.7-5-4.7 6.8-.9L12 2.5z"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    ),
-  },
-  {
-    number: "800+",
-    labelTop: "Commercial",
-    labelBottom: "Formulations",
-    stroke: "#2e92c0",
-    icon: (
-      <>
-        <rect x="6.5" y="3.5" width="11" height="17" rx="5.5" strokeWidth="1.8" />
-        <line x1="12" y1="9.5" x2="12" y2="14.5" strokeWidth="1.8" strokeLinecap="round" />
-        <line x1="9.5" y1="12" x2="14.5" y2="12" strokeWidth="1.8" strokeLinecap="round" />
-      </>
-    ),
-  },
-  {
-    number: "150+",
-    labelTop: "CTD / eCTD",
-    labelBottom: "Dossiers Ready",
-    stroke: "#1e4fb8",
-    icon: (
-      <>
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeWidth="1.8" />
-        <polyline points="14 2 14 8 20 8" strokeWidth="1.8" />
-        <line x1="9" y1="13" x2="15" y2="13" strokeWidth="1.8" strokeLinecap="round" />
-        <line x1="9" y1="17" x2="13" y2="17" strokeWidth="1.8" strokeLinecap="round" />
-      </>
-    ),
-  },
-  {
-    number: "100%",
-    labelTop: "WHO-GMP",
-    labelBottom: "Certified Compliance",
-    stroke: "#00a6a6",
-    icon: (
-      <>
-        <path
-          d="M12 2.8L4.5 6v5.8c0 4.8 3.2 9.3 7.5 10.4 4.3-1.1 7.5-5.6 7.5-10.4V6L12 2.8z"
-          strokeWidth="1.8"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M9.2 11.8l2 2 3.8-3.8"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </>
-    ),
-  },
-];
-
 export function Overview() {
+  const { t } = useLanguage();
   const rootRef = useRef<HTMLElement>(null);
   const statsSurfaceRef = useRef<HTMLDivElement>(null);
   const glassLive = useSyncExternalStore(
@@ -112,6 +49,71 @@ export function Overview() {
     readServerWebgl2Support,
   );
 
+  const statsData = [
+    {
+      number: t.overview.stats.stat1Number,
+      labelTop: t.overview.stats.stat1Top,
+      labelBottom: t.overview.stats.stat1Bottom,
+      stroke: "#1e4fb8",
+      icon: (
+        <path
+          d="M12 2.5l2.9 6.2 6.8.9-5 4.7 1.3 6.7L12 17.7l-6 3.3 1.3-6.7-5-4.7 6.8-.9L12 2.5z"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      ),
+    },
+    {
+      number: t.overview.stats.stat2Number,
+      labelTop: t.overview.stats.stat2Top,
+      labelBottom: t.overview.stats.stat2Bottom,
+      stroke: "#2e92c0",
+      icon: (
+        <>
+          <rect x="6.5" y="3.5" width="11" height="17" rx="5.5" strokeWidth="1.8" />
+          <line x1="12" y1="9.5" x2="12" y2="14.5" strokeWidth="1.8" strokeLinecap="round" />
+          <line x1="9.5" y1="12" x2="14.5" y2="12" strokeWidth="1.8" strokeLinecap="round" />
+        </>
+      ),
+    },
+    {
+      number: t.overview.stats.stat3Number,
+      labelTop: t.overview.stats.stat3Top,
+      labelBottom: t.overview.stats.stat3Bottom,
+      stroke: "#1e4fb8",
+      icon: (
+        <>
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeWidth="1.8" />
+          <polyline points="14 2 14 8 20 8" strokeWidth="1.8" />
+          <line x1="9" y1="13" x2="15" y2="13" strokeWidth="1.8" strokeLinecap="round" />
+          <line x1="9" y1="17" x2="13" y2="17" strokeWidth="1.8" strokeLinecap="round" />
+        </>
+      ),
+    },
+    {
+      number: t.overview.stats.stat4Number,
+      labelTop: t.overview.stats.stat4Top,
+      labelBottom: t.overview.stats.stat4Bottom,
+      stroke: "#00a6a6",
+      icon: (
+        <>
+          <path
+            d="M12 2.8L4.5 6v5.8c0 4.8 3.2 9.3 7.5 10.4 4.3-1.1 7.5-5.6 7.5-10.4V6L12 2.8z"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M9.2 11.8l2 2 3.8-3.8"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </>
+      ),
+    },
+  ];
+
   return (
     <section
       id="overview"
@@ -119,30 +121,126 @@ export function Overview() {
       className="relative scroll-mt-24 py-16 sm:py-24 overflow-hidden bg-white select-none text-[#111111]"
     >
       <div className="relative z-20 mx-auto max-w-[1300px] px-4 sm:px-6 md:px-8">
-        {/* ── Outer Bordered Deck Container ── */}
+        
+        {/* ════════════════════════════════════════════════════════════════
+            PART 1: THE COMPLETE COMPANY OVERVIEW & STRATEGIC PILLARS
+           ════════════════════════════════════════════════════════════════ */}
         <div className="border border-[#DCDCD2] bg-white rounded-[24px] overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.02)] flex flex-col mb-12">
-          {/* ══════════════════════════════════════════════════════════
-              HEADER BLOCK (bg #FAFBF9)
-             ══════════════════════════════════════════════════════════ */}
-          <div className="border-b border-[#DCDCD2] pt-8 pb-7 px-6 md:px-12 text-center flex flex-col items-center bg-[#FAFBF9]">
+          {/* Header Block */}
+          <div className="border-b border-[#DCDCD2] pt-10 pb-9 px-6 md:px-12 text-center flex flex-col items-center bg-[#FAFBF9]">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/20 mb-3.5 shadow-xs">
               <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#006EDC]">
-                Company Overview
+                {t.overview.badge}
               </p>
             </div>
 
             <h2
-              className="text-[28px] sm:text-[36px] lg:text-[46px] font-bold text-[#111111] leading-[1.12] tracking-[-0.03em] max-w-[820px] mb-3"
+              className="text-[28px] sm:text-[36px] lg:text-[44px] font-bold text-[#111111] leading-[1.15] tracking-[-0.03em] max-w-[900px] mb-4"
               style={{ fontFamily: "'Syne', sans-serif" }}
             >
-              Building a Trusted Export-Oriented Pharmaceutical Brand
+              {t.overview.title}
             </h2>
 
-            <p className="text-base text-[#555555] max-w-[780px] font-['Inter',sans-serif] leading-relaxed">
-              Zelnex Pharmaceuticals Pvt. Ltd. delivers high-quality, affordable, and globally compliant generic healthcare formulations—specializing in regulatory dossier support, WHO-GMP contract manufacturing, and international distribution across 50+ countries.
+            <p className="text-base sm:text-[17px] text-[#444444] max-w-[860px] font-['Inter',sans-serif] leading-relaxed">
+              {t.overview.lead}
             </p>
           </div>
+
+          {/* 4 Core Pillars Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x border-b border-[#DCDCD2]">
+            {/* Pillar 1 */}
+            <div className="p-7 md:p-9 flex flex-col justify-between bg-white">
+              <div>
+                <div className="flex items-center gap-2.5 mb-3.5">
+                  <div className="w-8 h-8 rounded-lg bg-[#006EDC]/10 flex items-center justify-center text-[#006EDC] font-bold text-xs">
+                    {t.overview.p1Number}
+                  </div>
+                  <h3 className="font-bold text-lg text-[#111111] font-['Syne',sans-serif]">
+                    {t.overview.p1Title}
+                  </h3>
+                </div>
+                <p className="text-sm text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-4">
+                  {t.overview.p1Desc}
+                </p>
+                <div className="flex flex-wrap gap-1.5 pt-2">
+                  {t.overview.p1Tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="inline-block px-2.5 py-1 rounded-md bg-[#FAFBF9] border border-[#DCDCD2] text-[11px] font-semibold text-[#444444]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Pillar 2 */}
+            <div className="p-7 md:p-9 flex flex-col justify-between bg-white border-t md:border-t-0">
+              <div>
+                <div className="flex items-center gap-2.5 mb-3.5">
+                  <div className="w-8 h-8 rounded-lg bg-[#008A8A]/10 flex items-center justify-center text-[#008A8A] font-bold text-xs">
+                    {t.overview.p2Number}
+                  </div>
+                  <h3 className="font-bold text-lg text-[#111111] font-['Syne',sans-serif]">
+                    {t.overview.p2Title}
+                  </h3>
+                </div>
+                <p className="text-sm text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-4">
+                  {t.overview.p2Desc}
+                </p>
+                <div className="p-3 rounded-xl bg-[#FAFBF9] border border-[#E5E5E5] flex items-center justify-between text-xs font-semibold text-[#111111]">
+                  <span>{t.overview.p2Adherence}</span>
+                  <span className="text-[#008A8A] flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" /> {t.overview.p2Certified}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x">
+            {/* Pillar 3 */}
+            <div className="p-7 md:p-9 flex flex-col justify-between bg-white">
+              <div>
+                <div className="flex items-center gap-2.5 mb-3.5">
+                  <div className="w-8 h-8 rounded-lg bg-[#1E3A8A]/10 flex items-center justify-center text-[#1E3A8A] font-bold text-xs">
+                    {t.overview.p3Number}
+                  </div>
+                  <h3 className="font-bold text-lg text-[#111111] font-['Syne',sans-serif]">
+                    {t.overview.p3Title}
+                  </h3>
+                </div>
+                <p className="text-sm text-[#555555] font-['Inter',sans-serif] leading-relaxed">
+                  {t.overview.p3Desc}
+                </p>
+              </div>
+            </div>
+
+            {/* Pillar 4 */}
+            <div className="p-7 md:p-9 flex flex-col justify-between bg-white border-t md:border-t-0">
+              <div>
+                <div className="flex items-center gap-2.5 mb-3.5">
+                  <div className="w-8 h-8 rounded-lg bg-[#7928CA]/10 flex items-center justify-center text-[#7928CA] font-bold text-xs">
+                    {t.overview.p4Number}
+                  </div>
+                  <h3 className="font-bold text-lg text-[#111111] font-['Syne',sans-serif]">
+                    {t.overview.p4Title}
+                  </h3>
+                </div>
+                <p className="text-sm text-[#555555] font-['Inter',sans-serif] leading-relaxed">
+                  {t.overview.p4Desc}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ════════════════════════════════════════════════════════════════
+            PART 2: TECHNICAL CAPABILITY PANELS
+           ════════════════════════════════════════════════════════════════ */}
+        <div className="border border-[#DCDCD2] bg-white rounded-[24px] overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.02)] flex flex-col mb-12">
 
           {/* ══════════════════════════════════════════════════════════
               PANEL 01: Regulatory Affairs & CTD Dossier Compilation
@@ -205,36 +303,30 @@ export function Overview() {
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAFBF9] border border-[#DCDCD2] w-fit mb-4 text-xs font-semibold text-[#555555]">
                   <span>01</span>
                   <span>/</span>
-                  <span>Regulatory Services</span>
+                  <span>{t.overview.panels.p1Badge}</span>
                 </div>
                 <h3
                   className="text-[22px] sm:text-[28px] font-bold text-[#111111] mb-3 leading-[1.15] tracking-[-0.025em]"
                   style={{ fontFamily: "'Syne', sans-serif" }}
                 >
-                  Accelerated Market Approvals with Complete CTD Dossiers
+                  {t.overview.panels.p1Title}
                 </h3>
                 <p className="text-sm sm:text-base text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-6">
-                  Navigating foreign Ministry of Health (MOH) registration requires uncompromising documentation. Zelnex prepares full Common Technical Document (CTD) and electronic CTD (eCTD) dossiers formatted for ASEAN, LATAM, GCC, and African regulatory authorities.
+                  {t.overview.panels.p1Desc}
                 </p>
                 <div className="space-y-2.5 font-['Inter',sans-serif] text-sm text-[#444444] mb-5">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#006EDC]" />
-                    <span>Real-time and accelerated Zone IVb stability testing data</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#006EDC]" />
-                    <span>Bioequivalence (BE) summaries and Certificate of Pharmaceutical Product (COPP)</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#006EDC]" />
-                    <span>Free Sale Certificates (FSC) and cGMP validation paperwork</span>
-                  </div>
+                  {t.overview.panels.p1Points.map((point, pIdx) => (
+                    <div key={pIdx} className="flex items-center gap-2.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#006EDC]" />
+                      <span>{point}</span>
+                    </div>
+                  ))}
                 </div>
                 <Link
                   href="#contact"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-[#006EDC] hover:text-[#082B61] transition-colors"
                 >
-                  <span>Request Dossier Availability List</span>
+                  <span>{t.overview.panels.p1Cta}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -243,7 +335,7 @@ export function Overview() {
           </div>
 
           {/* ══════════════════════════════════════════════════════════
-              PANEL 02: WHO-GMP Manufacturing & Quality Control
+              PANEL 02: 3rd Party Manufacturing & Contract Formulation
               (Layout: Left = Text, Right = Visual Card)
              ══════════════════════════════════════════════════════════ */}
           <div className="border-b border-[#DCDCD2]">
@@ -253,98 +345,85 @@ export function Overview() {
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAFBF9] border border-[#DCDCD2] w-fit mb-4 text-xs font-semibold text-[#555555]">
                   <span>02</span>
                   <span>/</span>
-                  <span>Contract Manufacturing</span>
+                  <span>{t.overview.panels.p2Badge}</span>
                 </div>
                 <h3
                   className="text-[22px] sm:text-[28px] font-bold text-[#111111] mb-3 leading-[1.15] tracking-[-0.025em]"
                   style={{ fontFamily: "'Syne', sans-serif" }}
                 >
-                  WHO-GMP Certified Facilities & Scalable Batch Production
+                  <span className="text-[#008A8A]">3rd</span> Party Manufacturing
                 </h3>
                 <p className="text-sm sm:text-base text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-6">
-                  We manufacture through accredited, state-of-the-art sterile and oral formulation plants. Equipped with high-speed automated packaging, computerized HVAC Grade A/B cleanrooms, and fully validated analytical laboratories ensuring strict IP & pharmacopeial compliance.
+                  {t.overview.panels.p2Desc}
                 </p>
-                <div className="space-y-2.5 font-['Inter',sans-serif] text-sm text-[#444444] mb-5">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#008A8A]" />
-                    <span>Tablets, Capsules, Dry Injections, Syrups, and Sachets</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#008A8A]" />
-                    <span>HPLC, GC, Dissolution, and Microbial QC testing on every batch</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#008A8A]" />
-                    <span>Custom private labeling and multi-lingual export pack designs</span>
+
+                <div className="mb-4">
+                  <h4 className="text-xs sm:text-sm font-bold text-[#111111] tracking-wide mb-3 font-['Syne',sans-serif]">
+                    Process for 3rd Party Manufacturing:
+                  </h4>
+                  <div className="space-y-2.5 font-['Inter',sans-serif] text-sm text-[#444444]">
+                    {t.overview.panels.p2Points.map((point, pIdx) => (
+                      <div key={pIdx} className="flex items-center gap-2.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#008A8A] shrink-0" />
+                        <span>{point}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
+
+                <p className="text-xs sm:text-[13px] text-[#666666] italic leading-relaxed mb-6 font-['Inter',sans-serif]">
+                  With our commitment towards working collaboratively with customers, we provide Quality Branded medicines and Generics worldwide.
+                </p>
+
                 <Link
                   href="#contact"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-[#008A8A] hover:text-[#082B61] transition-colors"
                 >
-                  <span>Explore Manufacturing Capabilities</span>
+                  <span>{t.overview.panels.p2Cta}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
 
               {/* Right Visual Card */}
               <div className="bg-[#FAFBF9]/60 p-5 md:p-8 flex flex-col items-center justify-center min-h-[340px] order-1 lg:order-2">
-                <div className="w-full max-w-[440px] bg-white border border-[#DCDCD2] rounded-[20px] p-5 shadow-[0_8px_24px_rgba(0,0,0,0.03)] flex flex-col gap-0">
-                  <div>
-                    <div className="flex items-center justify-between pb-4 border-b border-[#E5E5E5] mb-5">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-[#008A8A]/10 flex items-center justify-center text-[#008A8A]">
-                          <ShieldCheck className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-sm text-[#111111] font-['Syne',sans-serif]">
-                            WHO-GMP & ISO 9001
-                          </h4>
-                          <p className="text-xs text-[#777777]">Sterile & Solid Dosage Standards</p>
-                        </div>
-                      </div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#008A8A] bg-[#008A8A]/10 px-2.5 py-1 rounded-full border border-[#008A8A]/20">
-                        Audited
-                      </span>
+                <div className="w-full max-w-[440px] bg-white border border-[#DCDCD2] rounded-[20px] p-6 sm:p-7 shadow-[0_8px_24px_rgba(0,0,0,0.03)] flex flex-col gap-0">
+                  <div className="flex items-center justify-between pb-4 border-b border-[#E5E5E5] mb-5">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF4FA] border border-[#BAE6FD] text-[11px] font-bold text-[#0284C7] font-mono tracking-wide">
+                      [ WHO-GMP Certified ]
                     </div>
+                    <span className="text-xs font-mono font-bold text-[#888888]">02</span>
+                  </div>
 
-                    <div className="space-y-3 font-['Inter',sans-serif]">
-                      <div className="p-3 rounded-xl bg-[#FAFBF9] border border-[#E5E5E5]/60">
-                        <div className="flex items-center justify-between text-xs font-semibold text-[#111111] mb-1">
-                          <span>Solid Oral Dosage (Tablets/Caps)</span>
-                          <span className="text-[#008A8A]">1.2 Billion / Year</span>
-                        </div>
-                        <div className="w-full h-1.5 bg-[#E5E5E5] rounded-full overflow-hidden">
-                          <div className="w-[85%] h-full bg-[#008A8A] rounded-full" />
-                        </div>
-                      </div>
+                  <h4 className="text-2xl sm:text-[26px] font-extrabold text-[#111111] leading-tight mb-1" style={{ fontFamily: "'Syne', sans-serif" }}>
+                    <span className="text-[#008A8A]">3rd</span> Party Manufacturing
+                  </h4>
+                  <p className="text-xs sm:text-sm font-medium text-[#666666] mb-5 font-['Inter',sans-serif]">
+                    End-to-End Generic Production & International Export
+                  </p>
 
-                      <div className="p-3 rounded-xl bg-[#FAFBF9] border border-[#E5E5E5]/60">
-                        <div className="flex items-center justify-between text-xs font-semibold text-[#111111] mb-1">
-                          <span>Liquid Parenterals & Vials</span>
-                          <span className="text-[#006EDC]">450 Million / Year</span>
-                        </div>
-                        <div className="w-full h-1.5 bg-[#E5E5E5] rounded-full overflow-hidden">
-                          <div className="w-[70%] h-full bg-[#006EDC] rounded-full" />
-                        </div>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-[#FAFBF9] border border-[#E5E5E5]/60">
-                        <div className="flex items-center justify-between text-xs font-semibold text-[#111111] mb-1">
-                          <span>Dry Powder Injections & Syrups</span>
-                          <span className="text-[#7928CA]">300 Million / Year</span>
-                        </div>
-                        <div className="w-full h-1.5 bg-[#E5E5E5] rounded-full overflow-hidden">
-                          <div className="w-[60%] h-full bg-[#7928CA] rounded-full" />
-                        </div>
-                      </div>
+                  <div className="border-t border-[#EAEAEA] pt-4 space-y-3 font-['Inter',sans-serif] text-xs sm:text-[13px] text-[#333333]">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-2 h-2 rounded-full bg-[#008A8A] shrink-0" />
+                      <span>Formulation approval from Drug department</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-2 h-2 rounded-full bg-[#008A8A] shrink-0" />
+                      <span>Procurement of Raw materials</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-2 h-2 rounded-full bg-[#008A8A] shrink-0" />
+                      <span>Actual Formulation Production</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-2 h-2 rounded-full bg-[#008A8A] shrink-0" />
+                      <span>Export</span>
                     </div>
                   </div>
 
-                  <div className="pt-4 mt-4 border-t border-[#E5E5E5] flex items-center justify-between text-xs text-[#666666]">
+                  <div className="pt-4 mt-5 border-t border-[#E5E5E5] flex items-center justify-between text-[11px] text-[#666666]">
                     <span>Batch Release Protocol</span>
                     <span className="font-semibold text-[#008A8A] flex items-center gap-1">
-                      <CheckCircle2 className="w-3.5 h-3.5" /> 100% QA Inspection
+                      <CheckCircle2 className="w-3.5 h-3.5" /> 100% WHO-GMP Compliant
                     </span>
                   </div>
                 </div>
@@ -416,36 +495,30 @@ export function Overview() {
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAFBF9] border border-[#DCDCD2] w-fit mb-4 text-xs font-semibold text-[#555555]">
                   <span>03</span>
                   <span>/</span>
-                  <span>Supply Chain</span>
+                  <span>{t.overview.panels.p3Badge}</span>
                 </div>
                 <h3
                   className="text-[22px] sm:text-[28px] font-bold text-[#111111] mb-3 leading-[1.15] tracking-[-0.025em]"
                   style={{ fontFamily: "'Syne', sans-serif" }}
                 >
-                  Reliable Worldwide Transit & Tropical Packaging Barrier
+                  {t.overview.panels.p3Title}
                 </h3>
                 <p className="text-sm sm:text-base text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-6">
-                  Pharmaceutical export demands specialized packaging engineered for tropical maritime transport. Zelnex utilizes Alu-Alu cold form blister, induction-sealed HDPE bottles, and triple-wall corrugated export shippers to guarantee 36-month stability in hot, humid Zone IVb climates.
+                  {t.overview.panels.p3Desc}
                 </p>
                 <div className="space-y-2.5 font-['Inter',sans-serif] text-sm text-[#444444] mb-5">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#1E3A8A]" />
-                    <span>Tamper-evident primary barrier seals & serialization</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#1E3A8A]" />
-                    <span>Complete export shipping documentation & Clean Report of Findings (CRF)</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#1E3A8A]" />
-                    <span>Sea and air freight logistics partnerships across major global ports</span>
-                  </div>
+                  {t.overview.panels.p3Points.map((point, pIdx) => (
+                    <div key={pIdx} className="flex items-center gap-2.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#1E3A8A]" />
+                      <span>{point}</span>
+                    </div>
+                  ))}
                 </div>
                 <Link
-                  href="#packaging"
+                  href="#contact"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-[#1E3A8A] hover:text-[#082B61] transition-colors"
                 >
-                  <span>Review Packaging Specifications</span>
+                  <span>{t.overview.panels.p3Cta}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -463,36 +536,30 @@ export function Overview() {
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAFBF9] border border-[#DCDCD2] w-fit mb-4 text-xs font-semibold text-[#555555]">
                   <span>04</span>
                   <span>/</span>
-                  <span>Formulary</span>
+                  <span>{t.overview.panels.p4Badge}</span>
                 </div>
                 <h3
                   className="text-[22px] sm:text-[28px] font-bold text-[#111111] mb-3 leading-[1.15] tracking-[-0.025em]"
                   style={{ fontFamily: "'Syne', sans-serif" }}
                 >
-                  800+ Commercial Generic Molecules Across 10+ Categories
+                  {t.overview.panels.p4Title}
                 </h3>
                 <p className="text-sm sm:text-base text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-6">
-                  Our comprehensive export catalog encompasses high-demand therapeutic areas: Anti-Infectives, Cardiology, Central Nervous System (CNS), Gastrointestinal, Respiratory, Diabetes, Dermatology, Oncology, and Critical Care Injectables.
+                  {t.overview.panels.p4Desc}
                 </p>
                 <div className="space-y-2.5 font-['Inter',sans-serif] text-sm text-[#444444] mb-5">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#006EDC]" />
-                    <span>Ready commercial dossiers for immediate importation visa filing</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#006EDC]" />
-                    <span>Flexible Minimum Order Quantities (MOQs) tailored for market entry</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#006EDC]" />
-                    <span>Direct Certificate of Analysis (CoA) provided for every released batch</span>
-                  </div>
+                  {t.overview.panels.p4Points.map((point, pIdx) => (
+                    <div key={pIdx} className="flex items-center gap-2.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#006EDC]" />
+                      <span>{point}</span>
+                    </div>
+                  ))}
                 </div>
                 <Link
                   href="#products"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-[#006EDC] hover:text-[#082B61] transition-colors"
                 >
-                  <span>Browse Product Portfolio</span>
+                  <span>{t.overview.panels.p4Cta}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -586,7 +653,7 @@ export function Overview() {
                 borderRadius: "inherit",
               }}
             >
-              {STATS_DATA.map((stat) => (
+              {statsData.map((stat) => (
                 <div
                   key={stat.number}
                   className="gs-stat flex flex-1 items-center border-b sm:border-b-0 sm:border-l last:border-b-0 first:border-l-0 border-slate-200/50 py-3 sm:py-0"

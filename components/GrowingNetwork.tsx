@@ -26,11 +26,14 @@ const EarthGlobe3D = dynamic(
   }
 );
 
+import { useLanguage } from "@/context/LanguageContext";
+
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger);
 }
 
 export function GrowingNetwork() {
+  const { t } = useLanguage();
   const rootRef = useRef<HTMLElement>(null);
   const [selectedMarket, setSelectedMarket] = useState<MarketLocation | null>(null);
 
@@ -178,7 +181,7 @@ export function GrowingNetwork() {
         {/* Top Centered Section Header */}
         <div className="network-header flex flex-col items-center text-center">
           <p className="text-sm md:text-base font-semibold tracking-wide text-slate-500 mb-1">
-            Global Supply Network
+            {t.network.badge}
           </p>
 
           {/* Hero Highlight Metric */}
@@ -191,14 +194,14 @@ export function GrowingNetwork() {
               filter: "drop-shadow(0 12px 24px rgba(255, 107, 107, 0.28))",
             }}
           >
-            50+ Countries
+            {t.network.title}
           </h2>
 
           {/* Small Sub-Pill */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200/90 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
             <span className="text-xs font-bold text-[#082B61] tracking-wide">
-              Active Global Distribution & WHO-GMP Facilities
+              {t.network.subtitle}
             </span>
           </div>
         </div>

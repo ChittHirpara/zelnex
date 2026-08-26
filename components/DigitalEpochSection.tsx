@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, type FormEvent } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useLanguage } from "@/context/LanguageContext";
 import { ChevronRight, X, CheckCircle2, User, Mail, Globe, FileText, Sparkles } from "lucide-react";
 
 interface PharmaBrandItem {
@@ -113,6 +114,7 @@ const PHARMA_STANDARDS: PharmaBrandItem[] = [
 ];
 
 export function DigitalEpochSection() {
+  const { t } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [inView, setInView] = useState(false);
@@ -192,18 +194,15 @@ export function DigitalEpochSection() {
           >
             <div className="inline-flex items-center gap-2 rounded-full bg-[#006EDC]/10 px-3.5 py-1 text-xs font-bold text-[#006EDC] border border-[#006EDC]/20 mb-3.5 backdrop-blur-md">
               <span className="h-2 w-2 rounded-full bg-[#006EDC] animate-pulse" />
-              <span>Direct Global Export Inquiries</span>
+              <span>{t.contact.badge}</span>
             </div>
 
             <h2 className="font-display text-[28px] sm:text-[36px] md:text-[56px] font-medium tracking-tight text-[#0a1b33] leading-[1.1]">
-              Partner with Zelnex for
-              <br />
-              reliable global supply
+              {t.contact.title}
             </h2>
 
             <p className="font-sans text-[14px] md:text-[15px] text-[#64748b] mt-4 max-w-xl leading-relaxed">
-              Tell us about your market needs. Our international regulatory and export team will
-              respond within 24 hours with product dossiers, batch pricing, and distribution agreements.
+              {t.contact.subtitle}
             </p>
 
             <motion.button
@@ -212,7 +211,7 @@ export function DigitalEpochSection() {
               whileTap={{ scale: 0.98 }}
               className="mt-8 px-7 py-3 rounded-full bg-[#0a152d] text-white text-[14px] font-medium shadow-sm transition-all inline-flex items-center gap-2 cursor-pointer"
             >
-              <span>Partner with Zelnex</span>
+              <span>{t.contact.submitBtn}</span>
               <span>→</span>
             </motion.button>
           </motion.div>
@@ -366,11 +365,11 @@ export function DigitalEpochSection() {
               <div className="pr-10">
                 <div className="inline-flex items-center gap-2 rounded-full bg-teal/10 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-wider text-teal border border-teal/20 mb-3 shadow-sm">
                   <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
-                  <span>Direct Export Inquiry</span>
+                  <span>{t.contact.badge}</span>
                 </div>
 
                 <h3 className="font-display text-3xl md:text-[2.1rem] font-extrabold text-[#082B61] tracking-tight leading-[1.15]">
-                  Partner with Zelnex
+                  {t.contact.title}
                 </h3>
 
                 <div
@@ -381,8 +380,7 @@ export function DigitalEpochSection() {
                 />
 
                 <p className="text-xs sm:text-[13.5px] text-[#4A5568] leading-relaxed font-medium">
-                  Provide your market details below. Our international export director will review
-                  your requirements and respond within 24 hours.
+                  {t.contact.subtitle}
                 </p>
               </div>
 
@@ -398,17 +396,16 @@ export function DigitalEpochSection() {
                       <CheckCircle2 className="w-8 h-8 stroke-[2.5]" />
                     </div>
                     <h4 className="font-display text-2xl font-extrabold text-[#082B61] tracking-tight">
-                      Inquiry Received Successfully
+                      {t.contact.successTitle}
                     </h4>
                     <p className="mt-2 text-xs sm:text-sm text-[#4A5568] max-w-md leading-relaxed font-medium">
-                      Thank you for reaching out. We have received your details and will dispatch our
-                      product catalog and dossier guidelines to your email within 24 business hours.
+                      {t.contact.successDesc}
                     </p>
                     <button
                       onClick={handleClose}
                       className="mt-6 rounded-full px-7 py-3 text-xs font-extrabold text-white bg-gradient-to-r from-[#00B8F2] to-[#006EDC] hover:scale-105 transition-all shadow-lg cursor-pointer"
                     >
-                      Close Window
+                      {t.contact.closeBtn}
                     </button>
                   </motion.div>
                 ) : (
@@ -417,13 +414,13 @@ export function DigitalEpochSection() {
                     <div>
                       <label className="flex items-center gap-1.5 text-[11.5px] font-bold uppercase tracking-wider text-[#082B61] mb-1.5">
                         <User className="w-3.5 h-3.5 text-[#006EDC]" />
-                        <span>Full Name *</span>
+                        <span>{t.contact.nameLabel} *</span>
                       </label>
                       <input
                         required
                         type="text"
                         name="fullName"
-                        placeholder="e.g. Dr. Alexander Vance"
+                        placeholder={t.contact.namePlaceholder}
                         className="w-full rounded-2xl border border-slate-200/90 bg-white/90 px-4 py-3 text-sm text-[#082B61] font-semibold placeholder-slate-400 outline-none focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/15 focus:bg-white transition-all"
                         style={{
                           boxShadow: "inset 0 1.5px 3px rgba(0, 40, 110, 0.03)",
@@ -436,13 +433,13 @@ export function DigitalEpochSection() {
                       <div>
                         <label className="flex items-center gap-1.5 text-[11.5px] font-bold uppercase tracking-wider text-[#082B61] mb-1.5">
                           <Mail className="w-3.5 h-3.5 text-[#006EDC]" />
-                          <span>Business Email *</span>
+                          <span>{t.contact.emailLabel} *</span>
                         </label>
                         <input
                           required
                           type="email"
                           name="email"
-                          placeholder="alex@distributor.com"
+                          placeholder={t.contact.emailPlaceholder}
                           className="w-full rounded-2xl border border-slate-200/90 bg-white/90 px-4 py-3 text-sm text-[#082B61] font-semibold placeholder-slate-400 outline-none focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/15 focus:bg-white transition-all"
                           style={{
                             boxShadow: "inset 0 1.5px 3px rgba(0, 40, 110, 0.03)",
@@ -453,13 +450,13 @@ export function DigitalEpochSection() {
                       <div>
                         <label className="flex items-center gap-1.5 text-[11.5px] font-bold uppercase tracking-wider text-[#082B61] mb-1.5">
                           <Globe className="w-3.5 h-3.5 text-[#006EDC]" />
-                          <span>Country / Market *</span>
+                          <span>{t.contact.destinationLabel} *</span>
                         </label>
                         <input
                           required
                           type="text"
                           name="country"
-                          placeholder="e.g. Kenya, Vietnam, Iraq"
+                          placeholder={t.contact.destinationPlaceholder}
                           className="w-full rounded-2xl border border-slate-200/90 bg-white/90 px-4 py-3 text-sm text-[#082B61] font-semibold placeholder-slate-400 outline-none focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/15 focus:bg-white transition-all"
                           style={{
                             boxShadow: "inset 0 1.5px 3px rgba(0, 40, 110, 0.03)",
@@ -472,13 +469,13 @@ export function DigitalEpochSection() {
                     <div>
                       <label className="flex items-center gap-1.5 text-[11.5px] font-bold uppercase tracking-wider text-[#082B61] mb-1.5">
                         <FileText className="w-3.5 h-3.5 text-[#006EDC]" />
-                        <span>Company Bio & Requirements *</span>
+                        <span>{t.contact.messageLabel} *</span>
                       </label>
                       <textarea
                         required
                         rows={3}
                         name="bio"
-                        placeholder="Tell us about your distribution network, target therapeutic categories, or contract manufacturing needs..."
+                        placeholder={t.contact.messagePlaceholder}
                         className="w-full rounded-2xl border border-slate-200/90 bg-white/90 px-4 py-3 text-sm text-[#082B61] font-semibold placeholder-slate-400 outline-none focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/15 focus:bg-white transition-all resize-none"
                         style={{
                           boxShadow: "inset 0 1.5px 3px rgba(0, 40, 110, 0.03)",
@@ -507,7 +504,7 @@ export function DigitalEpochSection() {
                         background: "linear-gradient(135deg, #00B8F2 0%, #006EDC 100%)",
                       }}
                     >
-                      <span>Submit Partnership Inquiry</span>
+                      <span>{t.contact.submitBtn}</span>
                       <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-white transition-transform duration-300 group-hover:translate-x-1">
                         →
                       </span>
