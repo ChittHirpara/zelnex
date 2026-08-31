@@ -1,740 +1,350 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import React, { useRef, useSyncExternalStore } from "react";
+import React from "react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import {
-  FileCheck2,
-  CheckCircle2,
-  Globe2,
-  Boxes,
   ArrowRight,
+  ShieldCheck,
+  Building2,
+  Compass,
+  Target,
+  Award,
+  Globe2,
+  CheckCircle2,
+  ExternalLink,
+  Code2,
 } from "lucide-react";
-import { LiquidEdgeFilter } from "./glass/LiquidDisplacement";
-
-const GlassmorphismCanvas = dynamic(
-  () => import("./GlassmorphismCanvas").then((mod) => mod.GlassmorphismCanvas),
-  { ssr: false },
-);
-
-let webgl2Support: boolean | null = null;
-
-function readWebgl2Support() {
-  if (webgl2Support === null) {
-    const probe = document.createElement("canvas");
-    const context = probe.getContext("webgl2");
-    context?.getExtension("WEBGL_lose_context")?.loseContext();
-    webgl2Support = Boolean(context);
-  }
-  return webgl2Support;
-}
-
-function readServerWebgl2Support() {
-  return false;
-}
-
-function subscribeToWebgl2() {
-  return () => {};
-}
 
 export function Overview() {
   const { t } = useLanguage();
-  const rootRef = useRef<HTMLElement>(null);
-  const statsSurfaceRef = useRef<HTMLDivElement>(null);
-  const glassLive = useSyncExternalStore(
-    subscribeToWebgl2,
-    readWebgl2Support,
-    readServerWebgl2Support,
-  );
 
-  const statsData = [
+  const corporatePillars = [
     {
-      number: t.overview.stats.stat1Number,
-      labelTop: t.overview.stats.stat1Top,
-      labelBottom: t.overview.stats.stat1Bottom,
-      stroke: "#1e4fb8",
-      icon: (
-        <path
-          d="M12 2.5l2.9 6.2 6.8.9-5 4.7 1.3 6.7L12 17.7l-6 3.3 1.3-6.7-5-4.7 6.8-.9L12 2.5z"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      ),
+      num: "01.01",
+      label: "CORPORATE VISION",
+      accent: "#06B6D4",
+      accentBg: "#ECFEFF",
+      accentBorder: "#A5F3FC",
+      title: "Expanding Global Healthcare Access",
+      desc: "To be recognized as a premier international pharmaceutical brand delivering world-class, affordable, and compliant finished generic formulations to emerging and regulated healthcare markets across the globe.",
+      tags: ["Global Equity", "Affordability", "Accessible Medicine"],
     },
     {
-      number: t.overview.stats.stat2Number,
-      labelTop: t.overview.stats.stat2Top,
-      labelBottom: t.overview.stats.stat2Bottom,
-      stroke: "#2e92c0",
-      icon: (
-        <>
-          <rect x="6.5" y="3.5" width="11" height="17" rx="5.5" strokeWidth="1.8" />
-          <line x1="12" y1="9.5" x2="12" y2="14.5" strokeWidth="1.8" strokeLinecap="round" />
-          <line x1="9.5" y1="12" x2="14.5" y2="12" strokeWidth="1.8" strokeLinecap="round" />
-        </>
-      ),
+      num: "01.02",
+      label: "CORPORATE MISSION",
+      accent: "#0284C7",
+      accentBg: "#F0F9FF",
+      accentBorder: "#BAE6FD",
+      title: "Science, Integrity & Uncompromising Quality",
+      desc: "Committed to improving patient lives by sourcing, formulating, and distributing high-potency finished dosage forms manufactured exclusively under strict WHO-GMP conditions, backed by complete regulatory transparency.",
+      tags: ["WHO-GMP", "Patient Centricity", "Supply Security"],
     },
     {
-      number: t.overview.stats.stat3Number,
-      labelTop: t.overview.stats.stat3Top,
-      labelBottom: t.overview.stats.stat3Bottom,
-      stroke: "#1e4fb8",
-      icon: (
-        <>
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeWidth="1.8" />
-          <polyline points="14 2 14 8 20 8" strokeWidth="1.8" />
-          <line x1="9" y1="13" x2="15" y2="13" strokeWidth="1.8" strokeLinecap="round" />
-          <line x1="9" y1="17" x2="13" y2="17" strokeWidth="1.8" strokeLinecap="round" />
-        </>
-      ),
+      num: "01.03",
+      label: "QUALITY PHILOSOPHY",
+      accent: "#0D9488",
+      accentBg: "#F0FDFA",
+      accentBorder: "#99F6E4",
+      title: "Zero-Defect Quality Assurance",
+      desc: "Every commercial batch is produced in certified cleanrooms and subjected to multi-stage analytical testing, real-time Zone IVb stability validation (30°C / 75% RH), and direct Certificate of Analysis (CoA) verification.",
+      tags: ["Zone IVb Validated", "100% CoA Batch Release", "ICH Guidelines"],
     },
     {
-      number: t.overview.stats.stat4Number,
-      labelTop: t.overview.stats.stat4Top,
-      labelBottom: t.overview.stats.stat4Bottom,
-      stroke: "#00a6a6",
-      icon: (
-        <>
-          <path
-            d="M12 2.8L4.5 6v5.8c0 4.8 3.2 9.3 7.5 10.4 4.3-1.1 7.5-5.6 7.5-10.4V6L12 2.8z"
-            strokeWidth="1.8"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M9.2 11.8l2 2 3.8-3.8"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </>
-      ),
+      num: "01.04",
+      label: "GLOBAL COMPLIANCE",
+      accent: "#4F46E5",
+      accentBg: "#EEF2FF",
+      accentBorder: "#C7D2FE",
+      title: "International Regulatory Integration",
+      desc: "Maintaining seamless alignment with foreign health ministries and regional regulatory authorities through ready Common Technical Document (CTD) and electronic CTD (eCTD) dossiers across Asia, Africa, Middle East & Americas.",
+      tags: ["eCTD Modules 1-5", "COPP & FSC Certified", "MOH Approvals"],
     },
   ];
 
   return (
     <section
       id="overview"
-      ref={rootRef}
-      className="relative scroll-mt-24 py-16 sm:py-24 overflow-hidden bg-white select-none text-[#111111]"
+      className="relative scroll-mt-24 py-16 sm:py-24 bg-[#f3f4f6] text-[#111827] select-none overflow-hidden font-['Inter',sans-serif] border-b border-[#E5E7EB]"
     >
-      <div className="relative z-20 mx-auto max-w-[1300px] px-4 sm:px-6 md:px-8">
+      {/* 20px Pattern Grid Background */}
+      <div className="pointer-events-none absolute inset-0 z-0 opacity-40 devtools-grid-20" aria-hidden />
+
+      {/* Main Structural Container */}
+      <div className="relative z-10 mx-auto max-w-[1340px] px-4 sm:px-6 md:px-8">
         
         {/* ════════════════════════════════════════════════════════════════
-            PART 1: THE COMPLETE COMPANY OVERVIEW & STRATEGIC PILLARS
+            1. TOP TECHNICAL METADATA BAR
            ════════════════════════════════════════════════════════════════ */}
-        <div className="border border-[#DCDCD2] bg-white rounded-[24px] overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.02)] flex flex-col mb-12">
-          {/* Header Block */}
-          <div className="border-b border-[#DCDCD2] pt-10 pb-9 px-6 md:px-12 text-center flex flex-col items-center bg-[#FAFBF9]">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/20 mb-3.5 shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#006EDC]">
-                {t.overview.badge}
+        <div className="flex flex-wrap items-center justify-between border-b border-[#E5E7EB] pb-4 mb-10 text-[11px] font-['JetBrains_Mono',monospace] tracking-wider uppercase text-slate-500">
+          <div className="flex items-center gap-3">
+            <span className="w-2 h-2 bg-[#06B6D4] animate-pulse rounded-full" />
+            <span className="text-slate-700 font-bold">SYS_REF: ZELNEX_CORPORATE_PROFILE</span>
+            <span className="hidden sm:inline text-slate-300">|</span>
+            <span className="hidden sm:inline">HQ: AHMEDABAD, INDIA [23.0225° N, 72.5714° E]</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <span>WHO-GMP ACCREDITED</span>
+            <span className="text-slate-300">|</span>
+            <span className="text-[#0891B2] font-bold">STATUS: OPERATIONAL</span>
+          </div>
+        </div>
+
+        {/* ════════════════════════════════════════════════════════════════
+            2. COMPANY OVERVIEW HERO: INTER 600 + WIREFRAME GRAPHIC
+           ════════════════════════════════════════════════════════════════ */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 border-b border-[#E5E7EB] pb-16 mb-16 items-center">
+          
+          {/* Left: Headline & Corporate Lead */}
+          <div className="lg:col-span-7 flex flex-col">
+            {/* Status Badge */}
+            <div className="inline-flex items-center gap-2.5 px-3 py-1 border border-[#06B6D4]/30 bg-white rounded-md w-fit mb-6 shadow-2xs">
+              <span className="w-2 h-2 bg-[#06B6D4] rounded-full" />
+              <span className="text-[11px] font-['JetBrains_Mono',monospace] font-bold tracking-[0.12em] uppercase text-[#0891B2]">
+                01.00 // COMPANY OVERVIEW
+              </span>
+            </div>
+
+            {/* Inter 600 Title */}
+            <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-[#111827] tracking-tight leading-[1.04] mb-6 font-['Inter',sans-serif]">
+              Zelnex Pharmaceuticals Pvt. Ltd.
+            </h2>
+
+            {/* Monospaced Technical Subheading with Cyan Left Hairline */}
+            <div className="border-l-2 border-[#06B6D4] pl-4 sm:pl-5 my-2">
+              <p className="text-xs sm:text-[13px] font-['JetBrains_Mono',monospace] uppercase text-[#0891B2] tracking-wider leading-relaxed font-semibold">
+                AN EXPORT-ORIENTED PHARMACEUTICAL ENTERPRISE DELIVERING CERTIFIED GENERICS, COMPREHENSIVE CTD DOSSIERS, AND TROPICAL CLIMATE FINISHED FORMULATIONS TO 50+ COUNTRIES WORLDWIDE.
               </p>
             </div>
 
-            <h2
-              className="text-[28px] sm:text-[36px] lg:text-[44px] font-bold text-[#111111] leading-[1.15] tracking-[-0.03em] max-w-[900px] mb-4"
-              style={{ fontFamily: "'Syne', sans-serif" }}
-            >
-              {t.overview.title}
-            </h2>
-
-            <p className="text-base sm:text-[17px] text-[#444444] max-w-[860px] font-['Inter',sans-serif] leading-relaxed">
-              {t.overview.lead}
+            {/* Corporate Narrative Body */}
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed mt-5 mb-8 max-w-xl font-normal">
+              Headquartered in India, Zelnex Pharmaceuticals operates with a singular focus: bridging advanced research, WHO-GMP compliant formulation manufacturing, and dependable international supply chains. We serve healthcare providers, government health ministries, institutional hospitals, and commercial distributors with affordable, high-potency medicines.
             </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3 font-['JetBrains_Mono',monospace] text-xs font-bold uppercase tracking-wider">
+              <Link
+                href="#products"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-[#06B6D4] hover:bg-[#0891B2] text-white rounded-md shadow-sm transition-colors cursor-pointer"
+              >
+                <span>EXPLORE PRODUCTS</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-2 px-6 py-3.5 border border-[#D1D5DB] bg-white hover:border-[#06B6D4] text-[#111827] rounded-md shadow-2xs transition-colors cursor-pointer"
+              >
+                <span>DEVTOOLS SERVICES</span>
+                <Code2 className="w-3.5 h-3.5 text-[#06B6D4]" />
+              </Link>
+            </div>
           </div>
 
-          {/* 4 Core Pillars Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x border-b border-[#DCDCD2]">
-            {/* Pillar 1 */}
-            <div className="p-7 md:p-9 flex flex-col justify-between bg-white">
-              <div>
-                <div className="flex items-center gap-2.5 mb-3.5">
-                  <div className="w-8 h-8 rounded-lg bg-[#006EDC]/10 flex items-center justify-center text-[#006EDC] font-bold text-xs">
-                    {t.overview.p1Number}
-                  </div>
-                  <h3 className="font-bold text-lg text-[#111111] font-['Syne',sans-serif]">
-                    {t.overview.p1Title}
-                  </h3>
+          {/* Right: Technical Blueprint Topology Card */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative w-full max-w-[420px] aspect-square border border-[#D1D5DB] bg-white rounded-xl p-6 flex flex-col justify-between shadow-xs overflow-hidden">
+              
+              {/* Corner L-Markers */}
+              <div className="absolute top-2 left-2 w-2.5 h-2.5 border-t-2 border-l-2 border-[#06B6D4]" />
+              <div className="absolute top-2 right-2 w-2.5 h-2.5 border-t-2 border-r-2 border-[#06B6D4]" />
+              <div className="absolute bottom-2 left-2 w-2.5 h-2.5 border-b-2 border-l-2 border-[#06B6D4]" />
+              <div className="absolute bottom-2 right-2 w-2.5 h-2.5 border-b-2 border-r-2 border-[#06B6D4]" />
+
+              {/* Wireframe Header */}
+              <div className="flex items-center justify-between border-b border-slate-100 pb-2 text-[10px] font-['JetBrains_Mono',monospace] uppercase text-slate-500">
+                <span>CORPORATE TOPOLOGY</span>
+                <span className="text-[#0891B2] font-bold">NETWORK: GLOBAL</span>
+              </div>
+
+              {/* Rotating Wireframe Canvas */}
+              <div className="relative w-full h-[240px] flex items-center justify-center">
+                <svg viewBox="0 0 300 300" className="w-full h-full">
+                  {/* Outer Orbit Path */}
+                  <circle
+                    cx="150"
+                    cy="150"
+                    r="105"
+                    fill="none"
+                    stroke="#D1D5DB"
+                    strokeWidth="1"
+                    strokeDasharray="4 4"
+                  />
+                  {/* Inner Orbit Path */}
+                  <circle
+                    cx="150"
+                    cy="150"
+                    r="60"
+                    fill="none"
+                    stroke="#D1D5DB"
+                    strokeWidth="1"
+                    strokeDasharray="3 3"
+                  />
+
+                  {/* Grid Lines */}
+                  <line x1="150" y1="20" x2="150" y2="280" stroke="#E5E7EB" strokeWidth="0.5" />
+                  <line x1="20" y1="150" x2="280" y2="150" stroke="#E5E7EB" strokeWidth="0.5" />
+
+                  {/* Central Node (Ahmedabad HQ) */}
+                  <circle cx="150" cy="150" r="12" fill="#111827" />
+                  <circle cx="150" cy="150" r="6" fill="#06B6D4" />
+
+                  {/* Central Pulse */}
+                  <circle cx="150" cy="150" r="16" fill="none" stroke="#06B6D4" strokeWidth="0.8" strokeOpacity="0.5">
+                    <animate attributeName="r" values="14;28" dur="3s" repeatCount="indefinite" />
+                    <animate attributeName="stroke-opacity" values="0.6;0" dur="3s" repeatCount="indefinite" />
+                  </circle>
+
+                  {/* Orbiting Satellite Nodes */}
+                  <g>
+                    <animateTransform
+                      attributeName="transform"
+                      type="rotate"
+                      from="0 150 150"
+                      to="360 150 150"
+                      dur="20s"
+                      repeatCount="indefinite"
+                    />
+
+                    {/* Satellite 1: Africa & Middle East */}
+                    <line x1="150" y1="150" x2="150" y2="45" stroke="#06B6D4" strokeWidth="1" strokeOpacity="0.3" />
+                    <circle cx="150" cy="45" r="7" fill="#111827" />
+                    <rect x="147" y="42" width="6" height="6" fill="#06B6D4" />
+
+                    {/* Satellite 2: Asia & CIS */}
+                    <line x1="150" y1="150" x2="240" y2="202" stroke="#06B6D4" strokeWidth="1" strokeOpacity="0.3" />
+                    <circle cx="240" cy="202" r="7" fill="#111827" />
+                    <rect x="237" y="199" width="6" height="6" fill="#0284C7" />
+
+                    {/* Satellite 3: Americas */}
+                    <line x1="150" y1="150" x2="60" y2="202" stroke="#06B6D4" strokeWidth="1" strokeOpacity="0.3" />
+                    <circle cx="60" cy="202" r="7" fill="#111827" />
+                    <rect x="57" y="199" width="6" height="6" fill="#0D9488" />
+                  </g>
+                </svg>
+
+                <div className="absolute top-2 left-2 bg-slate-100 border border-slate-200 px-2 py-0.5 text-[9px] font-['JetBrains_Mono',monospace] text-slate-800">
+                  HQ: AHMEDABAD [IN]
                 </div>
-                <p className="text-sm text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-4">
-                  {t.overview.p1Desc}
-                </p>
-                <div className="flex flex-wrap gap-1.5 pt-2">
-                  {t.overview.p1Tags.map((tag) => (
+                <div className="absolute bottom-2 right-2 bg-slate-100 border border-slate-200 px-2 py-0.5 text-[9px] font-['JetBrains_Mono',monospace] text-slate-800">
+                  PORTS: 50+ GLOBAL
+                </div>
+              </div>
+
+              {/* Wireframe Footer */}
+              <div className="border-t border-slate-100 pt-2 flex items-center justify-between text-[10px] font-['JetBrains_Mono',monospace]">
+                <span className="text-slate-500">STANDARD: WHO-GMP</span>
+                <span className="text-[#0891B2] font-bold">100% COMPLIANT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ════════════════════════════════════════════════════════════════
+            3. CORPORATE FOUNDATION GRID (4 DEVTOOLS PANELS)
+           ════════════════════════════════════════════════════════════════ */}
+        <div className="mb-16">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-3 border-b border-[#E5E7EB] gap-4">
+            <div>
+              <span className="text-[11px] font-['JetBrains_Mono',monospace] uppercase text-[#0891B2] font-bold tracking-[0.15em] block mb-1">
+                CORPORATE DNA & FOUNDATION // 01.01 — 01.04
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#111827] font-['Inter',sans-serif] tracking-tight">
+                Who We Are & Our Commitments
+              </h3>
+            </div>
+            <span className="text-xs font-['JetBrains_Mono',monospace] text-slate-500">
+              ESTABLISHED IN INDIA // EXPORT FIRST
+            </span>
+          </div>
+
+          {/* 2x2 Bento Cards with DevTools panel styling */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+            {corporatePillars.map((item) => (
+              <div
+                key={item.num}
+                className="bg-white border border-[#E5E7EB] rounded-xl p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#06B6D4] transition-colors"
+              >
+                <div>
+                  <div className="border-l-2 pl-3 mb-4" style={{ borderColor: item.accent }}>
+                    <span className="text-[10px] font-['JetBrains_Mono',monospace] font-bold tracking-widest uppercase text-slate-500">
+                      {item.num} // {item.label}
+                    </span>
+                    <h4 className="text-lg sm:text-xl font-bold text-[#111827] font-['Inter',sans-serif] mt-1">
+                      {item.title}
+                    </h4>
+                  </div>
+
+                  <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed mb-6 font-normal">
+                    {item.desc}
+                  </p>
+                </div>
+
+                {/* Tags Metadata Footer */}
+                <div className="pt-3.5 border-t border-slate-100 flex flex-wrap items-center gap-1.5 font-['JetBrains_Mono',monospace] text-[10px]">
+                  {item.tags.map((tag, tIdx) => (
                     <span
-                      key={tag}
-                      className="inline-block px-2.5 py-1 rounded-md bg-[#FAFBF9] border border-[#DCDCD2] text-[11px] font-semibold text-[#444444]"
+                      key={tIdx}
+                      className="px-2 py-0.5 bg-[#F9FAFB] border border-[#E5E7EB] text-slate-700 rounded"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
               </div>
-            </div>
-
-            {/* Pillar 2 */}
-            <div className="p-7 md:p-9 flex flex-col justify-between bg-white border-t md:border-t-0">
-              <div>
-                <div className="flex items-center gap-2.5 mb-3.5">
-                  <div className="w-8 h-8 rounded-lg bg-[#008A8A]/10 flex items-center justify-center text-[#008A8A] font-bold text-xs">
-                    {t.overview.p2Number}
-                  </div>
-                  <h3 className="font-bold text-lg text-[#111111] font-['Syne',sans-serif]">
-                    {t.overview.p2Title}
-                  </h3>
-                </div>
-                <p className="text-sm text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-4">
-                  {t.overview.p2Desc}
-                </p>
-                <div className="p-3 rounded-xl bg-[#FAFBF9] border border-[#E5E5E5] flex items-center justify-between text-xs font-semibold text-[#111111]">
-                  <span>{t.overview.p2Adherence}</span>
-                  <span className="text-[#008A8A] flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" /> {t.overview.p2Certified}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x">
-            {/* Pillar 3 */}
-            <div className="p-7 md:p-9 flex flex-col justify-between bg-white">
-              <div>
-                <div className="flex items-center gap-2.5 mb-3.5">
-                  <div className="w-8 h-8 rounded-lg bg-[#1E3A8A]/10 flex items-center justify-center text-[#1E3A8A] font-bold text-xs">
-                    {t.overview.p3Number}
-                  </div>
-                  <h3 className="font-bold text-lg text-[#111111] font-['Syne',sans-serif]">
-                    {t.overview.p3Title}
-                  </h3>
-                </div>
-                <p className="text-sm text-[#555555] font-['Inter',sans-serif] leading-relaxed">
-                  {t.overview.p3Desc}
-                </p>
-              </div>
-            </div>
-
-            {/* Pillar 4 */}
-            <div className="p-7 md:p-9 flex flex-col justify-between bg-white border-t md:border-t-0">
-              <div>
-                <div className="flex items-center gap-2.5 mb-3.5">
-                  <div className="w-8 h-8 rounded-lg bg-[#7928CA]/10 flex items-center justify-center text-[#7928CA] font-bold text-xs">
-                    {t.overview.p4Number}
-                  </div>
-                  <h3 className="font-bold text-lg text-[#111111] font-['Syne',sans-serif]">
-                    {t.overview.p4Title}
-                  </h3>
-                </div>
-                <p className="text-sm text-[#555555] font-['Inter',sans-serif] leading-relaxed">
-                  {t.overview.p4Desc}
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
         {/* ════════════════════════════════════════════════════════════════
-            PART 2: TECHNICAL CAPABILITY PANELS
+            4. TECHNICAL STATS TELEMETRY BAR
            ════════════════════════════════════════════════════════════════ */}
-        <div className="border border-[#DCDCD2] bg-white rounded-[24px] overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.02)] flex flex-col mb-12">
-
-          {/* ══════════════════════════════════════════════════════════
-              PANEL 01: Regulatory Affairs & CTD Dossier Compilation
-              (Layout: Left = Visual Card, Right = Text)
-             ══════════════════════════════════════════════════════════ */}
-          <div className="border-b border-[#DCDCD2]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-[#DCDCD2]">
-              {/* Left Visual Card */}
-              <div className="bg-[#FAFBF9]/60 p-5 md:p-8 flex flex-col items-center justify-center min-h-[340px]">
-                <div className="w-full max-w-[440px] bg-white border border-[#DCDCD2] rounded-[20px] p-5 shadow-[0_8px_24px_rgba(0,0,0,0.03)] flex flex-col gap-0">
-                  <div>
-                    <div className="flex items-center justify-between pb-4 border-b border-[#E5E5E5] mb-5">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-[#006EDC]/10 flex items-center justify-center text-[#006EDC]">
-                          <FileCheck2 className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-sm text-[#111111] font-['Syne',sans-serif]">
-                            eCTD Submission Ready
-                          </h4>
-                          <p className="text-xs text-[#777777]">Modules 1 through 5 Validation</p>
-                        </div>
-                      </div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#006EDC] bg-[#006EDC]/10 px-2.5 py-1 rounded-full border border-[#006EDC]/20">
-                        Zone IVb
-                      </span>
-                    </div>
-
-                    <div className="space-y-3 font-['Inter',sans-serif]">
-                      <div className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-[#FAFBF9] border border-[#E5E5E5]/60">
-                        <span className="font-medium text-[#444444]">Module 1: Administrative Info</span>
-                        <span className="text-[#008A8A] font-semibold flex items-center gap-1">
-                          <CheckCircle2 className="w-3.5 h-3.5" /> Verified
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-[#FAFBF9] border border-[#E5E5E5]/60">
-                        <span className="font-medium text-[#444444]">Module 2: Quality Overviews (QOS)</span>
-                        <span className="text-[#008A8A] font-semibold flex items-center gap-1">
-                          <CheckCircle2 className="w-3.5 h-3.5" /> Complete
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-[#FAFBF9] border border-[#E5E5E5]/60">
-                        <span className="font-medium text-[#444444]">Module 3: Chemical & Pharm Quality</span>
-                        <span className="text-[#008A8A] font-semibold flex items-center gap-1">
-                          <CheckCircle2 className="w-3.5 h-3.5" /> 36M Stability
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 mt-4 border-t border-[#E5E5E5] flex items-center justify-between text-xs text-[#666666]">
-                    <span>Global MOH Filing Support</span>
-                    <span className="font-semibold text-[#111111]">50+ Regulatory Authorities</span>
-                  </div>
-                </div>
+        <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 sm:p-8 shadow-xs">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
+            
+            <div className="flex flex-col pt-4 sm:pt-0 sm:px-4 first:pl-0 font-['JetBrains_Mono',monospace]">
+              <span className="text-[10px] uppercase text-slate-400 tracking-wider mb-1">
+                MARKET_PRESENCE
+              </span>
+              <div className="text-3xl sm:text-4xl font-bold text-[#111827]">
+                50+
               </div>
-
-              {/* Right Content */}
-              <div className="p-6 md:p-9 flex flex-col justify-center bg-white">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAFBF9] border border-[#DCDCD2] w-fit mb-4 text-xs font-semibold text-[#555555]">
-                  <span>01</span>
-                  <span>/</span>
-                  <span>{t.overview.panels.p1Badge}</span>
-                </div>
-                <h3
-                  className="text-[22px] sm:text-[28px] font-bold text-[#111111] mb-3 leading-[1.15] tracking-[-0.025em]"
-                  style={{ fontFamily: "'Syne', sans-serif" }}
-                >
-                  {t.overview.panels.p1Title}
-                </h3>
-                <p className="text-sm sm:text-base text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-6">
-                  {t.overview.panels.p1Desc}
-                </p>
-                <div className="space-y-2.5 font-['Inter',sans-serif] text-sm text-[#444444] mb-5">
-                  {t.overview.panels.p1Points.map((point, pIdx) => (
-                    <div key={pIdx} className="flex items-center gap-2.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#006EDC]" />
-                      <span>{point}</span>
-                    </div>
-                  ))}
-                </div>
-                <Link
-                  href="#contact"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#006EDC] hover:text-[#082B61] transition-colors"
-                >
-                  <span>{t.overview.panels.p1Cta}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+              <span className="text-xs text-slate-600 mt-1 font-sans font-medium">Export Countries</span>
             </div>
-            <div className="hidden md:block border-l border-[#DCDCD2] bg-white" />
-          </div>
 
-          {/* ══════════════════════════════════════════════════════════
-              PANEL 02: 3rd Party Manufacturing & Contract Formulation
-              (Layout: Left = Text, Right = Visual Card)
-             ══════════════════════════════════════════════════════════ */}
-          <div className="border-b border-[#DCDCD2]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-[#DCDCD2]">
-              {/* Left Content */}
-              <div className="p-6 md:p-9 flex flex-col justify-center bg-white order-2 lg:order-1">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAFBF9] border border-[#DCDCD2] w-fit mb-4 text-xs font-semibold text-[#555555]">
-                  <span>02</span>
-                  <span>/</span>
-                  <span>{t.overview.panels.p2Badge}</span>
-                </div>
-                <h3
-                  className="text-[22px] sm:text-[28px] font-bold text-[#111111] mb-3 leading-[1.15] tracking-[-0.025em]"
-                  style={{ fontFamily: "'Syne', sans-serif" }}
-                >
-                  <span className="text-[#008A8A]">3rd</span> Party Manufacturing
-                </h3>
-                <p className="text-sm sm:text-base text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-6">
-                  {t.overview.panels.p2Desc}
-                </p>
-
-                <div className="mb-4">
-                  <h4 className="text-xs sm:text-sm font-bold text-[#111111] tracking-wide mb-3 font-['Syne',sans-serif]">
-                    Process for 3rd Party Manufacturing:
-                  </h4>
-                  <div className="space-y-2.5 font-['Inter',sans-serif] text-sm text-[#444444]">
-                    {t.overview.panels.p2Points.map((point, pIdx) => (
-                      <div key={pIdx} className="flex items-center gap-2.5">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#008A8A] shrink-0" />
-                        <span>{point}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <p className="text-xs sm:text-[13px] text-[#666666] italic leading-relaxed mb-6 font-['Inter',sans-serif]">
-                  With our commitment towards working collaboratively with customers, we provide Quality Branded medicines and Generics worldwide.
-                </p>
-
-                <Link
-                  href="#contact"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#008A8A] hover:text-[#082B61] transition-colors"
-                >
-                  <span>{t.overview.panels.p2Cta}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+            <div className="flex flex-col pt-4 sm:pt-0 sm:px-4 font-['JetBrains_Mono',monospace]">
+              <span className="text-[10px] uppercase text-slate-400 tracking-wider mb-1">
+                COMMERCIAL_CATALOG
+              </span>
+              <div className="text-3xl sm:text-4xl font-bold text-[#111827]">
+                800+
               </div>
-
-              {/* Right Visual Card */}
-              <div className="bg-[#FAFBF9]/60 p-5 md:p-8 flex flex-col items-center justify-center min-h-[340px] order-1 lg:order-2">
-                <div className="w-full max-w-[440px] bg-white border border-[#DCDCD2] rounded-[20px] p-6 sm:p-7 shadow-[0_8px_24px_rgba(0,0,0,0.03)] flex flex-col gap-0">
-                  <div className="flex items-center justify-between pb-4 border-b border-[#E5E5E5] mb-5">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF4FA] border border-[#BAE6FD] text-[11px] font-bold text-[#0284C7] font-mono tracking-wide">
-                      [ WHO-GMP Certified ]
-                    </div>
-                    <span className="text-xs font-mono font-bold text-[#888888]">02</span>
-                  </div>
-
-                  <h4 className="text-2xl sm:text-[26px] font-extrabold text-[#111111] leading-tight mb-1" style={{ fontFamily: "'Syne', sans-serif" }}>
-                    <span className="text-[#008A8A]">3rd</span> Party Manufacturing
-                  </h4>
-                  <p className="text-xs sm:text-sm font-medium text-[#666666] mb-5 font-['Inter',sans-serif]">
-                    End-to-End Generic Production & International Export
-                  </p>
-
-                  <div className="border-t border-[#EAEAEA] pt-4 space-y-3 font-['Inter',sans-serif] text-xs sm:text-[13px] text-[#333333]">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-2 h-2 rounded-full bg-[#008A8A] shrink-0" />
-                      <span>Formulation approval from Drug department</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-2 h-2 rounded-full bg-[#008A8A] shrink-0" />
-                      <span>Procurement of Raw materials</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-2 h-2 rounded-full bg-[#008A8A] shrink-0" />
-                      <span>Actual Formulation Production</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-2 h-2 rounded-full bg-[#008A8A] shrink-0" />
-                      <span>Export</span>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 mt-5 border-t border-[#E5E5E5] flex items-center justify-between text-[11px] text-[#666666]">
-                    <span>Batch Release Protocol</span>
-                    <span className="font-semibold text-[#008A8A] flex items-center gap-1">
-                      <CheckCircle2 className="w-3.5 h-3.5" /> 100% WHO-GMP Compliant
-                    </span>
-                  </div>
-                </div>
-              </div>
+              <span className="text-xs text-slate-600 mt-1 font-sans font-medium">Approved Formulations</span>
             </div>
-          </div>
 
-          {/* ══════════════════════════════════════════════════════════
-              PANEL 03: Global Supply Chain & International Distribution
-              (Layout: Left = Visual Card, Right = Text)
-             ══════════════════════════════════════════════════════════ */}
-          <div className="border-b border-[#DCDCD2]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-[#DCDCD2]">
-              {/* Left Visual Card */}
-              <div className="bg-[#FAFBF9]/60 p-5 md:p-8 flex flex-col items-center justify-center min-h-[340px]">
-                <div className="w-full max-w-[440px] bg-white border border-[#DCDCD2] rounded-[20px] p-5 shadow-[0_8px_24px_rgba(0,0,0,0.03)] flex flex-col gap-0">
-                  <div>
-                    <div className="flex items-center justify-between pb-4 border-b border-[#E5E5E5] mb-5">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-[#1E3A8A]/10 flex items-center justify-center text-[#1E3A8A]">
-                          <Globe2 className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-sm text-[#111111] font-['Syne',sans-serif]">
-                            Global Export Network
-                          </h4>
-                          <p className="text-xs text-[#777777]">Cold-Chain & Tropical Barrier Transit</p>
-                        </div>
-                      </div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#1E3A8A] bg-[#1E3A8A]/10 px-2.5 py-1 rounded-full border border-[#1E3A8A]/20">
-                        Active
-                      </span>
-                    </div>
-
-                    <div className="space-y-3 font-['Inter',sans-serif]">
-                      <div className="flex items-center justify-between text-xs p-3 rounded-xl bg-[#FAFBF9] border border-[#E5E5E5]/60">
-                        <div className="flex items-center gap-2.5">
-                          <span className="w-2 h-2 rounded-full bg-[#006EDC]" />
-                          <span className="font-medium text-[#333333]">Africa & Middle East Corridor</span>
-                        </div>
-                        <span className="text-xs font-bold text-[#111111]">25+ Countries</span>
-                      </div>
-                      <div className="flex items-center justify-between text-xs p-3 rounded-xl bg-[#FAFBF9] border border-[#E5E5E5]/60">
-                        <div className="flex items-center gap-2.5">
-                          <span className="w-2 h-2 rounded-full bg-[#008A8A]" />
-                          <span className="font-medium text-[#333333]">Southeast Asia & CIS Regions</span>
-                        </div>
-                        <span className="text-xs font-bold text-[#111111]">18+ Countries</span>
-                      </div>
-                      <div className="flex items-center justify-between text-xs p-3 rounded-xl bg-[#FAFBF9] border border-[#E5E5E5]/60">
-                        <div className="flex items-center gap-2.5">
-                          <span className="w-2 h-2 rounded-full bg-[#7928CA]" />
-                          <span className="font-medium text-[#333333]">Latin America & Caribbean</span>
-                        </div>
-                        <span className="text-xs font-bold text-[#111111]">10+ Countries</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 mt-4 border-t border-[#E5E5E5] flex items-center justify-between text-xs text-[#666666]">
-                    <span>Transit Security</span>
-                    <span className="font-semibold text-[#111111]">Temperature-Monitored Dispatch</span>
-                  </div>
-                </div>
+            <div className="flex flex-col pt-4 sm:pt-0 sm:px-4 font-['JetBrains_Mono',monospace]">
+              <span className="text-[10px] uppercase text-slate-400 tracking-wider mb-1">
+                DOSSIER_LIBRARY
+              </span>
+              <div className="text-3xl sm:text-4xl font-bold text-[#111827]">
+                150+
               </div>
-
-              {/* Right Content */}
-              <div className="p-6 md:p-9 flex flex-col justify-center bg-white">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAFBF9] border border-[#DCDCD2] w-fit mb-4 text-xs font-semibold text-[#555555]">
-                  <span>03</span>
-                  <span>/</span>
-                  <span>{t.overview.panels.p3Badge}</span>
-                </div>
-                <h3
-                  className="text-[22px] sm:text-[28px] font-bold text-[#111111] mb-3 leading-[1.15] tracking-[-0.025em]"
-                  style={{ fontFamily: "'Syne', sans-serif" }}
-                >
-                  {t.overview.panels.p3Title}
-                </h3>
-                <p className="text-sm sm:text-base text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-6">
-                  {t.overview.panels.p3Desc}
-                </p>
-                <div className="space-y-2.5 font-['Inter',sans-serif] text-sm text-[#444444] mb-5">
-                  {t.overview.panels.p3Points.map((point, pIdx) => (
-                    <div key={pIdx} className="flex items-center gap-2.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#1E3A8A]" />
-                      <span>{point}</span>
-                    </div>
-                  ))}
-                </div>
-                <Link
-                  href="#contact"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#1E3A8A] hover:text-[#082B61] transition-colors"
-                >
-                  <span>{t.overview.panels.p3Cta}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+              <span className="text-xs text-slate-600 mt-1 font-sans font-medium">Ready CTD / eCTD Files</span>
             </div>
-          </div>
 
-          {/* ══════════════════════════════════════════════════════════
-              PANEL 04: Product Range & Commercial Formulary
-              (Layout: Left = Text, Right = Visual Card)
-             ══════════════════════════════════════════════════════════ */}
-          <div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-[#DCDCD2]">
-              {/* Left Content */}
-              <div className="p-6 md:p-9 flex flex-col justify-center bg-white order-2 lg:order-1">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAFBF9] border border-[#DCDCD2] w-fit mb-4 text-xs font-semibold text-[#555555]">
-                  <span>04</span>
-                  <span>/</span>
-                  <span>{t.overview.panels.p4Badge}</span>
-                </div>
-                <h3
-                  className="text-[22px] sm:text-[28px] font-bold text-[#111111] mb-3 leading-[1.15] tracking-[-0.025em]"
-                  style={{ fontFamily: "'Syne', sans-serif" }}
-                >
-                  {t.overview.panels.p4Title}
-                </h3>
-                <p className="text-sm sm:text-base text-[#555555] font-['Inter',sans-serif] leading-relaxed mb-6">
-                  {t.overview.panels.p4Desc}
-                </p>
-                <div className="space-y-2.5 font-['Inter',sans-serif] text-sm text-[#444444] mb-5">
-                  {t.overview.panels.p4Points.map((point, pIdx) => (
-                    <div key={pIdx} className="flex items-center gap-2.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#006EDC]" />
-                      <span>{point}</span>
-                    </div>
-                  ))}
-                </div>
-                <Link
-                  href="#products"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#006EDC] hover:text-[#082B61] transition-colors"
-                >
-                  <span>{t.overview.panels.p4Cta}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+            <div className="flex flex-col pt-4 sm:pt-0 sm:px-4 font-['JetBrains_Mono',monospace]">
+              <span className="text-[10px] uppercase text-slate-400 tracking-wider mb-1">
+                QUALITY_STANDARD
+              </span>
+              <div className="text-3xl sm:text-4xl font-bold text-[#0891B2]">
+                100%
               </div>
-
-              {/* Right Visual Card */}
-              <div className="bg-[#FAFBF9]/60 p-5 md:p-8 flex flex-col items-center justify-center min-h-[340px] order-1 lg:order-2">
-                <div className="w-full max-w-[440px] bg-white border border-[#DCDCD2] rounded-[20px] p-6 shadow-[0_8px_24px_rgba(0,0,0,0.03)] flex flex-col justify-between h-full">
-                  <div>
-                    <div className="flex items-center justify-between pb-4 border-b border-[#E5E5E5] mb-5">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-[#006EDC]/10 flex items-center justify-center text-[#006EDC]">
-                          <Boxes className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-sm text-[#111111] font-['Syne',sans-serif]">
-                            Therapeutic Breadth
-                          </h4>
-                          <p className="text-xs text-[#777777]">Essential Medicines & Formulations</p>
-                        </div>
-                      </div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#006EDC] bg-[#006EDC]/10 px-2.5 py-1 rounded-full border border-[#006EDC]/20">
-                        800+ SKUs
-                      </span>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-2.5 font-['Inter',sans-serif]">
-                      <div className="p-3 rounded-xl bg-[#FAFBF9] border border-[#E5E5E5]/60 text-center">
-                        <div className="text-lg font-bold text-[#111111] font-['Syne',sans-serif]">60+</div>
-                        <div className="text-[11px] text-[#666666] mt-0.5">Antibiotics & Anti-Infectives</div>
-                      </div>
-                      <div className="p-3 rounded-xl bg-[#FAFBF9] border border-[#E5E5E5]/60 text-center">
-                        <div className="text-lg font-bold text-[#111111] font-['Syne',sans-serif]">45+</div>
-                        <div className="text-[11px] text-[#666666] mt-0.5">Cardiovascular Care</div>
-                      </div>
-                      <div className="p-3 rounded-xl bg-[#FAFBF9] border border-[#E5E5E5]/60 text-center">
-                        <div className="text-lg font-bold text-[#111111] font-['Syne',sans-serif]">50+</div>
-                        <div className="text-[11px] text-[#666666] mt-0.5">Gastrointestinal Formulations</div>
-                      </div>
-                      <div className="p-3 rounded-xl bg-[#FAFBF9] border border-[#E5E5E5]/60 text-center">
-                        <div className="text-lg font-bold text-[#111111] font-['Syne',sans-serif]">40+</div>
-                        <div className="text-[11px] text-[#666666] mt-0.5">Sterile IV Injectables</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 mt-4 border-t border-[#E5E5E5] flex items-center justify-between text-xs text-[#666666]">
-                    <span>Commercial Readiness</span>
-                    <span className="font-semibold text-[#006EDC]">Immediate Export Clearance</span>
-                  </div>
-                </div>
-              </div>
+              <span className="text-xs text-slate-600 mt-1 font-sans font-medium">WHO-GMP Validated</span>
             </div>
+
           </div>
         </div>
 
-        {/* ── Signature Crystal Clear Liquid Glass Stats Slab ── */}
-        <LiquidEdgeFilter scale={22} />
-        <div className="overview-stats-bar relative max-w-[1140px] mx-auto">
-          <div
-            ref={statsSurfaceRef}
-            className={`glass-surface select-none relative overflow-hidden transition-all duration-300 ${glassLive ? "glass-live" : ""}`}
-            style={{
-              borderRadius: "clamp(16px, 4vw, 30px)",
-            }}
-          >
-            {glassLive && <GlassmorphismCanvas surfaceRef={statsSurfaceRef} crystal={true} />}
-
-            {/* Top-Right Glowing Crystal Lens Flare */}
-            <div
-              className="absolute right-6 top-6 w-2.5 h-2.5 rounded-full pointer-events-none z-[5]"
-              style={{
-                background: "#ffffff",
-                boxShadow: "0 0 8px #ffffff, 0 0 16px #00b8f2",
-              }}
-            />
-
-            {/* Bottom Cyan Caustic Rim */}
-            <div
-              className="absolute bottom-0 inset-x-8 h-[2px] rounded-full pointer-events-none z-[5]"
-              style={{
-                background: "linear-gradient(90deg, transparent, #00B8F2 50%, transparent)",
-                boxShadow: "0 0 12px rgba(0, 184, 242, 0.85)",
-              }}
-            />
-
-            <div
-              className="relative z-[4] grid grid-cols-1 sm:flex items-center w-full overflow-hidden"
-              style={{
-                padding: "clamp(14px, 2.4vw, 28px) clamp(14px, 3.8vw, 44px)",
-                minHeight: 100,
-                borderRadius: "inherit",
-              }}
-            >
-              {statsData.map((stat) => (
-                <div
-                  key={stat.number}
-                  className="gs-stat flex flex-1 items-center border-b sm:border-b-0 sm:border-l last:border-b-0 first:border-l-0 border-slate-200/50 py-3 sm:py-0"
-                  style={{
-                    gap: "clamp(12px, 1.8vw, 20px)",
-                    padding: "clamp(10px, 1.6vw, 22px) clamp(10px, 1.6vw, 22px)",
-                  }}
-                >
-                  {/* Crystal Glass Bead Orb */}
-                  <div data-glass-bead className="glass-badge hz-stat-item">
-                    <svg
-                      className="relative z-[2]"
-                      style={{ width: "62%", height: "62%" }}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke={stat.stroke}
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      {stat.icon}
-                    </svg>
-                  </div>
-
-                  <div className="flex flex-col" style={{ gap: 3, minWidth: 0 }}>
-                    <div
-                      style={{
-                        fontWeight: 800,
-                        fontSize: "clamp(18px, 2.4vw, 30px)",
-                        color: "#0a1454",
-                        lineHeight: 1,
-                        letterSpacing: "-0.01em",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {stat.number}
-                    </div>
-                    <div
-                      style={{
-                        fontWeight: 600,
-                        fontSize: "clamp(10px, 1.05vw, 13px)",
-                        color: "#5b6089",
-                        lineHeight: 1.25,
-                      }}
-                    >
-                      {stat.labelTop}
-                      <br />
-                      {stat.labelBottom}
-                    </div>
-                    <div className="flex" style={{ gap: 4, marginTop: 4 }}>
-                      {[0, 1, 2].map((d) => (
-                        <i
-                          key={d}
-                          style={{
-                            width: 4,
-                            height: 4,
-                            borderRadius: "50%",
-                            display: "block",
-                            background: "linear-gradient(135deg,#2f74e0,#123f9e)",
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Ambient Floor Shadow */}
-          <div
-            className="pointer-events-none"
-            style={{
-              width: "82%",
-              height: 22,
-              margin: "-4px auto 0",
-              borderRadius: "50%",
-              background: "radial-gradient(ellipse at center, rgba(15, 45, 100, 0.18), rgba(15, 45, 100, 0) 72%)",
-              filter: "blur(6px)",
-            }}
-          />
-        </div>
       </div>
     </section>
   );

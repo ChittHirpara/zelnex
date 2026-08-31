@@ -1,359 +1,243 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
-import { GradientCard } from "@/components/ui/gradient-card";
-import { BentoHub } from "@/components/BentoHub";
+import { ArrowUpRight } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger);
 }
 
+interface ProductCardItem {
+  badge: string;
+  badgeColor: string;
+  badgeBg: string;
+  badgeBorder: string;
+  title: string;
+  image: string;
+  description: string;
+  specs: string;
+  href: string;
+}
+
+const MATTE_GLASS_PRODUCTS: ProductCardItem[] = [
+  {
+    badge: "SPECIALIZED WELLNESS",
+    badgeColor: "#EA580C",
+    badgeBg: "rgba(255, 247, 237, 0.85)",
+    badgeBorder: "rgba(253, 186, 116, 0.9)",
+    title: "Oxytocin Nasal Spray",
+    image: "/products/nasal-spray.jpg",
+    description:
+      "A high-potency metered intranasal formulation engineered for rapid bioavailability, stable shelf-life, and precise clinical dosing.",
+    specs: "15ml Metered Spray · Zone IVb Stable",
+    href: "#contact",
+  },
+  {
+    badge: "ORAL SOLID DOSAGE",
+    badgeColor: "#006EDC",
+    badgeBg: "rgba(240, 249, 255, 0.85)",
+    badgeBorder: "rgba(186, 230, 253, 0.9)",
+    title: "Tablets & Capsules",
+    image: "/products/tablets-capsules.jpg",
+    description:
+      "Film-coated, sustained-release, and hard-gelatin capsule formulations manufactured in WHO-GMP cleanrooms with high-barrier Alu-Alu packaging.",
+    specs: "800+ Formulations · High-Speed Blistering",
+    href: "#contact",
+  },
+  {
+    badge: "STERILE INJECTABLES",
+    badgeColor: "#0D9488",
+    badgeBg: "rgba(240, 253, 250, 0.85)",
+    badgeBorder: "rgba(153, 246, 228, 0.9)",
+    title: "Lyophilized & Liquid Vials",
+    image: "/products/sterile-vial.jpg",
+    description:
+      "Aseptically filled parenteral infusions and lyophilized antibiotic vials certified for Grade A laminar airflow cleanroom environments.",
+    specs: "10ml / 20ml Vials · Pyrogen-Free",
+    href: "#contact",
+  },
+  {
+    badge: "PEDIATRIC & ORAL LIQUIDS",
+    badgeColor: "#D97706",
+    badgeBg: "rgba(255, 251, 235, 0.85)",
+    badgeBorder: "rgba(253, 230, 138, 0.9)",
+    title: "Syrups & Suspensions",
+    image: "/products/syrup-suspension.jpg",
+    description:
+      "Palatable pediatric suspensions, cough syrups, and oral rehydration solutions formulated with tamper-evident graduated dosing closures.",
+    specs: "60ml / 100ml / 150ml · Child-Resistant",
+    href: "#contact",
+  },
+];
+
 export function ProductShowcase() {
   const { t } = useLanguage();
   const rootRef = useRef<HTMLElement>(null);
 
-  const categories = [
-    {
-      title: t.products.categories.tablets.title,
-      badgeText: t.products.categories.tablets.badge,
-      badgeColor: "#006EDC",
-      gradient: "blue" as const,
-      description: t.products.categories.tablets.desc,
-      bullets: t.products.categories.tablets.bullets,
-      ctaText: t.products.categories.tablets.cta,
-      ctaHref: "#contact",
-    },
-    {
-      title: t.products.categories.capsules.title,
-      badgeText: t.products.categories.capsules.badge,
-      badgeColor: "#00bfb5",
-      gradient: "teal" as const,
-      description: t.products.categories.capsules.desc,
-      bullets: t.products.categories.capsules.bullets,
-      ctaText: t.products.categories.capsules.cta,
-      ctaHref: "#contact",
-    },
-    {
-      title: t.products.categories.syrups.title,
-      badgeText: t.products.categories.syrups.badge,
-      badgeColor: "#38ef7d",
-      gradient: "green" as const,
-      description: t.products.categories.syrups.desc,
-      bullets: t.products.categories.syrups.bullets,
-      ctaText: t.products.categories.syrups.cta,
-      ctaHref: "#contact",
-    },
-    {
-      title: t.products.categories.injectables.title,
-      badgeText: t.products.categories.injectables.badge,
-      badgeColor: "#7928ca",
-      gradient: "purple" as const,
-      description: t.products.categories.injectables.desc,
-      bullets: t.products.categories.injectables.bullets,
-      ctaText: t.products.categories.injectables.cta,
-      ctaHref: "#contact",
-    },
-  ];
-
-  const PARTNERSHIP_METRICS = [
-    {
-      id: "markets",
-      value: "50+",
-      label: t.network.stat1Label,
-      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000",
-    },
-    {
-      id: "dossiers",
-      value: "100%",
-      label: t.certifications.metrics[2]?.label || "CTD / eCTD Dossier Readiness",
-      image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1000",
-    },
-    {
-      id: "dispatch",
-      value: "24/7",
-      label: t.network.stat4Label,
-      image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1000",
-    },
-  ];
-
-  // Cursor position for spring image following
-  const [hoveredMetricId, setHoveredMetricId] = useState<string | null>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const springConfig = { stiffness: 320, damping: 28 };
-  const imageX = useSpring(mouseX, springConfig);
-  const imageY = useSpring(mouseY, springConfig);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    mouseX.set(e.clientX - rect.left);
-    mouseY.set(e.clientY - rect.top);
-  };
-
   useGSAP(
     () => {
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reduce = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
       if (reduce) return;
 
       gsap.fromTo(
-        ".product-header",
-        { y: -24, opacity: 0 },
+        ".product-header-anim",
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 0.7,
           ease: "power2.out",
-          scrollTrigger: { trigger: rootRef.current, start: "top 80%" },
-        }
+          clearProps: "all",
+          scrollTrigger: { trigger: rootRef.current, start: "top 85%" },
+        },
       );
 
       gsap.fromTo(
         ".product-card-item",
-        { y: 28, opacity: 0 },
+        { y: 35, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.5,
-          stagger: 0.08,
+          duration: 0.6,
+          stagger: 0.1,
           ease: "power2.out",
           clearProps: "all",
-          scrollTrigger: { trigger: rootRef.current, start: "top 75%" },
-        }
+          scrollTrigger: { trigger: rootRef.current, start: "top 80%" },
+        },
       );
     },
-    { scope: rootRef }
+    { scope: rootRef },
   );
 
   return (
     <section
       id="products"
       ref={rootRef}
-      className="relative scroll-mt-24 py-20 md:py-28 overflow-hidden"
-      style={{
-        background: "linear-gradient(180deg, #f7fafc 0%, #edf4fc 50%, #f7fafc 100%)",
-      }}
+      className="relative scroll-mt-24 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-[1720px] mx-auto z-10 select-none overflow-hidden"
     >
-      {/* Ambient optical glass light orbs for refraction depth */}
-      <div
-        className="pointer-events-none absolute top-10 left-1/4 w-[600px] h-[350px] rounded-full opacity-35 blur-3xl"
-        style={{
-          background: "radial-gradient(circle, rgba(0, 184, 242, 0.20) 0%, rgba(0, 110, 220, 0.10) 50%, transparent 70%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute bottom-20 right-10 w-96 h-96 rounded-full opacity-30 blur-3xl"
-        style={{
-          background: "radial-gradient(circle, rgba(56, 239, 125, 0.15) 0%, rgba(0, 191, 181, 0.1) 60%, transparent 70%)",
-        }}
-      />
-
-      <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="product-header max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-teal/10 border border-teal/20 mb-3.5 shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-teal">
+        <div className="product-header-anim text-center mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/20 mb-3.5 shadow-2xs">
+            <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#006EDC]">
               {t.products.badge}
             </p>
           </div>
 
-          <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-[#082B61] md:text-4xl lg:text-[2.65rem] leading-[1.18]">
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#111111] tracking-tight leading-[1.08] mb-4"
+            style={{ fontFamily: "'Syne', sans-serif" }}
+          >
             {t.products.title}
           </h2>
 
-          <div
-            className="my-5 h-[3.5px] w-14 rounded-full"
-            style={{
-              background: "linear-gradient(90deg, #006EDC, #08BCEB)",
-            }}
-          />
-
-          <p className="mt-4 text-base leading-relaxed text-[#4A5568] md:text-[1.05rem]">
+          <p className="text-base sm:text-lg text-[#555555] max-w-2xl mx-auto font-['Inter',sans-serif] leading-relaxed">
             {t.products.subtitle}
           </p>
         </div>
 
-        {/* 4 High-Contrast Product Category Gradient Cards */}
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map((cat) => (
-            <div key={cat.title} className="product-card-item h-full">
-              <GradientCard
-                badgeText={cat.badgeText}
-                badgeColor={cat.badgeColor}
-                title={cat.title}
-                description={cat.description}
-                bullets={[...cat.bullets]}
-                ctaText={cat.ctaText}
-                ctaHref={cat.ctaHref}
-                gradient={cat.gradient}
-              />
-            </div>
-          ))}
-        </div>
+        {/* ── 4 Liquid Glass Overlay Product Cards ── */}
+        <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
+          {MATTE_GLASS_PRODUCTS.map((prod) => (
+            <div
+              key={prod.title}
+              className="product-card-item group relative rounded-[32px] sm:rounded-[36px] overflow-hidden bg-[#F3F4F6] border border-[#CBD5E1] shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_22px_50px_rgba(0,20,60,0.11)] transition-all duration-500 flex flex-col justify-between p-3.5 sm:p-4 h-[490px] sm:h-[520px]"
+            >
+              {/* ── High-Resolution Product Image (Top Canvas) ── */}
+              <div className="absolute inset-0 z-0 overflow-hidden bg-gradient-to-b from-[#ECEEF1] via-[#F3F4F6] to-[#E2E8F0] pointer-events-none">
+                <Image
+                  src={prod.image}
+                  alt={prod.title}
+                  fill
+                  unoptimized={true}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                  className="object-contain object-top pt-6 px-4 group-hover:scale-105 transition-transform duration-700 ease-out"
+                  priority
+                />
+              </div>
 
-        {/* ── Modern 4x4 Bento Hub Showcase ── */}
-        <div id="therapeutics" className="mt-20 scroll-mt-28">
-          <BentoHub />
-        </div>
-      </div>
+              {/* Spacer so content sits at bottom */}
+              <div className="relative z-10 w-full h-1" />
 
-      {/* ══════════════════════════════════════════════════════════
-          NEUMORPHIC LIGHT-MORPHISM CAREERS & PARTNERSHIPS CARD
-          (Exact Same Design System as Certifications Accreditations)
-         ══════════════════════════════════════════════════════════ */}
-      <div id="careers" className="mt-24 scroll-mt-28 relative z-20 mx-auto w-full max-w-[1680px] px-3 sm:px-6 md:px-8 lg:px-12">
-        <div
-          className="rounded-[36px] sm:rounded-[44px] p-8 sm:p-12 md:p-16 lg:p-20 xl:p-24 select-none w-full bg-[#E0E5EC] transition-all duration-300 relative overflow-hidden"
-          style={{
-            boxShadow:
-              "14px 14px 28px rgb(163,177,198,0.65), -14px -14px 28px rgba(255,255,255,0.7)",
-          }}
-        >
-          {/* Inner 2-Column Grid */}
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center w-full">
-            {/* Left Side: Headline & Light-morphic CTAs (7 cols) */}
-            <div className="lg:col-span-7 flex flex-col">
-              {/* Inset Deep Tag Pill */}
+              {/* ── Liquid Glassmorphic Floating Overlay Card ── */}
               <div
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E0E5EC] mb-6 w-fit"
+                className="relative z-20 w-full rounded-[22px] sm:rounded-[24px] p-4 overflow-hidden transition-all duration-300 group-hover:shadow-[0_16px_38px_rgba(0,30,80,0.15)] group-hover:border-white"
                 style={{
+                  background:
+                    "linear-gradient(135deg, rgba(255, 255, 255, 0.48) 0%, rgba(255, 255, 255, 0.22) 100%)",
+                  backdropFilter: "blur(24px) saturate(190%)",
+                  WebkitBackdropFilter: "blur(24px) saturate(190%)",
+                  border: "1.5px solid rgba(255, 255, 255, 0.8)",
                   boxShadow:
-                    "inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5)",
+                    "0 14px 34px -4px rgba(0, 24, 72, 0.10), inset 0 2px 3px rgba(255, 255, 255, 0.95), inset 0 -1.5px 2px rgba(0, 30, 80, 0.04)",
                 }}
               >
-                <span className="w-2 h-2 rounded-full bg-[#38B2AC] animate-pulse" />
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#38B2AC]">
-                  {t.products.careers.badge}
-                </span>
-              </div>
-
-              {/* Headline */}
-              <h2
-                className="text-3xl sm:text-5xl lg:text-6xl xl:text-[72px] font-extrabold text-[#3D4852] leading-[1.02] tracking-tight mb-6"
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-              >
-                {t.products.careers.title}
-              </h2>
-
-              <p className="text-base sm:text-lg lg:text-xl text-[#6B7280] max-w-2xl leading-relaxed font-normal">
-                {t.products.careers.desc}
-              </p>
-
-              {/* Neumorphic / Light-Morphism Buttons Row */}
-              <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-5">
-                <Link
-                  href="#contact"
-                  className="inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4.5 rounded-full bg-[#E0E5EC] text-[#3D4852] font-extrabold text-base sm:text-lg transition-all duration-300 hover:text-[#38B2AC] active:scale-95 cursor-pointer"
-                  style={{
-                    boxShadow:
-                      "6px 6px 14px rgb(163,177,198,0.7), -6px -6px 14px rgba(255,255,255,0.8)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow =
-                      "inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.8)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow =
-                      "6px 6px 14px rgb(163,177,198,0.7), -6px -6px 14px rgba(255,255,255,0.8)";
-                  }}
-                >
-                  <span>{t.products.careers.cta1}</span>
-                  <span className="text-xl text-[#38B2AC] font-black">→</span>
-                </Link>
-
-                <Link
-                  href="#contact"
-                  className="inline-flex items-center justify-center gap-2 px-8 sm:px-10 py-4.5 rounded-full bg-[#E0E5EC] text-[#6B7280] font-extrabold text-base transition-all duration-300 hover:text-[#3D4852] active:scale-95 cursor-pointer"
-                  style={{
-                    boxShadow:
-                      "inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow =
-                      "6px 6px 12px rgb(163,177,198,0.6), -6px -6px 12px rgba(255,255,255,0.8)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow =
-                      "inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5)";
-                  }}
-                >
-                  <span>{t.products.careers.cta2}</span>
-                  <span className="text-sm font-black">↗</span>
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Side: Metrics with Cursor Popups (5 cols) */}
-            <div className="lg:col-span-5 flex flex-col gap-8 md:gap-10 pt-4 lg:pt-0 w-full">
-              {PARTNERSHIP_METRICS.map((metric, idx) => (
+                {/* Specular Diagonal Reflection Streak */}
                 <div
-                  key={metric.id}
-                  className={`relative group cursor-pointer w-full ${idx > 0 ? "pt-6 border-t border-[#A3B1C6]/30" : ""}`}
-                  onMouseEnter={() => setHoveredMetricId(metric.id)}
-                  onMouseLeave={() => setHoveredMetricId(null)}
-                  onMouseMove={handleMouseMove}
+                  className="pointer-events-none absolute inset-0 opacity-40 group-hover:opacity-70 transition-opacity duration-300"
+                  style={{
+                    background:
+                      "linear-gradient(120deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 50%)",
+                  }}
+                  aria-hidden
+                />
+
+                {/* Category Pill Tag */}
+                <div
+                  className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] sm:text-[9.5px] font-bold uppercase tracking-wider mb-2 border shadow-2xs backdrop-blur-md"
+                  style={{
+                    color: prod.badgeColor,
+                    backgroundColor: prod.badgeBg,
+                    borderColor: prod.badgeBorder,
+                  }}
                 >
-                  {/* Metric Value & Label */}
-                  <div className="relative z-10 transition-transform duration-300 group-hover:scale-105 w-fit">
-                    <span
-                      className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[84px] font-black text-[#3D4852] leading-none select-none tracking-tighter"
-                      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-                    >
-                      {metric.value}
-                    </span>
-                    <span className="block text-base sm:text-lg lg:text-xl text-[#6B7280] font-semibold mt-2 select-none group-hover:text-[#38B2AC] transition-colors">
-                      {metric.label}
-                    </span>
-                  </div>
-
-                  {/* Cursor-Following Pop-up Image */}
-                  <AnimatePresence>
-                    {hoveredMetricId === metric.id && (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.6 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.6 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 25,
-                        }}
-                        style={{
-                          x: imageX,
-                          y: imageY,
-                          translateX: "-50%",
-                          translateY: "-50%",
-                        }}
-                        className="absolute top-0 left-0 pointer-events-none z-30 w-[320px] h-[210px] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,50,150,0.35)] border-2 border-white"
-                      >
-                        <Image
-                          src={metric.image}
-                          alt={metric.label}
-                          fill
-                          sizes="320px"
-                          className="object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                        <div className="absolute bottom-2 left-3 right-3 text-[12px] font-bold text-white drop-shadow-md">
-                          {metric.label}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Bottom Separator Line */}
-                  <div className="absolute -bottom-5 md:-bottom-7 left-0 w-full h-[1.5px] bg-slate-200/80 origin-left scale-x-100 group-hover:bg-[#006EDC] transition-colors duration-300" />
+                  <span
+                    className="w-1.5 h-1.5 rounded-full"
+                    style={{ backgroundColor: prod.badgeColor }}
+                  />
+                  <span>{prod.badge}</span>
                 </div>
-              ))}
+
+                {/* Product Title */}
+                <h3
+                  className="text-base sm:text-[17px] font-bold text-[#0B1E48] tracking-tight leading-snug mb-1 group-hover:text-[#006EDC] transition-colors"
+                  style={{ fontFamily: "'Syne', sans-serif" }}
+                >
+                  {prod.title}
+                </h3>
+
+                {/* Description (Concise 2-line clamp) */}
+                <p className="text-[11.5px] sm:text-[12px] text-[#334155] leading-relaxed font-['Inter',sans-serif] mb-2.5 line-clamp-2 font-medium">
+                  {prod.description}
+                </p>
+
+                {/* Bottom Metadata & Link */}
+                <div className="pt-2 border-t border-slate-900/[0.08] flex items-center justify-between gap-2 text-xs font-['Inter',sans-serif]">
+                  <span className="text-[10.5px] font-semibold text-slate-600 truncate font-['JetBrains_Mono',monospace]">
+                    {prod.specs}
+                  </span>
+                  <Link
+                    href={prod.href}
+                    className="inline-flex items-center gap-0.5 font-bold text-[#006EDC] hover:text-[#082B61] transition-colors shrink-0 cursor-pointer text-xs uppercase font-['JetBrains_Mono',monospace] tracking-wider"
+                  >
+                    <span>Inquire</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                </div>
+
+              </div>
+
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

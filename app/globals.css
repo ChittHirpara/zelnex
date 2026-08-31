@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600&family=Space+Grotesk:wght@500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -82,14 +82,70 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  background-color: #f3f4f6;
+}
+
+/* ═══════════════════════════════════════
+   CUSTOM TECHNICAL UI SCROLLBAR (10px, #d1d5db)
+   ═══════════════════════════════════════ */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-left: 1px solid #e5e7eb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-body), system-ui, sans-serif;
+  background-color: #f3f4f6;
+  background-image: 
+    linear-gradient(to right, rgba(229, 231, 235, 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(229, 231, 235, 0.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+  color: #111827;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
   min-width: 320px;
+}
+
+::selection {
+  background-color: #06B6D4;
+  color: #ffffff;
+}
+
+/* Technical Font Utilities */
+.font-mono-tech {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.devtools-panel {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.devtools-panel-interactive:hover {
+  border-color: #06B6D4;
+  box-shadow: 0 4px 12px -2px rgba(6, 182, 212, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+}
+
+.cyan-active-outline {
+  outline: 2px solid #06B6D4;
+  outline-offset: 2px;
 }
 
 img,
@@ -681,3 +737,40 @@ h4,
     transform-origin: top left;
   }
 }
+
+/* ═══════════════════════════════════════
+   BROWSER-CORE MODERNISM & DEVTOOLS UTILITIES
+   ═══════════════════════════════════════ */
+
+.devtools-grid-20 {
+  background-color: #f3f4f6;
+  background-image: 
+    linear-gradient(to right, rgba(229, 231, 235, 0.6) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(229, 231, 235, 0.6) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.devtools-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.devtools-scrollbar::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-left: 1px solid #e5e7eb;
+}
+
+.devtools-scrollbar::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 2px;
+}
+
+.devtools-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+.cyan-selection-box {
+  outline: 2px solid #06B6D4;
+  outline-offset: 4px;
+}
+

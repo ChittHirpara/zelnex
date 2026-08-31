@@ -2,8 +2,56 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
+import {
+  ChevronDown,
+  FileCheck2,
+  Factory,
+  ShieldCheck,
+  Layers,
+  ArrowRight,
+  Sparkles,
+} from "lucide-react";
+
+export const SERVICES_LIST = [
+  {
+    id: "regulatory",
+    title: "Regulatory Services",
+    subtitle: "CTD/eCTD Dossiers, Zone IVb & MOH Approvals",
+    href: "/services?service=regulatory",
+    badge: "01",
+    badgeColor: "#006EDC",
+    icon: FileCheck2,
+  },
+  {
+    id: "contract-manufacturing",
+    title: "Contract Manufacturing",
+    subtitle: "Scalable Formulation & High-Speed Packaging",
+    href: "/services?service=contract-manufacturing",
+    badge: "02",
+    badgeColor: "#00bfb5",
+    icon: Factory,
+  },
+  {
+    id: "third-party-manufacturing",
+    title: "3rd Party Manufacturing",
+    subtitle: "WHO-GMP Certified Facilities & Sterile Batches",
+    href: "/services?service=third-party-manufacturing",
+    badge: "03",
+    badgeColor: "#F59E0B",
+    icon: ShieldCheck,
+  },
+  {
+    id: "generic-products",
+    title: "Generic Products",
+    subtitle: "800+ Commercial Finished Formulations",
+    href: "/services?service=generic-products",
+    badge: "04",
+    badgeColor: "#8B5CF6",
+    icon: Layers,
+  },
+];
 
 export function Navbar() {
   const { t } = useLanguage();
@@ -11,22 +59,35 @@ export function Navbar() {
   const [visible, setVisible] = useState(true);
   const [activeHash, setActiveHash] = useState("/#home");
   const [open, setOpen] = useState(false);
+  const [servicesDropdown, setServicesDropdown] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const dropdownTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const navLinks = [
     { label: t.nav.home, href: "/#home" },
-    { label: t.nav.services, href: "/services" },
+    { label: t.nav.services, href: "/services", hasDropdown: true },
     { label: t.nav.products, href: "/#products" },
     { label: t.nav.categories, href: "/#categories" },
     { label: t.nav.blogs, href: "/blogs" },
-    { label: t.nav.contact, href: "/#contact" },
   ];
+
+  const handleMouseEnterServices = () => {
+    if (dropdownTimerRef.current) clearTimeout(dropdownTimerRef.current);
+    setServicesDropdown(true);
+  };
+
+  const handleMouseLeaveServices = () => {
+    dropdownTimerRef.current = setTimeout(() => {
+      setServicesDropdown(false);
+    }, 180);
+  };
 
   useEffect(() => {
     let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       if (currentScrollY <= 60) {
         setVisible(true);
         setScrolled(false);
@@ -35,10 +96,8 @@ export function Navbar() {
         if (open) {
           setVisible(true);
         } else if (currentScrollY > lastScrollY && currentScrollY - lastScrollY > 6) {
-          // Scrolling down -> hide navbar
           setVisible(false);
         } else if (lastScrollY - currentScrollY > 6) {
-          // Scrolling up -> show navbar
           setVisible(true);
         }
       }
@@ -79,14 +138,12 @@ export function Navbar() {
   return (
     <header
       className={`fixed left-1/2 top-4 z-50 w-[calc(100%-32px)] max-w-[1340px] -translate-x-1/2 flex items-center justify-between gap-3 pointer-events-none transition-all duration-500 ease-out ${
-        visible
-          ? "translate-y-0 opacity-100"
-          : "-translate-y-28 opacity-0"
+        visible ? "translate-y-0 opacity-100" : "-translate-y-28 opacity-0"
       }`}
     >
       {/* ── 1. Main Frosted Glass Navbar Pill ── */}
       <div
-        className={`pointer-events-auto flex-1 min-w-0 relative overflow-hidden transition-all duration-500 ease-out ${
+        className={`pointer-events-auto flex-1 min-w-0 relative transition-all duration-500 ease-out ${
           open ? "rounded-3xl" : "rounded-full"
         }`}
         style={{
@@ -112,20 +169,11 @@ export function Navbar() {
               `,
         }}
       >
-        {/* Top-left crystal highlight */}
-        <div
-          className="pointer-events-none absolute top-0 left-0 w-2/5 h-full rounded-[inherit] overflow-hidden"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 65%)",
-          }}
-          aria-hidden
-        />
         <nav
           className="flex h-[70px] w-full items-center justify-between px-6 md:px-8 relative z-10"
           aria-label="Primary"
         >
-          {/* Logo - Crisp official company logo */}
+          {/* Logo */}
           <Link
             href="/#home"
             className="relative z-10 flex shrink-0 items-center transition-transform duration-300 hover:scale-[1.02]"
@@ -144,6 +192,133 @@ export function Navbar() {
           <ul className="hidden items-center gap-1 lg:flex">
             {navLinks.map((link) => {
               const isActive = activeHash === link.href;
+
+              if (link.hasDropdown) {
+                return (
+                  <li
+                    key={link.href}
+                    className="relative"
+                    onMouseEnter={handleMouseEnterServices}
+                    onMouseLeave={handleMouseLeaveServices}
+                  >
+                    <div className="flex items-center">
+                      <Link
+                        href={link.href}
+                        onClick={() => {
+                          setActiveHash(link.href);
+                          setServicesDropdown(false);
+                        }}
+                        className={`relative flex items-center gap-1.5 px-4 py-2 text-[13.5px] font-medium transition-all duration-300 rounded-full ${
+                          isActive
+                            ? "text-[#1e59d4] font-semibold"
+                            : "text-[#2a3447] hover:text-[#1e59d4]"
+                        }`}
+                        style={{
+                          background: isActive
+                            ? "linear-gradient(135deg, rgba(30, 89, 212, 0.12) 0%, rgba(30, 89, 212, 0.04) 100%)"
+                            : "transparent",
+                        }}
+                      >
+                        <span>{link.label}</span>
+                        <ChevronDown
+                          className={`w-3.5 h-3.5 transition-transform duration-300 ${
+                            servicesDropdown ? "rotate-180 text-[#1e59d4]" : "text-[#64748B]"
+                          }`}
+                        />
+                        {isActive && (
+                          <span
+                            className="absolute bottom-1 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full"
+                            style={{
+                              background: "#1e59d4",
+                              boxShadow: "0 0 8px rgba(30, 89, 212, 0.6)",
+                            }}
+                          />
+                        )}
+                      </Link>
+                    </div>
+
+                    {/* ── Frosted Glass Services Dropdown Menu ── */}
+                    {servicesDropdown && (
+                      <div
+                        className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[360px] pointer-events-auto"
+                        onMouseEnter={handleMouseEnterServices}
+                        onMouseLeave={handleMouseLeaveServices}
+                      >
+                        <div
+                          className="rounded-2xl p-2.5 shadow-2xl border border-white/90 bg-white/95 backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-200"
+                          style={{
+                            boxShadow: "0 20px 50px -10px rgba(11,30,72,0.18), 0 0 0 1px rgba(0,0,0,0.04)",
+                          }}
+                        >
+                          <div className="px-3 py-2 border-b border-slate-100 flex items-center justify-between mb-1">
+                            <span className="text-[10px] font-bold tracking-wider uppercase text-slate-400 font-mono">
+                              OUR 4 CORE SERVICES
+                            </span>
+                            <span className="text-[10px] text-[#006EDC] font-semibold">
+                              Select to view
+                            </span>
+                          </div>
+
+                          <div className="flex flex-col gap-1">
+                            {SERVICES_LIST.map((svc) => {
+                              const IconComponent = svc.icon;
+                              return (
+                                <Link
+                                  key={svc.id}
+                                  href={svc.href}
+                                  onClick={() => setServicesDropdown(false)}
+                                  className="group flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F0F7FF] transition-colors cursor-pointer"
+                                >
+                                  <div
+                                    className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 mt-0.5 transition-transform group-hover:scale-105"
+                                    style={{
+                                      backgroundColor: `${svc.badgeColor}15`,
+                                      color: svc.badgeColor,
+                                    }}
+                                  >
+                                    <IconComponent className="w-4.5 h-4.5" />
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex items-center justify-between">
+                                      <h4 className="text-[13px] font-bold text-slate-900 group-hover:text-[#006EDC] transition-colors">
+                                        {svc.title}
+                                      </h4>
+                                      <span
+                                        className="text-[9px] font-bold px-1.5 py-0.5 rounded"
+                                        style={{
+                                          color: svc.badgeColor,
+                                          backgroundColor: `${svc.badgeColor}15`,
+                                        }}
+                                      >
+                                        {svc.badge}
+                                      </span>
+                                    </div>
+                                    <p className="text-[11px] text-slate-500 leading-tight truncate mt-0.5">
+                                      {svc.subtitle}
+                                    </p>
+                                  </div>
+                                </Link>
+                              );
+                            })}
+                          </div>
+
+                          <div className="mt-2 pt-2 border-t border-slate-100 px-2 pb-1">
+                            <Link
+                              href="/services"
+                              onClick={() => setServicesDropdown(false)}
+                              className="flex items-center justify-between text-xs font-semibold text-[#006EDC] hover:text-[#0051A3] py-1 px-2 rounded-lg hover:bg-blue-50/50 transition-colors"
+                            >
+                              <span>View All Services Overview</span>
+                              <ArrowRight className="w-3.5 h-3.5" />
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </li>
+                );
+              }
+
               return (
                 <li key={link.href}>
                   <Link
@@ -161,8 +336,7 @@ export function Navbar() {
                     }}
                     onMouseEnter={(e) => {
                       if (!isActive) {
-                        e.currentTarget.style.background =
-                          "rgba(30, 89, 212, 0.06)";
+                        e.currentTarget.style.background = "rgba(30, 89, 212, 0.06)";
                       }
                     }}
                     onMouseLeave={(e) => {
@@ -215,7 +389,7 @@ export function Navbar() {
           </button>
         </nav>
 
-        {/* Mobile Drawer Menu with smooth accordion slide */}
+        {/* Mobile Drawer Menu */}
         <div
           className={`grid transition-all duration-300 ease-in-out lg:hidden ${
             open
@@ -226,98 +400,95 @@ export function Navbar() {
           <div className="overflow-hidden">
             <div className="p-4 pt-3">
               <ul className="flex flex-col gap-1">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="block rounded-xl px-4 py-2.5 text-sm font-medium text-slate-800 transition-colors hover:bg-[#1e59d4]/10 hover:text-[#1e59d4]"
-                      onClick={() => {
-                        setActiveHash(link.href);
-                        setOpen(false);
-                      }}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+                {navLinks.map((link) => {
+                  if (link.hasDropdown) {
+                    return (
+                      <li key={link.href} className="flex flex-col">
+                        <div className="flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-medium text-slate-800 hover:bg-[#1e59d4]/10 hover:text-[#1e59d4]">
+                          <Link
+                            href="/services"
+                            onClick={() => {
+                              setActiveHash("/services");
+                              setOpen(false);
+                            }}
+                            className="flex-1"
+                          >
+                            {link.label}
+                          </Link>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setMobileServicesOpen((prev) => !prev);
+                            }}
+                            className="p-1 rounded-md text-slate-500 hover:text-[#006EDC]"
+                          >
+                            <ChevronDown
+                              className={`w-4 h-4 transition-transform ${
+                                mobileServicesOpen ? "rotate-180 text-[#006EDC]" : ""
+                              }`}
+                            />
+                          </button>
+                        </div>
+
+                        {mobileServicesOpen && (
+                          <div className="ml-4 pl-3 border-l-2 border-blue-200 py-1 flex flex-col gap-1">
+                            {SERVICES_LIST.map((svc) => (
+                              <Link
+                                key={svc.id}
+                                href={svc.href}
+                                className="block py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-blue-50 hover:text-[#006EDC]"
+                                onClick={() => {
+                                  setActiveHash("/services");
+                                  setOpen(false);
+                                }}
+                              >
+                                {svc.badge}. {svc.title}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </li>
+                    );
+                  }
+
+                  return (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="block rounded-xl px-4 py-2.5 text-sm font-medium text-slate-800 transition-colors hover:bg-[#1e59d4]/10 hover:text-[#1e59d4]"
+                        onClick={() => {
+                          setActiveHash(link.href);
+                          setOpen(false);
+                        }}
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
-              
-              {/* Get in touch CTA button */}
+
+              {/* Contact CTA */}
               <div className="mt-4 flex items-center gap-2 border-t border-slate-200/60 pt-3">
                 <Link
                   href="/#contact"
                   className="inline-flex w-full items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold text-white shadow-md cursor-pointer"
                   style={{
-                    background: "linear-gradient(135deg, #006EDC 0%, #082B61 100%)",
+                    background: "linear-gradient(135deg, #006EDC 0%, #1e3a7a 100%)",
                   }}
                   onClick={() => setOpen(false)}
                 >
-                  <span>{t.nav.getInTouch}</span>
-                  <span>→</span>
+                  <span>Connect With Us</span>
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* ── 2. Standalone Right Side Action: Minimalist Glass "Get in Touch" ── */}
-      <div className="pointer-events-auto hidden lg:flex items-center gap-2.5 shrink-0">
-        <Link
-          href="/#contact"
-          className="group relative inline-flex items-center gap-2.5 h-[50px] px-6 rounded-full text-[13.5px] font-semibold tracking-tight text-[#0B1E48] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] overflow-hidden cursor-pointer select-none shrink-0"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.55) 100%)",
-            backdropFilter: "blur(24px) saturate(1.8)",
-            WebkitBackdropFilter: "blur(24px) saturate(1.8)",
-            border: "1.5px solid rgba(255, 255, 255, 0.95)",
-            boxShadow: scrolled
-              ? "0 10px 30px rgba(11, 30, 72, 0.1), inset 0 1.5px 0 rgba(255, 255, 255, 1), 0 0 0 1px rgba(11, 30, 72, 0.04)"
-              : "0 6px 20px rgba(11, 30, 72, 0.07), inset 0 1.5px 0 rgba(255, 255, 255, 1), 0 0 0 1px rgba(11, 30, 72, 0.03)",
-          }}
-        >
-          {/* Subtle Frosted Hover Fill (Fades in smoothly) */}
-          <div
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 ease-out rounded-full"
-            style={{
-              background:
-                "linear-gradient(135deg, #006EDC 0%, #082B61 100%)",
-              boxShadow: "0 8px 25px rgba(0, 110, 220, 0.35)",
-            }}
-          />
-
-          {/* Ambient Top Light Reflection */}
-          <div
-            className="pointer-events-none absolute top-0 left-0 w-full h-[45%] opacity-50 group-hover:opacity-30 transition-opacity duration-300 rounded-t-full"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 100%)",
-            }}
-          />
-
-          {/* Button Label */}
-          <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
-            {t.nav.getInTouch}
-          </span>
-
-          {/* Minimal Arrow Icon */}
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="relative z-10 text-[#006EDC] group-hover:text-white transition-all duration-300 group-hover:translate-x-1"
-          >
-            <line x1="5" y1="12" x2="19" y2="12" />
-            <polyline points="12 5 19 12 12 19" />
-          </svg>
-        </Link>
-      </div>
     </header>
   );
 }
+
+export default Navbar;

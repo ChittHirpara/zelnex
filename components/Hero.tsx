@@ -9,6 +9,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { LiquidEdgeFilter } from "./glass/LiquidDisplacement";
+import { RadialShareMenu } from "./ui/RadialShareMenu";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -81,6 +82,16 @@ export function Hero() {
       ),
     },
     {
+      label: t.hero.sidebar.location,
+      href: "#network",
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      ),
+    },
+    {
       label: t.hero.sidebar.social,
       href: null, // panel trigger — not a link
       icon: (
@@ -90,16 +101,6 @@ export function Hero() {
           <circle cx="18" cy="19" r="3"/>
           <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
           <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-        </svg>
-      ),
-    },
-    {
-      label: t.hero.sidebar.location,
-      href: "#network",
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-          <circle cx="12" cy="10" r="3"/>
         </svg>
       ),
     },
@@ -142,166 +143,42 @@ export function Hero() {
       number: t.hero.stats.stat3Number,
       labelTop: t.hero.stats.stat3Top,
       labelBottom: t.hero.stats.stat3Bottom,
-      stroke: "#2e92c0",
+      stroke: "#006EDC",
       icon: (
         <>
-          <circle cx="12" cy="4.6" r="2.15" />
-          <circle cx="5.4" cy="18.2" r="2.15" />
-          <circle cx="18.6" cy="18.2" r="2.15" />
-          <circle cx="12" cy="12" r="1.95" />
-          <line x1="12" y1="6.7" x2="12" y2="10.05" />
-          <line x1="10.45" y1="13.3" x2="6.95" y2="16.35" />
-          <line x1="13.55" y1="13.3" x2="17.05" y2="16.35" />
-        </>
-      ),
-    },
-    {
-      number: t.hero.stats.stat4Number,
-      labelTop: t.hero.stats.stat4Top,
-      labelBottom: t.hero.stats.stat4Bottom,
-      stroke: "#1e4fb8",
-      icon: (
-        <>
-          <path d="M2.7 20.3V12.6l4.3 2.9v-2.9l4.3 2.9v-2.9l4.3 2.9V9.4c0-.5.4-.9.9-.9h3.6c.5 0 .9.4.9.9v10.9" />
-          <path d="M17.1 8.5V5.1c0-.55.6-.9 1.1-.6l1.9 1.35V8.5" />
-          <line x1="2" y1="20.3" x2="22" y2="20.3" />
-          <rect x="6" y="16.6" width="1.5" height="1.5" />
-          <rect x="10.3" y="16.6" width="1.5" height="1.5" />
-          <rect x="14.6" y="16.6" width="1.5" height="1.5" />
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
         </>
       ),
     },
   ];
 
-  // ── Social Panel: set initial positions off-screen ────────
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const panel = panelRef.current;
-      const l1 = layer1Ref.current;
-      const l2 = layer2Ref.current;
-      const backdrop = backdropRef.current;
-      if (!panel || !l1 || !l2 || !backdrop) return;
-      gsap.set([l1, l2, panel], { xPercent: -100 });
-      gsap.set(backdrop, { opacity: 0, pointerEvents: "none" });
-    });
-    return () => ctx.revert();
-  }, []);
-
-  // ── Social Panel: open animation (Silky-Smooth Staggered GSAP) ────────────
-  const playOpen = useCallback(() => {
-    const panel = panelRef.current;
-    const l1 = layer1Ref.current;
-    const l2 = layer2Ref.current;
-    const backdrop = backdropRef.current;
-    if (!panel || !l1 || !l2 || !backdrop) return;
-    openTlRef.current?.kill();
-
-    const itemEls = Array.from(panel.querySelectorAll(".sm-item-reveal")) as HTMLElement[];
-    const subEls = Array.from(panel.querySelectorAll(".sm-sub-reveal")) as HTMLElement[];
-    const badgeEl = panel.querySelector(".sm-badge-reveal") as HTMLElement | null;
-
-    if (itemEls.length) {
-      gsap.set(itemEls, { yPercent: 130, opacity: 0, rotate: 6 });
-    }
-    if (subEls.length) {
-      gsap.set(subEls, { opacity: 0, y: 8 });
-    }
-    if (badgeEl) {
-      gsap.set(badgeEl, { opacity: 0, y: -6 });
-    }
-
-    const tl = gsap.timeline();
-    // Backdrop blur fade
-    tl.to(backdrop, { opacity: 1, pointerEvents: "auto", duration: 0.32, ease: "power2.out" }, 0);
-    // Layer 1: Jet Black
-    tl.fromTo(l1, { xPercent: -100 }, { xPercent: 0, duration: 0.46, ease: "power4.out" }, 0.02);
-    // Layer 2: Cobalt/Sapphire Blue Accent Flash
-    tl.fromTo(l2, { xPercent: -100 }, { xPercent: 0, duration: 0.52, ease: "power4.out" }, 0.08);
-    // Main Clean White Canvas
-    tl.fromTo(panel, { xPercent: -100 }, { xPercent: 0, duration: 0.64, ease: "power4.out" }, 0.15);
-    // Header Badge
-    if (badgeEl) {
-      tl.to(badgeEl, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0.32);
-    }
-    // Text entrance with rotation spring
-    if (itemEls.length) {
-      tl.to(
-        itemEls,
-        {
-          yPercent: 0,
-          opacity: 1,
-          rotate: 0,
-          duration: 0.8,
-          ease: "power4.out",
-          stagger: 0.08,
-        },
-        0.34
-      );
-    }
-    // Subtitles fade-in
-    if (subEls.length) {
-      tl.to(
-        subEls,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          ease: "power2.out",
-          stagger: 0.08,
-        },
-        0.46
-      );
-    }
-    openTlRef.current = tl;
-  }, []);
-
-  // ── Social Panel: close animation ─────────────────────────
-  const playClose = useCallback(() => {
-    const panel = panelRef.current;
-    const l1 = layer1Ref.current;
-    const l2 = layer2Ref.current;
-    const backdrop = backdropRef.current;
-    if (!panel || !l1 || !l2 || !backdrop) return;
-    openTlRef.current?.kill();
-    const tl = gsap.timeline();
-    tl.to([panel, l2, l1], {
-      xPercent: -100,
-      duration: 0.36,
-      ease: "power3.in",
-      stagger: 0.05,
-    }, 0);
-    tl.to(backdrop, { opacity: 0, pointerEvents: "none", duration: 0.3, ease: "power2.in" }, 0.05);
-  }, []);
-
-  // ── Social Panel: toggle ───────────────────────────────────
+  // ── Social Radial Menu: toggle ────────────────────────────
   const toggleSocial = useCallback(() => {
-    const next = !socialOpenRef.current;
-    socialOpenRef.current = next;
-    setSocialPanelOpen(next);
-    if (next) playOpen();
-    else playClose();
-  }, [playOpen, playClose]);
+    setSocialPanelOpen((prev) => !prev);
+  }, []);
 
-  // ── Close on click outside ─────────────────────────────────
+  // ── Close on Click Outside & Escape (Zero Screen Blurring) ──
   useEffect(() => {
     if (!socialPanelOpen) return;
-    const handle = (e: MouseEvent) => {
-      const t = e.target as Element;
-      if (panelRef.current && !panelRef.current.contains(t) && !t?.closest("[data-social-btn]"))
-        toggleSocial();
+    const handleMouseDown = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest("[data-social-btn]") && !target.closest("[data-radial-menu]")) {
+        setSocialPanelOpen(false);
+      }
     };
-    document.addEventListener("mousedown", handle);
-    return () => document.removeEventListener("mousedown", handle);
-  }, [socialPanelOpen, toggleSocial]);
-
-  // ── Close on Escape ────────────────────────────────────────
-  useEffect(() => {
-    const handle = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && socialOpenRef.current) toggleSocial();
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSocialPanelOpen(false);
     };
-    window.addEventListener("keydown", handle);
-    return () => window.removeEventListener("keydown", handle);
-  }, [toggleSocial]);
+    document.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [socialPanelOpen]);
 
   useGSAP(
     () => {
@@ -377,7 +254,7 @@ export function Hero() {
         >
           {/* Single Slanted Front Face Card Container — rgba(0, 26, 83) with Pure CSS 3D Shadows */}
           <div
-            className="relative flex flex-col items-center w-[112px] h-[555px] rounded-[22px] overflow-hidden transition-all duration-300 z-10"
+            className="relative flex flex-col items-center w-[112px] h-[555px] rounded-[22px] transition-all duration-300 z-10"
             style={{
               background:
                 "linear-gradient(180deg, rgba(0, 20, 68, 0.99) 0%, rgba(0, 15, 52, 0.97) 50%, rgba(0, 10, 38, 0.99) 100%)",
@@ -484,11 +361,9 @@ export function Hero() {
                 );
 
                 return isSocial ? (
-                  <button
+                  <div
                     key={item.label}
-                    data-social-btn
-                    onClick={() => { setActiveSidebarIndex(index); toggleSocial(); }}
-                    className="group/item relative flex flex-col items-center justify-center flex-1 w-full px-2 transition-all duration-300 hover:bg-white/[0.05] cursor-pointer"
+                    className="relative flex-1 w-full flex flex-col items-center justify-center"
                     style={{
                       borderBottom:
                         index < sidebarItems.length - 1
@@ -496,8 +371,23 @@ export function Hero() {
                           : "none",
                     }}
                   >
-                    {innerContent}
-                  </button>
+                    <button
+                      data-social-btn
+                      onClick={() => {
+                        setActiveSidebarIndex(index);
+                        setSocialPanelOpen((prev) => !prev);
+                      }}
+                      className="group/item relative flex flex-col items-center justify-center flex-1 w-full px-2 transition-all duration-300 hover:bg-white/[0.05] cursor-pointer"
+                    >
+                      {innerContent}
+                    </button>
+
+                    {/* ── Circular Half-Sphere Radial Arc Menu ── */}
+                    <RadialShareMenu
+                      isOpen={socialPanelOpen}
+                      onClose={() => setSocialPanelOpen(false)}
+                    />
+                  </div>
                 ) : (
                   <a
                     key={item.label}
@@ -692,156 +582,6 @@ export function Hero() {
           background: "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 60%, #ffffff 100%)",
         }}
       />
-
-      {/* ── Social Panel Backdrop ─────────────────────────────── */}
-      <div
-        ref={backdropRef}
-        className="fixed inset-0 z-[60] bg-black/25 backdrop-blur-[2px] transition-opacity duration-300"
-        style={{ opacity: 0, pointerEvents: "none" }}
-        aria-hidden="true"
-      />
-
-      {/* ── Stagger Layer 1: Solid Jet Black ───────────────────── */}
-      <div
-        ref={layer1Ref}
-        className="fixed left-0 top-0 bottom-0 z-[61] w-[92vw] sm:w-[480px] md:w-[520px] shadow-2xl"
-        style={{ background: "#0a0a0b" }}
-        aria-hidden="true"
-      />
-
-      {/* ── Stagger Layer 2: Cobalt/Sapphire Blue Accent Flash ──── */}
-      <div
-        ref={layer2Ref}
-        className="fixed left-0 top-0 bottom-0 z-[62] w-[92vw] sm:w-[480px] md:w-[520px] shadow-2xl"
-        style={{ background: "linear-gradient(180deg, #0066FF 0%, #003DB3 100%)" }}
-        aria-hidden="true"
-      />
-
-      {/* ── Main Clean Black & White Editorial Panel ───────────── */}
-      <div
-        ref={panelRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Official Social Directory"
-        className="fixed left-0 top-0 bottom-0 z-[63] flex w-[92vw] sm:w-[480px] md:w-[520px] flex-col justify-between overflow-y-auto overflow-x-hidden bg-white text-black p-8 sm:p-12 select-none border-r border-slate-200/80 shadow-[12px_0_36px_rgba(0,50,140,0.06)]"
-        style={{
-          background: "linear-gradient(180deg, rgba(240, 248, 255, 0.45) 0%, #ffffff 15%, #ffffff 100%)",
-        }}
-      >
-        {/* Top Header */}
-        <div>
-          <div className="flex items-start justify-between pb-7 border-b border-black/10">
-            <div className="space-y-1">
-              <span className="sm-badge-reveal inline-flex items-center gap-1.5 font-mono text-[10.5px] font-bold uppercase tracking-[0.25em] text-[#006EDC] bg-[#006EDC]/10 border border-[#006EDC]/25 px-3 py-1 rounded-full mb-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#006EDC] animate-pulse" />
-                [ 01 / DIRECTORY ]
-              </span>
-              <h2
-                className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter"
-                style={{ fontFamily: "'Syne', 'Space Grotesk', sans-serif" }}
-              >
-                Connect
-              </h2>
-              <p className="sm-sub-reveal text-xs sm:text-[13px] text-slate-500 font-medium leading-relaxed pt-0.5">
-                Direct communication lines for global partners &amp; distributors.
-              </p>
-            </div>
-
-            {/* Minimalist Close Button */}
-            <button
-              onClick={toggleSocial}
-              className="group/close flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-black/15 bg-white text-black transition-all duration-300 hover:border-[#006EDC] hover:bg-[#006EDC] hover:text-white hover:rotate-90 hover:scale-105 active:scale-95 cursor-pointer mt-1 shadow-xs"
-              aria-label="Close social directory"
-            >
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Social Navigation List with Editorial Typography */}
-          <nav className="divide-y divide-black/10 mt-2">
-            {[
-              {
-                num: "01",
-                label: "Instagram",
-                handle: "@zelnexpharmaceuticals",
-                href: "https://www.instagram.com/zelnexpharmaceuticals",
-              },
-              {
-                num: "02",
-                label: "LinkedIn",
-                handle: "Zelnex Pharmaceuticals",
-                href: "https://www.linkedin.com/company/zelnex-pharmaceuticals",
-              },
-              {
-                num: "03",
-                label: "Email",
-                handle: "info@zelnex.in",
-                href: "mailto:info@zelnex.in",
-              },
-              {
-                num: "04",
-                label: "WhatsApp",
-                handle: "+91 99099 99999",
-                href: "https://wa.me/919909999999",
-              },
-            ].map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target={social.href.startsWith("http") ? "_blank" : undefined}
-                rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="group flex items-center justify-between py-5 sm:py-6 transition-colors duration-300 hover:text-black overflow-hidden cursor-pointer"
-              >
-                <div className="flex items-baseline gap-4 sm:gap-6 overflow-hidden">
-                  <span className="font-mono text-xs font-bold text-[#006EDC] tracking-wider">
-                    {social.num}
-                  </span>
-                  <div className="overflow-hidden">
-                    <span
-                      className="sm-item-reveal inline-block font-black text-3xl sm:text-4xl text-black uppercase tracking-tight transition-all duration-300 group-hover:translate-x-2.5 group-hover:text-[#006EDC]"
-                      style={{ fontFamily: "'Syne', 'Space Grotesk', sans-serif" }}
-                    >
-                      {social.label}
-                    </span>
-                    <span className="sm-sub-reveal block font-mono text-xs text-neutral-400 tracking-wide mt-1 transition-colors duration-200 group-hover:text-slate-800">
-                      {social.handle}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Minimalist Arrow Icon */}
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-black/15 text-black/40 transition-all duration-300 group-hover:border-[#006EDC] group-hover:bg-[#006EDC] group-hover:text-white group-hover:scale-110 shadow-xs">
-                  <svg
-                    width="15"
-                    height="15"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <line x1="7" y1="17" x2="17" y2="7" />
-                    <polyline points="7 7 17 7 17 17" />
-                  </svg>
-                </div>
-              </a>
-            ))}
-          </nav>
-        </div>
-
-        {/* Minimal Editorial Footer */}
-        <div className="pt-7 border-t border-black/10 flex items-center justify-between font-mono text-[10px] font-bold text-neutral-400 uppercase tracking-widest">
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#006EDC]" />
-            <span>Zelnex Pharmaceuticals</span>
-          </div>
-          <span>© 2026</span>
-        </div>
-      </div>
     </section>
   );
 }

@@ -2,10 +2,11 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { FlowingVector } from "@/components/FlowingVector";
 import { Overview } from "@/components/Overview";
-import { WhoWeAre } from "@/components/WhoWeAre";
+import { Expertise } from "@/components/Expertise";
 import { ProductShowcase } from "@/components/ProductShowcase";
 import { Categories } from "@/components/Categories";
-import { Certifications } from "@/components/Certifications";
+import { PackagingMatrix } from "@/components/PackagingMatrix";
+import { CertificatesSection } from "@/components/CertificatesSection";
 import { GrowingNetwork } from "@/components/GrowingNetwork";
 import { DigitalEpochSection } from "@/components/DigitalEpochSection";
 import { Footer } from "@/components/Footer";
@@ -15,44 +16,41 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
-        {/* Hero section with smooth bottom white fade */}
+      <main id="home">
+        {/* Main Hero Section */}
         <Hero />
 
-        {/* Scroll-animated flowing SVG vector vine with 5 blooming botanical nodes */}
+        {/* Scroll-animated flowing SVG vector wrapper */}
         <div id="vector-wrapper" className="relative overflow-hidden">
           <FlowingVector />
 
-          {/* Overview Section */}
+          {/* 1. Company Overview (Technical Minimalist Blueprint with Inter + JetBrains Mono) */}
           <Overview />
 
-          {/* WhoWeAre Reference Section */}
-          <WhoWeAre />
+          {/* 2. 4 Capabilities Pillar Cards */}
+          <Expertise />
 
-          {/* ProductShowcase Section */}
+          {/* 3. Frosted Matte Glass Product Showcase */}
           <ProductShowcase />
 
-          {/* ProductShowcase (white) → Categories (luminous sapphire #164e96) */}
-          <SectionDivider from="#ffffff" to="#164e96" flip />
-
-          {/* Categories: luminous sapphire blue */}
+          {/* 4. Therapeutic Fan Carousel: Categories */}
           <Categories />
 
-          {/* Categories (#0d3063) → Certifications (white) */}
-          <SectionDivider from="#0d3063" to="#ffffff" />
+          {/* 5. Precision Dosage Forms & High-Barrier Packaging */}
+          <PackagingMatrix />
 
-          {/* Certifications: bg-white */}
-          <Certifications />
+          {/* 6. Global Accreditations & Regulatory Licensure */}
+          <CertificatesSection />
 
-          {/* GrowingNetwork: bg-white */}
+          {/* 7. Global Flight Radar Network */}
           <GrowingNetwork />
 
-          {/* DigitalEpochSection / Contact: bg-white with embedded video card */}
+          {/* 8. Institutional Contact Desk: bg-white */}
           <DigitalEpochSection />
         </div>
       </main>
 
-      {/* DigitalEpoch (white) → Footer (deep dark navy #06132d) */}
+      {/* Footer Divider & Footer */}
       <SectionDivider from="#ffffff" to="#06132d" />
       <Footer />
     </>

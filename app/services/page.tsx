@@ -1,482 +1,351 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { SectionDivider } from "@/components/SectionDivider";
-import { useLanguage } from "@/context/LanguageContext";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Plus,
-} from "lucide-react";
+import { ArrowUpRight, Check, ShieldCheck, FileCheck2, Factory, Layers } from "lucide-react";
 
-export default function ServicesPage() {
-  const { t } = useLanguage();
-  const [openAccordion, setOpenAccordion] = useState<string>("dossiers");
+interface ServiceItem {
+  id: string;
+  num: string;
+  badge: string;
+  title: string;
+  accentWord: string;
+  tagline: string;
+  description: string;
+  icon: React.ElementType;
+  keyPoints: string[];
+  specs: { label: string; value: string }[];
+  metrics: { label: string; value: string }[];
+  ctaText: string;
+}
 
-  const pillarCards = [
-    {
-      id: "regulatory",
-      category: t.servicesPage.pillarCards[0]?.category || "DRA & REGULATORY DOSSIERS",
-      title: t.servicesPage.pillarCards[0]?.title || "Drug Regulatory Affairs",
-      tagline: t.servicesPage.pillarCards[0]?.tagline || "Accelerated MOH Approvals & eCTD Publishing",
-      description: t.servicesPage.pillarCards[0]?.description || "",
-      processLabel: t.servicesPage.pillarCards[0]?.processLabel || "",
-      closingNote: t.servicesPage.pillarCards[0]?.closingNote || "",
-      bgGradient: "from-blue-50/90 via-sky-50 to-indigo-50/50",
-      orbColor: "rgba(0, 110, 220, 0.35)",
-      points: t.servicesPage.pillarCards[0]?.points || [],
-      badge: t.servicesPage.pillarCards[0]?.badge || "[eCTD Modules 1-5]",
-    },
-    {
-      id: "third-party",
-      category: t.servicesPage.pillarCards[1]?.category || "WHO-GMP 3RD PARTY MANUFACTURING",
-      title: t.servicesPage.pillarCards[1]?.title || "3rd Party Manufacturing",
-      tagline: t.servicesPage.pillarCards[1]?.tagline || "End-to-End Generic Production & International Export",
-      description: t.servicesPage.pillarCards[1]?.description || "",
-      processLabel: t.servicesPage.pillarCards[1]?.processLabel || "Process for 3rd Party Manufacturing:",
-      closingNote: t.servicesPage.pillarCards[1]?.closingNote || "",
-      bgGradient: "from-teal-50/90 via-sky-50 to-indigo-50/50",
-      orbColor: "rgba(0, 138, 138, 0.35)",
-      points: t.servicesPage.pillarCards[1]?.points || [],
-      badge: t.servicesPage.pillarCards[1]?.badge || "[WHO-GMP Certified]",
-    },
-    {
-      id: "contract",
-      category: t.servicesPage.pillarCards[2]?.category || "SCALE & BATCH CAPACITY",
-      title: t.servicesPage.pillarCards[2]?.title || "Contract Manufacturing",
-      tagline: t.servicesPage.pillarCards[2]?.tagline || "Scalable Automated Batch Output",
-      description: t.servicesPage.pillarCards[2]?.description || "",
-      processLabel: t.servicesPage.pillarCards[2]?.processLabel || "",
-      closingNote: t.servicesPage.pillarCards[2]?.closingNote || "",
-      bgGradient: "from-indigo-50/90 via-slate-50 to-teal-50/50",
-      orbColor: "rgba(30, 58, 138, 0.35)",
-      points: t.servicesPage.pillarCards[2]?.points || [],
-      badge: t.servicesPage.pillarCards[2]?.badge || "[400M+ Annual Units]",
-    },
-    {
-      id: "generics",
-      category: t.servicesPage.pillarCards[3]?.category || "GLOBAL FINISHED FORMULATIONS",
-      title: t.servicesPage.pillarCards[3]?.title || "Generic Medicines",
-      tagline: t.servicesPage.pillarCards[3]?.tagline || "Comprehensive Multi-Therapeutic Portfolio",
-      description: t.servicesPage.pillarCards[3]?.description || "",
-      processLabel: t.servicesPage.pillarCards[3]?.processLabel || "",
-      closingNote: t.servicesPage.pillarCards[3]?.closingNote || "",
-      bgGradient: "from-emerald-50/90 via-teal-50 to-blue-50/50",
-      orbColor: "rgba(16, 185, 129, 0.35)",
-      points: t.servicesPage.pillarCards[3]?.points || [],
-      badge: t.servicesPage.pillarCards[3]?.badge || "[14+ Therapeutic Classes]",
-    },
-  ];
+const SERVICES_DATA: ServiceItem[] = [
+  {
+    id: "regulatory",
+    num: "01",
+    badge: "REGULATORY AFFAIRS",
+    title: "Common Technical Dossiers & Registrations",
+    accentWord: "Registrations",
+    tagline: "Accelerated Ministry of Health (MOH) eCTD Publishing & Dossier Licensing",
+    description:
+      "Zelnex provides end-to-end Drug Regulatory Affairs support for international health ministries and commercial importers. We compile, validate, and license ready Common Technical Documents (CTD) and electronic CTD (eCTD) for immediate submission across ASEAN, LATAM, GCC, CIS, and African markets.",
+    icon: FileCheck2,
+    keyPoints: [
+      "Complete eCTD Modules 1 through 5 compiled to ICH guidelines",
+      "Zone IVb Real-Time & Accelerated Stability Data (30°C/75% RH & 40°C/75% RH)",
+      "Bioequivalence (BE) comparative study files against global reference drugs",
+      "COPP (Certificate of Pharmaceutical Product) & Free Sale Certificate issuance",
+    ],
+    specs: [
+      { label: "Dossier Format", value: "eCTD v4.0 / ACTD / NeeS" },
+      { label: "Available Dossiers", value: "150+ Ready Files" },
+      { label: "Stability Standard", value: "Zone IVb (36 Months)" },
+      { label: "Export Footprint", value: "50+ Global Markets" },
+    ],
+    metrics: [
+      { label: "Ready Dossiers", value: "150+" },
+      { label: "Stability Tested", value: "36 Mo" },
+      { label: "Audit Readiness", value: "100%" },
+    ],
+    ctaText: "Request Dossier Index",
+  },
+  {
+    id: "contract-manufacturing",
+    num: "02",
+    badge: "CONTRACT FORMULATION",
+    title: "Custom Formulation & Batch Packaging",
+    accentWord: "Packaging",
+    tagline: "Commercial Solid, Liquid & Parenteral Output Under Certified WHO-GMP Standards",
+    description:
+      "Engineered for high-volume commercial formulation output. Zelnex partners with international pharmaceutical brand owners to formulate, test, scale, and package solid, liquid, and dry powder medicines under certified WHO-GMP standards with tailored batch sizing and automated blister packaging.",
+    icon: Factory,
+    keyPoints: [
+      "High-speed automated blister, strip, and Alu-Alu high-barrier packaging lines",
+      "Flexible batch sizing from pilot bioequivalence batches to commercial runs",
+      "Strict formulation IP protection and dedicated non-disclosure protocols",
+      "Integrated analytical release with 100% HPLC purity assay validation",
+    ],
+    specs: [
+      { label: "Tablet Annual Output", value: "400 Million+ Units" },
+      { label: "Capsule Output", value: "150 Million+ Units" },
+      { label: "Cleanroom Standard", value: "ISO-7 / Grade C & D" },
+      { label: "Barrier Packaging", value: "Alu-Alu / PVDC / Glass" },
+    ],
+    metrics: [
+      { label: "Annual Tablets", value: "400M+" },
+      { label: "Cleanroom Grade", value: "ISO-7" },
+      { label: "Quality Release", value: "100%" },
+    ],
+    ctaText: "Request Manufacturing Sizing",
+  },
+  {
+    id: "third-party-manufacturing",
+    num: "03",
+    badge: "3RD PARTY MANUFACTURING",
+    title: "Turnkey Formulation Supply For Tenders",
+    accentWord: "Tenders",
+    tagline: "Dedicated Private-Label Supply for Health Ministries & Procurement Desks",
+    description:
+      "Zelnex acts as a reliable third-party manufacturing backbone for commercial distributors, government health ministries, hospital networks, and tender procurement desks. We take your private brand from formulation approval to finished container export with clean inspection clearance.",
+    icon: ShieldCheck,
+    keyPoints: [
+      "State-of-the-art sterile injectable and oral solid manufacturing units",
+      "WHO-GMP, ISO 9001:2015, and ISO 14001 certified manufacturing facilities",
+      "Turnkey artwork design, brand localization, and customized outer carton packaging",
+      "Clean Report of Findings (CRF) and pre-shipment inspection clearance",
+    ],
+    specs: [
+      { label: "Compliance Standard", value: "WHO-GMP & ISO 9001" },
+      { label: "Production Turnaround", value: "35–45 Days" },
+      { label: "Inspection Clearance", value: "SGS / Intertek CRF" },
+      { label: "Freight Dispatch", value: "FOB JNPT / CIF / Air DDP" },
+    ],
+    metrics: [
+      { label: "Turnaround Time", value: "35 Days" },
+      { label: "Inspection Pass", value: "100%" },
+      { label: "Facility Audit", value: "WHO-GMP" },
+    ],
+    ctaText: "Inquire for Private Tenders",
+  },
+  {
+    id: "generic-products",
+    num: "04",
+    badge: "GENERIC PRODUCTS",
+    title: "800+ Commercial Generic Formulations",
+    accentWord: "Formulations",
+    tagline: "Comprehensive Commercial Formulary Covering 10+ Essential Therapeutic Classes",
+    description:
+      "A comprehensive, export-cleared formulary covering high-demand generic medicines for institutional hospital supply and commercial pharmacy networks. Backed by rigorous stability validation, immediate dossier availability, and robust shelf-life testing.",
+    icon: Layers,
+    keyPoints: [
+      "Over 800 approved generic formulations covering essential human molecules",
+      "Therapeutics: Anti-Infectives, Cardiovascular, Gastrointestinal, CNS, Antidiabetic",
+      "Multiple dosage forms: Tablets, Capsules, Syrups, Injectables, Dry Powders, Drops",
+      "Immediate product dossier availability for rapid country registration",
+    ],
+    specs: [
+      { label: "Commercial Formulary", value: "800+ Formulations" },
+      { label: "Therapeutic Breadth", value: "10+ Categories" },
+      { label: "Documentation", value: "Full CTD / eCTD Files" },
+      { label: "Global Reach", value: "50+ Destinations" },
+    ],
+    metrics: [
+      { label: "Active SKUs", value: "800+" },
+      { label: "Therapeutic Classes", value: "10+" },
+      { label: "Destinations", value: "50+" },
+    ],
+    ctaText: "Download Product Catalog",
+  },
+];
 
-  const accordionServices = t.servicesPage.accordionServices.map((svc, idx) => ({
-    id: ["dossiers", "contract-mfg", "third-party-mfg", "generic-supply", "capacities-matrix"][idx] || `service-${idx}`,
-    number: `0${idx + 1}`,
-    title: svc.title,
-    tag: svc.tag,
-    summary: svc.summary,
-    details: svc.details,
-  }));
+function ServicesModernistContent() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const param = searchParams.get("service") || searchParams.get("tab") || "regulatory";
+
+  const [activeTab, setActiveTab] = useState<string>("regulatory");
+
+  useEffect(() => {
+    if (param === "contract-manufacturing" || param === "contract" || param === "1") {
+      setActiveTab("contract-manufacturing");
+    } else if (param === "third-party-manufacturing" || param === "third-party" || param === "2") {
+      setActiveTab("third-party-manufacturing");
+    } else if (param === "generic-products" || param === "generics" || param === "3") {
+      setActiveTab("generic-products");
+    } else {
+      setActiveTab("regulatory");
+    }
+  }, [param]);
+
+  const handleSelectService = (id: string) => {
+    setActiveTab(id);
+    router.push(`/services?service=${id}`, { scroll: false });
+  };
+
+  const currentService = SERVICES_DATA.find((s) => s.id === activeTab) || SERVICES_DATA[0];
+  const IconComponent = currentService.icon;
 
   return (
-    <div className="min-h-screen bg-[#FCFBF9] text-[#111111] antialiased selection:bg-[#006EDC] selection:text-white relative">
-      {/* ── Global Styles & Fonts ── */}
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&family=Syne:wght@600;700;800&display=swap');
-
-        :root {
-          --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .font-playfair {
-          font-family: 'Playfair Display', Georgia, serif;
-        }
-
-        .font-jetbrains {
-          font-family: 'JetBrains Mono', monospace;
-          letter-spacing: 0.3em;
-        }
-
-        .font-syne {
-          font-family: 'Syne', sans-serif;
-        }
-
-        /* 30s Infinite Linear Mesh Drift */
-        @keyframes meshDrift {
-          0% {
-            transform: scale(1) rotate(0deg);
-          }
-          50% {
-            transform: scale(1.15) rotate(180deg);
-          }
-          100% {
-            transform: scale(1) rotate(360deg);
-          }
-        }
-
-        .animate-mesh-drift {
-          animation: meshDrift 30s linear infinite;
-        }
-
-        /* Wave Transition Container */
-        .wave-container {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 22vh;
-          overflow: hidden;
-          pointer-events: none;
-        }
-
-        /* Button Pulse Animation */
-        @keyframes pulseGlow {
-          0%, 100% {
-            transform: scale(1);
-            box-shadow: 0 0 20px rgba(0, 110, 220, 0.35);
-          }
-          50% {
-            transform: scale(1.02);
-            box-shadow: 0 0 35px rgba(0, 110, 220, 0.6);
-          }
-        }
-
-        .animate-pulse-glow {
-          animation: pulseGlow 3s var(--ease-premium) infinite;
-        }
-      `}</style>
-
-      {/* ── Global Site Navbar (with official logo & Get in Touch glass button) ── */}
+    <div className="min-h-screen bg-[#E3E2DE] text-[#141414] font-['General_Sans',sans-serif] selection:bg-[#1351AA] selection:text-[#E3E2DE] antialiased">
       <Navbar />
 
-      {/* ════════════════════════════════════════════════════════════════════
-          1. HERO SECTION (Atmospheric Royal Navy, Drifting Mesh, Seamless Wave)
-         ════════════════════════════════════════════════════════════════════ */}
-      <section className="relative bg-gradient-to-b from-[#071530] via-[#0B1E48] to-[#04112B] text-white flex flex-col justify-between pt-32 sm:pt-40 overflow-hidden">
-        {/* Drifting Radial Glow Spheres */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
-          <div
-            className="absolute top-1/4 left-1/4 w-[650px] h-[650px] rounded-full blur-[130px] animate-mesh-drift -z-10"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(0, 110, 220, 0.4) 0%, rgba(0, 138, 138, 0.25) 50%, transparent 75%)",
-            }}
-          />
-          <div
-            className="absolute bottom-1/4 right-1/4 w-[550px] h-[550px] rounded-full blur-[120px] animate-mesh-drift -z-10"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(121, 40, 202, 0.25) 0%, rgba(0, 110, 220, 0.2) 60%, transparent 80%)",
-              animationDirection: "reverse",
-            }}
-          />
-        </div>
+      <main className="pt-24 sm:pt-28 pb-16">
+        <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8">
+          
+          {/* ── 1. Top 4-Service Selector Bar ── */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 border border-[#C7C7C7] divide-x divide-y sm:divide-y-0 divide-[#C7C7C7] bg-[#E3E2DE] mb-8">
+            {SERVICES_DATA.map((svc) => {
+              const isSelected = activeTab === svc.id;
 
-        {/* Hero Content */}
-        <div className="max-w-5xl mx-auto text-center flex flex-col items-center px-4 sm:px-8 z-10">
-          {/* Header Label Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-cyan-300 mb-6 backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-            <span className="font-jetbrains text-[10px] sm:text-xs font-bold uppercase tracking-[0.3em]">
-              {t.servicesPage.badge}
-            </span>
-          </div>
-
-          {/* Large Serif & Display Headline */}
-          <h1
-            className="font-playfair text-white font-normal tracking-tight leading-[0.92] mb-6"
-            style={{ fontSize: "clamp(2.6rem, 7.5vw, 6rem)" }}
-          >
-            {t.servicesPage.heroTitle}
-          </h1>
-
-          {/* Subheading */}
-          <p className="font-inter text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl font-normal leading-relaxed mb-10">
-            {t.servicesPage.heroSubtitle}
-          </p>
-
-          {/* Quick Metrics Ribbon */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 w-full max-w-3xl mb-10 text-left">
-            <div className="p-3.5 sm:p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:border-white/20 transition-colors">
-              <div className="font-jetbrains text-[10px] text-slate-400 uppercase">
-                {t.servicesPage.metrics.m1Label}
-              </div>
-              <div className="font-syne text-lg sm:text-xl font-bold text-cyan-300 mt-1">
-                {t.servicesPage.metrics.m1Val}
-              </div>
-            </div>
-            <div className="p-3.5 sm:p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:border-white/20 transition-colors">
-              <div className="font-jetbrains text-[10px] text-slate-400 uppercase">
-                {t.servicesPage.metrics.m2Label}
-              </div>
-              <div className="font-syne text-lg sm:text-xl font-bold text-teal-300 mt-1">
-                {t.servicesPage.metrics.m2Val}
-              </div>
-            </div>
-            <div className="p-3.5 sm:p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:border-white/20 transition-colors">
-              <div className="font-jetbrains text-[10px] text-slate-400 uppercase">
-                {t.servicesPage.metrics.m3Label}
-              </div>
-              <div className="font-syne text-lg sm:text-xl font-bold text-indigo-300 mt-1">
-                {t.servicesPage.metrics.m3Val}
-              </div>
-            </div>
-            <div className="p-3.5 sm:p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:border-white/20 transition-colors">
-              <div className="font-jetbrains text-[10px] text-slate-400 uppercase">
-                {t.servicesPage.metrics.m4Label}
-              </div>
-              <div className="font-syne text-lg sm:text-xl font-bold text-emerald-300 mt-1">
-                {t.servicesPage.metrics.m4Val}
-              </div>
-            </div>
-          </div>
-
-          {/* Primary Action Button */}
-          <div className="mb-14 sm:mb-16">
-            <a
-              href="#pillars"
-              className="animate-pulse-glow inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full text-white font-jetbrains text-xs uppercase tracking-[0.3em] font-bold shadow-xl transition-transform hover:scale-105 active:scale-95 cursor-pointer"
-              style={{ background: "linear-gradient(135deg, #006EDC 0%, #082B61 100%)" }}
-            >
-              <span>{t.servicesPage.exploreBtn}</span>
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-
-        {/* ── SECTION DIVIDER FROM HERO (Dark Navy -> Light Cream) ── */}
-        <SectionDivider from="#04112B" to="#FCFBF9" height={72} />
-      </section>
-
-      {/* ── MAIN CONTENT CONTAINER (Connecting Sections) ── */}
-      <div className="relative overflow-hidden bg-[#FCFBF9]">
-
-        {/* ════════════════════════════════════════════════════════════════════
-            2. WORK / CAPABILITIES GRID (Staggered 2-Column Cards with Intelligent Hover)
-           ════════════════════════════════════════════════════════════════════ */}
-        <section id="pillars" className="py-20 sm:py-32 px-4 sm:px-8 max-w-[1340px] mx-auto scroll-mt-20 relative z-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#DCDCD2]">
-            <div>
-              <span className="font-jetbrains text-xs text-[#006EDC] uppercase block mb-2 font-bold">
-                {t.servicesPage.pillarsBadge}
-              </span>
-              <h2 className="font-playfair text-3xl sm:text-5xl font-normal text-[#111111] tracking-tight">
-                {t.servicesPage.pillarsTitle}
-              </h2>
-            </div>
-
-            <p className="font-inter text-xs sm:text-sm text-neutral-500 max-w-sm mt-4 md:mt-0 leading-relaxed">
-              {t.servicesPage.pillarsSubtitle}
-            </p>
-          </div>
-
-          {/* 2-Column Staggered Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
-            {pillarCards.map((card, idx) => {
-              const isStaggered = idx % 2 === 1;
               return (
-                <div
-                  key={card.id}
-                  className={`flex flex-col ${isStaggered ? "md:mt-16" : ""}`}
+                <button
+                  key={svc.id}
+                  type="button"
+                  onClick={() => handleSelectService(svc.id)}
+                  className={`py-3.5 px-4 text-left transition-colors duration-200 cursor-pointer flex flex-col justify-center ${
+                    isSelected
+                      ? "bg-[#1351AA] text-[#E3E2DE]"
+                      : "bg-transparent text-[#141414] hover:bg-[#141414]/5"
+                  }`}
                 >
-                  {/* ── INTELLIGENT CARD HOVER CONTAINER ── */}
-                  <div className="group relative min-h-[440px] sm:min-h-[460px] rounded-3xl overflow-hidden border border-[#DCDCD2] bg-white transition-all duration-700 [transition-timing-function:var(--ease-premium)] hover:-translate-y-3 hover:shadow-[0_20px_40px_rgba(0,110,220,0.1)] cursor-pointer flex flex-col justify-between">
-                    {/* Inner Scaled Background */}
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${card.bgGradient} transition-transform duration-700 [transition-timing-function:var(--ease-premium)] group-hover:scale-110`}
-                    />
-
-                    {/* Blurred Color Orb Center */}
-                    <div
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 rounded-full blur-3xl opacity-60 pointer-events-none transition-opacity duration-700 group-hover:opacity-90"
-                      style={{ background: card.orbColor }}
-                    />
-
-                    {/* Content Overlay */}
-                    <div className="relative h-full p-7 sm:p-9 flex flex-col justify-between z-10 space-y-5">
-                      {/* Top Badges */}
-                      <div className="flex items-center justify-between">
-                        <span className="font-jetbrains text-[10px] sm:text-xs text-[#006EDC] bg-white/90 backdrop-blur-sm px-3.5 py-1 rounded-full border border-[#006EDC]/20 font-bold shadow-xs">
-                          {card.badge}
-                        </span>
-                        <span className="font-jetbrains text-xs text-neutral-400 font-bold">
-                          0{idx + 1}
-                        </span>
-                      </div>
-
-                      {/* Title & Tagline */}
-                      <div className="space-y-1.5">
-                        <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-[#111111]">
-                          {card.title}
-                        </h3>
-                        <p className="font-inter text-xs sm:text-sm text-neutral-600 font-medium">
-                          {card.tagline}
-                        </p>
-                      </div>
-
-                      {/* Optional Description paragraph */}
-                      {card.description ? (
-                        <p className="font-inter text-xs sm:text-[13px] text-neutral-600 leading-relaxed border-t border-black/5 pt-3">
-                          {card.description}
-                        </p>
-                      ) : null}
-
-                      {/* Detailed Technical Points List */}
-                      <div className="space-y-2 pt-2 border-t border-black/5">
-                        {/* Optional process label */}
-                        {card.processLabel ? (
-                          <p className="font-inter text-xs font-bold text-[#111111] mb-2">{card.processLabel}</p>
-                        ) : null}
-                        {card.points.map((pt, pIndex) => (
-                          <div key={pIndex} className="flex items-start gap-2.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#006EDC] shrink-0 mt-1.5" />
-                            <span className="font-inter text-xs sm:text-[13px] text-neutral-700 leading-relaxed font-normal">
-                              {pt}
-                            </span>
-                          </div>
-                        ))}
-                        {/* Optional closing note */}
-                        {card.closingNote ? (
-                          <p className="font-inter text-[11px] text-neutral-500 italic leading-relaxed pt-2 border-t border-black/5">
-                            {card.closingNote}
-                          </p>
-                        ) : null}
-                      </div>
-
-                      {/* Action Pill revealing on hover */}
-                      <div className="pt-2 flex justify-end opacity-0 translate-y-4 transition-all duration-500 [transition-timing-function:var(--ease-premium)] group-hover:opacity-100 group-hover:translate-y-0">
-                        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0B1E48] text-white font-jetbrains text-[10px] font-bold uppercase tracking-[0.25em] shadow-md">
-                          <span>View Details</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Metadata Below Card */}
-                  <div className="mt-4 pt-3 border-t border-[#DCDCD2] flex items-center justify-between">
-                    <span className="font-playfair italic text-base sm:text-lg text-[#111111] font-semibold">
-                      {card.title}
-                    </span>
-                    <span className="font-jetbrains text-[10px] text-neutral-500 uppercase">
-                      {card.category}
-                    </span>
-                  </div>
-                </div>
+                  <span className={`text-[10px] font-['JetBrains_Mono',monospace] font-bold tracking-widest ${
+                    isSelected ? "text-[#E3E2DE]/80" : "text-[#7A7A7A]"
+                  }`}>
+                    {svc.num} //
+                  </span>
+                  <span className="text-xs sm:text-sm font-bold uppercase tracking-tight truncate">
+                    {svc.badge}
+                  </span>
+                </button>
               );
             })}
           </div>
-        </section>
 
-        {/* ════════════════════════════════════════════════════════════════════
-            3. SERVICE ACCORDION (Two-Column Split, Sticky Left Header)
-           ════════════════════════════════════════════════════════════════════ */}
-        <section className="py-20 sm:py-32 px-4 sm:px-8 max-w-[1340px] mx-auto border-t border-[#DCDCD2] relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-            {/* Left Sticky Header */}
-            <div className="lg:col-span-5 lg:sticky lg:top-28 space-y-5">
-              <span className="font-jetbrains text-xs text-[#006EDC] uppercase block font-bold">
-                {t.servicesPage.coreBadge}
-              </span>
+          {/* ── 2. Precise Single-Card 12-Column Grid ── */}
+          <div className="border border-[#C7C7C7] bg-[#E3E2DE]">
+            <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#C7C7C7]">
+              
+              {/* Left Sidebar (Cols 1-4): Metadata & Technical Specifications */}
+              <div className="lg:col-span-4 p-6 sm:p-8 flex flex-col justify-between space-y-8">
+                
+                <div className="space-y-6">
+                  {/* Badge & Icon */}
+                  <div className="flex items-center justify-between border-b border-[#C7C7C7] pb-4">
+                    <div className="space-y-1">
+                      <span className="text-[10.5px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.2em] text-[#7A7A7A]">
+                        SERVICE {currentService.num} OF 04
+                      </span>
+                      <span className="block text-xs font-bold text-[#1351AA] uppercase">
+                        WHO-GMP &amp; CTD VERIFIED
+                      </span>
+                    </div>
 
-              <h2 className="font-playfair text-3xl sm:text-5xl font-normal text-[#111111] tracking-tight leading-[1.05]">
-                {t.servicesPage.coreTitle}
-              </h2>
-
-              <p className="font-inter text-sm sm:text-base text-neutral-600 leading-relaxed max-w-md">
-                {t.servicesPage.coreSubtitle}
-              </p>
-
-              <div className="pt-2">
-                <Link
-                  href="/#contact"
-                  className="inline-flex items-center gap-2 text-xs font-jetbrains uppercase tracking-[0.3em] text-[#006EDC] hover:text-[#0B1E48] transition-colors font-bold group"
-                >
-                  <span>{t.servicesPage.requestDeck}</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Interactive Accordion */}
-            <div className="lg:col-span-7 divide-y divide-[#DCDCD2]">
-              {accordionServices.map((item) => {
-                const isOpen = openAccordion === item.id;
-                return (
-                  <div key={item.id} className="py-7 first:pt-0 last:pb-0">
-                    <button
-                      type="button"
-                      onClick={() => setOpenAccordion(isOpen ? "" : item.id)}
-                      className="w-full flex items-center justify-between text-left group cursor-pointer"
-                    >
-                      <div className="flex items-baseline gap-4 sm:gap-6">
-                        <span className="font-jetbrains text-xs text-neutral-400 font-bold">
-                          {item.number}
-                        </span>
-                        <h3
-                          className={`font-playfair text-xl sm:text-2xl transition-colors duration-500 [transition-timing-function:var(--ease-premium)] ${
-                            isOpen
-                              ? "text-[#006EDC] font-bold italic"
-                              : "text-neutral-500 group-hover:text-[#111111]"
-                          }`}
-                        >
-                          {item.title}
-                        </h3>
-                      </div>
-
-                      <div className="flex items-center gap-3">
-                        <span className="hidden sm:inline font-jetbrains text-[10px] text-neutral-400 uppercase">
-                          {item.tag}
-                        </span>
-                        <div
-                          className={`w-7 h-7 rounded-full border border-[#DCDCD2] flex items-center justify-center transition-transform duration-500 [transition-timing-function:var(--ease-premium)] ${
-                            isOpen ? "rotate-45 bg-[#0B1E48] text-white border-[#0B1E48]" : "text-neutral-600 group-hover:border-black"
-                          }`}
-                        >
-                          <Plus className="w-3.5 h-3.5" />
-                        </div>
-                      </div>
-                    </button>
-
-                    {/* Expanding Accordion Body */}
-                    <div
-                      className={`grid transition-all duration-700 [transition-timing-function:var(--ease-premium)] ${
-                        isOpen ? "grid-rows-[1fr] opacity-100 mt-5" : "grid-rows-[0fr] opacity-0"
-                      }`}
-                    >
-                      <div className="overflow-hidden space-y-3.5 pl-8 sm:pl-10">
-                        <p className="font-inter text-xs sm:text-sm text-neutral-700 leading-relaxed">
-                          {item.summary}
-                        </p>
-
-                        <div className="space-y-2 pt-2">
-                          {item.details.map((point, pIdx) => (
-                            <div
-                              key={pIdx}
-                              className="flex items-start gap-2.5 font-inter text-xs text-neutral-600"
-                            >
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#006EDC] shrink-0 mt-1.5" />
-                              <span>{point}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
+                    <div className="w-10 h-10 bg-[#1351AA] text-[#E3E2DE] flex items-center justify-center">
+                      <IconComponent className="w-5 h-5" />
                     </div>
                   </div>
-                );
-              })}
+
+                  {/* Specifications List */}
+                  <div className="space-y-3">
+                    <span className="block text-[11px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.2em] text-[#7A7A7A]">
+                      [ SPECIFICATIONS ]
+                    </span>
+                    <div className="divide-y divide-[#C7C7C7] border-y border-[#C7C7C7]">
+                      {currentService.specs.map((s, idx) => (
+                        <div key={idx} className="py-2.5 flex items-center justify-between text-xs">
+                          <span className="text-[#444343] font-medium">{s.label}</span>
+                          <span className="font-bold text-[#141414] font-['JetBrains_Mono',monospace]">
+                            {s.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Left Bottom 3 Metrics */}
+                <div className="grid grid-cols-3 gap-2 pt-4 border-t border-[#C7C7C7] text-center">
+                  {currentService.metrics.map((m, idx) => (
+                    <div key={idx} className="p-2 border border-[#C7C7C7] bg-white/40">
+                      <div className="text-sm font-black text-[#1351AA] font-['JetBrains_Mono',monospace]">
+                        {m.value}
+                      </div>
+                      <div className="text-[9px] font-bold text-[#7A7A7A] uppercase tracking-tight mt-0.5">
+                        {m.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
+
+              {/* Right Content Area (Cols 5-12): Headline, Description & Highlights */}
+              <div className="lg:col-span-8 p-6 sm:p-10 space-y-8 flex flex-col justify-between">
+                
+                <div className="space-y-6">
+                  {/* Headline */}
+                  <div>
+                    <span className="block text-xs font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.2em] text-[#1351AA] mb-2">
+                      {currentService.tagline}
+                    </span>
+
+                    <h1 className="text-3xl sm:text-5xl font-black text-[#141414] uppercase tracking-tight leading-[0.95]">
+                      {currentService.title.split(currentService.accentWord)[0]}
+                      <span className="text-[#1351AA]">{currentService.accentWord}</span>
+                      {currentService.title.split(currentService.accentWord)[1]}
+                    </h1>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-sm sm:text-base text-[#444343] leading-relaxed font-normal">
+                    {currentService.description}
+                  </p>
+
+                  {/* Core Highlights Checklist */}
+                  <div className="space-y-3 pt-2">
+                    <span className="block text-[11px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.2em] text-[#7A7A7A]">
+                      [ CORE CAPABILITIES &amp; DELIVERABLES ]
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {currentService.keyPoints.map((point, idx) => (
+                        <div
+                          key={idx}
+                          className="p-3.5 border border-[#C7C7C7] bg-white/30 flex items-start gap-2.5 text-xs text-[#141414] font-medium leading-normal"
+                        >
+                          <span className="w-4 h-4 bg-[#1351AA] text-[#E3E2DE] shrink-0 flex items-center justify-center text-[10px] font-bold mt-0.5">
+                            ✓
+                          </span>
+                          <span>{point}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Action Strip */}
+                <div className="pt-6 border-t border-[#C7C7C7] flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#1351AA] animate-pulse" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#141414]">
+                      Active WHO-GMP Export Compliance
+                    </span>
+                  </div>
+
+                  <Link
+                    href="/#contact"
+                    className="w-full sm:w-auto py-3.5 px-7 bg-[#1351AA] hover:bg-[#141414] text-[#E3E2DE] text-xs font-bold uppercase tracking-[0.15em] flex items-center justify-center gap-2 transition-colors duration-200 rounded-none"
+                  >
+                    <span>{currentService.ctaText}</span>
+                    <ArrowUpRight className="w-4 h-4" />
+                  </Link>
+                </div>
+
+              </div>
+
             </div>
           </div>
-        </section>
-      </div>
 
-      {/* ── SECTION DIVIDER TO FOOTER (Cream -> Dark Navy) ── */}
-      <SectionDivider from="#FCFBF9" to="#071530" flip height={72} />
+        </div>
+      </main>
 
-      {/* ── Global Site Footer ── */}
       <Footer />
     </div>
+  );
+}
+
+export default function ServicesPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[#E3E2DE] flex items-center justify-center">
+          <div className="w-8 h-8 border-2 border-[#1351AA] border-t-transparent animate-spin" />
+        </div>
+      }
+    >
+      <ServicesModernistContent />
+    </Suspense>
   );
 }

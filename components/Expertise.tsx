@@ -20,8 +20,13 @@ if (typeof window !== "undefined") {
 const EXPERTISE_CARDS = [
   {
     num: "01",
-    tag: "Global Compliance",
-    badgeColor: "#006EDC",
+    tag: "GLOBAL COMPLIANCE",
+    themeColor: "#006EDC",
+    titleColor: "#0A3678",
+    bgGradient: "linear-gradient(180deg, #EBF5FF 0%, #E0F2FE 35%, #F8FBFF 100%)",
+    borderColor: "#BAE6FD",
+    pillBg: "#FFFFFF",
+    pillBorder: "#BFDBFE",
     title: "Regulatory Services",
     description:
       "Comprehensive CTD / eCTD dossier preparation, stability documentation under Zone IVb, and international MOH filings.",
@@ -30,7 +35,7 @@ const EXPERTISE_CARDS = [
       "Country-Specific MOH Filings",
       "Stability Study Data (Zone IVb)",
     ],
-    href: "#contact",
+    href: "/services?service=regulatory",
     icon: FileCheck2,
     widget: {
       title: "eCTD Module 1–5",
@@ -41,8 +46,13 @@ const EXPERTISE_CARDS = [
   },
   {
     num: "02",
-    tag: "Flexible Supply",
-    badgeColor: "#00bfb5",
+    tag: "EXTENDED SCALE",
+    themeColor: "#0D9488",
+    titleColor: "#0F766E",
+    bgGradient: "linear-gradient(180deg, #E6FFFA 0%, #CCFBF1 35%, #F4FBF9 100%)",
+    borderColor: "#99F6E4",
+    pillBg: "#FFFFFF",
+    pillBorder: "#A7F3D0",
     title: "Contract Manufacturing",
     description:
       "Scalable manufacturing partnerships aligned with international pharmacopeia standards and customized batch sizing.",
@@ -51,7 +61,7 @@ const EXPERTISE_CARDS = [
       "High-Speed Automated Packaging",
       "Stringent IP & Formula Protection",
     ],
-    href: "#contact",
+    href: "/services?service=contract-manufacturing",
     icon: Factory,
     widget: {
       title: "High-Speed Automated Lines",
@@ -62,8 +72,13 @@ const EXPERTISE_CARDS = [
   },
   {
     num: "03",
-    tag: "WHO-GMP Certified",
-    badgeColor: "#F59E0B",
+    tag: "WHO-GMP CERTIFIED",
+    themeColor: "#059669",
+    titleColor: "#065F46",
+    bgGradient: "linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 35%, #F4FBF7 100%)",
+    borderColor: "#A7F3D0",
+    pillBg: "#FFFFFF",
+    pillBorder: "#BBF7D0",
     title: "3rd Party Manufacturing",
     description:
       "Reliable third-party formulation production through accredited state-of-the-art sterile and oral solid facilities.",
@@ -72,7 +87,7 @@ const EXPERTISE_CARDS = [
       "100% Analytical QC Testing",
       "Zero-Contamination Guarantee",
     ],
-    href: "#contact",
+    href: "/services?service=third-party-manufacturing",
     icon: ShieldCheck,
     widget: {
       title: "Sterile & Oral Facilities",
@@ -83,8 +98,13 @@ const EXPERTISE_CARDS = [
   },
   {
     num: "04",
-    tag: "Therapeutic Range",
-    badgeColor: "#8B5CF6",
+    tag: "STERILE & FINISHED",
+    themeColor: "#7C3AED",
+    titleColor: "#5B21B6",
+    bgGradient: "linear-gradient(180deg, #F5F3FF 0%, #EDE9FE 35%, #FAF8FF 100%)",
+    borderColor: "#DDD6FE",
+    pillBg: "#FFFFFF",
+    pillBorder: "#E9D5FF",
     title: "Generic Products",
     description:
       "Extensive export catalogue covering tablets, capsules, dry injections, syrups, sachets, and specialized combination therapies.",
@@ -93,7 +113,7 @@ const EXPERTISE_CARDS = [
       "Multiple Dosage Formats",
       "Custom Export Artwork Branding",
     ],
-    href: "#products",
+    href: "/services?service=generic-products",
     icon: Layers,
     widget: {
       title: "800+ Generic Molecules",
@@ -147,128 +167,151 @@ export function Expertise() {
     <section
       id="expertise"
       ref={rootRef}
-      className="relative scroll-mt-24 py-16 sm:py-24 overflow-hidden bg-white"
+      className="relative scroll-mt-24 py-16 sm:py-24 overflow-hidden bg-transparent z-10 select-none font-['Inter',sans-serif]"
     >
-      <div className="relative z-20 mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8 font-['Inter_Tight',sans-serif]">
-        {/* Section Header */}
+      <div className="relative z-20 mx-auto max-w-[1380px] px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header with JetBrains Mono Metadata */}
         <div className="expertise-header max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F7F7F7] border border-[#E5E5E5] mb-3.5 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/30 mb-3.5">
             <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#171717]">
-              Our Capabilities
+            <p className="text-[11px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.15em] text-[#006EDC]">
+              02.00 // CORE CAPABILITIES
             </p>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] leading-[1.15] font-bold text-[#171717] tracking-tight">
-            Capabilities that support global partners
+          <h2 className="text-3xl sm:text-4xl lg:text-[44px] leading-[1.12] font-extrabold text-[#0B1E48] tracking-tight">
+            Capabilities That Power Global Supply
           </h2>
 
-          <div className="my-4 h-[3.5px] w-14 rounded-full bg-[#006EDC]" />
+          <div className="my-3.5 h-[3px] w-12 rounded-full bg-[#006EDC]" />
 
-          <p className="text-base leading-relaxed text-[#5C5C5C] max-w-2xl">
-            From regulatory readiness to contract manufacturing and generics, Zelnex is built for scalable, export-oriented collaboration across 50+ international markets.
+          <p className="text-sm sm:text-base leading-relaxed text-[#4B5563] max-w-2xl font-normal">
+            From regulatory dossier readiness to contract manufacturing and finished generics, Zelnex is built for scalable, compliant collaboration across 50+ international markets.
           </p>
         </div>
 
-        {/* ── 4 Pixa-Style Clean Feature Cards Grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        {/* ── 4 Pastel Gradient Gradient Theme Cards (Matching Image 2) ── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 items-stretch">
           {EXPERTISE_CARDS.map((card) => {
             const IconComponent = card.icon;
 
             return (
               <div
                 key={card.title}
-                className="expertise-card group relative bg-[#F7F7F7] rounded-[32px] flex flex-col justify-between p-6 sm:p-7 gap-6 h-full hover:shadow-lg transition-all duration-300 border border-transparent hover:border-[#EBEBEB] select-none"
+                className="expertise-card group relative rounded-[26px] sm:rounded-[30px] flex flex-col justify-between p-6 sm:p-7 gap-6 h-full shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-xl transition-all duration-300 select-none"
+                style={{
+                  background: card.bgGradient,
+                  border: `1.2px solid ${card.borderColor}`,
+                }}
               >
-                {/* ── Top Group ── */}
+                {/* Top Content Group */}
                 <div className="flex flex-col w-full">
-                  {/* Top Row: Icon Tile + Badge */}
+                  
+                  {/* Top Row: Pill Tag Badge + Slot Number */}
                   <div className="flex items-center justify-between mb-4">
-                    {/* Icon Tile with multi-layer shadow */}
+                    
+                    {/* Top Pill Tag Badge */}
                     <div
-                      className="w-[48px] h-[48px] rounded-[14px] bg-white flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-2xs"
                       style={{
-                        boxShadow:
-                          "0 1px 1px -0.5px rgba(23,23,23,0.06), 0 0 0 1px rgba(23,23,23,0.08), 0 3px 3px -1.5px rgba(23,23,23,0.04), 0 6px 6px -3px rgba(23,23,23,0.04), 0 10px 10px -5px rgba(23,23,23,0.04)",
+                        backgroundColor: card.pillBg,
+                        border: `1px solid ${card.pillBorder}`,
+                        color: card.themeColor,
                       }}
                     >
-                      <IconComponent
-                        className="w-6 h-6"
-                        style={{ color: card.badgeColor }}
-                      />
-                    </div>
-
-                    {/* Number / Tag Badge */}
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white text-[11px] font-bold text-[#171717] border border-[#E5E5E5] shadow-xs">
                       <span
                         className="w-1.5 h-1.5 rounded-full"
-                        style={{ backgroundColor: card.badgeColor }}
+                        style={{ backgroundColor: card.themeColor }}
                       />
-                      <span>{card.num}</span>
+                      <span>{card.tag}</span>
+                    </div>
+
+                    {/* Icon Tile */}
+                    <div
+                      className="w-9 h-9 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 shadow-2xs"
+                      style={{
+                        backgroundColor: "#FFFFFF",
+                        color: card.themeColor,
+                        border: `1px solid ${card.borderColor}`,
+                      }}
+                    >
+                      <IconComponent className="w-4.5 h-4.5" />
                     </div>
                   </div>
 
                   {/* Title & Description */}
                   <div>
-                    <h3 className="text-[20px] leading-[28px] font-bold text-[#171717] group-hover:text-[#006EDC] transition-colors">
+                    <h3
+                      className="text-lg sm:text-xl font-black leading-snug tracking-tight"
+                      style={{ color: card.titleColor }}
+                    >
                       {card.title}
                     </h3>
-                    <p className="text-[14px] leading-[22px] text-[#5C5C5C] mt-2 font-medium">
+                    <p className="text-xs sm:text-[13px] leading-relaxed text-[#475569] mt-2.5 font-medium">
                       {card.description}
                     </p>
                   </div>
 
                   {/* Bullet Specs */}
-                  <div className="mt-4 space-y-1.5 pt-3 border-t border-black/[0.06]">
+                  <div className="mt-5 space-y-2 pt-3.5 border-t border-black/5 font-['JetBrains_Mono',monospace] text-xs">
                     {card.bullets.map((b) => (
-                      <div key={b} className="flex items-center gap-2">
+                      <div key={b} className="flex items-start gap-2 text-[#334155]">
                         <span
-                          className="h-1.5 w-1.5 rounded-full shrink-0"
-                          style={{ backgroundColor: card.badgeColor }}
+                          className="h-1.5 w-1.5 rounded-full shrink-0 mt-1.5"
+                          style={{ backgroundColor: card.themeColor }}
                         />
-                        <span className="text-[12px] font-semibold text-[#171717]/85">
+                        <span className="text-[11.5px] leading-tight font-medium">
                           {b}
                         </span>
                       </div>
                     ))}
                   </div>
 
-                  {/* Link Row */}
+                  {/* Link Action */}
                   <Link
                     href={card.href}
-                    className="inline-flex items-center gap-1 text-[15px] font-semibold text-[#171717] group-hover:text-[#006EDC] transition-colors cursor-pointer mt-5 w-fit"
+                    className="inline-flex items-center gap-1 text-xs font-['JetBrains_Mono',monospace] font-bold transition-all cursor-pointer mt-5 w-fit uppercase tracking-wider group/link"
+                    style={{ color: card.themeColor }}
                   >
-                    <span>Learn more</span>
-                    <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <span className="group-hover/link:underline underline-offset-4 font-bold">
+                      View Service
+                    </span>
+                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                   </Link>
                 </div>
 
-                {/* ── Bottom Widget Box ── */}
+                {/* Bottom Spec Widget Box */}
                 <div
-                  className="mt-auto w-full rounded-[18px] bg-white p-3.5 border border-black/[0.06] overflow-hidden"
+                  className="mt-auto w-full rounded-2xl p-3.5 border overflow-hidden font-['JetBrains_Mono',monospace] shadow-2xs"
                   style={{
-                    boxShadow:
-                      "0 1px 1px -0.5px rgba(23,23,23,0.06), 0 0 0 1px rgba(23,23,23,0.08), 0 3px 3px -1.5px rgba(23,23,23,0.04), 0 6px 6px -3px rgba(23,23,23,0.04)",
+                    backgroundColor: "rgba(255, 255, 255, 0.75)",
+                    backdropFilter: "blur(8px)",
+                    borderColor: card.borderColor,
                   }}
                 >
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[11px] font-bold text-[#171717] truncate">
+                    <span className="text-[10.5px] font-bold text-slate-800 truncate">
                       {card.widget.title}
                     </span>
                     <span
-                      className="px-2 py-0.5 rounded-md text-[10px] font-bold"
+                      className="px-2 py-0.5 rounded-full text-[9px] font-bold shadow-2xs"
                       style={{
-                        backgroundColor: `${card.badgeColor}15`,
-                        color: card.badgeColor,
+                        backgroundColor: card.pillBg,
+                        color: card.themeColor,
+                        border: `1px solid ${card.pillBorder}`,
                       }}
                     >
                       {card.widget.status}
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between text-[11px] text-[#5C5C5C] font-medium pt-1 border-t border-black/[0.04]">
+                  <div className="flex items-center justify-between text-[10px] text-slate-600 pt-1.5 border-t border-black/5">
                     <span className="truncate">{card.widget.subtitle}</span>
-                    <span className="font-bold text-[#171717] ml-2 shrink-0">
+                    <span
+                      className="font-bold ml-2 shrink-0"
+                      style={{ color: card.themeColor }}
+                    >
                       {card.widget.metric}
                     </span>
                   </div>
