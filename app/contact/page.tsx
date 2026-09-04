@@ -6,64 +6,98 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import {
   CheckCircle2,
-  AlertCircle,
   Loader2,
-  X,
+  ExternalLink,
   MessageCircle,
-  Sparkles,
+  ArrowRight,
+  ArrowUpRight,
   ShieldCheck,
-  Globe2,
-  FileCheck2,
   Building2,
+  Phone,
+  PhoneCall,
   MapPin,
   Mail,
-  Phone,
   Clock,
-  ExternalLink,
+  Globe2,
+  FileCheck2,
+  Factory,
+  Boxes,
+  Truck,
+  Plus,
+  Minus,
+  HelpCircle,
+  Check,
 } from "lucide-react";
+
+
+
+const INQUIRY_STREAMS = [
+  {
+    number: "01",
+    title: "Commercial Formulations",
+    subtitle: "581+ Approved Finished Molecules",
+    description: "Direct volume supply for commercial importers, distributor networks, and retail pharmacy chains across 21 therapeutic areas.",
+    icon: Boxes,
+  },
+  {
+    number: "02",
+    title: "Turnkey Dossier Licensing",
+    subtitle: "CTD Modules 1 to 5 Ready",
+    description: "Complete technical registration dossiers, bioequivalence summaries, and localized MOH regulatory submission assistance.",
+    icon: FileCheck2,
+  },
+  {
+    number: "03",
+    title: "Contract Manufacturing",
+    subtitle: "WHO-GMP Validated Facilities",
+    description: "Scalable batch manufacturing with automated high-speed Alu-Alu, blister, liquid filling, and sterile lyophilized vial packaging lines.",
+    icon: Factory,
+  },
+  {
+    number: "04",
+    title: "Tenders & Institutional Supply",
+    subtitle: "Government & Hospital Procurement",
+    description: "Specialized batch packaging, unit serialization, barcoding compliance, and cold-chain air cargo coordination for institutional tenders.",
+    icon: Truck,
+  },
+];
+
+
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    companyEmail: "",
+    name: "",
     phoneNumber: "",
-    organizationType: "",
-    country: "",
-    discussionDetails: "",
+    email: "",
+    subject: "",
+    message: "",
+    agreedToTerms: true,
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [ticketId, setTicketId] = useState("");
-  const [chatBubbleVisible, setChatBubbleVisible] = useState(true);
 
   const validate = () => {
     const errs: Record<string, string> = {};
 
-    if (!formData.firstName.trim()) {
-      errs.firstName = "First name is required";
+    if (!formData.name.trim()) {
+      errs.name = "Name is required";
     }
-    if (!formData.lastName.trim()) {
-      errs.lastName = "Last name is required";
+    if (!formData.email.trim()) {
+      errs.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      errs.email = "Please enter a valid email address";
     }
-    if (!formData.companyEmail.trim()) {
-      errs.companyEmail = "Company email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.companyEmail.trim())) {
-      errs.companyEmail = "Please enter a valid email address";
+    if (!formData.subject.trim()) {
+      errs.subject = "Subject is required";
     }
-    if (!formData.phoneNumber.trim()) {
-      errs.phoneNumber = "Phone number is required";
+    if (!formData.message.trim()) {
+      errs.message = "Message is required";
     }
-    if (!formData.organizationType) {
-      errs.organizationType = "Please select an organization type";
-    }
-    if (!formData.country) {
-      errs.country = "Please select your country or region";
-    }
-    if (!formData.discussionDetails.trim()) {
-      errs.discussionDetails = "Please provide brief details about your inquiry";
+    if (!formData.agreedToTerms) {
+      errs.agreedToTerms = "You must accept the terms & privacy policy";
     }
 
     setErrors(errs);
@@ -76,7 +110,7 @@ export default function ContactPage() {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 900));
+    await new Promise((resolve) => setTimeout(resolve, 800));
 
     const generatedCode = `ZNX-${Math.floor(100000 + Math.random() * 900000)}`;
     setTicketId(generatedCode);
@@ -86,446 +120,534 @@ export default function ContactPage() {
 
   const handleReset = () => {
     setFormData({
-      firstName: "",
-      lastName: "",
-      companyEmail: "",
+      name: "",
       phoneNumber: "",
-      organizationType: "",
-      country: "",
-      discussionDetails: "",
+      email: "",
+      subject: "",
+      message: "",
+      agreedToTerms: true,
     });
     setErrors({});
     setIsSubmitted(false);
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-[#F6F5F2] text-[#111827] antialiased selection:bg-[#111827] selection:text-white font-['Outfit',sans-serif]">
+      
+      {/* ── Global Font Styles ── */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+        .font-serif-luxury {
+          font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .font-mono {
+          font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Minimal clean form inputs */
+        .editorial-input {
+          border: none;
+          border-bottom: 1px solid #E5E3DC;
+          border-radius: 0;
+          background: transparent;
+          padding: 0.75rem 0;
+          width: 100%;
+          font-size: 0.9375rem;
+          color: #111827;
+          transition: border-color 0.2s ease;
+        }
+
+        .editorial-input:focus {
+          outline: none;
+          border-bottom: 1.5px solid #111827;
+        }
+
+        .editorial-input::placeholder {
+          color: #9CA3AF;
+          font-weight: 300;
+        }
+      `}</style>
+
       <Navbar />
 
-      <main className="min-h-screen bg-white text-[#111827] font-['Inter',sans-serif] selection:bg-[#006EDC] selection:text-white pt-24 sm:pt-28">
+      <main className="pt-24 sm:pt-28 pb-20">
         
-        {/* ── Main Two-Tone Canvas (Matching Reference Layout) ── */}
-        <div className="relative w-full bg-[#ECEEEF] border-b border-slate-200/80 pt-10 pb-16 sm:pt-14 sm:pb-20">
-          <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* ══════════════════════════════════════════════════════════════
+            1. TOP EDITORIAL HERO HEADER
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 pt-6 pb-12">
+          
+          {/* Breadcrumb & Subtitle */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-[#E5E3DC] text-xs font-mono text-[#6B7280]">
+            <div className="flex items-center gap-2">
+              <Link href="/" className="hover:text-[#111827] transition-colors">
+                ZELNEX PHARMA
+              </Link>
+              <span>/</span>
+              <span className="text-[#111827] font-bold">GLOBAL INQUIRIES &amp; DESKS</span>
+            </div>
+            <div className="flex items-center gap-3 mt-2 sm:mt-0">
+              <span className="flex items-center gap-1.5 text-emerald-700 font-semibold">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                DESKS ACTIVE WORLDWIDE
+              </span>
+              <span>·</span>
+              <span>SLA &lt; 4 HOURS</span>
+            </div>
+          </div>
+
+          {/* Editorial Headline */}
+          <div className="max-w-4xl space-y-3">
+            <h1 className="font-serif-luxury text-3xl sm:text-5xl lg:text-[56px] text-[#111827] font-normal tracking-tight leading-[1.1]">
+              Connecting global healthcare demand with accredited pharmaceutical formulations.
+            </h1>
+            <p className="text-sm sm:text-base text-[#6B7280] font-light max-w-2xl leading-relaxed pt-1">
+              Connect directly with our international regulatory leadership, commercial export specialists, and contract manufacturing desks for rapid quotation, dossier access, and country distribution rights.
+            </p>
+          </div>
+
+        </section>
+
+        {/* ══════════════════════════════════════════════════════════════
+            2. LUXURY EDITORIAL 2-COLUMN SPLIT FORM (Matching Reference)
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="max-w-[1440px] mx-auto px-0 sm:px-6 lg:px-16 mb-20">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-12 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border-y border-[#E5E3DC] bg-white">
+            
+            {/* ── LEFT COLUMN: CONTACT DETAILS & ADDRESS (Warm Off-White) ── */}
+            <div className="lg:col-span-5 bg-[#F6F5F2] p-6 sm:p-10 lg:p-12 flex flex-col justify-between space-y-8 lg:border-r border-[#E5E3DC]">
               
-              {/* ── Left Column: Headline & Value Proposition ── */}
-              <div className="lg:col-span-5 pt-2 lg:pt-6">
+              <div className="space-y-5">
                 
-                {/* Asana-Style Clean Bold Title */}
-                <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#111827] tracking-tight leading-[1.12] font-['Inter',sans-serif]">
-                  Talk with our sales team
-                </h1>
+                {/* Section Header */}
+                <div className="space-y-1 pb-1">
+                  <span className="font-mono text-[11px] text-[#B8945A] font-bold uppercase tracking-[0.25em] block">
+                    01 // CORPORATE CHANNELS
+                  </span>
+                  <h3 className="font-serif-luxury text-2xl text-[#111827] tracking-tight">
+                    Direct Liaison Desks
+                  </h3>
+                  <p className="text-xs text-[#6B7280] font-light leading-relaxed">
+                    Connect directly with our headquarters, regulatory leads, and international export desks.
+                  </p>
+                </div>
 
-                {/* Subtext with Clean Inline Link */}
-                <p className="mt-4 text-sm sm:text-[15px] text-slate-600 leading-relaxed font-normal">
-                  Fill out your information and a Zelnex representative will reach out to you. Have a simple question?{" "}
-                  <Link
-                    href="/blogs#faq"
-                    className="text-[#111827] font-semibold underline underline-offset-4 hover:text-[#006EDC] transition-colors"
-                  >
-                    Check out our FAQ.
-                  </Link>
-                </p>
+                {/* 1. ADDRESS BOX CARD */}
+                <div className="bg-white border border-[#E5E3DC] rounded-xl p-5 hover:border-[#B8945A] transition-all duration-300 shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-3 group">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-3.5 bg-[#B8945A] rounded-full inline-block" />
+                      <span className="font-mono text-[11px] font-bold tracking-[0.2em] text-[#111827] uppercase">
+                        HEADQUARTERS &amp; R&amp;D
+                      </span>
+                    </div>
+                    <div className="w-8 h-8 rounded-lg bg-[#FAF9F5] border border-[#E5E3DC] flex items-center justify-center text-[#111827] group-hover:bg-[#111827] group-hover:text-white group-hover:border-[#111827] transition-colors">
+                      <Building2 className="w-4 h-4" />
+                    </div>
+                  </div>
 
-                {/* Subtle Value Checklist */}
-                <div className="mt-8 pt-6 border-t border-slate-300/70 space-y-3.5 text-xs sm:text-[13px] text-slate-600">
-                  <div className="flex items-center gap-3">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 font-bold text-[10px]">
-                      ✓
-                    </span>
-                    <span>800+ finished generic formulations ready for export</span>
+                  <div className="space-y-1 pt-0.5">
+                    <h4 className="text-sm font-semibold text-[#111827]">
+                      Zelnex Pharmaceuticals Pvt. Ltd.
+                    </h4>
+                    <p className="text-xs text-[#4B5563] font-light leading-relaxed">
+                      Corporate Heights, SG Highway, Ahmedabad, Gujarat 380054, India
+                    </p>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 font-bold text-[10px]">
-                      ✓
-                    </span>
-                    <span>Complete CTD / eCTD Modules 1–5 &amp; Zone IVb stability</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 font-bold text-[10px]">
-                      ✓
-                    </span>
-                    <span>WHO-GMP, ISO 9001:2015 certified manufacturing sites</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 font-bold text-[10px]">
-                      ✓
-                    </span>
-                    <span>Average response time under 4 business hours</span>
+
+                  <div className="pt-2 border-t border-[#F0EFEB]">
+                    <a
+                      href="https://maps.google.com/?q=Ahmedabad+Gujarat+India"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#B8945A] hover:text-[#111827] group/map transition-colors"
+                    >
+                      <span>Locate On Google Maps</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-[#B8945A] group-hover/map:translate-x-0.5 group-hover/map:-translate-y-0.5 transition-transform" />
+                    </a>
                   </div>
                 </div>
 
-                {/* Direct Contact Micro-Card */}
-                <div className="mt-8 p-4 rounded-xl bg-white/80 border border-slate-300/80 text-xs text-slate-600 space-y-1.5 shadow-2xs">
-                  <div className="font-semibold text-slate-900">Prefer direct correspondence?</div>
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-600">
-                    <a href="mailto:contact@zelnexpharma.com" className="hover:text-[#006EDC] font-medium underline">
-                      contact@zelnexpharma.com
+                {/* 2. TELEPHONY & HOTLINES BOX CARD */}
+                <div className="bg-white border border-[#E5E3DC] rounded-xl p-5 hover:border-[#B8945A] transition-all duration-300 shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-3.5 group">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-3.5 bg-[#B8945A] rounded-full inline-block" />
+                      <span className="font-mono text-[11px] font-bold tracking-[0.2em] text-[#111827] uppercase">
+                        TELEPHONY &amp; DISPATCH
+                      </span>
+                    </div>
+                    <div className="w-8 h-8 rounded-lg bg-[#FAF9F5] border border-[#E5E3DC] flex items-center justify-center text-[#111827] group-hover:bg-[#111827] group-hover:text-white group-hover:border-[#111827] transition-colors">
+                      <PhoneCall className="w-4 h-4" />
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    {/* Boardline */}
+                    <div className="space-y-0.5">
+                      <a
+                        href="tel:+917948001234"
+                        className="font-mono text-base font-semibold text-[#111827] hover:text-[#B8945A] transition-colors block tracking-tight"
+                      >
+                        +91 79 4800 1234
+                      </a>
+                      <p className="text-[11px] text-[#6B7280] font-light">
+                        National fixed corporate boardline (Mon–Sat 9AM–7PM IST)
+                      </p>
+                    </div>
+
+                    {/* WhatsApp Export Desk Box */}
+                    <a
+                      href="https://wa.me/919825099881?text=Hello%20Zelnex%20Team%2C%20I%20would%20like%20to%20inquire%20about%20finished%20pharmaceutical%20formulations."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between p-3 rounded-lg bg-[#F0FDF4] border border-emerald-200/80 hover:bg-[#DCFCE7] transition-all group/wa"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-7 h-7 rounded-md bg-emerald-600 text-white flex items-center justify-center shadow-xs">
+                          <MessageCircle className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <span className="font-mono text-xs font-bold text-emerald-950 block">
+                            +91 98250 99881
+                          </span>
+                          <span className="text-[10px] text-emerald-700 font-light block">
+                            International export &amp; mobile hotline
+                          </span>
+                        </div>
+                      </div>
+                      <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-600 text-white uppercase tracking-wider">
+                        WhatsApp
+                      </span>
                     </a>
-                    <span>•</span>
-                    <a href="tel:+917948001234" className="hover:text-[#006EDC] font-medium">
-                      +91 79 4800 1234
-                    </a>
+                  </div>
+                </div>
+
+                {/* 3. OFFICIAL ELECTRONIC MAIL BOX CARD */}
+                <div className="bg-white border border-[#E5E3DC] rounded-xl p-5 hover:border-[#B8945A] transition-all duration-300 shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-3 group">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-3.5 bg-[#B8945A] rounded-full inline-block" />
+                      <span className="font-mono text-[11px] font-bold tracking-[0.2em] text-[#111827] uppercase">
+                        OFFICIAL EMAIL
+                      </span>
+                    </div>
+                    <div className="w-8 h-8 rounded-lg bg-[#FAF9F5] border border-[#E5E3DC] flex items-center justify-center text-[#111827] group-hover:bg-[#111827] group-hover:text-white group-hover:border-[#111827] transition-colors">
+                      <Mail className="w-4 h-4" />
+                    </div>
+                  </div>
+
+                  <a
+                    href="mailto:export@zelnex.in"
+                    className="group/mail flex items-center justify-between p-3.5 rounded-lg bg-[#FAF9F5] border border-[#E5E3DC]/70 hover:border-[#B8945A] hover:bg-white transition-all"
+                  >
+                    <div className="space-y-0.5">
+                      <span className="font-mono text-sm sm:text-base font-semibold text-[#111827] group-hover/mail:text-[#B8945A] transition-colors block tracking-tight">
+                        export@zelnex.in
+                      </span>
+                      <span className="text-[11px] text-[#6B7280] font-light block">
+                        Global export, regulatory inquiries &amp; commercial supply
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-mono text-[#B8945A] font-bold bg-[#FAF3E8] border border-[#E8D7B8] px-2.5 py-1 rounded uppercase tracking-wider flex-shrink-0 ml-2">
+                      Official
+                    </span>
+                  </a>
+                </div>
+
+                {/* 4. OPERATIONAL HOURS & STATUS */}
+                <div className="bg-[#FAF9F5] border border-[#E5E3DC] rounded-xl p-3.5 flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-md bg-white border border-[#E5E3DC] flex items-center justify-center text-[#B8945A]">
+                      <Clock className="w-3.5 h-3.5" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-[#111827]">
+                        Mon – Sat: 09:00 – 19:00 IST
+                      </p>
+                      <p className="text-[10px] text-[#6B7280] font-light">
+                        Export hotline open 24/7 for overseas timezones
+                      </p>
+                    </div>
+                  </div>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-mono text-[10px] font-bold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>ONLINE</span>
                   </div>
                 </div>
 
               </div>
 
-              {/* ── Right Column: Asana-Style Clean White Form Card ── */}
-              <div className="lg:col-span-7 w-full">
-                <div className="rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-8 lg:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.06)]">
-                  
-                  {isSubmitted ? (
-                    <div className="py-8 flex flex-col items-center text-center animate-in fade-in duration-300">
-                      <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 mb-4">
-                        <CheckCircle2 className="w-8 h-8" />
-                      </div>
+              {/* Bottom Institutional Quality Note */}
+              <div className="pt-6 border-t border-[#E5E3DC]/80 flex items-center justify-between text-[11px] font-mono text-[#6B7280]">
+                <span>WHO-GMP &amp; ISO CERTIFIED</span>
+                <span>581 APPROVED SKUs</span>
+              </div>
 
-                      <span className="text-[11px] font-['JetBrains_Mono',monospace] font-bold px-3 py-1 rounded-full bg-blue-50 text-[#006EDC] border border-blue-200 mb-2">
-                        REFERENCE: {ticketId}
-                      </span>
+            </div>
 
-                      <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-                        Thank you for reaching out
-                      </h3>
+            {/* ── RIGHT COLUMN: CLEAN EDITORIAL FORM (Pure White) ── */}
+            <div className="lg:col-span-7 bg-[#FFFFFF] p-8 sm:p-12 lg:p-14 xl:p-16 flex flex-col justify-center">
+              
+              <div className="max-w-xl">
+                
+                {/* Header */}
+                <div className="space-y-3 mb-8">
+                  <h2 className="font-serif-luxury text-2xl sm:text-3xl text-[#111827] tracking-[0.2em] uppercase font-medium">
+                    CONTACT US
+                  </h2>
+                  <p className="text-xs sm:text-sm text-[#6B7280] font-light leading-relaxed">
+                    Thank you for your interest in Zelnex Pharmaceuticals. If you have any questions, please fill out the form below and our export desk will get back to you shortly.
+                  </p>
+                </div>
 
-                      <p className="mt-2 text-xs sm:text-sm text-slate-600 max-w-sm">
-                        A Zelnex export &amp; regulatory specialist will review your request and get back to you shortly at <strong className="text-slate-900">{formData.companyEmail}</strong>.
-                      </p>
+                {/* Submission Success View */}
+                {isSubmitted ? (
+                  <div className="py-12 space-y-4 animate-in fade-in duration-300">
+                    <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center border border-emerald-200">
+                      <CheckCircle2 className="w-6 h-6" />
+                    </div>
 
+                    <span className="font-mono text-xs font-bold text-[#B8945A] block uppercase tracking-wider">
+                      INQUIRY REFERENCE: {ticketId}
+                    </span>
+
+                    <h3 className="text-xl sm:text-2xl font-serif-luxury text-[#111827]">
+                      Message Received Successfully.
+                    </h3>
+
+                    <p className="text-sm text-[#6B7280] font-light leading-relaxed">
+                      Thank you, <strong className="text-[#111827]">{formData.name}</strong>. Your correspondence has been routed to our international regulatory and commercial export team. We will review and reply to <strong className="text-[#111827]">{formData.email}</strong> within 4 business hours.
+                    </p>
+
+                    <div className="pt-4 flex items-center gap-4">
                       <button
                         type="button"
                         onClick={handleReset}
-                        className="mt-6 px-5 py-2.5 rounded-lg bg-[#111827] text-white text-xs font-semibold hover:bg-black transition-colors cursor-pointer"
+                        className="px-6 py-3 bg-[#111827] text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-black transition-colors cursor-pointer"
                       >
-                        Submit another inquiry
+                        Send Another Message
                       </button>
                     </div>
-                  ) : (
-                    <form onSubmit={handleSubmit} noValidate className="space-y-4">
-                      
-                      {/* Row 1: First Name */}
-                      <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-center">
-                        <label className="sm:col-span-4 text-xs font-medium text-slate-700">
-                          First Name <span className="text-rose-500">*</span>
-                        </label>
-                        <div className="sm:col-span-8">
-                          <input
-                            type="text"
-                            value={formData.firstName}
-                            onChange={(e) => {
-                              setFormData({ ...formData, firstName: e.target.value });
-                              if (errors.firstName) setErrors({ ...errors, firstName: "" });
-                            }}
-                            placeholder="e.g., John"
-                            className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-[13px] text-slate-900 placeholder:text-slate-400 focus:outline-none transition-all ${
-                              errors.firstName
-                                ? "border-rose-300 bg-rose-50/40 focus:border-rose-500"
-                                : "border-slate-300 bg-white focus:border-slate-800 focus:ring-1 focus:ring-slate-800"
-                            }`}
-                          />
-                          {errors.firstName && (
-                            <p className="mt-1 text-[11px] text-rose-500">{errors.firstName}</p>
-                          )}
-                        </div>
-                      </div>
+                  </div>
+                ) : (
+                  /* Minimal Underline Form */
+                  <form onSubmit={handleSubmit} noValidate className="space-y-6">
+                    
+                    {/* Field 1: Name */}
+                    <div className="space-y-1">
+                      <label className="text-xs font-light text-[#6B7280] block">
+                        Name <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.name}
+                        onChange={(e) => {
+                          setFormData({ ...formData, name: e.target.value });
+                          if (errors.name) setErrors({ ...errors, name: "" });
+                        }}
+                        placeholder="Your full name"
+                        className="editorial-input"
+                      />
+                      {errors.name && (
+                        <p className="text-[11px] text-rose-500 font-light mt-1">{errors.name}</p>
+                      )}
+                    </div>
 
-                      {/* Row 2: Last Name */}
-                      <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-center">
-                        <label className="sm:col-span-4 text-xs font-medium text-slate-700">
-                          Last Name <span className="text-rose-500">*</span>
-                        </label>
-                        <div className="sm:col-span-8">
-                          <input
-                            type="text"
-                            value={formData.lastName}
-                            onChange={(e) => {
-                              setFormData({ ...formData, lastName: e.target.value });
-                              if (errors.lastName) setErrors({ ...errors, lastName: "" });
-                            }}
-                            placeholder="Smith"
-                            className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-[13px] text-slate-900 placeholder:text-slate-400 focus:outline-none transition-all ${
-                              errors.lastName
-                                ? "border-rose-300 bg-rose-50/40 focus:border-rose-500"
-                                : "border-slate-300 bg-white focus:border-slate-800 focus:ring-1 focus:ring-slate-800"
-                            }`}
-                          />
-                          {errors.lastName && (
-                            <p className="mt-1 text-[11px] text-rose-500">{errors.lastName}</p>
-                          )}
-                        </div>
-                      </div>
+                    {/* Field 2: Phone Number */}
+                    <div className="space-y-1">
+                      <label className="text-xs font-light text-[#6B7280] block">
+                        Phone number
+                      </label>
+                      <input
+                        type="tel"
+                        value={formData.phoneNumber}
+                        onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+                        placeholder="+1 (555) 000-0000"
+                        className="editorial-input"
+                      />
+                    </div>
 
-                      {/* Row 3: Company Email */}
-                      <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-center">
-                        <label className="sm:col-span-4 text-xs font-medium text-slate-700">
-                          Company Email <span className="text-rose-500">*</span>
-                        </label>
-                        <div className="sm:col-span-8">
-                          <input
-                            type="email"
-                            value={formData.companyEmail}
-                            onChange={(e) => {
-                              setFormData({ ...formData, companyEmail: e.target.value });
-                              if (errors.companyEmail) setErrors({ ...errors, companyEmail: "" });
-                            }}
-                            placeholder="name@company.com"
-                            className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-[13px] text-slate-900 placeholder:text-slate-400 focus:outline-none transition-all ${
-                              errors.companyEmail
-                                ? "border-rose-300 bg-rose-50/40 focus:border-rose-500"
-                                : "border-slate-300 bg-white focus:border-slate-800 focus:ring-1 focus:ring-slate-800"
-                            }`}
-                          />
-                          {errors.companyEmail && (
-                            <p className="mt-1 text-[11px] text-rose-500">{errors.companyEmail}</p>
-                          )}
-                        </div>
-                      </div>
+                    {/* Field 3: Email */}
+                    <div className="space-y-1">
+                      <label className="text-xs font-light text-[#6B7280] block">
+                        Email <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => {
+                          setFormData({ ...formData, email: e.target.value });
+                          if (errors.email) setErrors({ ...errors, email: "" });
+                        }}
+                        placeholder="name@company.com"
+                        className="editorial-input"
+                      />
+                      {errors.email && (
+                        <p className="text-[11px] text-rose-500 font-light mt-1">{errors.email}</p>
+                      )}
+                    </div>
 
-                      {/* Row 4: Phone Number */}
-                      <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-center">
-                        <label className="sm:col-span-4 text-xs font-medium text-slate-700">
-                          Phone Number <span className="text-rose-500">*</span>
-                        </label>
-                        <div className="sm:col-span-8">
-                          <input
-                            type="tel"
-                            value={formData.phoneNumber}
-                            onChange={(e) => {
-                              setFormData({ ...formData, phoneNumber: e.target.value });
-                              if (errors.phoneNumber) setErrors({ ...errors, phoneNumber: "" });
-                            }}
-                            placeholder="+1 555 655 5656"
-                            className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-[13px] text-slate-900 placeholder:text-slate-400 focus:outline-none transition-all ${
-                              errors.phoneNumber
-                                ? "border-rose-300 bg-rose-50/40 focus:border-rose-500"
-                                : "border-slate-300 bg-white focus:border-slate-800 focus:ring-1 focus:ring-slate-800"
-                            }`}
-                          />
-                          {errors.phoneNumber && (
-                            <p className="mt-1 text-[11px] text-rose-500">{errors.phoneNumber}</p>
-                          )}
-                        </div>
-                      </div>
+                    {/* Field 4: Subject */}
+                    <div className="space-y-1">
+                      <label className="text-xs font-light text-[#6B7280] block">
+                        Subject <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.subject}
+                        onChange={(e) => {
+                          setFormData({ ...formData, subject: e.target.value });
+                          if (errors.subject) setErrors({ ...errors, subject: "" });
+                        }}
+                        placeholder="e.g., Finished Formulations Catalogue / CTD Dossier Request"
+                        className="editorial-input"
+                      />
+                      {errors.subject && (
+                        <p className="text-[11px] text-rose-500 font-light mt-1">{errors.subject}</p>
+                      )}
+                    </div>
 
-                      {/* Row 5: Organization / Company Type */}
-                      <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-center">
-                        <label className="sm:col-span-4 text-xs font-medium text-slate-700">
-                          Organization Type <span className="text-rose-500">*</span>
-                        </label>
-                        <div className="sm:col-span-8">
-                          <select
-                            value={formData.organizationType}
-                            onChange={(e) => {
-                              setFormData({ ...formData, organizationType: e.target.value });
-                              if (errors.organizationType) setErrors({ ...errors, organizationType: "" });
-                            }}
-                            className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-[13px] text-slate-900 bg-white focus:outline-none transition-all appearance-none cursor-pointer ${
-                              errors.organizationType
-                                ? "border-rose-300 bg-rose-50/40 focus:border-rose-500"
-                                : "border-slate-300 focus:border-slate-800 focus:ring-1 focus:ring-slate-800"
-                            }`}
-                          >
-                            <option value="">Select...</option>
-                            <option value="importer">Commercial Importer / Distributor</option>
-                            <option value="moh">Ministry of Health / Tender Authority</option>
-                            <option value="brand">Pharmaceutical Brand Owner (Contract Mfg)</option>
-                            <option value="hospital">Hospital Network / Healthcare Provider</option>
-                            <option value="academic">Research / Academic Institution</option>
-                            <option value="other">Other</option>
-                          </select>
-                          {errors.organizationType && (
-                            <p className="mt-1 text-[11px] text-rose-500">{errors.organizationType}</p>
-                          )}
-                        </div>
-                      </div>
+                    {/* Field 5: Message */}
+                    <div className="space-y-1 pt-1">
+                      <label className="text-xs font-light text-[#6B7280] block">
+                        Message <span className="text-rose-500">*</span>
+                      </label>
+                      <textarea
+                        rows={4}
+                        value={formData.message}
+                        onChange={(e) => {
+                          setFormData({ ...formData, message: e.target.value });
+                          if (errors.message) setErrors({ ...errors, message: "" });
+                        }}
+                        placeholder="Please specify therapeutic molecules, volume requirements, or destination country..."
+                        className="editorial-input resize-y"
+                      />
+                      {errors.message && (
+                        <p className="text-[11px] text-rose-500 font-light mt-1">{errors.message}</p>
+                      )}
+                    </div>
 
-                      {/* Row 6: Country / Region */}
-                      <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-center">
-                        <label className="sm:col-span-4 text-xs font-medium text-slate-700">
-                          Country / Region <span className="text-rose-500">*</span>
-                        </label>
-                        <div className="sm:col-span-8">
-                          <select
-                            value={formData.country}
-                            onChange={(e) => {
-                              setFormData({ ...formData, country: e.target.value });
-                              if (errors.country) setErrors({ ...errors, country: "" });
-                            }}
-                            className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-[13px] text-slate-900 bg-white focus:outline-none transition-all appearance-none cursor-pointer ${
-                              errors.country
-                                ? "border-rose-300 bg-rose-50/40 focus:border-rose-500"
-                                : "border-slate-300 focus:border-slate-800 focus:ring-1 focus:ring-slate-800"
-                            }`}
-                          >
-                            <option value="">Select...</option>
-                            <option value="latin-america">Latin America (LATAM)</option>
-                            <option value="asean">Southeast Asia (ASEAN)</option>
-                            <option value="middle-east">Middle East &amp; GCC</option>
-                            <option value="africa">Africa (East, West, Central &amp; South)</option>
-                            <option value="cis">CIS &amp; Central Asia</option>
-                            <option value="europe">Europe &amp; UK</option>
-                            <option value="south-asia">India &amp; South Asia</option>
-                            <option value="other">Other Region</option>
-                          </select>
-                          {errors.country && (
-                            <p className="mt-1 text-[11px] text-rose-500">{errors.country}</p>
-                          )}
-                        </div>
-                      </div>
+                    {/* Field 6: Terms & Privacy Policy Checkbox */}
+                    <div className="pt-2">
+                      <label className="flex items-start gap-2.5 text-xs text-[#6B7280] font-light cursor-pointer select-none">
+                        <input
+                          type="checkbox"
+                          checked={formData.agreedToTerms}
+                          onChange={(e) => {
+                            setFormData({ ...formData, agreedToTerms: e.target.checked });
+                            if (errors.agreedToTerms) setErrors({ ...errors, agreedToTerms: "" });
+                          }}
+                          className="mt-0.5 rounded border-slate-300 text-[#111827] focus:ring-0 cursor-pointer"
+                        />
+                        <span className="leading-snug">
+                          I understand and agree to the Terms &amp; Conditions and Privacy Policy. All information is confidential under NDA.
+                        </span>
+                      </label>
+                      {errors.agreedToTerms && (
+                        <p className="text-[11px] text-rose-500 font-light mt-1">{errors.agreedToTerms}</p>
+                      )}
+                    </div>
 
-                      {/* Row 7: What would you like to discuss? */}
-                      <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-start pt-1">
-                        <label className="sm:col-span-4 text-xs font-medium text-slate-700 pt-1 leading-snug">
-                          What would you like to discuss? <span className="text-rose-500">*</span>
-                        </label>
-                        <div className="sm:col-span-8">
-                          <textarea
-                            rows={4}
-                            value={formData.discussionDetails}
-                            onChange={(e) => {
-                              setFormData({ ...formData, discussionDetails: e.target.value });
-                              if (errors.discussionDetails) setErrors({ ...errors, discussionDetails: "" });
-                            }}
-                            placeholder="Tell us about your requirements, specific molecules, target country registrations, or batch volume needs."
-                            className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-[13px] text-slate-900 placeholder:text-slate-400 focus:outline-none transition-all resize-y ${
-                              errors.discussionDetails
-                                ? "border-rose-300 bg-rose-50/40 focus:border-rose-500"
-                                : "border-slate-300 bg-white focus:border-slate-800 focus:ring-1 focus:ring-slate-800"
-                            }`}
-                          />
-                          {errors.discussionDetails && (
-                            <p className="mt-1 text-[11px] text-rose-500">{errors.discussionDetails}</p>
-                          )}
-                        </div>
-                      </div>
+                    {/* Submit Button */}
+                    <div className="pt-4">
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full py-4 bg-[#111827] hover:bg-black text-white text-xs font-bold uppercase tracking-[0.25em] transition-all cursor-pointer flex items-center justify-center gap-2 shadow-xs disabled:opacity-60"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                            <span>TRANSMITTING...</span>
+                          </>
+                        ) : (
+                          <span>SUBMIT MESSAGE</span>
+                        )}
+                      </button>
+                    </div>
 
-                      {/* Row 8: Submit Button */}
-                      <div className="pt-3 flex justify-end">
-                        <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="px-8 py-2.5 rounded-lg bg-[#111827] text-white text-xs sm:text-sm font-semibold hover:bg-black active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center gap-2 disabled:opacity-60 shadow-xs"
-                        >
-                          {isSubmitting ? (
-                            <>
-                              <Loader2 className="w-4 h-4 animate-spin" />
-                              <span>Submitting...</span>
-                            </>
-                          ) : (
-                            <span>Submit</span>
-                          )}
-                        </button>
-                      </div>
+                  </form>
+                )}
 
-                    </form>
-                  )}
-
-                </div>
               </div>
 
             </div>
+
           </div>
-        </div>
+        </section>
 
-        {/* ── Compact Institutional Information Strip Below ── */}
-        <div className="py-12 bg-white border-b border-slate-100">
-          <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-xs">
-              
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
-                  <MapPin className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="font-bold text-slate-900">Headquarters</div>
-                  <p className="text-slate-500 mt-0.5 leading-relaxed">
-                    Corporate Heights, SG Highway, Ahmedabad, Gujarat 380054, India
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
-                  <Mail className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="font-bold text-slate-900">Official Email</div>
-                  <p className="text-slate-500 mt-0.5 leading-relaxed">
-                    contact@zelnexpharma.com<br />
-                    export@zelnexpharma.com
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
-                  <Phone className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="font-bold text-slate-900">Telephone Lines</div>
-                  <p className="text-slate-500 mt-0.5 leading-relaxed">
-                    +91 79 4800 1234<br />
-                    +91 98250 99881 (WhatsApp)
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
-                  <Clock className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="font-bold text-slate-900">Working Hours</div>
-                  <p className="text-slate-500 mt-0.5 leading-relaxed">
-                    Mon – Sat: 09:00 – 18:30 IST<br />
-                    24/7 Global Tender Dispatch
-                  </p>
-                </div>
-              </div>
-
+        {/* ══════════════════════════════════════════════════════════════
+            3. CORE INSTITUTIONAL INQUIRY STREAMS (4 Minimalist Cards)
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 mb-24">
+          
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-[#E5E3DC] gap-4">
+            <div>
+              <span className="font-mono text-xs text-[#B8945A] font-bold uppercase tracking-[0.2em] block mb-1">
+                02 // CAPABILITIES &amp; CHANNELS
+              </span>
+              <h2 className="font-serif-luxury text-2xl sm:text-4xl text-[#111827] uppercase tracking-wide">
+                Inquiry Classification
+              </h2>
             </div>
+            <p className="text-xs text-[#6B7280] font-light max-w-sm">
+              Select your operational scope to connect with dedicated commercial or regulatory leads.
+            </p>
           </div>
-        </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {INQUIRY_STREAMS.map((stream) => {
+              const Icon = stream.icon;
+              return (
+                <div
+                  key={stream.number}
+                  className="bg-white p-8 border border-[#E5E3DC] flex flex-col justify-between space-y-6 hover:border-[#111827] transition-all shadow-[0_2px_12px_rgba(0,0,0,0.02)]"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs font-bold text-[#B8945A]">
+                        {stream.number}
+                      </span>
+                      <Icon className="w-5 h-5 text-[#111827]" />
+                    </div>
+
+                    <div>
+                      <h3 className="font-serif-luxury text-lg text-[#111827] leading-snug">
+                        {stream.title}
+                      </h3>
+                      <p className="text-[11px] font-mono text-[#00A0A2] font-semibold mt-1">
+                        {stream.subtitle}
+                      </p>
+                    </div>
+
+                    <p className="text-xs text-[#6B7280] font-light leading-relaxed">
+                      {stream.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-4 border-t border-[#F0EFEB]">
+                    <span className="text-[11px] font-mono font-bold text-[#111827] uppercase tracking-wider flex items-center gap-1">
+                      <span>WHO-GMP Backed</span>
+                      <span>✓</span>
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+        </section>
+
+
+
+
 
       </main>
 
-      {/* ── Asana-Style Bottom-Right Floating Assistant Bubble ── */}
-      {chatBubbleVisible && (
-        <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3 animate-in fade-in slide-in-from-bottom-3 duration-300">
-          <div className="relative rounded-2xl bg-white border border-slate-200/90 py-2.5 px-3.5 shadow-xl max-w-[280px] text-xs text-slate-700 leading-snug">
-            <button
-              type="button"
-              onClick={() => setChatBubbleVisible(false)}
-              className="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center text-[10px] cursor-pointer"
-              title="Dismiss"
-            >
-              <X className="w-3 h-3" />
-            </button>
-            <span>
-              Hey there 👋 Want to skip the form and talk to our Export team right now?
-            </span>
-          </div>
-
-          <a
-            href="https://wa.me/919825099881?text=Hello%20Zelnex%20Team%2C%20I%20would%20like%20to%20inquire%20about%20pharmaceutical%20formulations%20and%20dossier%20licensing."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-12 h-12 rounded-full bg-[#EA4C89] hover:bg-[#D83B75] text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer shrink-0"
-            title="Chat directly on WhatsApp"
-          >
-            {/* 3-Dot Iconic Graphic (Matching Asana Style Reference) */}
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-              <circle cx="12" cy="7" r="2.5" />
-              <circle cx="7" cy="15" r="2.5" />
-              <circle cx="17" cy="15" r="2.5" />
-            </svg>
-          </a>
-        </div>
-      )}
-
       <Footer />
-    </>
+    </div>
   );
 }

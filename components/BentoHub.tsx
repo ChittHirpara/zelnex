@@ -268,24 +268,28 @@ export function BentoHub() {
           </div>
         </div>
 
-        {/* ── 7. Newsletter Tile (1x1 Apricot) ── */}
-        <div className="tile md:col-span-1 rounded-[26px] bg-[#fb923c] text-[#17181c] p-5 flex flex-col justify-between shadow-[0_14px_34px_-18px_rgba(20,22,28,0.18)] hover:shadow-[0_22px_50px_-22px_rgba(20,22,28,0.28)] hover:-translate-y-1 transition-all duration-300 min-h-[176px]">
+        {/* ── 7. Formulary Directory Tile (1x1 Apricot) ── */}
+        <Link
+          href="/categories"
+          className="tile md:col-span-1 rounded-[26px] bg-[#fb923c] text-[#17181c] p-5 flex flex-col justify-between shadow-[0_14px_34px_-18px_rgba(20,22,28,0.18)] hover:shadow-[0_22px_50px_-22px_rgba(20,22,28,0.28)] hover:-translate-y-1 transition-all duration-300 min-h-[176px] cursor-pointer group"
+        >
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#17181c]/75">
-              THE GAZETTE
+              COMMERCIAL FORMULARY
             </span>
-            <Mail className="w-4 h-4 text-[#17181c]/80" />
+            <ArrowUpRight className="w-4 h-4 text-[#17181c]/80 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </div>
 
           <div>
             <h4 className="font-['Space_Grotesk'] text-base font-bold text-[#17181c] leading-tight">
-              Download 2026 Formulary
+              Explore 581+ Formulations
             </h4>
-            <p className="text-[11.5px] font-semibold text-[#17181c]/75 mt-1">
-              800+ Products Listed
+            <p className="text-[11.5px] font-semibold text-[#17181c]/75 mt-1 flex items-center gap-1">
+              <span>View Full Directory</span>
+              <span>→</span>
             </p>
           </div>
-        </div>
+        </Link>
 
         {/* ── 8. Toolbox / Dosage Forms Tile (2-Wide White) ── */}
         <div className="tile md:col-span-2 rounded-[26px] bg-white border border-[#17181c]/[0.09] p-5 sm:p-6 flex flex-col justify-center shadow-[0_14px_34px_-18px_rgba(20,22,28,0.18)] hover:shadow-[0_22px_50px_-22px_rgba(20,22,28,0.28)] hover:-translate-y-1 transition-all duration-300 min-h-[176px]">

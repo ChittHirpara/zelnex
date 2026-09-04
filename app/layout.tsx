@@ -112,6 +112,8 @@ const jsonLd = {
   ],
 };
 
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -134,7 +136,10 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col font-sans text-slate overflow-x-hidden">
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          {children}
+          <FloatingWhatsApp />
+        </LanguageProvider>
       </body>
     </html>
   );

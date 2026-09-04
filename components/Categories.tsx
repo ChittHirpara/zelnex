@@ -214,15 +214,20 @@ export function Categories() {
             <SocialCards cards={cardsToRender} />
           </div>
 
-          {/* Bottom Stage Telemetry */}
-          <div className="relative z-10 flex flex-wrap items-center justify-between border-t border-blue-100/80 pt-4 mt-2 text-[11px] font-['JetBrains_Mono',monospace] text-slate-500">
+          {/* Bottom Stage Telemetry & Link to High Order Categories Directory */}
+          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between border-t border-blue-100/80 pt-5 mt-2 gap-3 text-[11px] font-['JetBrains_Mono',monospace] text-slate-500">
             <div className="flex items-center gap-2 text-slate-700">
               <span className="w-2 h-2 rounded-full bg-[#006EDC]" />
-              <span className="font-semibold">100% WHO-GMP &amp; CTD READY</span>
+              <span className="font-semibold">100% WHO-GMP &amp; CTD READY (581 APPROVED SKUs)</span>
             </div>
-            <div className="text-slate-400 font-medium">
-              DRAG &amp; CLICK CARDS TO ROTATE
-            </div>
+            
+            <a
+              href="/categories"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#006EDC] hover:bg-[#005bb8] text-white font-bold font-['Outfit',sans-serif] text-xs transition-all shadow-xs hover:shadow-md hover:scale-[1.02] self-start sm:self-auto cursor-pointer"
+            >
+              <span>Explore Complete 581 Formulation Directory</span>
+              <span>→</span>
+            </a>
           </div>
         </div>
 

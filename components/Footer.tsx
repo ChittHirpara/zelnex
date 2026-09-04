@@ -58,7 +58,7 @@ export function Footer() {
   };
 
   return (
-    <footer id="footer" className="relative w-full bg-[#06132d] text-white overflow-hidden select-none">
+    <footer id="footer" className="relative w-full bg-[#06132d] text-white overflow-hidden select-none border-t border-white/[0.08]">
       {/* ── Signature Radial Light Cyan & Luminous Blue Glow (50% 115%) ── */}
       <div
         className="pointer-events-none absolute inset-0 z-0 select-none overflow-hidden"
@@ -96,7 +96,7 @@ export function Footer() {
       />
 
       {/* ── Full-Screen Width Fluid Container ── */}
-      <div className="relative z-10 w-full px-6 sm:px-12 md:px-16 lg:px-20 pt-10 md:pt-14 pb-6 flex flex-col justify-between">
+      <div className="relative z-10 w-full px-6 sm:px-12 md:px-16 lg:px-20 pt-8 sm:pt-10 pb-6 flex flex-col justify-between">
         {/* ── Top Context Bar ── */}
         <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/15">
           <div className="flex items-center gap-3">
@@ -400,9 +400,9 @@ export function Footer() {
               </a>
 
               <a
-                href="mailto:zyrastudios02@gmail.com"
+                href="mailto:export@zelnex.in"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white border border-white/20 transition-all duration-300 hover:scale-110 hover:bg-white hover:text-[#06132d] hover:shadow-[0_0_14px_rgba(255,255,255,0.7)] cursor-pointer"
-                aria-label="Email: zyrastudios02@gmail.com"
+                aria-label="Email: export@zelnex.in"
               >
                 <Mail className="w-3.5 h-3.5" />
               </a>

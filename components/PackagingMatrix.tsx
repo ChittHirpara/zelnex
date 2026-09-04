@@ -74,85 +74,26 @@ const PACKAGING_ITEMS: PackagingTile[] = [
     ),
   },
   {
-    id: "drops",
-    name: "Eye / EarDrops",
-    lines: ["Eye /", "EarDrops"],
-    bgColor: "#27AE60", // Clean Vibrant Emerald Green (Matching Reference)
+    id: "softgel",
+    name: "Softgel",
+    lines: ["Softgel"],
+    bgColor: "#27AE60", // Clean Vibrant Emerald Green
     hoverColor: "#219653",
-    badge: "STERILE OPHTHALMIC & OTIC",
-    tagline: "Aseptic Blow-Fill-Seal (BFS) & 3-Piece Dropper Vials",
+    badge: "LIPID-SOLUBLE SOFTGELS",
+    tagline: "Rotary Die Encapsulation & Lipid Bioavailability",
     description:
-      "Aseptically filled sterile eye and ear solutions processed under Grade A laminar airflow cleanroom environments.",
-    formats: ["5ml / 10ml / 15ml LDPE Droppers", "Single-Dose BFS Units", "Tamper-Evident Screw Caps", "Gamma-Sterilized Dropper Tips"],
+      "Hermetically sealed soft gelatin capsules designed for high-bioavailability lipid-soluble vitamins, omega fatty acids, and specialized nutraceutical actives.",
+    formats: ["Oval & Oblong Gelatin Shells", "Nitrogen-Flushed Amber Blisters", "Tamper-Evident HDPE Containers", "High-Barrier PVDC Strips"],
     keySpecs: [
-      { label: "Sterility Standard", value: "Class A Laminar Airflow (ISO 5)" },
-      { label: "Preservation", value: "Preservative-Free Available" },
-      { label: "Dropper Delivery", value: "Controlled Calibrated Drop Size" },
+      { label: "Shell Integrity", value: "Bovine / Marine Pharma Grade" },
+      { label: "Fill Precision", value: "Rotary Die Dynamic Injection" },
+      { label: "Oxidation Barrier", value: "Nitrogen Purge Encapsulation" },
     ],
-    annualCapacity: "45M+ Bottles / Year",
+    annualCapacity: "80M+ Softgels / Year",
     icon: (
       <svg viewBox="0 0 100 100" className="w-14 h-14 sm:w-16 sm:h-16" fill="currentColor">
-        <g transform="rotate(-35 50 45)">
-          <path d="M42 20 h16 v10 h-16 z" />
-          <path d="M38 30 h24 v36 a12 12 0 0 1 -24 0 z" />
-          <path d="M44 20 L50 6 L56 20 Z" />
-        </g>
-        <path d="M32 74 Q32 84 38 84 Q44 84 44 74 Q44 68 38 60 Q32 68 32 74 Z" />
-      </svg>
-    ),
-  },
-  {
-    id: "injection",
-    name: "Injection",
-    lines: ["Injection"],
-    bgColor: "#C0392B", // Clean Medical Red (Matching Reference)
-    hoverColor: "#A93226",
-    badge: "PARENTERAL & LYOPHILIZED",
-    tagline: "USP Type I Borosilicate Vials, Ampoules & Syringes",
-    description:
-      "Pyrogen-free parenteral infusions and freeze-dried lyophilized antibiotic cakes processed under sterile barrier isolation.",
-    formats: ["2ml / 5ml / 10ml Glass Vials", "Amber / Clear Glass Ampoules", "Lyophilized Powder Cakes", "Prefilled Safety Syringes (PFS)"],
-    keySpecs: [
-      { label: "Glass Integrity", value: "USP Type I Neutral Borosilicate" },
-      { label: "Endotoxin Safety", value: "< 0.25 EU/ml Bacterial Limit" },
-      { label: "Closure Seal", value: "Chlorobutyl Rubber & Alu-Flip" },
-    ],
-    annualCapacity: "60M+ Vials / Year",
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-14 h-14 sm:w-16 sm:h-16" fill="currentColor">
-        <g transform="rotate(-45 50 50)">
-          <rect x="42" y="24" width="16" height="38" rx="2" />
-          <line x1="42" y1="36" x2="58" y2="36" stroke="#C0392B" strokeWidth="2.5" />
-          <line x1="42" y1="46" x2="58" y2="46" stroke="#C0392B" strokeWidth="2.5" />
-          <rect x="47" y="10" width="6" height="14" />
-          <rect x="40" y="6" width="20" height="5" rx="1.5" />
-          <path d="M47 62 L50 78 L53 62 Z" />
-        </g>
-      </svg>
-    ),
-  },
-  {
-    id: "creams",
-    name: "Creams",
-    lines: ["Creams"],
-    bgColor: "#8E44AD", // Clean Purple (Matching Reference)
-    hoverColor: "#7D3C98",
-    badge: "TOPICAL DERMATOLOGY",
-    tagline: "Aluminum Collapsible & Multi-Barrier Lami-Tubes",
-    description:
-      "Homogeneous hydrophilic creams, dermatological ointments, and dermal gels filled in epoxy-phenolic lined aluminum tubes for zero oxidation.",
-    formats: ["15g / 30g / 50g Aluminum Tubes", "Lami-Tubes with Tamper Seal", "Airless Cosmetic Pump Jars", "Ointment Dispensers"],
-    keySpecs: [
-      { label: "Tube Barrier", value: "Epoxy-Phenolic Internal Lacquer" },
-      { label: "Emulsification", value: "High-Shear Vacuum Homogenizer" },
-      { label: "Closure Type", value: "Puncture Nozzle & CRC Cap" },
-    ],
-    annualCapacity: "30M+ Tubes / Year",
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-14 h-14 sm:w-16 sm:h-16" fill="currentColor">
-        <rect x="36" y="20" width="28" height="12" rx="3" />
-        <path d="M26 34 L74 34 L68 76 a10 10 0 0 1 -10 10 L42 86 a10 10 0 0 1 -10 -10 Z" />
-        <path d="M40 60 Q50 44 60 52 Q60 68 40 60 Z" fill="#8E44AD" />
+        <ellipse cx="50" cy="50" rx="28" ry="36" transform="rotate(30 50 50)" />
+        <ellipse cx="42" cy="40" rx="8" ry="14" fill="white" className="opacity-80" transform="rotate(30 42 40)" />
       </svg>
     ),
   },
@@ -160,12 +101,12 @@ const PACKAGING_ITEMS: PackagingTile[] = [
     id: "syrup",
     name: "Suspension / syrup",
     lines: ["Suspension", "/ syrup"],
-    bgColor: "#2C3E50", // Clean Slate Navy (Matching Reference)
-    hoverColor: "#1A252F",
+    bgColor: "#8E44AD", // Clean Vibrant Purple
+    hoverColor: "#7D3C98",
     badge: "ORAL LIQUIDS & SUSPENSIONS",
     tagline: "Amber PET & Type III Glass Bottles",
     description:
-      "Palatable pediatric suspensions, cough syrups, and oral rehydration solutions formulated with tamper-evident graduated dosing closures.",
+      "Palatable pediatric suspensions, cough syrups, and digestive tonics formulated with tamper-evident graduated dosing closures.",
     formats: ["60ml / 100ml / 200ml Amber PET", "Type III Amber Glass Bottles", "Child-Resistant CRC Closures", "Measuring Dosage Cups"],
     keySpecs: [
       { label: "Resin Specification", value: "USP Grade Heavy-Wall PET" },
@@ -178,61 +119,58 @@ const PACKAGING_ITEMS: PackagingTile[] = [
         <rect x="42" y="16" width="16" height="10" rx="2" />
         <rect x="46" y="26" width="8" height="8" />
         <path d="M34 34 L66 34 a8 8 0 0 1 8 8 L74 76 a8 8 0 0 1 -8 8 L34 84 a8 8 0 0 1 -8 -8 L26 42 a8 8 0 0 1 8 -8 Z" />
-        <rect x="36" y="46" width="28" height="24" rx="4" fill="#2C3E50" />
+        <rect x="36" y="46" width="28" height="24" rx="4" fill="#8E44AD" />
       </svg>
     ),
   },
   {
-    id: "inhaler",
-    name: "Inhaler",
-    lines: ["Inhaler"],
-    bgColor: "#009688", // Clean Teal (Matching Reference)
-    hoverColor: "#00796B",
-    badge: "PULMONARY DELIVERY",
-    tagline: "Pressurized MDI Canisters & Metered Valves",
+    id: "sachet",
+    name: "Powder & Sachet",
+    lines: ["Powder", "& Sachet"],
+    bgColor: "#2C3E50", // Clean Slate Navy
+    hoverColor: "#1A252F",
+    badge: "MULTI-LAYER BARRIER POUCHES",
+    tagline: "4-Ply Foil Sachets & High-Speed Vertical Form Fill",
     description:
-      "Pressurized Metered Dose Inhalers (pMDI), nasal spray pumps, and inhalation respules for precision aerodynamic pulmonary delivery.",
-    formats: ["100 / 200 Actuation Canisters", "15ml Metered Nasal Sprays", "Dry Powder Inhalers (DPI)", "BFS Inhalation Respules"],
-    keySpecs: [
-      { label: "Propellant Safety", value: "HFA-134a Ozone-Compliant" },
-      { label: "Dosing Accuracy", value: "±5% Metered Valve Uniformity" },
-      { label: "Particle Micronization", value: "Aerodynamic MMAD 1–5 µm" },
-    ],
-    annualCapacity: "25M+ Units / Year",
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-14 h-14 sm:w-16 sm:h-16" fill="currentColor">
-        <path d="M32 18 h20 v28 h18 a6 6 0 0 1 6 6 v18 a6 6 0 0 1 -6 6 H44 a14 14 0 0 1 -14 -14 V18 Z" />
-        <rect x="68" y="52" width="6" height="18" rx="2" fill="#009688" />
-        <rect x="36" y="10" width="12" height="8" rx="2" />
-      </svg>
-    ),
-  },
-  {
-    id: "other",
-    name: "Other",
-    lines: ["Other"],
-    bgColor: "#F1C40F", // Clean Golden Yellow (Matching Reference)
-    hoverColor: "#D4AC0D",
-    badge: "SPECIALIZED DOSAGE FORMS",
-    tagline: "4-Ply Foil Sachets, Effervescent & Molecular Delivery",
-    description:
-      "Effervescent granules, oral rehydration salts (ORS), dry syrups, and custom dual-chamber foil packaging for international tenders.",
-    formats: ["4-Ply Multi-Layer Foil Sachets", "Effervescent Plastic Tubes", "Dual-Chamber Pouch Packs", "Dry Powder Suspension Bottles"],
+      "WHO-standard Oral Rehydration Salts (ORS), electrolyte powders, and bioactive peptides packed in moisture-impermeable 4-ply barrier foil.",
+    formats: ["4-Ply Multi-Layer Foil Sachets", "Pre-Printed Aluminum Pouches", "Dual-Chamber Sachet Packs", "High-Speed Bulk Unit Boxes"],
     keySpecs: [
       { label: "Foil Structure", value: "PET / Foil / Poly 4-Ply Barrier" },
       { label: "Seal Hermeticity", value: "100% High-Speed Heat Sealing" },
-      { label: "Stability Factor", value: "Hermetic Desiccant Protection" },
+      { label: "Moisture Protection", value: "< 0.05 g/m²/day MVTR Limit" },
     ],
     annualCapacity: "75M+ Sachets / Year",
     icon: (
       <svg viewBox="0 0 100 100" className="w-14 h-14 sm:w-16 sm:h-16" fill="currentColor">
-        <circle cx="50" cy="50" r="10" />
-        <circle cx="24" cy="30" r="8" />
-        <circle cx="76" cy="30" r="8" />
-        <circle cx="50" cy="80" r="8" />
-        <line x1="50" y1="50" x2="24" y2="30" stroke="white" strokeWidth="6" strokeLinecap="round" />
-        <line x1="50" y1="50" x2="76" y2="30" stroke="white" strokeWidth="6" strokeLinecap="round" />
-        <line x1="50" y1="50" x2="50" y2="80" stroke="white" strokeWidth="6" strokeLinecap="round" />
+        <rect x="25" y="25" width="50" height="50" rx="6" />
+        <line x1="25" y1="38" x2="75" y2="38" stroke="#2C3E50" strokeWidth="3" strokeDasharray="4 4" />
+        <line x1="25" y1="62" x2="75" y2="62" stroke="#2C3E50" strokeWidth="3" strokeDasharray="4 4" />
+        <line x1="50" y1="40" x2="50" y2="60" stroke="#2C3E50" strokeWidth="3" />
+      </svg>
+    ),
+  },
+  {
+    id: "effervescent",
+    name: "Effervescent",
+    lines: ["Effervescent"],
+    bgColor: "#009688", // Clean Teal
+    hoverColor: "#00796B",
+    badge: "RAPID DISSOLUTION DOSING",
+    tagline: "Desiccant-Lined Aluminum & Plastic Tubes",
+    description:
+      "Instant-dissolution effervescent tablets packed in rigid cylindrical tubes with integrated molecular sieve desiccant stoppers.",
+    formats: ["10 / 20 Tablet Plastic Tubes", "Desiccant Silica Spring Caps", "Direct Moisture Barrier Foils", "Blister Strip Packaging"],
+    keySpecs: [
+      { label: "Dissolution Time", value: "< 90 Seconds in Cold Water" },
+      { label: "Desiccant Cap", value: "Integrated Molecular Sieve" },
+      { label: "Relative Humidity", value: "Manufactured at < 20% RH" },
+    ],
+    annualCapacity: "30M+ Tubes / Year",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-14 h-14 sm:w-16 sm:h-16" fill="currentColor">
+        <circle cx="50" cy="55" r="24" />
+        <circle cx="40" cy="22" r="5" fill="white" />
+        <circle cx="60" cy="18" r="6.5" fill="white" />
       </svg>
     ),
   },
@@ -267,8 +205,8 @@ export function PackagingMatrix() {
           </p>
         </div>
 
-        {/* ── EXACT 8 FLAT VIBRANT SQUARE TILES WITH DOWNWARD INDICATOR ARROW ── */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 sm:gap-3.5 mb-6">
+        {/* ── EXACT 6 FLAT VIBRANT SQUARE TILES WITH DOWNWARD INDICATOR ARROW ── */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3.5 mb-6">
           {PACKAGING_ITEMS.map((tile) => {
             const isSelected = tile.id === selectedId;
             return (

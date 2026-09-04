@@ -103,10 +103,10 @@ export function CtaFooter() {
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <a
-                href="mailto:zyrastudios02@gmail.com"
-                className="inline-flex items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-xs font-bold text-white border border-white/25 bg-white/10 hover:bg-white/20 transition-all backdrop-blur-md"
+                href="mailto:export@zelnex.in"
+                className="inline-flex items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-xs font-bold text-white border border-white/25 bg-white/10 hover:bg-white/20 transition-all backdrop-blur-md font-mono"
               >
-                <span>✉ zyrastudios02@gmail.com</span>
+                <span>✉ export@zelnex.in</span>
               </a>
               <div className="flex items-center gap-2 text-xs font-medium text-cyan-300">
                 <span className="h-2 w-2 rounded-full bg-teal" />

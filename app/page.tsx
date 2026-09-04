@@ -10,7 +10,6 @@ import { CertificatesSection } from "@/components/CertificatesSection";
 import { GrowingNetwork } from "@/components/GrowingNetwork";
 import { DigitalEpochSection } from "@/components/DigitalEpochSection";
 import { Footer } from "@/components/Footer";
-import { SectionDivider } from "@/components/SectionDivider";
 
 export default function Home() {
   return (
@@ -50,8 +49,7 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Footer Divider & Footer */}
-      <SectionDivider from="#ffffff" to="#06132d" />
+      {/* Footer */}
       <Footer />
     </>
   );

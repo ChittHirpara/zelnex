@@ -63,11 +63,19 @@ export function Navbar() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const dropdownTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const navLinks = [
+  const desktopNavLinks = [
     { label: t.nav.home, href: "/#home" },
     { label: t.nav.services, href: "/services", hasDropdown: true },
     { label: t.nav.products, href: "/#products" },
-    { label: t.nav.categories, href: "/#categories" },
+    { label: t.nav.categories, href: "/categories" },
+    { label: t.nav.blogs, href: "/blogs" },
+  ];
+
+  const mobileNavLinks = [
+    { label: t.nav.home, href: "/#home" },
+    { label: t.nav.services, href: "/services", hasDropdown: true },
+    { label: t.nav.products, href: "/#products" },
+    { label: t.nav.categories, href: "/categories" },
     { label: t.nav.blogs, href: "/blogs" },
     { label: t.nav.contact, href: "/contact" },
   ];
@@ -109,6 +117,8 @@ export function Navbar() {
       const path = window.location.pathname;
       if (path.startsWith("/services")) {
         setActiveHash("/services");
+      } else if (path.startsWith("/categories")) {
+        setActiveHash("/categories");
       } else if (path.startsWith("/blogs")) {
         setActiveHash("/blogs");
       } else if (path.startsWith("/contact")) {
@@ -173,7 +183,7 @@ export function Navbar() {
         }}
       >
         <nav
-          className="flex h-[70px] w-full items-center justify-between px-6 md:px-8 relative z-10"
+          className="flex h-[70px] w-full items-center justify-between px-6 sm:px-8 md:px-10 lg:px-10 xl:px-12 relative z-10"
           aria-label="Primary"
         >
           {/* Logo */}
@@ -186,14 +196,14 @@ export function Navbar() {
               alt="Zelnex Pharmaceuticals Pvt. Ltd."
               width={160}
               height={46}
-              className="h-10 w-auto object-contain"
+              className="h-9 sm:h-10 w-auto object-contain"
               priority
             />
           </Link>
 
           {/* Desktop Nav Links */}
-          <ul className="hidden items-center gap-1 lg:flex">
-            {navLinks.map((link) => {
+          <ul className="hidden items-center gap-1 lg:gap-1.5 xl:gap-2.5 lg:flex mr-1 sm:mr-2">
+            {desktopNavLinks.map((link) => {
               const isActive = activeHash === link.href;
 
               if (link.hasDropdown) {
@@ -211,7 +221,7 @@ export function Navbar() {
                           setActiveHash(link.href);
                           setServicesDropdown(false);
                         }}
-                        className={`relative flex items-center gap-1.5 px-4 py-2 text-[13.5px] font-medium transition-all duration-300 rounded-full ${
+                        className={`relative flex items-center gap-1.5 px-3.5 xl:px-4 py-2 text-[13px] xl:text-[13.5px] font-medium transition-all duration-300 rounded-full ${
                           isActive
                             ? "text-[#1e59d4] font-semibold"
                             : "text-[#2a3447] hover:text-[#1e59d4]"
@@ -327,7 +337,7 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setActiveHash(link.href)}
-                    className={`relative px-4 py-2 text-[13.5px] font-medium transition-all duration-300 rounded-full ${
+                    className={`relative px-3.5 xl:px-4 py-2 text-[13px] xl:text-[13.5px] font-medium transition-all duration-300 rounded-full ${
                       isActive
                         ? "text-[#1e59d4] font-semibold"
                         : "text-[#2a3447] hover:text-[#1e59d4]"
@@ -403,7 +413,7 @@ export function Navbar() {
           <div className="overflow-hidden">
             <div className="p-4 pt-3">
               <ul className="flex flex-col gap-1">
-                {navLinks.map((link) => {
+                {mobileNavLinks.map((link) => {
                   if (link.hasDropdown) {
                     return (
                       <li key={link.href} className="flex flex-col">
@@ -490,6 +500,20 @@ export function Navbar() {
           </div>
         </div>
       </div>
+
+      {/* ── 2. Standalone Satellite "Contact Us" Button OUTSIDE the Navbar Pill ── */}
+      <Link
+        href="/contact"
+        onClick={() => setActiveHash("/contact")}
+        className="pointer-events-auto shrink-0 hidden lg:inline-flex items-center gap-2.5 h-[70px] px-7 rounded-full text-white text-[13.5px] font-semibold tracking-tight shadow-[0_10px_32px_rgba(0,110,220,0.32)] hover:shadow-[0_14px_42px_rgba(0,110,220,0.48)] hover:scale-[1.03] active:scale-95 transition-all duration-300 cursor-pointer group"
+        style={{
+          background: "linear-gradient(135deg, #006EDC 0%, #082B61 100%)",
+          border: "1.5px solid rgba(255, 255, 255, 0.4)",
+        }}
+      >
+        <span>{t.nav.contact || "Contact Us"}</span>
+        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+      </Link>
     </header>
   );
 }
