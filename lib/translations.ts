@@ -834,7 +834,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         { label: "Frequently Asked Questions", href: "/blogs#faq" },
         { label: "Global Accreditations", href: "/#certifications" },
         { label: "Growing Network", href: "/#network" },
-        { label: "Direct Inquiries", href: "/#contact" },
+        { label: "Direct Inquiries", href: "/contact" },
       ],
       qualityLinks: [
         { label: "WHO-GMP Facilities", href: "/#certifications" },
@@ -1387,7 +1387,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         { label: "Preguntas Frecuentes", href: "/blogs#faq" },
         { label: "Acreditaciones Globales", href: "/#certifications" },
         { label: "Red Internacional", href: "/#network" },
-        { label: "Consultas Directas", href: "/#contact" },
+        { label: "Consultas Directas", href: "/contact" },
       ],
       qualityLinks: [
         { label: "Plantas Certificadas OMS-GMP", href: "/#certifications" },
@@ -1928,7 +1928,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         { label: "Perguntas Frequentes", href: "/blogs#faq" },
         { label: "Acreditações Globais", href: "/#certifications" },
         { label: "Rede Internacional", href: "/#network" },
-        { label: "Consultas Diretas", href: "/#contact" },
+        { label: "Consultas Diretas", href: "/contact" },
       ],
       qualityLinks: [
         { label: "Instalações WHO-GMP", href: "/#certifications" },
@@ -2469,7 +2469,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         { label: "Foire Aux Questions (FAQ)", href: "/blogs#faq" },
         { label: "Accréditations Internationales", href: "/#certifications" },
         { label: "Réseau Mondial", href: "/#network" },
-        { label: "Demandes Directes", href: "/#contact" },
+        { label: "Demandes Directes", href: "/contact" },
       ],
       qualityLinks: [
         { label: "Installations OMS-GMP", href: "/#certifications" },

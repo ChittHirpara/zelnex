@@ -69,6 +69,7 @@ export function Navbar() {
     { label: t.nav.products, href: "/#products" },
     { label: t.nav.categories, href: "/#categories" },
     { label: t.nav.blogs, href: "/blogs" },
+    { label: t.nav.contact, href: "/contact" },
   ];
 
   const handleMouseEnterServices = () => {
@@ -110,6 +111,8 @@ export function Navbar() {
         setActiveHash("/services");
       } else if (path.startsWith("/blogs")) {
         setActiveHash("/blogs");
+      } else if (path.startsWith("/contact")) {
+        setActiveHash("/contact");
       } else {
         setActiveHash(
           window.location.hash
@@ -472,7 +475,7 @@ export function Navbar() {
               {/* Contact CTA */}
               <div className="mt-4 flex items-center gap-2 border-t border-slate-200/60 pt-3">
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className="inline-flex w-full items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold text-white shadow-md cursor-pointer"
                   style={{
                     background: "linear-gradient(135deg, #006EDC 0%, #1e3a7a 100%)",
