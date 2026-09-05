@@ -55,6 +55,9 @@ export interface TranslationSchema {
       stat4Number: string;
       stat4Top: string;
       stat4Bottom: string;
+      stat5Number: string;
+      stat5Top: string;
+      stat5Bottom: string;
     };
   };
   overview: {
@@ -316,7 +319,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
   en: {
     nav: {
       home: "Home",
-      overview: "Overview",
+      overview: "About Us",
       whoWeAre: "Who We Are",
       services: "Services",
       products: "Products",
@@ -351,9 +354,12 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         stat3Number: "150+",
         stat3Top: "International",
         stat3Bottom: "Clients",
-        stat4Number: "100%",
-        stat4Top: "Certified",
-        stat4Bottom: "WHO-GMP",
+        stat4Number: "150+",
+        stat4Top: "Ready CTD/",
+        stat4Bottom: "eCTD Files",
+        stat5Number: "100%",
+        stat5Top: "WHO-GMP",
+        stat5Bottom: "Validated",
       },
     },
     overview: {
@@ -822,7 +828,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       resourcesCol: "Resources",
       qualityCol: "Quality",
       companyLinks: [
-        { label: "Company Overview", href: "/#overview" },
+        { label: "About Zelnex (Overview)", href: "/about" },
         { label: "All Pharmaceutical Services", href: "/services" },
         { label: "Drug Regulatory Affairs (DRA)", href: "/services#regulatory" },
         { label: "Contract Manufacturing (WHO-GMP)", href: "/services#contract" },
@@ -862,7 +868,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
   es: {
     nav: {
       home: "Inicio",
-      overview: "Empresa",
+      overview: "Sobre Nosotros",
       whoWeAre: "Quiénes Somos",
       services: "Servicios",
       products: "Productos",
@@ -897,9 +903,12 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         stat3Number: "150+",
         stat3Top: "Clientes",
         stat3Bottom: "Internacionales",
-        stat4Number: "100%",
-        stat4Top: "Certificado",
-        stat4Bottom: "OMS-GMP",
+        stat4Number: "150+",
+        stat4Top: "Dossiers CTD/",
+        stat4Bottom: "eCTD Listos",
+        stat5Number: "100%",
+        stat5Top: "OMS-GMP",
+        stat5Bottom: "Validado",
       },
     },
     overview: {
@@ -1375,7 +1384,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       resourcesCol: "Recursos",
       qualityCol: "Calidad",
       companyLinks: [
-        { label: "Visión General", href: "/#overview" },
+        { label: "Sobre Zelnex (Empresa)", href: "/about" },
         { label: "Servicios Farmacéuticos", href: "/services" },
         { label: "Asuntos Regulatorios (DRA)", href: "/services#regulatory" },
         { label: "Fabricación por Contrato (OMS-GMP)", href: "/services#contract" },
@@ -1415,7 +1424,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
   pt: {
     nav: {
       home: "Início",
-      overview: "Visão Geral",
+      overview: "Sobre Nós",
       whoWeAre: "Quem Somos",
       services: "Serviços",
       products: "Produtos",
@@ -1450,9 +1459,12 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         stat3Number: "150+",
         stat3Top: "Clientes",
         stat3Bottom: "Internacionais",
-        stat4Number: "100%",
-        stat4Top: "Padrões",
-        stat4Bottom: "WHO-GMP",
+        stat4Number: "150+",
+        stat4Top: "Dossiês CTD/",
+        stat4Bottom: "eCTD Prontos",
+        stat5Number: "100%",
+        stat5Top: "WHO-GMP",
+        stat5Bottom: "Validado",
       },
     },
     overview: {
@@ -1916,7 +1928,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       resourcesCol: "Recursos",
       qualityCol: "Qualidade",
       companyLinks: [
-        { label: "Visão Geral", href: "/#overview" },
+        { label: "Sobre a Zelnex (Visão Geral)", href: "/about" },
         { label: "Serviços Farmacêuticos", href: "/services" },
         { label: "Assuntos Regulatórios (DRA)", href: "/services#regulatory" },
         { label: "Fabricação por Contrato (WHO-GMP)", href: "/services#contract" },
@@ -1956,7 +1968,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
   fr: {
     nav: {
       home: "Accueil",
-      overview: "Présentation",
+      overview: "À Propos",
       whoWeAre: "Qui Sommes-Nous",
       services: "Services",
       products: "Produits",
@@ -1991,9 +2003,12 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         stat3Number: "150+",
         stat3Top: "Clients",
         stat3Bottom: "Internationaux",
-        stat4Number: "100%",
-        stat4Top: "Certifié",
-        stat4Bottom: "OMS-GMP",
+        stat4Number: "150+",
+        stat4Top: "Dossiers CTD/",
+        stat4Bottom: "eCTD Prêts",
+        stat5Number: "100%",
+        stat5Top: "OMS-GMP",
+        stat5Bottom: "Validé",
       },
     },
     overview: {
@@ -2457,7 +2472,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       resourcesCol: "Ressources",
       qualityCol: "Qualité",
       companyLinks: [
-        { label: "Présentation de l'Entreprise", href: "/#overview" },
+        { label: "À Propos de Zelnex", href: "/about" },
         { label: "Tous les Services Pharmaceutiques", href: "/services" },
         { label: "Affaires Réglementaires (DRA)", href: "/services#regulatory" },
         { label: "Fabrication à Façon (OMS-GMP)", href: "/services#contract" },

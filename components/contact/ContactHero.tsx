@@ -119,7 +119,7 @@ export function ContactHero() {
                   </div>
                   <div>
                     <h3 className="text-sm font-bold text-[#0B1E48]">Zelnex Institutional HQ</h3>
-                    <p className="text-[11px] font-['JetBrains_Mono',monospace] text-slate-500">AHMEDABAD, GUJARAT, INDIA</p>
+                    <p className="text-[11px] font-['JetBrains_Mono',monospace] text-slate-500">SURAT, GUJARAT, INDIA</p>
                   </div>
                 </div>
                 <span className="text-[10px] font-['JetBrains_Mono',monospace] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-600 border border-emerald-200/60">

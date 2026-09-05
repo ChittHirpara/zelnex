@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useMemo, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { ArrowUpRight, Check, ShieldCheck, FileCheck2, Factory, Layers } from "lucide-react";
+import { SectionDivider } from "@/components/SectionDivider";
+import { ArrowUpRight, ShieldCheck, FileCheck2, Factory, Layers } from "lucide-react";
 
 interface ServiceItem {
   id: string;
@@ -146,22 +147,24 @@ function ServicesModernistContent() {
   const router = useRouter();
   const param = searchParams.get("service") || searchParams.get("tab") || "regulatory";
 
-  const [activeTab, setActiveTab] = useState<string>("regulatory");
-
-  useEffect(() => {
+  const resolvedTab = useMemo(() => {
     if (param === "contract-manufacturing" || param === "contract" || param === "1") {
-      setActiveTab("contract-manufacturing");
-    } else if (param === "third-party-manufacturing" || param === "third-party" || param === "2") {
-      setActiveTab("third-party-manufacturing");
-    } else if (param === "generic-products" || param === "generics" || param === "3") {
-      setActiveTab("generic-products");
-    } else {
-      setActiveTab("regulatory");
+      return "contract-manufacturing";
     }
+    if (param === "third-party-manufacturing" || param === "third-party" || param === "2") {
+      return "third-party-manufacturing";
+    }
+    if (param === "generic-products" || param === "generics" || param === "3") {
+      return "generic-products";
+    }
+    return "regulatory";
   }, [param]);
 
+  const [userSelectedTab, setUserSelectedTab] = useState<string | null>(null);
+  const activeTab = userSelectedTab ?? resolvedTab;
+
   const handleSelectService = (id: string) => {
-    setActiveTab(id);
+    setUserSelectedTab(id);
     router.push(`/services?service=${id}`, { scroll: false });
   };
 
@@ -172,7 +175,7 @@ function ServicesModernistContent() {
     <div className="min-h-screen bg-[#E3E2DE] text-[#141414] font-['General_Sans',sans-serif] selection:bg-[#1351AA] selection:text-[#E3E2DE] antialiased">
       <Navbar />
 
-      <main className="pt-24 sm:pt-28 pb-16">
+      <main className="pt-24 sm:pt-28 pb-6 sm:pb-8">
         <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8">
           
           {/* ── 1. Top 4-Service Selector Bar ── */}
@@ -194,7 +197,7 @@ function ServicesModernistContent() {
                   <span className={`text-[10px] font-['JetBrains_Mono',monospace] font-bold tracking-widest ${
                     isSelected ? "text-[#E3E2DE]/80" : "text-[#7A7A7A]"
                   }`}>
-                    {svc.num} //
+                    {svc.num} {"//"}
                   </span>
                   <span className="text-xs sm:text-sm font-bold uppercase tracking-tight truncate">
                     {svc.badge}
@@ -315,7 +318,7 @@ function ServicesModernistContent() {
                   </div>
 
                   <Link
-                    href="/#contact"
+                    href="/contact"
                     className="w-full sm:w-auto py-3.5 px-7 bg-[#1351AA] hover:bg-[#141414] text-[#E3E2DE] text-xs font-bold uppercase tracking-[0.15em] flex items-center justify-center gap-2 transition-colors duration-200 rounded-none"
                   >
                     <span>{currentService.ctaText}</span>
@@ -330,6 +333,12 @@ function ServicesModernistContent() {
 
         </div>
       </main>
+
+      {/* ── Signature Organic Wave Ribbon Line (from Blogs & About Us) ── */}
+      <div className="mt-6 sm:mt-8 mb-0 relative overflow-hidden leading-[0] w-full" aria-hidden="true">
+        <SectionDivider from="#082B61" to="#E3E2DE" height={42} />
+        <SectionDivider from="#E3E2DE" to="#082B61" flip height={42} />
+      </div>
 
       <Footer />
     </div>

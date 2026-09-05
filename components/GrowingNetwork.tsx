@@ -86,7 +86,7 @@ export function GrowingNetwork() {
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 max-w-2xl font-normal leading-relaxed">
-            Direct air and sea export corridors dispatched from our WHO-GMP manufacturing hubs in Ahmedabad and Mumbai to health ministries across Asia, Africa, Middle East & LATAM.
+            Direct air and sea export corridors dispatched from our WHO-GMP manufacturing hubs in Surat and Mumbai to health ministries across Asia, Africa, Middle East & LATAM.
           </p>
         </div>
 
@@ -105,7 +105,7 @@ export function GrowingNetwork() {
             </div>
 
             <div className="flex items-center gap-4 text-slate-500">
-              <span className="hidden sm:inline font-medium">ORIGIN: AHMEDABAD [23.0225° N, 72.5714° E]</span>
+              <span className="hidden sm:inline font-medium">ORIGIN: SURAT [21.1702° N, 72.8311° E]</span>
               <span className="text-[#006EDC] font-bold bg-[#006EDC]/10 px-2 py-0.5 rounded border border-[#006EDC]/20">
                 LIVE TELEMETRY
               </span>

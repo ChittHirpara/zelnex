@@ -153,6 +153,33 @@ export function Hero() {
         </>
       ),
     },
+    {
+      number: t.hero.stats.stat4Number,
+      labelTop: t.hero.stats.stat4Top,
+      labelBottom: t.hero.stats.stat4Bottom,
+      stroke: "#6366f1",
+      icon: (
+        <>
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="8" y1="13" x2="16" y2="13" />
+          <line x1="8" y1="17" x2="14" y2="17" />
+          <polyline points="8.5 9.5 10 11 13 8" />
+        </>
+      ),
+    },
+    {
+      number: t.hero.stats.stat5Number,
+      labelTop: t.hero.stats.stat5Top,
+      labelBottom: t.hero.stats.stat5Bottom,
+      stroke: "#059669",
+      icon: (
+        <>
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <polyline points="9 12 11 14 15 10" />
+        </>
+      ),
+    },
   ];
 
   // ── Social Radial Menu: toggle ────────────────────────────
@@ -480,33 +507,37 @@ export function Hero() {
 
       {/* ── Bhadwo-Kaach WebGL & CSS Liquid Glass Stats Engine ── */}
       <LiquidEdgeFilter scale={22} />
-      <div className="hz-stats absolute bottom-4 sm:bottom-6 left-2 right-2 sm:left-6 sm:right-6 md:left-48 lg:left-56 xl:left-64 md:right-8 z-10 max-w-[1120px]">
+      <div className="hz-stats absolute bottom-4 sm:bottom-6 left-2 right-2 sm:left-6 sm:right-6 md:left-48 lg:left-56 xl:left-64 md:right-8 z-10 max-w-[1320px]">
         <div
           ref={statsSurfaceRef}
           className={`glass-surface select-none ${glassLive ? "glass-live" : ""}`}
-          style={{ borderRadius: "clamp(16px, 4vw, 30px)" }}
+          style={{ borderRadius: "clamp(16px, 3.5vw, 28px)" }}
         >
           {glassLive && <GlassmorphismCanvas surfaceRef={statsSurfaceRef} />}
 
           <div
             className="relative z-[4] grid grid-cols-1 sm:flex items-center w-full overflow-hidden"
             style={{
-              padding: "clamp(14px, 2.4vw, 28px) clamp(14px, 3.8vw, 44px)",
-              minHeight: 100,
+              padding: "clamp(10px, 1.8vw, 22px) clamp(10px, 2.2vw, 30px)",
+              minHeight: 90,
               borderRadius: "inherit",
             }}
           >
-            {statsData.map((stat) => {
+            {statsData.map((stat, idx) => {
               return (
                 <div
-                  key={stat.number}
-                  className="gs-stat flex flex-1 items-center border-b sm:border-b-0 sm:border-l last:border-b-0 first:border-l-0 border-slate-200/40 py-3 sm:py-0"
-                  style={{ gap: "clamp(12px, 1.8vw, 20px)", padding: "clamp(10px, 1.6vw, 22px) clamp(10px, 1.6vw, 22px)" }}
+                  key={`${stat.number}-${idx}`}
+                  className="gs-stat flex flex-1 items-center border-b sm:border-b-0 sm:border-l last:border-b-0 first:border-l-0 border-slate-200/40 py-2.5 sm:py-0"
+                  style={{ gap: "clamp(8px, 1.2vw, 16px)", padding: "clamp(6px, 1vw, 16px) clamp(6px, 1.1vw, 18px)" }}
                 >
-                  <div data-glass-bead className="glass-badge hz-stat-item">
+                  <div
+                    data-glass-bead
+                    className="glass-badge hz-stat-item"
+                    style={{ width: "clamp(38px, 3.8vw, 56px)", height: "clamp(38px, 3.8vw, 56px)" }}
+                  >
                     <svg
                       className="relative z-[2]"
-                      style={{ width: "62%", height: "62%" }}
+                      style={{ width: "60%", height: "60%" }}
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke={stat.stroke}
@@ -517,11 +548,11 @@ export function Hero() {
                       {stat.icon}
                     </svg>
                   </div>
-                  <div className="flex flex-col" style={{ gap: 3, minWidth: 0 }}>
+                  <div className="flex flex-col" style={{ gap: 2, minWidth: 0 }}>
                     <div
                       style={{
                         fontWeight: 800,
-                        fontSize: "clamp(17px,2.35vw,29px)",
+                        fontSize: "clamp(16px, 1.95vw, 26px)",
                         color: "#0a1454",
                         lineHeight: 1,
                         letterSpacing: "-0.01em",
@@ -533,22 +564,23 @@ export function Hero() {
                     <div
                       style={{
                         fontWeight: 600,
-                        fontSize: "clamp(10px,1.05vw,13px)",
+                        fontSize: "clamp(9.5px, 0.84vw, 12px)",
                         color: "#5b6089",
-                        lineHeight: 1.25,
+                        lineHeight: 1.22,
+                        whiteSpace: "nowrap",
                       }}
                     >
                       {stat.labelTop}
                       <br />
                       {stat.labelBottom}
                     </div>
-                    <div className="flex" style={{ gap: 4, marginTop: 3 }}>
+                    <div className="flex" style={{ gap: 3.5, marginTop: 2 }}>
                       {[0, 1, 2].map((d) => (
                         <i
                           key={d}
                           style={{
-                            width: 4,
-                            height: 4,
+                            width: 3.5,
+                            height: 3.5,
                             borderRadius: "50%",
                             display: "block",
                             background: "linear-gradient(135deg,#2f74e0,#123f9e)",

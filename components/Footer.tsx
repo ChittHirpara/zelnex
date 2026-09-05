@@ -3,28 +3,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { useLanguage } from "@/context/LanguageContext";
 import {
-  X,
-  CheckCircle2,
-  User,
-  Mail,
-  Globe,
-  FileText,
   Sparkles,
   ArrowRight,
   Plus,
   Minus,
+  Mail,
   Phone,
   Send,
+  CheckCircle2,
 } from "lucide-react";
 
 export function Footer() {
   const { t } = useLanguage();
-  // Modal & Newsletter States
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalSubmitted, setModalSubmitted] = useState(false);
 
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
@@ -45,16 +37,6 @@ export function Footer() {
     if (newsletterEmail) {
       setNewsletterSubscribed(true);
     }
-  };
-
-  const handleModalSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setModalSubmitted(true);
-  };
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-    setTimeout(() => setModalSubmitted(false), 300);
   };
 
   return (
@@ -115,7 +97,7 @@ export function Footer() {
           </div>
 
           <div className="hidden md:flex items-center gap-8 text-xs font-medium text-cyan-100/90">
-            <Link href="/overview" className="hover:text-white transition-colors">Overview</Link>
+            <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
             <Link href="/#expertise" className="hover:text-white transition-colors">Expertise</Link>
             <Link href="/#products" className="hover:text-white transition-colors">Products</Link>
             <Link href="/#categories" className="hover:text-white transition-colors">Categories</Link>
@@ -123,8 +105,8 @@ export function Footer() {
             <Link href="/#network" className="hover:text-white transition-colors">Network</Link>
           </div>
 
-          <button
-            onClick={() => setIsModalOpen(true)}
+          <Link
+            href="/contact"
             className="group flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold text-white transition-all cursor-pointer border border-white/30 hover:border-white/60 shadow-sm"
             style={{
               background: "linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(56, 189, 248, 0.35) 100%)",
@@ -134,7 +116,7 @@ export function Footer() {
             <Sparkles className="w-3.5 h-3.5 text-cyan-200" />
             <span>Partner with Zelnex</span>
             <ArrowRight className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" />
-          </button>
+          </Link>
         </div>
 
         {/* ── Top 12-Column Grid Full Width ── */}
@@ -400,257 +382,32 @@ export function Footer() {
               </a>
 
               <a
-                href="mailto:export@zelnex.in"
+                href="mailto:export@zelnexpharma.com"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white border border-white/20 transition-all duration-300 hover:scale-110 hover:bg-white hover:text-[#06132d] hover:shadow-[0_0_14px_rgba(255,255,255,0.7)] cursor-pointer"
-                aria-label="Email: export@zelnex.in"
+                aria-label="Email: export@zelnexpharma.com"
               >
                 <Mail className="w-3.5 h-3.5" />
               </a>
 
               <a
-                href="tel:+912249201800"
+                href="tel:+919328286164"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white border border-white/20 transition-all duration-300 hover:scale-110 hover:bg-white hover:text-[#06132d] hover:shadow-[0_0_14px_rgba(255,255,255,0.7)] cursor-pointer"
-                aria-label="Phone"
+                aria-label="Phone: +91 93282 86164"
               >
                 <Phone className="w-3.5 h-3.5" />
               </a>
 
-              <button
-                onClick={() => setIsModalOpen(true)}
+              <Link
+                href="/contact"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white border border-white/20 transition-all duration-300 hover:scale-110 hover:bg-cyan-300 hover:text-[#06132d] hover:shadow-[0_0_14px_rgba(56,189,248,0.8)] cursor-pointer"
-                aria-label="Direct Export Inquiry"
+                aria-label="Contact Zelnex"
               >
                 <Send className="w-3.5 h-3.5" />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
       </div>
-
-      {/* ── Interactive 3D White Glass Partnership Modal ── */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-            {/* Ambient Darkened Frosted Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={handleModalClose}
-              className="fixed inset-0 bg-[#061536]/40 backdrop-blur-xl transition-opacity"
-            />
-
-            {/* White Frosted Liquid Glass Modal Container */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.90, y: 28 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.92, y: 20 }}
-              transition={{
-                type: "spring",
-                stiffness: 360,
-                damping: 26,
-              }}
-              className="relative w-full max-w-xl rounded-[36px] overflow-hidden p-8 md:p-10 text-[#082B61] shadow-2xl z-10 my-8 select-none"
-              style={{
-                background:
-                  "radial-gradient(120% 140% at 10% -10%, rgba(255, 255, 255, 0.95), rgba(248, 252, 255, 0.88) 50%, rgba(238, 246, 255, 0.92))",
-                backdropFilter: "blur(36px) saturate(190%)",
-                WebkitBackdropFilter: "blur(36px) saturate(190%)",
-                border: "1.5px solid rgba(255, 255, 255, 0.95)",
-                boxShadow: `
-                  0 35px 90px -15px rgba(14, 46, 108, 0.22),
-                  0 10px 30px rgba(14, 46, 108, 0.1),
-                  inset 0 2px 0 #ffffff,
-                  inset 0 0 0 1.5px rgba(186, 220, 255, 0.45),
-                  inset 0 -2px 6px rgba(12, 44, 104, 0.05)
-                `,
-              }}
-            >
-              {/* Corner Specular Flare */}
-              <div
-                className="absolute right-8 top-8 w-2.5 h-2.5 rounded-full pointer-events-none"
-                style={{
-                  background: "#ffffff",
-                  boxShadow: "0 0 10px #ffffff, 0 0 20px #00B8F2",
-                }}
-              />
-
-              {/* Close Button */}
-              <button
-                onClick={handleModalClose}
-                className="absolute right-6 top-6 flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-[#082B61] transition-all cursor-pointer border border-slate-200/80 shadow-sm hover:scale-105"
-                aria-label="Close modal"
-              >
-                <X className="w-4 h-4" />
-              </button>
-
-              {/* Header */}
-              <div className="pr-10">
-                <div className="inline-flex items-center gap-2 rounded-full bg-teal/10 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-wider text-teal border border-teal/20 mb-3 shadow-sm">
-                  <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
-                  <span>Direct Export Inquiry</span>
-                </div>
-
-                <h3 className="font-['Space_Grotesk'] text-3xl md:text-[2.1rem] font-extrabold text-[#082B61] tracking-tight leading-[1.15]">
-                  Partner with Zelnex
-                </h3>
-
-                <div
-                  className="my-3 h-[3.5px] w-14 rounded-full"
-                  style={{
-                    background: "linear-gradient(90deg, #006EDC, #00B8F2)",
-                  }}
-                />
-
-                <p className="text-xs sm:text-[13.5px] text-[#4A5568] leading-relaxed font-medium">
-                  Provide your market details below. Our international export director will review
-                  your requirements and respond within 24 hours.
-                </p>
-              </div>
-
-              {/* Form / Success Feedback */}
-              <div className="mt-6">
-                {modalSubmitted ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="py-10 text-center flex flex-col items-center justify-center"
-                  >
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-teal to-[#006EDC] text-white mb-4 shadow-[0_0_30px_rgba(0,184,242,0.35)]">
-                      <CheckCircle2 className="w-8 h-8 stroke-[2.5]" />
-                    </div>
-                    <h4 className="font-['Space_Grotesk'] text-2xl font-extrabold text-[#082B61] tracking-tight">
-                      Inquiry Received Successfully
-                    </h4>
-                    <p className="mt-2 text-xs sm:text-sm text-[#4A5568] max-w-md leading-relaxed font-medium">
-                      Thank you for reaching out. We have received your details and will dispatch our
-                      product catalog and dossier guidelines to your email within 24 business hours.
-                    </p>
-                    <button
-                      onClick={handleModalClose}
-                      className="mt-6 rounded-full px-7 py-3 text-xs font-extrabold text-white bg-gradient-to-r from-[#00B8F2] to-[#006EDC] hover:scale-105 transition-all shadow-lg cursor-pointer"
-                    >
-                      Close Window
-                    </button>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={handleModalSubmit} className="flex flex-col gap-4">
-                    {/* Full Name */}
-                    <div>
-                      <label className="flex items-center gap-1.5 text-[11.5px] font-bold uppercase tracking-wider text-[#082B61] mb-1.5">
-                        <User className="w-3.5 h-3.5 text-[#006EDC]" />
-                        <span>Full Name *</span>
-                      </label>
-                      <input
-                        required
-                        type="text"
-                        name="fullName"
-                        placeholder="e.g. Dr. Alexander Vance"
-                        className="w-full rounded-2xl border border-slate-200/90 bg-white/90 px-4 py-3 text-sm text-[#082B61] font-semibold placeholder-slate-400 outline-none focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/15 focus:bg-white transition-all"
-                        style={{
-                          boxShadow: "inset 0 1.5px 3px rgba(0, 40, 110, 0.03)",
-                        }}
-                      />
-                    </div>
-
-                    {/* Email & Country 2-Column Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="flex items-center gap-1.5 text-[11.5px] font-bold uppercase tracking-wider text-[#082B61] mb-1.5">
-                          <Mail className="w-3.5 h-3.5 text-[#006EDC]" />
-                          <span>Business Email *</span>
-                        </label>
-                        <input
-                          required
-                          type="email"
-                          name="email"
-                          placeholder="alex@distributor.com"
-                          className="w-full rounded-2xl border border-slate-200/90 bg-white/90 px-4 py-3 text-sm text-[#082B61] font-semibold placeholder-slate-400 outline-none focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/15 focus:bg-white transition-all"
-                          style={{
-                            boxShadow: "inset 0 1.5px 3px rgba(0, 40, 110, 0.03)",
-                          }}
-                        />
-                      </div>
-
-                      <div>
-                        <label className="flex items-center gap-1.5 text-[11.5px] font-bold uppercase tracking-wider text-[#082B61] mb-1.5">
-                          <Globe className="w-3.5 h-3.5 text-[#006EDC]" />
-                          <span>Country / Market *</span>
-                        </label>
-                        <input
-                          required
-                          type="text"
-                          name="country"
-                          placeholder="e.g. Kenya, Vietnam, Iraq"
-                          className="w-full rounded-2xl border border-slate-200/90 bg-white/90 px-4 py-3 text-sm text-[#082B61] font-semibold placeholder-slate-400 outline-none focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/15 focus:bg-white transition-all"
-                          style={{
-                            boxShadow: "inset 0 1.5px 3px rgba(0, 40, 110, 0.03)",
-                          }}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Company Bio & Requirements */}
-                    <div>
-                      <label className="flex items-center gap-1.5 text-[11.5px] font-bold uppercase tracking-wider text-[#082B61] mb-1.5">
-                        <FileText className="w-3.5 h-3.5 text-[#006EDC]" />
-                        <span>Company Bio & Requirements *</span>
-                      </label>
-                      <textarea
-                        required
-                        rows={3}
-                        name="bio"
-                        placeholder="Tell us about your distribution network, target therapeutic categories, or contract manufacturing needs..."
-                        className="w-full rounded-2xl border border-slate-200/90 bg-white/90 px-4 py-3 text-sm text-[#082B61] font-semibold placeholder-slate-400 outline-none focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/15 focus:bg-white transition-all resize-none"
-                        style={{
-                          boxShadow: "inset 0 1.5px 3px rgba(0, 40, 110, 0.03)",
-                        }}
-                      />
-                    </div>
-
-                    {/* Trust Indicators Bar */}
-                    <div className="flex items-center justify-between text-[11px] text-[#5b6089] px-1 py-1 font-semibold">
-                      <span className="flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-[#006EDC]" />
-                        <span>24h Response Guaranteed</span>
-                      </span>
-                      <span className="text-teal font-bold">
-                        ✦ CTD Dossiers Available
-                      </span>
-                    </div>
-
-                    {/* Submit Button */}
-                    <motion.button
-                      type="submit"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="mt-1 group relative flex items-center justify-center gap-2 rounded-2xl py-3.5 text-sm font-extrabold text-white shadow-lg transition-all duration-300 hover:shadow-[0_10px_28px_rgba(0,110,220,0.35)] cursor-pointer overflow-hidden"
-                      style={{
-                        background: "linear-gradient(135deg, #00B8F2 0%, #006EDC 100%)",
-                      }}
-                    >
-                      <span>Submit Partnership Inquiry</span>
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-white transition-transform duration-300 group-hover:translate-x-1">
-                        →
-                      </span>
-                    </motion.button>
-                  </form>
-                )}
-              </div>
-
-              {/* Bottom Cyan Caustic Light Line */}
-              <div
-                className="absolute bottom-0 inset-x-10 h-[2.5px] rounded-full pointer-events-none"
-                style={{
-                  background: "linear-gradient(90deg, transparent, #00B8F2 50%, transparent)",
-                  boxShadow: "0 0 12px rgba(0, 184, 242, 0.9)",
-                }}
-              />
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </footer>
   );
 }

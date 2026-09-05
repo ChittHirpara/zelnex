@@ -50,7 +50,7 @@ export function FloatingWhatsApp() {
     >
       {/* ── Compact Floating Speech Bubble ── */}
       {bubbleVisible && (
-        <div className="relative rounded-xl bg-white/95 backdrop-blur-md border border-slate-200/90 py-2 px-3 shadow-[0_8px_25px_rgba(0,0,0,0.1)] max-w-[230px] text-[11px] text-slate-800 leading-tight animate-in fade-in slide-in-from-right-2 duration-300">
+        <div className="hidden sm:block relative rounded-xl bg-white/95 backdrop-blur-md border border-slate-200/90 py-2 px-3 shadow-[0_8px_25px_rgba(0,0,0,0.1)] max-w-[230px] text-[11px] text-slate-800 leading-tight animate-in fade-in slide-in-from-right-2 duration-300">
           <button
             type="button"
             onClick={handleDismiss}
@@ -75,11 +75,11 @@ export function FloatingWhatsApp() {
 
       {/* ── Compact WhatsApp Floating Action Button ── */}
       <a
-        href="https://wa.me/919825099881?text=Hello%20Zelnex%20Team%2C%20I%20would%20like%20to%20inquire%20about%20finished%20pharmaceutical%20formulations%20and%20dossiers."
+        href="https://wa.me/919328286164?text=Hello%20Zelnex%20Team%2C%20I%20would%20like%20to%20inquire%20about%20finished%20pharmaceutical%20formulations%20and%20dossiers."
         target="_blank"
         rel="noopener noreferrer"
         className="relative group w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-[#128C7E] to-[#25D366] text-white flex items-center justify-center shadow-[0_6px_20px_rgba(37,211,102,0.35)] hover:shadow-[0_10px_28px_rgba(37,211,102,0.5)] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shrink-0"
-        title="Chat with Zelnex Export Desk on WhatsApp"
+        title="Chat with Zelnex Export Desk on WhatsApp (+91 93282 86164)"
         aria-label="Chat with Zelnex Export Desk on WhatsApp"
       >
         {/* Ambient ping glow ring */}

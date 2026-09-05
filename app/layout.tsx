@@ -105,7 +105,7 @@ const jsonLd = {
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "Customer Support & Export Inquiries",
-    email: "zyrastudios02@gmail.com",
+    email: "export@zelnexpharma.com",
   },
   sameAs: [
     "https://www.linkedin.com/company/zelnex-pharmaceuticals",

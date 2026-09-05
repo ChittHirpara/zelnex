@@ -13,19 +13,19 @@ import {
 } from "lucide-react";
 
 export function OfficeMap() {
-  const [activeTab, setActiveTab] = useState<"ahmedabad" | "mumbai">("ahmedabad");
+  const [activeTab, setActiveTab] = useState<"surat" | "mumbai">("surat");
 
   const locations = {
-    ahmedabad: {
+    surat: {
       name: "Global Corporate HQ & Administrative Desk",
-      address: "Corporate Heights, SG Highway, Ahmedabad, Gujarat 380054, India",
-      coords: "23.0225° N, 72.5714° E",
-      airport: "Sardar Vallabhbhai Patel International Airport (AMD) — 16 km",
-      port: "Mundra & Kandla Container Ports — Direct Rail Freight Link",
+      address: "117 - Platinum Plaza, Near VT Circle, Sarthana Jakatnaka, Surat - 395013, Gujarat, India",
+      coords: "21.2294° N, 72.8837° E",
+      airport: "Surat International Airport (STV) — 18 km",
+      port: "Hazira Container Port & JNPT Marine Corridor",
       hours: "Mon – Sat: 09:00 – 18:30 IST",
       mapSrc:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117506.31175591322!2d72.48316447832031!3d23.0204741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
-      directionsUrl: "https://maps.google.com/?q=Ahmedabad,+Gujarat,+India",
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119066.41709405072!2d72.80287865!3d21.2294246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04f4450700001%3A0x6b872f23246a48d!2sPlatinum%20Plaza%2C%20Surat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
+      directionsUrl: "https://maps.google.com/?q=Platinum+Plaza+Near+VT+Circle+Sarthana+Jakatnaka+Surat+Gujarat+395013",
     },
     mumbai: {
       name: "International Export & Logistics Operations",
@@ -72,7 +72,7 @@ export function OfficeMap() {
             </h2>
 
             <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-xl">
-              Visit our corporate headquarters in Ahmedabad or connect with our international export logistics base in Mumbai.
+              Visit our corporate headquarters in Surat or connect with our international export logistics base in Mumbai.
             </p>
           </div>
 
@@ -80,14 +80,14 @@ export function OfficeMap() {
           <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-white border border-slate-200 shadow-xs">
             <button
               type="button"
-              onClick={() => setActiveTab("ahmedabad")}
+              onClick={() => setActiveTab("surat")}
               className={`px-4 py-2 rounded-xl text-xs font-bold font-['JetBrains_Mono',monospace] transition-all cursor-pointer ${
-                activeTab === "ahmedabad"
+                activeTab === "surat"
                   ? "bg-[#006EDC] text-white shadow-sm"
                   : "text-slate-600 hover:text-[#0B1E48] hover:bg-slate-100"
               }`}
             >
-              AHMEDABAD HQ
+              SURAT HQ
             </button>
             <button
               type="button"

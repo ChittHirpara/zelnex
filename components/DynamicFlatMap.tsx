@@ -27,8 +27,8 @@ export interface DestinationMarket {
 // ────────────────────────────────────────────────────────────────────────────
 // ORIGIN
 // ────────────────────────────────────────────────────────────────────────────
-const [indiaX, indiaY] = getProjectedCoords(78.9629, 20.5937);
-const ORIGIN = { city: "Ahmedabad", country: "India", x: indiaX, y: indiaY };
+const [indiaX, indiaY] = getProjectedCoords(72.8311, 21.1702);
+const ORIGIN = { city: "Surat", country: "India", x: indiaX, y: indiaY };
 
 // ────────────────────────────────────────────────────────────────────────────
 // MARKET DATA
@@ -372,7 +372,7 @@ export function DynamicFlatMap() {
               })}
             </g>
 
-            {/* ── ORIGIN: AHMEDABAD, INDIA ── */}
+            {/* ── ORIGIN: SURAT, INDIA ── */}
             <g>
               <circle cx={ORIGIN.x} cy={ORIGIN.y} r="9" fill="none" stroke="#006EDC" strokeWidth="1.2" strokeOpacity="0.5">
                 <animate attributeName="r" values="9;24" dur="2.8s" repeatCount="indefinite" />

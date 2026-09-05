@@ -62,7 +62,7 @@ export function ReadmeManifesto() {
 
             {/* Markdown Paragraph */}
             <p className="text-slate-300">
-              Zelnex operates as an export-oriented pharmaceutical powerhouse based in Ahmedabad, India. We architect high-potency finished generic formulations and maintain comprehensive Common Technical Document (CTD) and eCTD files for Ministry of Health registration across 50+ global nations.
+              Zelnex operates as an export-oriented pharmaceutical powerhouse based in Surat, Gujarat, India. We architect high-potency finished generic formulations and maintain comprehensive Common Technical Document (CTD) and eCTD files for Ministry of Health registration across 50+ global nations.
             </p>
 
             {/* H2 Heading */}

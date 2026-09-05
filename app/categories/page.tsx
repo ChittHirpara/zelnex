@@ -251,7 +251,7 @@ export default function CategoriesPage() {
 
       <Navbar />
 
-      <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+      <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-6">
         
         {/* ══════════════════════════════════════════════════════════════
             EXACT PDF HEADER SECTION (100% Match to Reference Image)
@@ -352,7 +352,7 @@ export default function CategoriesPage() {
           <div className="flex-1 w-full space-y-6">
             
             {/* ── TOP DOSAGE FORM BUTTONS (Exact Reference Match) ── */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2 sm:gap-3">
+            <div className="flex sm:grid sm:grid-cols-4 md:grid-cols-7 gap-2 sm:gap-2.5 overflow-x-auto pb-2 sm:pb-0 scrollbar-none -mx-1 px-1">
               {DOSAGE_OPTIONS.map((dosage) => {
                 const isSelected = selectedDosage === dosage.id;
                 return (
@@ -360,7 +360,7 @@ export default function CategoriesPage() {
                     key={dosage.id}
                     type="button"
                     onClick={() => setSelectedDosage(dosage.id)}
-                    className={`py-3.5 sm:py-4 px-2 rounded-xl sm:rounded-2xl flex flex-col items-center justify-center transition-all duration-200 cursor-pointer shadow-sm ${
+                    className={`min-w-[100px] sm:min-w-0 flex-1 sm:flex-initial py-3 sm:py-4 px-2 rounded-xl sm:rounded-2xl flex flex-col items-center justify-center transition-all duration-200 cursor-pointer shadow-sm shrink-0 sm:shrink ${
                       dosage.bgColor
                     } ${dosage.hoverColor} ${
                       isSelected
@@ -490,16 +490,16 @@ export default function CategoriesPage() {
             CLEAN TECHNICAL SPECIFICATION MODAL
         ══════════════════════════════════════════════════════════════ */}
         {activeModalItem && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
-            <div className="w-full max-w-lg bg-white rounded-lg border border-[#E5E7EB] shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/40 backdrop-blur-xs">
+            <div className="w-full max-w-lg max-h-[90dvh] flex flex-col bg-white rounded-xl sm:rounded-lg border border-[#E5E7EB] shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
               
               {/* Modal Header */}
-              <div className="py-4 px-5 bg-[#F8FAFC] border-b border-[#E5E7EB] flex items-center justify-between">
+              <div className="py-3.5 sm:py-4 px-4 sm:px-5 bg-[#F8FAFC] border-b border-[#E5E7EB] flex items-center justify-between shrink-0">
                 <div>
                   <span className="text-[10px] font-mono font-bold uppercase text-[#0088CC]">
                     {activeModalItem.categoryName}
                   </span>
-                  <h3 className="text-base font-bold text-slate-900 mt-0.5">
+                  <h3 className="text-sm sm:text-base font-bold text-slate-900 mt-0.5">
                     {activeModalItem.composition}
                   </h3>
                 </div>
@@ -507,25 +507,25 @@ export default function CategoriesPage() {
                 <button
                   type="button"
                   onClick={() => setActiveModalItem(null)}
-                  className="w-8 h-8 rounded-full border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-slate-500 cursor-pointer"
+                  className="w-8 h-8 rounded-full border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-slate-500 cursor-pointer shrink-0"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
               {/* Modal Body */}
-              <div className="p-5 space-y-4 text-xs">
-                <div className="grid grid-cols-2 gap-3">
+              <div className="p-4 sm:p-5 space-y-3 sm:space-y-4 text-xs overflow-y-auto clean-scroll flex-1">
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                   <div className="p-2.5 bg-slate-50 rounded border border-slate-200">
                     <span className="text-[10px] text-slate-400 font-mono block">DOSAGE STRENGTH</span>
-                    <span className="font-bold text-slate-800 font-mono mt-0.5 block">
+                    <span className="font-bold text-slate-800 font-mono mt-0.5 block truncate">
                       {activeModalItem.dosage || "Standard Dose"}
                     </span>
                   </div>
 
                   <div className="p-2.5 bg-slate-50 rounded border border-slate-200">
                     <span className="text-[10px] text-slate-400 font-mono block">DELIVERY FORM</span>
-                    <span className="font-bold text-slate-800 mt-0.5 block">
+                    <span className="font-bold text-slate-800 mt-0.5 block truncate">
                       {activeModalItem.dosageForm}
                     </span>
                   </div>
@@ -544,14 +544,14 @@ export default function CategoriesPage() {
                   <span className="text-[10px] text-slate-400 font-mono block mb-1">
                     REGULATORY READINESS
                   </span>
-                  <p className="text-slate-600">
+                  <p className="text-slate-600 leading-relaxed">
                     WHO-GMP Certified, CTD Dossier Ready (Modules 1–5), Zone IVb Stability Validated for swift MOH registration.
                   </p>
                 </div>
               </div>
 
               {/* Modal Footer */}
-              <div className="py-3 px-5 bg-[#F8FAFC] border-t border-[#E5E7EB] flex items-center justify-between gap-3">
+              <div className="py-3 px-4 sm:px-5 bg-[#F8FAFC] border-t border-[#E5E7EB] flex flex-wrap sm:flex-nowrap items-center justify-between gap-2.5 sm:gap-3 shrink-0">
                 <button
                   type="button"
                   onClick={() => handleCopy(activeModalItem)}
@@ -572,12 +572,12 @@ export default function CategoriesPage() {
 
                 <div className="flex items-center gap-2">
                   <a
-                    href={`https://wa.me/919825099881?text=Hello%20Zelnex%2C%20I%20would%20like%20to%20inquire%20about%20${encodeURIComponent(
+                    href={`https://wa.me/919328286164?text=Hello%20Zelnex%2C%20I%20would%20like%20to%20inquire%20about%20${encodeURIComponent(
                       activeModalItem.composition + " (" + (activeModalItem.dosage || "") + ")"
                     )}%20under%20the%20${encodeURIComponent(activeModalItem.categoryName)}%20category.`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 px-4 py-1.5 bg-[#00A859] hover:bg-[#00924d] text-white text-xs font-bold rounded transition-colors"
+                    className="inline-flex items-center gap-1 px-3 sm:px-4 py-1.5 bg-[#00A859] hover:bg-[#00924d] text-white text-xs font-bold rounded transition-colors"
                   >
                     <span>WhatsApp Inquiry</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -586,7 +586,7 @@ export default function CategoriesPage() {
                   <Link
                     href="/contact"
                     onClick={() => setActiveModalItem(null)}
-                    className="inline-flex items-center gap-1 px-3.5 py-1.5 bg-[#0088CC] hover:bg-[#0077b3] text-white text-xs font-bold rounded transition-colors"
+                    className="inline-flex items-center gap-1 px-3 sm:px-3.5 py-1.5 bg-[#0088CC] hover:bg-[#0077b3] text-white text-xs font-bold rounded transition-colors"
                   >
                     <FileCheck2 className="w-3.5 h-3.5" />
                     <span>Dossier RFQ</span>

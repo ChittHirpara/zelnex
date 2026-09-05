@@ -81,7 +81,7 @@ export function Overview() {
             <span className="w-2 h-2 bg-[#06B6D4] animate-pulse rounded-full" />
             <span className="text-slate-700 font-bold">SYS_REF: ZELNEX_CORPORATE_PROFILE</span>
             <span className="hidden sm:inline text-slate-300">|</span>
-            <span className="hidden sm:inline">HQ: AHMEDABAD, INDIA [23.0225° N, 72.5714° E]</span>
+            <span className="hidden sm:inline">HQ: SURAT, INDIA [21.1702° N, 72.8311° E]</span>
           </div>
           <div className="flex items-center gap-4">
             <span>WHO-GMP ACCREDITED</span>
@@ -106,37 +106,29 @@ export function Overview() {
             </div>
 
             {/* Inter 600 Title */}
-            <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-[#111827] tracking-tight leading-[1.04] mb-6 font-['Inter',sans-serif]">
+            <h2 className="text-4xl sm:text-5xl lg:text-[52px] font-bold text-[#111827] tracking-tight leading-[1.08] mb-6 font-['Inter',sans-serif]">
               Zelnex Pharmaceuticals Pvt. Ltd.
             </h2>
 
-            {/* Monospaced Technical Subheading with Cyan Left Hairline */}
-            <div className="border-l-2 border-[#06B6D4] pl-4 sm:pl-5 my-2">
-              <p className="text-xs sm:text-[13px] font-['JetBrains_Mono',monospace] uppercase text-[#0891B2] tracking-wider leading-relaxed font-semibold">
-                AN EXPORT-ORIENTED PHARMACEUTICAL ENTERPRISE DELIVERING CERTIFIED GENERICS, COMPREHENSIVE CTD DOSSIERS, AND TROPICAL CLIMATE FINISHED FORMULATIONS TO 50+ COUNTRIES WORLDWIDE.
-              </p>
-            </div>
-
             {/* Corporate Narrative Body */}
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed mt-5 mb-8 max-w-xl font-normal">
-              Headquartered in India, Zelnex Pharmaceuticals operates with a singular focus: bridging advanced research, WHO-GMP compliant formulation manufacturing, and dependable international supply chains. We serve healthcare providers, government health ministries, institutional hospitals, and commercial distributors with affordable, high-potency medicines.
+            <p className="text-base sm:text-lg text-slate-700 leading-relaxed mt-2 mb-8 max-w-xl font-normal">
+              Zelnex Pharmaceuticals Pvt. Ltd. is an emerging pharmaceutical company based in India, focused on delivering high-quality, affordable, and globally compliant healthcare solutions. The company’s vision is to build a strong export-oriented premium brand and establish a trusted presence in international markets.
             </p>
 
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 font-['JetBrains_Mono',monospace] text-xs font-bold uppercase tracking-wider">
               <Link
-                href="#products"
+                href="/about"
                 className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-[#06B6D4] hover:bg-[#0891B2] text-white rounded-md shadow-sm transition-colors cursor-pointer"
               >
-                <span>EXPLORE PRODUCTS</span>
+                <span>READ FULL ABOUT US</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
-                href="/services"
+                href="#products"
                 className="inline-flex items-center gap-2 px-6 py-3.5 border border-[#D1D5DB] bg-white hover:border-[#06B6D4] text-[#111827] rounded-md shadow-2xs transition-colors cursor-pointer"
               >
-                <span>DEVTOOLS SERVICES</span>
-                <Code2 className="w-3.5 h-3.5 text-[#06B6D4]" />
+                <span>EXPLORE PRODUCTS</span>
               </Link>
             </div>
           </div>
@@ -185,7 +177,7 @@ export function Overview() {
                   <line x1="150" y1="20" x2="150" y2="280" stroke="#E5E7EB" strokeWidth="0.5" />
                   <line x1="20" y1="150" x2="280" y2="150" stroke="#E5E7EB" strokeWidth="0.5" />
 
-                  {/* Central Node (Ahmedabad HQ) */}
+                  {/* Central Node (Surat HQ) */}
                   <circle cx="150" cy="150" r="12" fill="#111827" />
                   <circle cx="150" cy="150" r="6" fill="#06B6D4" />
 
@@ -224,7 +216,7 @@ export function Overview() {
                 </svg>
 
                 <div className="absolute top-2 left-2 bg-slate-100 border border-slate-200 px-2 py-0.5 text-[9px] font-['JetBrains_Mono',monospace] text-slate-800">
-                  HQ: AHMEDABAD [IN]
+                  HQ: SURAT [IN]
                 </div>
                 <div className="absolute bottom-2 right-2 bg-slate-100 border border-slate-200 px-2 py-0.5 text-[9px] font-['JetBrains_Mono',monospace] text-slate-800">
                   PORTS: 50+ GLOBAL
@@ -293,55 +285,6 @@ export function Overview() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* ════════════════════════════════════════════════════════════════
-            4. TECHNICAL STATS TELEMETRY BAR
-           ════════════════════════════════════════════════════════════════ */}
-        <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 sm:p-8 shadow-xs">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
-            
-            <div className="flex flex-col pt-4 sm:pt-0 sm:px-4 first:pl-0 font-['JetBrains_Mono',monospace]">
-              <span className="text-[10px] uppercase text-slate-400 tracking-wider mb-1">
-                MARKET_PRESENCE
-              </span>
-              <div className="text-3xl sm:text-4xl font-bold text-[#111827]">
-                50+
-              </div>
-              <span className="text-xs text-slate-600 mt-1 font-sans font-medium">Export Countries</span>
-            </div>
-
-            <div className="flex flex-col pt-4 sm:pt-0 sm:px-4 font-['JetBrains_Mono',monospace]">
-              <span className="text-[10px] uppercase text-slate-400 tracking-wider mb-1">
-                COMMERCIAL_CATALOG
-              </span>
-              <div className="text-3xl sm:text-4xl font-bold text-[#111827]">
-                800+
-              </div>
-              <span className="text-xs text-slate-600 mt-1 font-sans font-medium">Approved Formulations</span>
-            </div>
-
-            <div className="flex flex-col pt-4 sm:pt-0 sm:px-4 font-['JetBrains_Mono',monospace]">
-              <span className="text-[10px] uppercase text-slate-400 tracking-wider mb-1">
-                DOSSIER_LIBRARY
-              </span>
-              <div className="text-3xl sm:text-4xl font-bold text-[#111827]">
-                150+
-              </div>
-              <span className="text-xs text-slate-600 mt-1 font-sans font-medium">Ready CTD / eCTD Files</span>
-            </div>
-
-            <div className="flex flex-col pt-4 sm:pt-0 sm:px-4 font-['JetBrains_Mono',monospace]">
-              <span className="text-[10px] uppercase text-slate-400 tracking-wider mb-1">
-                QUALITY_STANDARD
-              </span>
-              <div className="text-3xl sm:text-4xl font-bold text-[#0891B2]">
-                100%
-              </div>
-              <span className="text-xs text-slate-600 mt-1 font-sans font-medium">WHO-GMP Validated</span>
-            </div>
-
           </div>
         </div>
 

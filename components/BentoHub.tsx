@@ -11,7 +11,6 @@ import {
   Activity,
   ArrowUpRight,
   MapPin,
-  Mail,
   Pill,
   Sparkles,
   ShieldCheck,
@@ -33,7 +32,7 @@ export function BentoHub() {
   };
 
   return (
-    <div className="w-full py-12 md:py-16 text-[#17181c] select-none">
+    <div className="w-full py-12 md:py-16 text-[#17181c] select-none px-4 sm:px-6 lg:px-8">
       {/* ── Top Bar ── */}
       <div className="flex items-center justify-between pb-6 mb-6 border-b border-[#17181c]/10 max-w-[1120px] mx-auto">
         {/* Left: Brand Monogram & Wordmark */}

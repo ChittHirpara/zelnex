@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SectionDivider } from "@/components/SectionDivider";
 import {
   CheckCircle2,
   Loader2,
@@ -172,7 +173,7 @@ export default function ContactPage() {
 
       <Navbar />
 
-      <main className="pt-24 sm:pt-28 pb-20">
+      <main className="pt-24 sm:pt-28 pb-0">
         
         {/* ══════════════════════════════════════════════════════════════
             1. TOP EDITORIAL HERO HEADER
@@ -253,13 +254,13 @@ export default function ContactPage() {
                       Zelnex Pharmaceuticals Pvt. Ltd.
                     </h4>
                     <p className="text-xs text-[#4B5563] font-light leading-relaxed">
-                      Corporate Heights, SG Highway, Ahmedabad, Gujarat 380054, India
+                      117 - Platinum Plaza, Near VT Circle, Sarthana Jakatnaka, Surat - 395013, Gujarat, India
                     </p>
                   </div>
 
                   <div className="pt-2 border-t border-[#F0EFEB]">
                     <a
-                      href="https://maps.google.com/?q=Ahmedabad+Gujarat+India"
+                      href="https://maps.google.com/?q=Platinum+Plaza+Near+VT+Circle+Sarthana+Jakatnaka+Surat+Gujarat+395013"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#B8945A] hover:text-[#111827] group/map transition-colors"
@@ -288,19 +289,19 @@ export default function ContactPage() {
                     {/* Boardline */}
                     <div className="space-y-0.5">
                       <a
-                        href="tel:+917948001234"
+                        href="tel:+919328286164"
                         className="font-mono text-base font-semibold text-[#111827] hover:text-[#B8945A] transition-colors block tracking-tight"
                       >
-                        +91 79 4800 1234
+                        +91 93282 86164
                       </a>
                       <p className="text-[11px] text-[#6B7280] font-light">
-                        National fixed corporate boardline (Mon–Sat 9AM–7PM IST)
+                        Official corporate liaison &amp; dispatch desk (Mon–Sat 9AM–7PM IST)
                       </p>
                     </div>
 
                     {/* WhatsApp Export Desk Box */}
                     <a
-                      href="https://wa.me/919825099881?text=Hello%20Zelnex%20Team%2C%20I%20would%20like%20to%20inquire%20about%20finished%20pharmaceutical%20formulations."
+                      href="https://wa.me/919328286164?text=Hello%20Zelnex%20Team%2C%20I%20would%20like%20to%20inquire%20about%20finished%20pharmaceutical%20formulations."
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-between p-3 rounded-lg bg-[#F0FDF4] border border-emerald-200/80 hover:bg-[#DCFCE7] transition-all group/wa"
@@ -311,7 +312,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                           <span className="font-mono text-xs font-bold text-emerald-950 block">
-                            +91 98250 99881
+                            +91 93282 86164
                           </span>
                           <span className="text-[10px] text-emerald-700 font-light block">
                             International export &amp; mobile hotline
@@ -582,7 +583,7 @@ export default function ContactPage() {
         {/* ══════════════════════════════════════════════════════════════
             3. CORE INSTITUTIONAL INQUIRY STREAMS (4 Minimalist Cards)
         ══════════════════════════════════════════════════════════════ */}
-        <section className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 mb-24">
+        <section className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 mb-8 sm:mb-10">
           
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-[#E5E3DC] gap-4">
             <div>
@@ -646,6 +647,12 @@ export default function ContactPage() {
 
 
       </main>
+
+      {/* ── Signature Organic Wave Ribbon Line (from Blogs & About Us) ── */}
+      <div className="mt-6 sm:mt-8 mb-0 relative overflow-hidden leading-[0] w-full" aria-hidden="true">
+        <SectionDivider from="#082B61" to="#F6F5F2" height={42} />
+        <SectionDivider from="#F6F5F2" to="#082B61" flip height={42} />
+      </div>
 
       <Footer />
     </div>
