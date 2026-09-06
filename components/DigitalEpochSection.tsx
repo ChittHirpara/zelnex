@@ -203,18 +203,18 @@ export function DigitalEpochSection() {
             </div>
 
             {/* Standard text buttons */}
-            <a
-              href="#products"
+            <Link
+              href="/categories"
               className="px-3.5 py-1.5 text-[12px] font-semibold text-slate-500 hover:text-[#0a1b33] transition-colors rounded-full"
             >
-              Products
-            </a>
-            <a
-              href="#certifications"
+              Categories
+            </Link>
+            <Link
+              href="/about"
               className="px-3.5 py-1.5 text-[12px] font-semibold text-slate-500 hover:text-[#0a1b33] transition-colors rounded-full"
             >
-              Dossiers
-            </a>
+              About Us
+            </Link>
 
             {/* "Partner With Us" button */}
             <Link

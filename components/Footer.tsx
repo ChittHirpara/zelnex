@@ -13,6 +13,8 @@ import {
   Phone,
   Send,
   CheckCircle2,
+  MapPin,
+  ShieldCheck,
 } from "lucide-react";
 
 export function Footer() {
@@ -23,7 +25,6 @@ export function Footer() {
 
   const companyLinks = t.footer.companyLinks;
   const resourceLinks = t.footer.resourceLinks;
-  const qualityLinks = t.footer.qualityLinks;
 
   // Mobile Accordion state (first column open by default for crawlability)
   const [openAccordion, setOpenAccordion] = useState<number | null>(0);
@@ -94,15 +95,10 @@ export function Footer() {
             <span className="text-xs font-semibold tracking-wide text-cyan-100">
               Caring for Life
             </span>
-          </div>
-
-          <div className="hidden md:flex items-center gap-8 text-xs font-medium text-cyan-100/90">
-            <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
-            <Link href="/#expertise" className="hover:text-white transition-colors">Expertise</Link>
-            <Link href="/#products" className="hover:text-white transition-colors">Products</Link>
-            <Link href="/#categories" className="hover:text-white transition-colors">Categories</Link>
-            <Link href="/#certifications" className="hover:text-white transition-colors">Certifications</Link>
-            <Link href="/#network" className="hover:text-white transition-colors">Network</Link>
+            <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-400/10 border border-cyan-400/25 text-[11px] font-semibold text-cyan-200">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              WHO-GMP Validated
+            </span>
           </div>
 
           <Link
@@ -180,7 +176,7 @@ export function Footer() {
           <div className="lg:col-span-7">
             {/* Desktop / Tablet: 3-Up Row */}
             <div className="hidden sm:grid grid-cols-3 gap-8">
-              {/* Column 1: Company */}
+              {/* Column 1: Quick Links */}
               <div>
                 <h4 className="font-['Space_Grotesk'] text-[11.5px] font-extrabold uppercase tracking-[0.2em] text-cyan-200 mb-4">
                   {t.footer.companyCol}
@@ -205,7 +201,7 @@ export function Footer() {
                 </ul>
               </div>
 
-              {/* Column 2: Resources */}
+              {/* Column 2: Capabilities */}
               <div>
                 <h4 className="font-['Space_Grotesk'] text-[11.5px] font-extrabold uppercase tracking-[0.2em] text-cyan-200 mb-4">
                   {t.footer.resourcesCol}
@@ -230,35 +226,72 @@ export function Footer() {
                 </ul>
               </div>
 
-              {/* Column 3: Quality */}
+              {/* Column 3: Institutional Export Desk */}
               <div>
                 <h4 className="font-['Space_Grotesk'] text-[11.5px] font-extrabold uppercase tracking-[0.2em] text-cyan-200 mb-4">
                   {t.footer.qualityCol}
                 </h4>
-                <ul className="flex flex-col gap-2.5">
-                  {qualityLinks.map((link) => (
-                    <li key={link.label}>
-                      <Link
-                        href={link.href}
-                        className="group relative inline-block text-xs sm:text-[13px] text-white/90 transition-colors hover:text-white font-sans"
-                      >
-                        <span>{link.label}</span>
-                        <span
-                          className="absolute bottom-0 left-0 w-0 h-[1.5px] transition-all duration-300 group-hover:w-full"
-                          style={{
-                            background: "linear-gradient(90deg, #ffffff, #38bdf8)",
-                          }}
-                        />
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex flex-col gap-3 text-xs sm:text-[13px] text-white/90 font-sans">
+                  {/* Email */}
+                  <a
+                    href="mailto:export@zelnexpharma.com"
+                    className="group flex items-center gap-2.5 text-white/90 hover:text-cyan-200 transition-colors"
+                  >
+                    <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-white/10 border border-white/15 group-hover:border-cyan-300/50 group-hover:bg-cyan-500/20 transition-all shrink-0">
+                      <Mail className="w-3.5 h-3.5 text-cyan-200" />
+                    </div>
+                    <span className="truncate">export@zelnexpharma.com</span>
+                  </a>
+
+                  {/* Phone / WhatsApp */}
+                  <a
+                    href="tel:+919328286164"
+                    className="group flex items-center gap-2.5 text-white/90 hover:text-cyan-200 transition-colors"
+                  >
+                    <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-white/10 border border-white/15 group-hover:border-cyan-300/50 group-hover:bg-cyan-500/20 transition-all shrink-0">
+                      <Phone className="w-3.5 h-3.5 text-cyan-200" />
+                    </div>
+                    <span>+91 93282 86164</span>
+                  </a>
+
+                  {/* Location - Surat Global HQ */}
+                  <a
+                    href="https://maps.google.com/?q=Platinum+Plaza+Near+VT+Circle+Sarthana+Jakatnaka+Surat+Gujarat+395013"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-start gap-2.5 text-cyan-50/80 hover:text-cyan-200 transition-colors"
+                    title="View Surat Headquarters on Google Maps"
+                  >
+                    <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-white/10 border border-white/15 group-hover:border-cyan-300/50 group-hover:bg-cyan-500/20 transition-all shrink-0 mt-0.5">
+                      <MapPin className="w-3.5 h-3.5 text-cyan-200" />
+                    </div>
+                    <div className="flex flex-col text-xs leading-snug">
+                      <span className="font-semibold text-white/95 group-hover:text-cyan-200 transition-colors">
+                        Surat, Gujarat, India (Global Hub)
+                      </span>
+                      <span className="text-[11px] text-cyan-100/70 mt-0.5 leading-tight">
+                        117 - Platinum Plaza, Near VT Circle, Sarthana Jakatnaka, Surat - 395013
+                      </span>
+                    </div>
+                  </a>
+
+                  {/* Accreditation & Regulatory Capsule */}
+                  <div className="pt-2 mt-1 border-t border-white/10 flex flex-col gap-1.5">
+                    <div className="flex items-center gap-2 text-xs font-bold text-white">
+                      <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <span>WHO-GMP · ISO 9001:2015</span>
+                    </div>
+                    <span className="text-[11px] text-cyan-100/70 pl-6">
+                      Zone IVb Stability · CTD / eCTD Ready
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Mobile (<640px): Tap-to-Expand Accordions */}
+            {/* Mobile (<640px): Streamlined Touch Navigation */}
             <div className="sm:hidden flex flex-col divide-y divide-white/15 border-y border-white/15">
-              {/* Accordion 1: Company */}
+              {/* Accordion 1: Quick Links */}
               <div className="py-3">
                 <button
                   onClick={() => toggleAccordion(0)}
@@ -280,7 +313,7 @@ export function Footer() {
                 )}
               </div>
 
-              {/* Accordion 2: Resources */}
+              {/* Accordion 2: Capabilities */}
               <div className="py-3">
                 <button
                   onClick={() => toggleAccordion(1)}
@@ -302,26 +335,39 @@ export function Footer() {
                 )}
               </div>
 
-              {/* Accordion 3: Quality */}
+              {/* Card 3: Export Desk & Compliance */}
               <div className="py-3">
-                <button
-                  onClick={() => toggleAccordion(2)}
-                  className="w-full flex items-center justify-between text-xs font-extrabold uppercase tracking-[0.16em] text-white py-1 cursor-pointer font-['Space_Grotesk']"
-                >
-                  <span>{t.footer.qualityCol}</span>
-                  {openAccordion === 2 ? <Minus className="w-4 h-4 text-cyan-300" /> : <Plus className="w-4 h-4" />}
-                </button>
-                {openAccordion === 2 && (
-                  <ul className="mt-2.5 flex flex-col gap-2 pl-2">
-                    {qualityLinks.map((link) => (
-                      <li key={link.label}>
-                        <Link href={link.href} className="text-xs text-white/80 hover:text-white font-sans">
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <span className="block text-xs font-extrabold uppercase tracking-[0.16em] text-cyan-200 py-1 font-['Space_Grotesk'] mb-2">
+                  {t.footer.qualityCol}
+                </span>
+                <div className="flex flex-col gap-2 pl-2 text-xs text-white/85">
+                  <a href="mailto:export@zelnexpharma.com" className="flex items-center gap-2 hover:text-cyan-200">
+                    <Mail className="w-3.5 h-3.5 text-cyan-300" />
+                    <span>export@zelnexpharma.com</span>
+                  </a>
+                  <a href="tel:+919328286164" className="flex items-center gap-2 hover:text-cyan-200">
+                    <Phone className="w-3.5 h-3.5 text-cyan-300" />
+                    <span>+91 93282 86164</span>
+                  </a>
+                  <a
+                    href="https://maps.google.com/?q=Platinum+Plaza+Near+VT+Circle+Sarthana+Jakatnaka+Surat+Gujarat+395013"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-2 text-white/70 hover:text-cyan-200 transition-colors"
+                  >
+                    <MapPin className="w-3.5 h-3.5 text-cyan-300 shrink-0 mt-0.5" />
+                    <div className="flex flex-col">
+                      <span className="font-medium text-white">Surat, Gujarat, India (Global Hub)</span>
+                      <span className="text-[11px] text-cyan-100/70 leading-tight">
+                        117 - Platinum Plaza, Near VT Circle, Sarthana Jakatnaka, Surat - 395013
+                      </span>
+                    </div>
+                  </a>
+                  <div className="flex items-center gap-2 text-emerald-300 font-semibold pt-1">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    <span>WHO-GMP · ISO 9001:2015 Validated</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -70,7 +70,7 @@ export function FlowingVector() {
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none absolute inset-0 z-40 w-full h-full overflow-hidden hidden md:block"
+      className="pointer-events-none absolute inset-0 z-[1] w-full h-full overflow-hidden hidden md:block"
       style={{
         clipPath: "inset(0 0 100% 0)",
         willChange: "clip-path",

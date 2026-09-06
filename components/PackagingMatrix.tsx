@@ -303,7 +303,7 @@ export function PackagingMatrix() {
 
                   <div className="pt-2">
                     <Link
-                      href="/#contact"
+                      href="/contact"
                       className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-xs font-bold uppercase tracking-wider shadow-sm hover:shadow-md transition-all cursor-pointer"
                       style={{ backgroundColor: activeItem.bgColor }}
                     >

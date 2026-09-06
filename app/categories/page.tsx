@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import {
@@ -131,12 +132,35 @@ interface FormulationItem extends ProductEntry {
   categorySlug: string;
 }
 
-export default function CategoriesPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [selectedDosage, setSelectedDosage] = useState<string>("tablet");
+function CategoriesContent() {
+  const searchParams = useSearchParams();
+  const dosageParam = searchParams.get("dosage");
+  const categoryParam = searchParams.get("category");
+
+  const [selectedCategory, setSelectedCategory] = useState<string>(categoryParam || "all");
+  const [selectedDosage, setSelectedDosage] = useState<string>(() => {
+    if (dosageParam) {
+      const exists = DOSAGE_OPTIONS.some((d) => d.id === dosageParam);
+      return exists ? dosageParam : "tablet";
+    }
+    return "tablet";
+  });
   const [searchQuery, setSearchQuery] = useState("");
   const [activeModalItem, setActiveModalItem] = useState<FormulationItem | null>(null);
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (dosageParam) {
+      const exists = DOSAGE_OPTIONS.some((d) => d.id === dosageParam);
+      setSelectedDosage(exists ? dosageParam : "all");
+    }
+  }, [dosageParam]);
+
+  useEffect(() => {
+    if (categoryParam) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [categoryParam]);
 
   // Flatten all formulations from 21 categories
   const allFormulations: FormulationItem[] = useMemo(() => {
@@ -602,5 +626,13 @@ export default function CategoriesPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function CategoriesPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#F4F8FD]" />}>
+      <CategoriesContent />
+    </Suspense>
   );
 }

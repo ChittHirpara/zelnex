@@ -32,19 +32,6 @@ export function GrowingNetwork() {
           scrollTrigger: { trigger: rootRef.current, start: "top 80%" },
         }
       );
-
-      // Metrics Row entrance
-      gsap.fromTo(
-        ".network-metrics",
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: { trigger: rootRef.current, start: "top 60%" },
-        }
-      );
     },
     { scope: rootRef }
   );
@@ -91,7 +78,7 @@ export function GrowingNetwork() {
         </div>
 
         {/* ── High-Tech Aviation/Pharma Radar Frame Container (Crisp White & Blue) ── */}
-        <div className="w-full bg-white border border-blue-200/80 rounded-2xl sm:rounded-3xl shadow-[0_20px_50px_rgba(0,110,220,0.08)] overflow-hidden relative mb-12">
+        <div className="w-full bg-white border border-blue-200/80 rounded-2xl sm:rounded-3xl shadow-[0_20px_50px_rgba(0,110,220,0.08)] overflow-hidden relative mb-0">
           
           {/* Top Radar Status Bar */}
           <div className="flex items-center justify-between px-4 sm:px-6 py-3 bg-[#F4F8FD] border-b border-blue-100 text-xs font-['JetBrains_Mono',monospace]">
@@ -117,42 +104,6 @@ export function GrowingNetwork() {
             <DynamicFlatMap />
           </div>
         </div>
-
-        {/* Bottom 3-Column High-Density Metrics Row */}
-        <div className="network-metrics grid grid-cols-1 sm:grid-cols-3 gap-5 text-center">
-          
-          {/* Metric 1 */}
-          <div className="bg-white border border-blue-100 rounded-2xl p-6 shadow-sm flex flex-col items-center justify-center">
-            <div className="text-3xl sm:text-4xl font-extrabold text-[#0B1E48] tracking-tight font-['JetBrains_Mono',monospace]">
-              1.2<span className="text-[#006EDC]">M+</span>
-            </div>
-            <p className="mt-1 text-xs sm:text-sm font-medium text-slate-600">
-              Units Supplied Monthly
-            </p>
-          </div>
-
-          {/* Metric 2 */}
-          <div className="bg-white border border-blue-100 rounded-2xl p-6 shadow-sm flex flex-col items-center justify-center">
-            <div className="text-3xl sm:text-4xl font-extrabold text-[#0B1E48] tracking-tight font-['JetBrains_Mono',monospace]">
-              800<span className="text-[#0284C7]">+</span>
-            </div>
-            <p className="mt-1 text-xs sm:text-sm font-medium text-slate-600">
-              Approved Finished Formulations
-            </p>
-          </div>
-
-          {/* Metric 3 */}
-          <div className="bg-white border border-blue-100 rounded-2xl p-6 shadow-sm flex flex-col items-center justify-center">
-            <div className="text-3xl sm:text-4xl font-extrabold text-[#0B1E48] tracking-tight font-['JetBrains_Mono',monospace]">
-              100<span className="text-emerald-500">%</span>
-            </div>
-            <p className="mt-1 text-xs sm:text-sm font-medium text-slate-600">
-              WHO-GMP &amp; CTD Compliance
-            </p>
-          </div>
-
-        </div>
-
       </div>
     </section>
   );

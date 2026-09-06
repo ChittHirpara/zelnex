@@ -163,18 +163,18 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed left-1/2 top-3 sm:top-4 z-50 w-[calc(100%-24px)] sm:w-[calc(100%-36px)] max-w-[1380px] -translate-x-1/2 pointer-events-none transition-all duration-500 ease-out ${
+      className={`fixed left-1/2 top-3 sm:top-4 z-50 w-[calc(100%-24px)] sm:w-[calc(100%-36px)] max-w-[1380px] -translate-x-1/2 pointer-events-none transition-all duration-500 ease-out flex items-start justify-between gap-2.5 sm:gap-3.5 ${
         visible ? "translate-y-0 opacity-100" : "-translate-y-28 opacity-0"
       }`}
     >
-      {/* ── Main Unified Executive Navbar Bar ── */}
+      {/* ── Main Navigation Capsule ── */}
       <div
-        className={`pointer-events-auto w-full relative transition-all duration-500 ease-out ${
+        className={`pointer-events-auto flex-1 min-w-0 relative transition-all duration-500 ease-out ${
           open ? "rounded-3xl" : "rounded-2xl sm:rounded-full"
         }`}
         style={{
           background:
-            "linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.88) 50%, rgba(248, 250, 253, 0.92) 100%)",
+            "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.89) 50%, rgba(248, 250, 253, 0.93) 100%)",
           backdropFilter: "blur(24px) saturate(1.8)",
           WebkitBackdropFilter: "blur(24px) saturate(1.8)",
           border: "1.2px solid rgba(255, 255, 255, 0.95)",
@@ -184,10 +184,10 @@ export function Navbar() {
         }}
       >
         <nav
-          className="flex h-[66px] sm:h-[74px] w-full items-center justify-between px-3 sm:px-6 md:px-7 lg:px-8 relative z-10"
+          className="flex h-[54px] sm:h-[60px] md:h-[64px] w-full items-center justify-between px-3.5 sm:px-6 md:px-7 relative z-10"
           aria-label="Primary"
         >
-          {/* ── Brand Bay: Logo & Clinical Tagline ── */}
+          {/* ── Brand Bay: Logo ── */}
           <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
             <Link
               href="/#home"
@@ -197,9 +197,9 @@ export function Navbar() {
               <Image
                 src="/brand/zelnex-official-logo.png"
                 alt="Zelnex Pharmaceuticals Pvt. Ltd."
-                width={175}
-                height={50}
-                className="h-10 sm:h-11 md:h-12 w-auto object-contain drop-shadow-xs"
+                width={170}
+                height={48}
+                className="h-8 sm:h-9 md:h-10 w-auto object-contain drop-shadow-xs"
                 priority
               />
             </Link>
@@ -346,22 +346,11 @@ export function Navbar() {
             })}
           </ul>
 
-          {/* ── Right Wing: Integrated CTA + Mobile Hamburger ── */}
-          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
-            {/* Integrated Executive "Inquire Now" CTA button */}
-            <Link
-              href="/contact"
-              onClick={() => setActiveHash("/contact")}
-              className="inline-flex items-center gap-2 h-10 sm:h-11 px-4 sm:px-6 rounded-full text-white text-xs sm:text-[13px] font-bold tracking-tight bg-gradient-to-r from-[#006EDC] via-[#0b489a] to-[#082B61] shadow-[0_4px_16px_rgba(0,110,220,0.3)] hover:shadow-[0_6px_22px_rgba(0,110,220,0.45)] hover:scale-[1.02] active:scale-95 transition-all duration-200 cursor-pointer group"
-            >
-              <span>{t.nav.contact || "Inquire Now"}</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-
-            {/* Mobile Hamburger Toggle Button */}
+          {/* ── Mobile Hamburger Toggle Button ── */}
+          <div className="flex items-center lg:hidden shrink-0">
             <button
               type="button"
-              className="relative z-10 flex h-10 w-10 items-center justify-center rounded-xl text-slate-800 lg:hidden hover:bg-slate-100 transition-colors cursor-pointer border border-slate-200/80"
+              className="relative z-10 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer border border-slate-200/80"
               aria-expanded={open}
               aria-label={open ? "Close menu" : "Open menu"}
               onClick={() => setOpen((v) => !v)}
@@ -492,6 +481,20 @@ export function Navbar() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* ── Standalone Contact Button (button-17 style) ── */}
+      <div className="pointer-events-auto shrink-0 flex items-center">
+        <Link
+          href="/contact"
+          onClick={() => setActiveHash("/contact")}
+          className="button-17 group !h-[54px] sm:!h-[60px] md:!h-[64px] !rounded-2xl sm:!rounded-full px-5 sm:px-6 md:px-7 flex items-center justify-center font-semibold"
+          role="button"
+          aria-label="Contact Zelnex Pharmaceuticals"
+        >
+          <span>{t.nav.contact || "Contact"}</span>
+          <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 ease-out group-hover:translate-x-0.5 text-current" />
+        </Link>
       </div>
     </header>
   );

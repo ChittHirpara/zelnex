@@ -27,18 +27,6 @@ interface ProductCardItem {
 
 const MATTE_GLASS_PRODUCTS: ProductCardItem[] = [
   {
-    badge: "SPECIALIZED WELLNESS",
-    badgeColor: "#EA580C",
-    badgeBg: "rgba(255, 247, 237, 0.85)",
-    badgeBorder: "rgba(253, 186, 116, 0.9)",
-    title: "Oxytocin Nasal Spray",
-    image: "/products/nasal-spray.jpg",
-    description:
-      "A high-potency metered intranasal formulation engineered for rapid bioavailability, stable shelf-life, and precise clinical dosing.",
-    specs: "15ml Metered Spray · Zone IVb Stable",
-    href: "#contact",
-  },
-  {
     badge: "ORAL SOLID DOSAGE",
     badgeColor: "#006EDC",
     badgeBg: "rgba(240, 249, 255, 0.85)",
@@ -47,8 +35,8 @@ const MATTE_GLASS_PRODUCTS: ProductCardItem[] = [
     image: "/products/tablets-capsules.jpg",
     description:
       "Film-coated, sustained-release, and hard-gelatin capsule formulations manufactured in WHO-GMP cleanrooms with high-barrier Alu-Alu packaging.",
-    specs: "800+ Formulations · High-Speed Blistering",
-    href: "#contact",
+    specs: "Alu-Alu & PVDC Blisters · 800+ SKUs",
+    href: "/contact",
   },
   {
     badge: "STERILE INJECTABLES",
@@ -59,8 +47,8 @@ const MATTE_GLASS_PRODUCTS: ProductCardItem[] = [
     image: "/products/sterile-vial.jpg",
     description:
       "Aseptically filled parenteral infusions and lyophilized antibiotic vials certified for Grade A laminar airflow cleanroom environments.",
-    specs: "10ml / 20ml Vials · Pyrogen-Free",
-    href: "#contact",
+    specs: "Type I Glass Vials · Flip-Off Seals",
+    href: "/contact",
   },
   {
     badge: "PEDIATRIC & ORAL LIQUIDS",
@@ -71,8 +59,20 @@ const MATTE_GLASS_PRODUCTS: ProductCardItem[] = [
     image: "/products/syrup-suspension.jpg",
     description:
       "Palatable pediatric suspensions, cough syrups, and oral rehydration solutions formulated with tamper-evident graduated dosing closures.",
-    specs: "60ml / 100ml / 150ml · Child-Resistant",
-    href: "#contact",
+    specs: "Amber PET & Glass · CRC Closures",
+    href: "/contact",
+  },
+  {
+    badge: "SPECIALIZED DISPENSING",
+    badgeColor: "#EA580C",
+    badgeBg: "rgba(255, 247, 237, 0.85)",
+    badgeBorder: "rgba(253, 186, 116, 0.9)",
+    title: "Metered Sprays & Topicals",
+    image: "/products/nasal-spray.jpg",
+    description:
+      "High-potency metered intranasal and topical formulations engineered for rapid bioavailability, stable shelf-life, and precise clinical dosing.",
+    specs: "15ml Metered Pumps · Zone IVb Stable",
+    href: "/contact",
   },
 ];
 
@@ -119,7 +119,7 @@ export function ProductShowcase() {
 
   return (
     <section
-      id="products"
+      id="packaging"
       ref={rootRef}
       className="relative scroll-mt-24 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-[1720px] mx-auto z-10 select-none overflow-hidden"
     >
@@ -129,19 +129,19 @@ export function ProductShowcase() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/20 mb-3.5 shadow-2xs">
             <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#006EDC]">
-              {t.products.badge}
+              05.00 // PACKAGING EXCELLENCE &amp; STABILITY
             </p>
           </div>
 
           <h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#111111] tracking-tight leading-[1.08] mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0B1E48] tracking-tight leading-[1.08] mb-4"
             style={{ fontFamily: "'Syne', sans-serif" }}
           >
-            {t.products.title}
+            Formats Engineered for Global Stability
           </h2>
 
           <p className="text-base sm:text-lg text-[#555555] max-w-2xl mx-auto font-['Inter',sans-serif] leading-relaxed">
-            {t.products.subtitle}
+            High-barrier primary and secondary pharmaceutical packaging matching Zone IVb tropical humidity barriers, child safety, and multi-market MOH compliance.
           </p>
         </div>
 
