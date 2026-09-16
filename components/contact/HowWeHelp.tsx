@@ -30,7 +30,7 @@ interface HelpTopic {
 const HELP_TOPICS: HelpTopic[] = [
   {
     id: "products",
-    badge: "800+ FORMULATIONS",
+    badge: "550+ FORMULATIONS",
     badgeColor: "#006EDC",
     title: "Product Information & Sourcing",
     description:

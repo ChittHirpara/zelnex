@@ -204,10 +204,10 @@ export function DigitalEpochSection() {
 
             {/* Standard text buttons */}
             <Link
-              href="/categories"
+              href="/products"
               className="px-3.5 py-1.5 text-[12px] font-semibold text-slate-500 hover:text-[#0a1b33] transition-colors rounded-full"
             >
-              Categories
+              Products
             </Link>
             <Link
               href="/about"

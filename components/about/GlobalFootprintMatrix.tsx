@@ -2,15 +2,8 @@
 
 import React, { useState } from "react";
 import {
-  Globe2,
   FileCheck2,
-  CheckCircle2,
   ArrowRight,
-  ShieldCheck,
-  Building,
-  Plane,
-  Ship,
-  Sparkles,
 } from "lucide-react";
 import Link from "next/link";
 

@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import { ShieldCheck, Award, FileCheck2, CheckCircle2, Building2 } from "lucide-react";

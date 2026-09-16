@@ -3,13 +3,52 @@
 import React, { useState, useEffect } from "react";
 import { X } from "lucide-react";
 
+const DISMISS_STORAGE_KEY = "zelnex_whatsapp_bubble_dismissed_until";
+const TEN_MINUTES_MS = 10 * 60 * 1000; // 10 minutes in milliseconds
+
 export function FloatingWhatsApp() {
   const [isVisible, setIsVisible] = useState(false);
   const [bubbleVisible, setBubbleVisible] = useState(false);
-  const [hasDismissed, setHasDismissed] = useState(false);
+  const [hasDismissed, setHasDismissed] = useState(true); // default true to avoid flash before checking localStorage
 
+  // 1. Check whether 10 minutes have passed since the user clicked dismiss
   useEffect(() => {
-    // Show only after user scrolls past the top Hero section
+    const checkDismissal = () => {
+      try {
+        const dismissedUntil = localStorage.getItem(DISMISS_STORAGE_KEY);
+        if (dismissedUntil) {
+          const expiry = parseInt(dismissedUntil, 10);
+          const remaining = expiry - Date.now();
+          if (remaining > 0) {
+            setHasDismissed(true);
+            // Schedule reappearance once the remaining time of the 10 minutes expires
+            const timer = setTimeout(() => {
+              setHasDismissed(false);
+              try {
+                localStorage.removeItem(DISMISS_STORAGE_KEY);
+              } catch {
+                // ignore storage error
+              }
+            }, remaining);
+            return () => clearTimeout(timer);
+          } else {
+            // 10 minutes have already elapsed
+            localStorage.removeItem(DISMISS_STORAGE_KEY);
+            setHasDismissed(false);
+          }
+        } else {
+          setHasDismissed(false);
+        }
+      } catch {
+        setHasDismissed(false);
+      }
+    };
+
+    return checkDismissal();
+  }, []);
+
+  // 2. Show WhatsApp icon only after user scrolls past the top Hero section
+  useEffect(() => {
     const handleScroll = () => {
       const scrollThreshold = Math.min(window.innerHeight * 0.45, 360);
       if (window.scrollY > scrollThreshold) {
@@ -24,8 +63,8 @@ export function FloatingWhatsApp() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // 3. If scrolled past hero and hasn't dismissed, show greeting tooltip after 1.5s
   useEffect(() => {
-    // If scrolled past hero and hasn't dismissed, show greeting tooltip after 1.5s
     if (isVisible && !hasDismissed && !bubbleVisible) {
       const timer = setTimeout(() => {
         setBubbleVisible(true);
@@ -34,11 +73,29 @@ export function FloatingWhatsApp() {
     }
   }, [isVisible, hasDismissed, bubbleVisible]);
 
+  // 4. When cross button is clicked, hide bubble and suppress for 10 minutes
   const handleDismiss = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setBubbleVisible(false);
     setHasDismissed(true);
+
+    try {
+      const expiry = Date.now() + TEN_MINUTES_MS;
+      localStorage.setItem(DISMISS_STORAGE_KEY, expiry.toString());
+
+      // Auto-reappear after 10 minutes if user stays on the page
+      setTimeout(() => {
+        setHasDismissed(false);
+        try {
+          localStorage.removeItem(DISMISS_STORAGE_KEY);
+        } catch {
+          // ignore
+        }
+      }, TEN_MINUTES_MS);
+    } catch (err) {
+      console.error("Failed to store WhatsApp bubble dismissal", err);
+    }
   };
 
   if (!isVisible) return null;
@@ -55,7 +112,7 @@ export function FloatingWhatsApp() {
             type="button"
             onClick={handleDismiss}
             className="absolute -top-1.5 -left-1.5 w-4 h-4 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-700 flex items-center justify-center text-[9px] cursor-pointer shadow-2xs transition-colors"
-            title="Dismiss message"
+            title="Dismiss message for 10 minutes"
           >
             <X className="w-2.5 h-2.5" />
           </button>

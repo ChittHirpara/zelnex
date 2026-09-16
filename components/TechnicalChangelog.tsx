@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { GitCommit, Tag, Sparkles } from "lucide-react";
 
@@ -32,7 +30,7 @@ export function TechnicalChangelog() {
       status: "BASE",
       items: [
         "+ WHO-GMP cleanroom renewal and ISO 9001:2015 / ISO 14001 integrated quality audit.",
-        "+ Released interactive formulation catalog with 800+ commercial finished dosage forms.",
+        "+ Released interactive formulation catalog with 550+ commercial finished dosage forms.",
         "+ Expanded air/sea export dispatch corridors to 50+ international sovereign ports.",
       ],
     },

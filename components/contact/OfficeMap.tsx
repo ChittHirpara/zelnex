@@ -25,7 +25,7 @@ export function OfficeMap() {
       hours: "Mon – Sat: 09:00 – 18:30 IST",
       mapSrc:
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119066.41709405072!2d72.80287865!3d21.2294246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04f4450700001%3A0x6b872f23246a48d!2sPlatinum%20Plaza%2C%20Surat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
-      directionsUrl: "https://maps.google.com/?q=Platinum+Plaza+Near+VT+Circle+Sarthana+Jakatnaka+Surat+Gujarat+395013",
+      directionsUrl: "https://maps.app.goo.gl/uiLQiWR9muJXici28",
     },
     mumbai: {
       name: "International Export & Logistics Operations",

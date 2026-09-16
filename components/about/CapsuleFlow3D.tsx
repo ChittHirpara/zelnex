@@ -54,12 +54,12 @@ export function CapsuleFlow3D({ className = '' }: CapsuleFlow3DProps) {
     keyLight.position.set(12, 16, 14);
     scene.add(keyLight);
 
-    const rimLight = new THREE.DirectionalLight(0xffd5b3, 1.1);
+    const rimLight = new THREE.DirectionalLight(0xa5d8ff, 1.2);
     rimLight.position.set(-12, -8, -5);
     scene.add(rimLight);
 
     // Interactive cursor point light
-    const cursorLight = new THREE.PointLight(0xffedd5, 35, 18);
+    const cursorLight = new THREE.PointLight(0x00B8F2, 35, 18);
     cursorLight.position.set(-999, -999, 5);
     scene.add(cursorLight);
 
@@ -93,12 +93,12 @@ export function CapsuleFlow3D({ className = '' }: CapsuleFlow3DProps) {
       24
     );
 
-    // Medical Materials
-    const matOrange = new THREE.MeshStandardMaterial({
-      color: '#ff5e00',
+    // Medical Materials (Blue Theme)
+    const matBlue = new THREE.MeshStandardMaterial({
+      color: '#006EDC',
       roughness: 0.15,
       metalness: 0.1,
-      emissive: '#e64a00',
+      emissive: '#004aa6',
       emissiveIntensity: 0.05,
     });
 
@@ -108,20 +108,20 @@ export function CapsuleFlow3D({ className = '' }: CapsuleFlow3DProps) {
       metalness: 0.06,
     });
 
-    const matAmber = new THREE.MeshStandardMaterial({
-      color: '#f59e0b',
-      roughness: 0.18,
-      metalness: 0.1,
-      emissive: '#d97706',
-      emissiveIntensity: 0.04,
-    });
-
-    const matTeal = new THREE.MeshStandardMaterial({
-      color: '#0f9d8f',
+    const matCyan = new THREE.MeshStandardMaterial({
+      color: '#00B8F2',
       roughness: 0.16,
       metalness: 0.1,
-      emissive: '#0b7d72',
+      emissive: '#008bb8',
       emissiveIntensity: 0.05,
+    });
+
+    const matNavy = new THREE.MeshStandardMaterial({
+      color: '#082B61',
+      roughness: 0.18,
+      metalness: 0.1,
+      emissive: '#041738',
+      emissiveIntensity: 0.04,
     });
 
     const matRing = new THREE.MeshStandardMaterial({
@@ -131,11 +131,11 @@ export function CapsuleFlow3D({ className = '' }: CapsuleFlow3DProps) {
     });
 
     const colorVariants = [
-      { top: matOrange, bot: matWhite }, // Zelnex Signature Orange & White
-      { top: matWhite, bot: matOrange }, // Inverted Orange & White
-      { top: matWhite, bot: matWhite },  // Clinical Pure White Solid
-      { top: matTeal, bot: matWhite },   // Medical Teal & White
-      { top: matAmber, bot: matWhite },  // Amber Gelcap & White
+      { top: matBlue, bot: matWhite }, // Zelnex Signature Royal Blue & White
+      { top: matWhite, bot: matBlue }, // Inverted Blue & White
+      { top: matWhite, bot: matWhite }, // Clinical Pure White Solid
+      { top: matCyan, bot: matWhite },  // Electric Cyan & White
+      { top: matNavy, bot: matWhite },  // Deep Navy & White
     ];
 
     function createTwoToneCapsule(variantIdx: number) {
@@ -362,10 +362,10 @@ export function CapsuleFlow3D({ className = '' }: CapsuleFlow3DProps) {
       topDomeGeo.dispose();
       botDomeGeo.dispose();
       ringGeo.dispose();
-      matOrange.dispose();
+      matBlue.dispose();
       matWhite.dispose();
-      matAmber.dispose();
-      matTeal.dispose();
+      matCyan.dispose();
+      matNavy.dispose();
       matRing.dispose();
     };
   }, []);

@@ -6,22 +6,11 @@ import {
   FolderTree,
   FileCode,
   Sliders,
-  Sparkles,
-  ShieldCheck,
-  Activity,
-  Layers,
-  ChevronDown,
-  ChevronRight,
-  Settings,
   Code2,
-  Maximize2,
-  Minimize2,
-  Search,
 } from "lucide-react";
 
 export function DevToolsWorkspace() {
   const [selectedFile, setSelectedFile] = useState<string>("tablets-formulation.ts");
-  const [activeTab, setActiveTab] = useState<"spec" | "stability" | "qc">("spec");
   const [cleanroomFilter, setCleanroomFilter] = useState<string>("ISO-7");
 
   const files = [

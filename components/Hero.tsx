@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useRef, useState, useSyncExternalStore, useCallback, useLayoutEffect, useEffect } from "react";
+import { useRef, useState, useSyncExternalStore, useEffect } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -49,14 +49,8 @@ export function Hero() {
     readServerWebgl2Support,
   );
 
-  // ── Social Panel State & Refs ──────────────────────────────
+  // ── Social Panel State ─────────────────────────────────────
   const [socialPanelOpen, setSocialPanelOpen] = useState(false);
-  const socialOpenRef = useRef(false);
-  const panelRef = useRef<HTMLDivElement | null>(null);
-  const layer1Ref = useRef<HTMLDivElement | null>(null);
-  const layer2Ref = useRef<HTMLDivElement | null>(null);
-  const backdropRef = useRef<HTMLDivElement | null>(null);
-  const openTlRef = useRef<gsap.core.Timeline | null>(null);
 
   const sidebarItems = [
     {
@@ -181,11 +175,6 @@ export function Hero() {
       ),
     },
   ];
-
-  // ── Social Radial Menu: toggle ────────────────────────────
-  const toggleSocial = useCallback(() => {
-    setSocialPanelOpen((prev) => !prev);
-  }, []);
 
   // ── Close on Click Outside & Escape (Zero Screen Blurring) ──
   useEffect(() => {
@@ -451,7 +440,7 @@ export function Hero() {
       </aside>
 
       {/* Main Content Area */}
-      <div className="relative z-10 flex min-h-[100svh] flex-col justify-center pb-32 sm:pb-40 pt-24 sm:pt-28 px-4 sm:section-pad">
+      <div className="relative z-10 flex min-h-[100svh] flex-col justify-center pb-52 sm:pb-40 pt-24 sm:pt-28 px-4 sm:section-pad">
         <div className="ml-0 max-w-[540px] md:ml-48 lg:ml-56 xl:ml-64">
           <h1
             className="hz-reveal font-display text-[2rem] font-extrabold leading-[1.08] tracking-tight sm:text-[2.6rem] lg:text-[3.4rem]"
@@ -507,7 +496,7 @@ export function Hero() {
 
       {/* ── Bhadwo-Kaach WebGL & CSS Liquid Glass Stats Engine ── */}
       <LiquidEdgeFilter scale={22} />
-      <div className="hz-stats absolute bottom-4 sm:bottom-6 left-2 right-2 sm:left-6 sm:right-6 md:left-48 lg:left-56 xl:left-64 md:right-8 z-10 max-w-[1320px]">
+      <div className="hz-stats absolute bottom-3 sm:bottom-6 left-2 right-2 sm:left-6 sm:right-6 md:left-48 lg:left-56 xl:left-64 md:right-8 z-10 max-w-[1320px]">
         <div
           ref={statsSurfaceRef}
           className={`glass-surface select-none ${glassLive ? "glass-live" : ""}`}
@@ -516,10 +505,10 @@ export function Hero() {
           {glassLive && <GlassmorphismCanvas surfaceRef={statsSurfaceRef} />}
 
           <div
-            className="relative z-[4] grid grid-cols-1 sm:flex items-center w-full overflow-hidden"
+            className="relative z-[4] grid grid-cols-2 sm:grid-cols-3 lg:flex items-center w-full overflow-hidden"
             style={{
-              padding: "clamp(10px, 1.8vw, 22px) clamp(10px, 2.2vw, 30px)",
-              minHeight: 90,
+              padding: "clamp(8px, 1.5vw, 22px) clamp(8px, 2vw, 30px)",
+              minHeight: 80,
               borderRadius: "inherit",
             }}
           >
@@ -527,8 +516,10 @@ export function Hero() {
               return (
                 <div
                   key={`${stat.number}-${idx}`}
-                  className="gs-stat flex flex-1 items-center border-b sm:border-b-0 sm:border-l last:border-b-0 first:border-l-0 border-slate-200/40 py-2.5 sm:py-0"
-                  style={{ gap: "clamp(8px, 1.2vw, 16px)", padding: "clamp(6px, 1vw, 16px) clamp(6px, 1.1vw, 18px)" }}
+                  className={`gs-stat flex flex-1 items-center border-slate-200/40 py-2 sm:py-0 ${
+                    idx === 4 ? "col-span-2 sm:col-span-1 justify-center sm:justify-start" : ""
+                  } ${idx > 0 ? "lg:border-l" : ""}`}
+                  style={{ gap: "clamp(6px, 1.2vw, 16px)", padding: "clamp(4px, 0.8vw, 16px) clamp(4px, 1vw, 18px)" }}
                 >
                   <div
                     data-glass-bead

@@ -1,8 +1,6 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Sparkles, Layers, ShieldCheck, FileCheck2 } from "lucide-react";
+import { ArrowRight, Sparkles, Layers, FileCheck2 } from "lucide-react";
 
 export function ContactCta() {
   return (

@@ -5,14 +5,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { DynamicFlatMap } from "./DynamicFlatMap";
-import { useLanguage } from "@/context/LanguageContext";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger);
 }
 
 export function GrowingNetwork() {
-  const { t } = useLanguage();
   const rootRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -69,11 +67,11 @@ export function GrowingNetwork() {
 
           {/* Hero Headline */}
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#0B1E48] mb-3">
-            50+ Sovereign Destinations & Flight Vectors
+            Global Export Reach
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 max-w-2xl font-normal leading-relaxed">
-            Direct air and sea export corridors dispatched from our WHO-GMP manufacturing hubs in Surat and Mumbai to health ministries across Asia, Africa, Middle East & LATAM.
+            Coordinated pharmaceutical exports from India to international healthcare markets through reliable logistics and documentation support.
           </p>
         </div>
 

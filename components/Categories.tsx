@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import SocialCards, { type CardItem } from "@/components/ui/card-fan-carousel";
 import { useLanguage } from "@/context/LanguageContext";
 import { Search, Layers, Sparkles, ShieldCheck, Activity, Pill, FlaskConical } from "lucide-react";
@@ -122,7 +123,7 @@ export function Categories() {
 
             {/* Refined Descriptive Copy */}
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-              Engineered for global healthcare systems. Browse over <strong className="font-bold text-[#0B1E48]">800+ approved generic molecules</strong> categorized by therapeutic action, active APIs, stability validation, and specialized dosage delivery formats.
+              Engineered for global healthcare systems. Browse over <strong className="font-bold text-[#0B1E48]">550+ approved generic molecules</strong> categorized by therapeutic action, active APIs, stability validation, and specialized dosage delivery formats.
             </p>
 
             {/* Micro Metadata Indicator Line */}
@@ -206,7 +207,7 @@ export function Categories() {
             ZELNEX // THERAPEUTIC SPECTRUM ARCHIVE
           </div>
           <div className="pointer-events-none absolute top-6 right-8 text-[11px] font-['JetBrains_Mono',monospace] font-bold text-[#006EDC] bg-blue-50 border border-blue-200/60 px-2.5 py-0.5 rounded-md">
-            800+ FINISHED FORMULATIONS
+            550+ FINISHED FORMULATIONS
           </div>
 
           {/* Interactive Fan Carousel */}
@@ -215,19 +216,14 @@ export function Categories() {
           </div>
 
           {/* Bottom Stage Telemetry & Link to High Order Categories Directory */}
-          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between border-t border-blue-100/80 pt-5 mt-2 gap-3 text-[11px] font-['JetBrains_Mono',monospace] text-slate-500">
-            <div className="flex items-center gap-2 text-slate-700">
-              <span className="w-2 h-2 rounded-full bg-[#006EDC]" />
-              <span className="font-semibold">100% WHO-GMP &amp; CTD READY (581 APPROVED SKUs)</span>
-            </div>
-            
-            <a
-              href="/categories"
+          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-end border-t border-blue-100/80 pt-5 mt-2 gap-3 text-[11px] font-['JetBrains_Mono',monospace] text-slate-500">
+            <Link
+              href="/products"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#006EDC] hover:bg-[#005bb8] text-white font-bold font-['Outfit',sans-serif] text-xs transition-all shadow-xs hover:shadow-md hover:scale-[1.02] self-start sm:self-auto cursor-pointer"
             >
-              <span>Explore Complete 581 Formulation Directory</span>
+              <span>Explore Complete 550+ Formulation Directory</span>
               <span>→</span>
-            </a>
+            </Link>
           </div>
         </div>
 

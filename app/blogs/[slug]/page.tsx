@@ -15,6 +15,7 @@ import {
   ShieldCheck,
   FileCheck2,
 } from "lucide-react";
+import { BreadcrumbJsonLd, ArticleJsonLd } from "@/components/seo/JsonLd";
 
 export async function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({
@@ -34,10 +35,21 @@ export async function generateMetadata({
   return {
     title: `${post.title} | Zelnex Pharma Insights`,
     description: post.excerpt,
+    alternates: {
+      canonical: `/blogs/${post.slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
+      url: `https://zelnexpharma.com/blogs/${post.slug}`,
+      type: "article",
       images: [{ url: post.coverImage }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [post.coverImage],
     },
   };
 }
@@ -58,6 +70,21 @@ export default async function BlogPostPage({
 
   return (
     <div className="relative min-h-screen bg-[#FCFBF9] text-[#111111] antialiased selection:bg-[#006EDC] selection:text-white overflow-x-hidden">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Insights & Technical FAQ", url: "/blogs" },
+          { name: post.title, url: `/blogs/${post.slug}` },
+        ]}
+      />
+      <ArticleJsonLd
+        title={post.title}
+        description={post.excerpt}
+        datePublished={post.date}
+        authorName={post.author.name}
+        url={`https://zelnexpharma.com/blogs/${post.slug}`}
+        image={post.coverImage}
+      />
       {/* ── Global Styles & Fonts ── */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&family=Syne:wght@600;700;800&family=Reenie+Beanie&display=swap');
@@ -187,6 +214,17 @@ export default async function BlogPostPage({
                     {p}
                   </p>
                 ))}
+
+                {sec.list && sec.list.length > 0 && (
+                  <ul className="space-y-2.5 my-3 pl-1">
+                    {sec.list.map((item, lIdx) => (
+                      <li key={lIdx} className="flex items-start gap-2.5 text-sm sm:text-base text-neutral-700 font-inter">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#006EDC] mt-2.5 shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
                 {sec.keyTakeaways && sec.keyTakeaways.length > 0 && (
                   <div className="mt-4 p-6 rounded-2xl bg-teal-50/50 border border-teal-100 space-y-2.5">

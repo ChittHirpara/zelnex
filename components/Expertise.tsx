@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -37,6 +38,7 @@ const EXPERTISE_CARDS = [
     ],
     href: "/services?service=regulatory",
     icon: FileCheck2,
+    image: "/services/regulatory-dossier.png",
     widget: {
       title: "eCTD Module 1–5",
       subtitle: "Zone IVb Stability Validation",
@@ -63,6 +65,7 @@ const EXPERTISE_CARDS = [
     ],
     href: "/services?service=contract-manufacturing",
     icon: Factory,
+    image: "/services/contract-manufacturing-line.png",
     widget: {
       title: "High-Speed Automated Lines",
       subtitle: "Blister, Strip & Alu-Alu",
@@ -84,11 +87,12 @@ const EXPERTISE_CARDS = [
       "Reliable third-party formulation production through accredited state-of-the-art sterile and oral solid facilities.",
     bullets: [
       "WHO-GMP & ISO Approved Sites",
-      "100% Analytical QC Testing",
+      "Analytical QC Testing",
       "Zero-Contamination Guarantee",
     ],
     href: "/services?service=third-party-manufacturing",
     icon: ShieldCheck,
+    image: "/services/sterile-facility-tank.png",
     widget: {
       title: "Sterile & Oral Facilities",
       subtitle: "HPLC 99.8% Assay Purity",
@@ -109,14 +113,15 @@ const EXPERTISE_CARDS = [
     description:
       "Extensive export catalogue covering tablets, capsules, dry injections, syrups, sachets, and specialized combination therapies.",
     bullets: [
-      "800+ Commercial Products",
+      "550+ Commercial Products",
       "Multiple Dosage Formats",
       "Custom Export Artwork Branding",
     ],
     href: "/services?service=generic-products",
     icon: Layers,
+    image: "/services/generic-products-pills.png",
     widget: {
-      title: "800+ Generic Molecules",
+      title: "550+ Generic Molecules",
       subtitle: "Cardio, Antibiotics, CNS, GI",
       status: "Commercial Ready",
       metric: "10+ Categories",
@@ -281,41 +286,52 @@ export function Expertise() {
                   </div>
                 </div>
 
-                {/* Bottom Technical Widget Box */}
+                {/* Bottom Visual Widget with Real Pharmaceutical Image */}
                 <div
-                  className="mt-auto w-full rounded-2xl p-4 border overflow-hidden font-['JetBrains_Mono',monospace] shadow-2xs"
-                  style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.92)",
-                    backdropFilter: "blur(8px)",
-                    borderColor: card.borderColor,
-                  }}
+                  className="mt-auto w-full h-44 sm:h-48 rounded-2xl overflow-hidden relative border shadow-2xs group/img"
+                  style={{ borderColor: card.borderColor }}
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[11px] font-bold text-slate-800 truncate max-w-[130px]">
-                      {card.widget.title}
-                    </span>
-                    <span
-                      className="text-[9.5px] font-bold px-2 py-0.5 rounded-full"
-                      style={{
-                        backgroundColor: `${card.themeColor}15`,
-                        color: card.themeColor,
-                        border: `1px solid ${card.themeColor}30`,
-                      }}
-                    >
-                      {card.widget.status}
-                    </span>
-                  </div>
+                  {/* Background Photo from ASSTES */}
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover object-center group-hover/img:scale-105 transition-transform duration-500"
+                  />
 
-                  <div className="flex items-center justify-between text-[10.5px] pt-1.5 border-t border-black/5">
-                    <span className="text-slate-500 font-medium truncate max-w-[125px]">
-                      {card.widget.subtitle}
-                    </span>
-                    <span
-                      className="font-bold shrink-0 text-xs"
-                      style={{ color: card.themeColor }}
-                    >
-                      {card.widget.metric}
-                    </span>
+                  {/* Subtle gradient overlay at bottom so the pill floats seamlessly */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/25 to-transparent pointer-events-none" />
+
+                  {/* Floating Technical Status Pill */}
+                  <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-white/95 backdrop-blur-md rounded-xl p-2.5 sm:p-3 border border-white/90 shadow-sm font-['JetBrains_Mono',monospace]">
+                    <div className="flex items-center justify-between gap-1 mb-1.5">
+                      <span className="text-[11px] font-bold text-slate-800 truncate max-w-[120px]">
+                        {card.widget.title}
+                      </span>
+                      <span
+                        className="text-[9.5px] font-bold px-2 py-0.5 rounded-full shrink-0"
+                        style={{
+                          backgroundColor: `${card.themeColor}15`,
+                          color: card.themeColor,
+                          border: `1px solid ${card.themeColor}30`,
+                        }}
+                      >
+                        {card.widget.status}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between gap-1 text-[10px] pt-1 border-t border-black/5">
+                      <span className="text-slate-500 font-medium truncate max-w-[120px]">
+                        {card.widget.subtitle}
+                      </span>
+                      <span
+                        className="font-bold shrink-0 text-[11px]"
+                        style={{ color: card.themeColor }}
+                      >
+                        {card.widget.metric}
+                      </span>
+                    </div>
                   </div>
                 </div>
 

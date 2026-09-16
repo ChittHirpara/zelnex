@@ -61,11 +61,11 @@ export function RadialShareMenu({ isOpen, onClose }: RadialShareMenuProps) {
     {
       id: "email",
       name: "Email Direct",
-      handle: "export@zelnex.in",
+      handle: "info@zelnexpharmaceuticals.com",
       color: "#006EDC",
       bgGradient: "linear-gradient(135deg, #006EDC 0%, #082B61 100%)",
       icon: <Mail className="w-5.5 h-5.5" />,
-      action: () => window.location.href = "mailto:export@zelnex.in?subject=Export%20Inquiry%20Zelnex",
+      action: () => window.location.href = "mailto:info@zelnexpharmaceuticals.com?subject=Export%20Inquiry%20Zelnex",
     },
     {
       id: "twitter",
@@ -78,7 +78,7 @@ export function RadialShareMenu({ isOpen, onClose }: RadialShareMenuProps) {
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
         </svg>
       ),
-      action: () => window.open("https://twitter.com/intent/tweet?text=Discover%20Zelnex%20Pharmaceuticals", "_blank"),
+      action: () => window.open("https://x.com/zelnexpharma", "_blank"),
     },
     {
       id: "copy",

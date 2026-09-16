@@ -1,18 +1,10 @@
-"use client";
-
 import React from "react";
 import {
   Factory,
-  ShieldCheck,
   Microscope,
   Thermometer,
   Layers,
-  Sparkles,
   CheckCircle2,
-  Cpu,
-  BarChart3,
-  Flame,
-  FileCheck2,
 } from "lucide-react";
 
 export function InfrastructureQC() {

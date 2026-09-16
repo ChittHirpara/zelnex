@@ -65,7 +65,7 @@ ZELNEX/
 │   ├── Navbar.tsx                       # Dual-mode header: transparent at top vs. floating glass capsule on scroll
 │   ├── Hero.tsx                         # Parallax hero section with brand taglines and CTA buttons
 │   ├── TrustBanner.tsx                  # Key capabilities bar (Research Driven, Quality Assured, Global, Patient-Focused)
-│   ├── Overview.tsx                     # Mission overview + 3 glass stats cards (8+ Yrs, 800+ Products, 50+ Countries)
+│   ├── Overview.tsx                     # Mission overview + 3 glass stats cards (8+ Yrs, 550+ Products, 50+ Countries)
 │   ├── Expertise.tsx                    # 3D interactive tilt cards (Regulatory, Contract Mfg, 3rd Party, Generics)
 │   ├── Categories.tsx                   # 20 therapeutic category glass pills (Antibiotics, Cardiac, Derma, etc.)
 │   ├── Packaging.tsx                    # Packaging format indicators (Alu-Alu, Blisters, HDPE, Softgels, etc.)
@@ -128,7 +128,7 @@ ZELNEX/
 ### 4.5. Company Overview ([`Overview.tsx`](file:///c:/Users/CHITT/OneDrive/Desktop/freelance/ZELNEX/components/Overview.tsx))
 - Grid layout pairing executive company summary copy with 3 statistics glass cards:
   - **8+ Years** of Pharmaceutical Expertise
-  - **800+** Quality Products
+  - **550+** Quality Products
   - **50+** Target Export Countries
 - Includes a direct link to the dedicated `/overview` sub-page.
 

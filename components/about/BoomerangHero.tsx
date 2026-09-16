@@ -1,13 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { BoomerangVideoBg } from "./BoomerangVideoBg";
 
 export function BoomerangHero() {
-  const [activeTab, setActiveTab] = useState<number>(0);
-
   const featureRows = [
     {
       num: "01",

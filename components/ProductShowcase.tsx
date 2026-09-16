@@ -3,7 +3,6 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useLanguage } from "@/context/LanguageContext";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -35,7 +34,7 @@ const MATTE_GLASS_PRODUCTS: ProductCardItem[] = [
     image: "/products/tablets-capsules.jpg",
     description:
       "Film-coated, sustained-release, and hard-gelatin capsule formulations manufactured in WHO-GMP cleanrooms with high-barrier Alu-Alu packaging.",
-    specs: "Alu-Alu & PVDC Blisters · 800+ SKUs",
+    specs: "Alu-Alu & PVDC Blisters · 550+ SKUs",
     href: "/contact",
   },
   {
@@ -77,7 +76,6 @@ const MATTE_GLASS_PRODUCTS: ProductCardItem[] = [
 ];
 
 export function ProductShowcase() {
-  const { t } = useLanguage();
   const rootRef = useRef<HTMLElement>(null);
 
   useGSAP(

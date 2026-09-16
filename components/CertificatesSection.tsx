@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 
@@ -70,7 +68,7 @@ export function CertificatesSection() {
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#0B1E48] tracking-tight leading-[1.15]">
-            Recognised Accreditations &amp; Certifications
+            Accreditations, Registrations &amp; Certifications
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto mt-2.5 font-normal leading-relaxed">

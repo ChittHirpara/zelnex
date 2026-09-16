@@ -1,16 +1,5 @@
-"use client";
-
 import React from "react";
-import {
-  Pill,
-  Syringe,
-  FlaskConical,
-  HeartPulse,
-  Sparkles,
-  ArrowRight,
-  ShieldCheck,
-  Boxes,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export function DosageTherapeuticGrid() {

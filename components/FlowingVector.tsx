@@ -83,8 +83,7 @@ export function FlowingVector() {
           src="/new.svg"
           alt="Zelnex Vector Art Top"
           fill
-          unoptimized
-          priority
+          loading="lazy"
           className="w-full h-[131%] object-fill pointer-events-none select-none opacity-95"
           style={{ objectPosition: "top" }}
         />
@@ -97,8 +96,7 @@ export function FlowingVector() {
           src="/new.svg"
           alt="Zelnex Vector Art Bottom"
           fill
-          unoptimized
-          priority
+          loading="lazy"
           className="w-full h-[131%] object-fill pointer-events-none select-none opacity-95"
           style={{ objectPosition: "top" }}
         />

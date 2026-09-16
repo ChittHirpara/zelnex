@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import {
@@ -89,8 +87,8 @@ export function AboutCTA() {
 
                   <div className="flex items-center gap-2.5">
                     <Mail className="w-4 h-4 text-cyan-300 shrink-0" />
-                    <a href="mailto:info@zelnexpharma.com" className="hover:text-cyan-300 transition-colors font-['JetBrains_Mono',monospace]">
-                      info@zelnexpharma.com
+                    <a href="mailto:info@zelnexpharmaceuticals.com" className="hover:text-cyan-300 transition-colors font-['JetBrains_Mono',monospace]">
+                      info@zelnexpharmaceuticals.com
                     </a>
                   </div>
                 </div>

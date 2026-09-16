@@ -15,14 +15,15 @@ import {
   ShieldCheck,
   Truck,
   Globe2,
+  Factory,
 } from "lucide-react";
 
 const CATEGORIES = [
   { id: "all", label: "All Insights", icon: BookOpen },
   { id: "Regulatory & Dossiers", label: "Regulatory & Dossiers", icon: FileCheck2 },
   { id: "Quality & GMP", label: "Quality & GMP", icon: ShieldCheck },
-  { id: "Cold-Chain & Logistics", label: "Cold-Chain", icon: Truck },
-  { id: "Market Expansion", label: "Market Expansion", icon: Globe2 },
+  { id: "Manufacturing", label: "Manufacturing", icon: Factory },
+  { id: "Global Export", label: "Global Export", icon: Truck },
 ];
 
 export function BlogsSection() {

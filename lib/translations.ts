@@ -370,7 +370,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         stat1Number: "8+",
         stat1Top: "Years of",
         stat1Bottom: "Global Expertise",
-        stat2Number: "800+",
+        stat2Number: "550+",
         stat2Top: "Commercial",
         stat2Bottom: "Formulations",
         stat3Number: "50+",
@@ -445,7 +445,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         ],
         p3Cta: "Review Packaging Specifications",
         p4Badge: "Formulary",
-        p4Title: "800+ Commercial Generic Molecules Across 10+ Categories",
+        p4Title: "550+ Commercial Generic Molecules Across 10+ Categories",
         p4Desc:
           "Our comprehensive export catalog encompasses high-demand therapeutic areas: Anti-Infectives, Cardiology, Central Nervous System (CNS), Gastrointestinal, Respiratory, Diabetes, Dermatology, Oncology, and Critical Care Injectables.",
         p4Points: [
@@ -536,7 +536,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       },
     },
     categories: {
-      badge: "Interactive Formulary · 800+ Formulations",
+      badge: "Interactive Formulary · 550+ Formulations",
       title: "Therapeutic segments that lead the world.",
       subtitle:
         "Hover and swipe across our certified pharmaceutical portfolios. WHO-GMP accredited facilities with full eCTD registration dossiers.",
@@ -659,7 +659,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       badge: "Direct Global Export Inquiries",
       title: "Partner with Zelnex for reliable global supply",
       subtitle:
-        "Tell us about your market needs. Our international regulatory and export team will respond within 24 hours with product dossiers, batch pricing, and distribution agreements.",
+        "Share your product requirements, target market, and preferred dosage forms. Our export team will coordinate product availability, pricing, documentation, and supply requirements.",
       nameLabel: "Your Name / Organization",
       namePlaceholder: "e.g. Dr. Alejandro Gomez / MediCorp Imports",
       emailLabel: "Corporate Email Address",
@@ -849,7 +849,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       ],
       newsletterTitle: "Global Export Intelligence",
       newsletterDesc:
-        "Subscribe for regulatory updates, eCTD approvals, and new formulation releases.",
+        "Supporting international pharmaceutical supply through finished formulations, contract manufacturing, regulatory documentation, and export coordination.",
       newsletterPlaceholder: "Enter your corporate email",
       newsletterBtn: "Subscribe",
       newsletterSuccess: "Thank you for subscribing to Zelnex Export Intelligence.",
@@ -917,7 +917,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         stat1Number: "8+",
         stat1Top: "Años de",
         stat1Bottom: "Experiencia Global",
-        stat2Number: "800+",
+        stat2Number: "550+",
         stat2Top: "Fórmulas",
         stat2Bottom: "Comerciales",
         stat3Number: "50+",
@@ -992,7 +992,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         ],
         p3Cta: "Revisar Especificaciones de Empaque",
         p4Badge: "Formulario",
-        p4Title: "Más de 800 Moléculas Genéricas Comerciales en 10+ Categorías",
+        p4Title: "Más de 550 Moléculas Genéricas Comerciales en 10+ Categorías",
         p4Desc:
           "Nuestro extenso catálogo de exportación abarca áreas terapéuticas de alta demanda: Antiinfecciosos, Cardiología, Sistema Nervioso Central (SNC), Gastrointestinal, Respiratorio, Diabetes, Dermatología, Oncología e Inyectables de Cuidados Críticos.",
         p4Points: [
@@ -1083,7 +1083,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       },
     },
     categories: {
-      badge: "Formulario Interactivo · 800+ Fórmulas",
+      badge: "Formulario Interactivo · 550+ Fórmulas",
       title: "Segmentos terapéuticos líderes a nivel mundial.",
       subtitle:
         "Descubra nuestras líneas terapéuticas fabricadas bajo estándares de la OMS con dossiers técnicos de registro completos.",
@@ -1471,7 +1471,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         stat1Number: "8+",
         stat1Top: "Anos de",
         stat1Bottom: "Experiência Global",
-        stat2Number: "800+",
+        stat2Number: "550+",
         stat2Top: "Formulações",
         stat2Bottom: "Comerciais",
         stat3Number: "50+",
@@ -1546,7 +1546,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         ],
         p3Cta: "Revisar Especificações de Embalagem",
         p4Badge: "Formulário",
-        p4Title: "Mais de 800 Moléculas Genéricas Comerciais em 10+ Categorias",
+        p4Title: "Mais de 550 Moléculas Genéricas Comerciais em 10+ Categorias",
         p4Desc:
           "Nosso catálogo abrangente de exportação inclui áreas terapêuticas de alta demanda: Anti-infecciosos, Cardiologia, Sistema Nervioso Central (SNC), Gastrointestinal, Respiratório, Diabetes, Dermatologia, Oncologia e Injetáveis Críticos.",
         p4Points: [
@@ -1637,7 +1637,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       },
     },
     categories: {
-      badge: "Formulário Interativo · 800+ Formulações",
+      badge: "Formulário Interativo · 550+ Formulações",
       title: "Segmentos terapêuticos que lideram o mundo.",
       subtitle:
         "Navegue pelos nossos portfólios farmacêuticos certificados produzidos em instalações credenciadas WHO-GMP com dossiês de registro eCTD.",
@@ -2013,7 +2013,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         stat1Number: "8+",
         stat1Top: "Années d'",
         stat1Bottom: "Expertise Mondiale",
-        stat2Number: "800+",
+        stat2Number: "550+",
         stat2Top: "Formulations",
         stat2Bottom: "Commerciales",
         stat3Number: "50+",
@@ -2088,7 +2088,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         ],
         p3Cta: "Consulter les Spécifications d'Emballage",
         p4Badge: "Formulaire",
-        p4Title: "Plus de 800 Molécules Génériques Commerciales dans 10+ Catégories",
+        p4Title: "Plus de 550 Molécules Génériques Commerciales dans 10+ Catégories",
         p4Desc:
           "Notre catalogue d'exportation étendu couvre les domaines thérapeutiques essentiels : Anti-infectieux, Cardiologie, Système Nerveux Central (SNC), Gastro-entérologie, Pneumologie, Diabétologie, Dermatologie, Oncologie et Injectables d'Urgence.",
         p4Points: [
@@ -2179,7 +2179,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       },
     },
     categories: {
-      badge: "Formulaire Interactif · 800+ Formulations",
+      badge: "Formulaire Interactif · 550+ Formulations",
       title: "Des segments thérapeutiques de référence mondiale.",
       subtitle:
         "Parcourez nos gammes pharmaceutiques certifiées fabriquées dans des installations accréditées OMS-GMP avec dossiers d'enregistrement eCTD.",

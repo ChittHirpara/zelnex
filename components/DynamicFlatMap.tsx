@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useMemo, useCallback, memo, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { WORLD_PATHS, getProjectedCoords } from "@/data/worldMapData";
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -44,29 +43,13 @@ function mk(
 }
 
 export const GLOBAL_MARKETS: DestinationMarket[] = [
-  mk("nigeria","Nigeria","NG","Lagos","Africa","NAFDAC Approved","CTD Module 1–5 Active","Zone IVb · 30°C / 75% RH","180M Units / yr",["Anti-Infectives","Analgesics","Antimalarials"],3.3792,6.5244),
-  mk("kenya","Kenya","KE","Nairobi","Africa","PPB Ministry of Health","Fast-Track eCTD","Zone IVb Validated","95M Units / yr",["Cardiovascular","Antibiotics","IV Fluids"],36.8219,-1.2921),
-  mk("tanzania","Tanzania","TZ","Dar es Salaam","Africa","TMDA Clearance","Full CTD Validated","Zone IVb Tested","60M Units / yr",["Gastrointestinal","Injectables","Oral Solids"],39.2842,-6.7924),
   mk("ghana","Ghana","GH","Accra","Africa","FDA Ghana","WHO-GMP Validated","Zone IVb Validated","75M Units / yr",["Antidiabetics","Cephalosporins","Syrups"],-0.187,5.6037),
-  mk("south-africa","South Africa","ZA","Johannesburg","Africa","SAHPRA Compliant","Institutional Hospital Supply","ICH Zone II / IVb","110M Units / yr",["Sterile Injectables","Oncology","Anesthesia"],28.0473,-26.2041),
-  mk("egypt","Egypt","EG","Cairo","Africa","EDA Authority","Regional Import Quota","Zone IVa / IVb","85M Units / yr",["Pediatric Suspensions","Ophthalmic","Antibiotics"],31.2357,30.0444),
-  mk("uae","United Arab Emirates","AE","Dubai","Middle East & CIS","MOHAP Validated","eCTD GCC Standard","Zone IVb · 30°C / 75% RH","140M Units / yr",["Cold-Chain Vials","Lyophilized Powder","Tablets"],55.2708,25.2048),
-  mk("saudi","Saudi Arabia","SA","Riyadh","Middle East & CIS","SFDA Standard","Tender Ready CTD","Zone IVb High Heat","160M Units / yr",["Cardiology","Metabolic","Surgical Injectables"],46.6753,24.7136),
-  mk("uzbekistan","Uzbekistan","UZ","Tashkent","Middle East & CIS","MOH Uzbekistan","Bilingual RU/UZ CTD","Zone II / IV","90M Units / yr",["Multivitamins","Anti-Infectives"],69.2401,41.2995),
-  mk("kazakhstan","Kazakhstan","KZ","Astana","Middle East & CIS","EAEU Health Ministry","EAEU Regional Dossier","Cold-Chain & Zone II","70M Units / yr",["NSAIDs","Respiratory"],76.8512,43.222),
-  mk("vietnam","Vietnam","VN","Hanoi / HCMC","Asia","DAV Ministry of Health","ACTD & eCTD Approved","Zone IVb Tropical","150M Units / yr",["Cephalosporin Injections","Gastroprokinetics"],107.0,16.0),
-  mk("philippines","Philippines","PH","Manila","Asia","FDA Philippines","Certificate of Registration","Zone IVb · 30°C / 75% RH","135M Units / yr",["Antibiotics","Nutraceuticals","Cardiovascular"],120.9842,14.5995),
-  mk("myanmar","Myanmar","MM","Yangon","Asia","FDA Myanmar","MOH Import Licensure","Zone IVb Validated","80M Units / yr",["Essential Medicines","Oral Suspensions"],96.1951,16.8661),
-  mk("cambodia","Cambodia","KH","Phnom Penh","Asia","DDF Cambodia","ACTD Dossier","Zone IVb Validated","45M Units / yr",["Antipyretics","Anti-Infective Capsules"],104.9282,11.5564),
-  mk("brazil","Brazil","BR","São Paulo","Americas","ANVISA Compliant","Full Portuguese Dossier","Zone IVb Tested","210M Units / yr",["Specialty Generics","High-Potency Solids","Vials"],-46.6333,-23.5505),
-  mk("mexico","Mexico","MX","Mexico City","Americas","COFEPRIS Standard","Spanish CTD","Zone II & IVb","175M Units / yr",["Chronic Disease","Sterile Ampoules"],-99.1332,19.4326),
-  mk("colombia","Colombia","CO","Bogotá","Americas","INVIMA Clearance","Bioequivalence Supported","Zone IVb Validated","95M Units / yr",["Gastrointestinal","Critical Care"],-74.0721,4.711),
-  mk("peru","Peru","PE","Lima","Americas","DIGEMID Registry","Sanitary Registration","Zone IVb Tested","65M Units / yr",["Pain Management","Dermatologicals"],-77.0428,-12.0464),
-  mk("usa","United States","US","New York","Americas","cGMP / US-FDA Benchmarked","eCTD Module 2–5","Real-Time 36-Month Testing","Export Hub",["Contract Manufacturing","Custom Dossiers"],-74.006,40.7128),
-  mk("uk","United Kingdom","GB","London","Europe & Oceania","MHRA Export Compliant","ICH eCTD Standard","Zone I / II Validated","Trading Hub",["Lyophilized Vials","Contract R&D"],-0.1278,51.5074),
-  mk("germany","Germany","DE","Frankfurt","Europe & Oceania","BfArM European Standard","EU CTD Dossier","ICH Compliant","Bulk API Sourcing",["Specialty Oral Solids","Grade A Products"],8.6821,50.1109),
-  mk("australia","Australia","AU","Sydney","Europe & Oceania","TGA Benchmarked","Institutional Healthcare","Zone IVb & ICH","120M Units / yr",["Sterile Injectables","Hospital Infusions"],151.2093,-33.8688),
-  mk("new-zealand","New Zealand","NZ","Auckland","Europe & Oceania","Medsafe Standards","Export Partner Channel","Zone IVb Validated","40M Units / yr",["Generics","Tablets & Syrups"],174.7633,-36.8485),
+  mk("kenya","Kenya","KE","Nairobi","Africa","PPB Ministry of Health","Fast-Track eCTD","Zone IVb Validated","95M Units / yr",["Cardiovascular","Antibiotics","IV Fluids"],36.8219,-1.2921),
+  mk("nigeria","Nigeria","NG","Lagos","Africa","NAFDAC Approved","CTD Module 1–5 Active","Zone IVb · 30°C / 75% RH","180M Units / yr",["Anti-Infectives","Analgesics","Antimalarials"],3.3792,6.5244),
+  mk("afghanistan","Afghanistan","AF","Kabul","Middle East & CIS","AFDA Health Ministry","Full CTD Dossier Active","Zone IVb Climatic Stability","65M Units / yr",["Essential Antibiotics","Analgesics","Injectables"],69.1723,34.5553),
+  mk("cambodia","Cambodia","KH","Phnom Penh","Asia","DDF Cambodia (MOH)","ACTD Dossier Approved","Zone IVb Validated","45M Units / yr",["Antipyretics","Anti-Infective Capsules","Syrups"],104.9282,11.5564),
+  mk("tanzania","Tanzania","TZ","Dar es Salaam","Africa","TMDA Clearance","Full CTD Validated","Zone IVb Tested","60M Units / yr",["Gastrointestinal","Injectables","Oral Solids"],39.2842,-6.7924),
+  mk("philippines","Philippines","PH","Manila","Asia","FDA Philippines","Certificate of Registration (CPR)","Zone IVb · 30°C / 75% RH","135M Units / yr",["Antibiotics","Nutraceuticals","Cardiovascular"],120.9842,14.5995),
 ];
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -109,15 +92,13 @@ const WorldCountries = memo(function WorldCountries({ activeId }: { activeId: st
 // MAIN COMPONENT
 // ────────────────────────────────────────────────────────────────────────────
 const TOUR_MS = 2500;
-const REGIONS = ["All", "Africa", "Asia", "Middle East & CIS", "Americas", "Europe & Oceania"] as const;
+const REGIONS = ["All", "Africa", "Americas", "Asia", "Middle East & CIS"] as const;
 
 export function DynamicFlatMap() {
   const [region, setRegion] = useState("All");
   const [idx, setIdx] = useState(0);
   const [hovered, setHovered] = useState<DestinationMarket | null>(null);
   const [rotating, setRotating] = useState(true);
-  const [progress, setProgress] = useState(0);
-  const [prevIds, setPrevIds] = useState<string[]>([]);
 
   const markets = useMemo(() =>
     region === "All" ? GLOBAL_MARKETS : GLOBAL_MARKETS.filter(m => m.region === region),
@@ -126,43 +107,20 @@ export function DynamicFlatMap() {
 
   const active = hovered ?? markets[idx % markets.length] ?? GLOBAL_MARKETS[0];
 
-  // Refs to avoid stale closure issues
+  // Ref to avoid stale closure in timer
   const marketsRef = useRef(markets);
-  const startTimeRef = useRef(performance.now());
-  const rafRef = useRef(0);
-  marketsRef.current = markets;
-
-  // ── Effect 1: Smooth progress bar via RAF ──
   useEffect(() => {
-    if (!rotating) {
-      setProgress(0);
-      cancelAnimationFrame(rafRef.current);
-      return;
-    }
-    startTimeRef.current = performance.now();
-    const tick = (now: number) => {
-      const elapsed = now - startTimeRef.current;
-      setProgress(Math.min(elapsed / TOUR_MS, 1));
-      rafRef.current = requestAnimationFrame(tick);
-    };
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [rotating]);
+    marketsRef.current = markets;
+  }, [markets]);
 
-  // ── Effect 2: Cycle market after duration ──
+  // ── Cycle market after duration ──
   useEffect(() => {
     if (!rotating) return;
     const t = setTimeout(() => {
       setIdx(prev => (prev + 1) % marketsRef.current.length);
-      startTimeRef.current = performance.now();
     }, TOUR_MS);
     return () => clearTimeout(t);
   }, [idx, rotating, region]);
-
-  // ── Effect 3: Track history ──
-  useEffect(() => {
-    setPrevIds(prev => [active.id, ...prev.filter(id => id !== active.id)].slice(0, 5));
-  }, [active.id]);
 
   const handleClick = useCallback((m: DestinationMarket, i: number) => {
     setHovered(m);
@@ -199,7 +157,7 @@ export function DynamicFlatMap() {
           {REGIONS.map(r => (
             <button
               key={r}
-              onClick={() => { setRegion(r); setIdx(0); setPrevIds([]); }}
+              onClick={() => { setRegion(r); setIdx(0); }}
               className={`px-3 py-1 rounded-lg text-xs transition-all duration-150 cursor-pointer font-medium ${
                 region === r
                   ? "bg-[#006EDC] text-white font-bold shadow-2xs"

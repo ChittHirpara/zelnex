@@ -45,7 +45,7 @@ export const SERVICES_LIST = [
   {
     id: "generic-products",
     title: "Generic Products",
-    subtitle: "800+ Commercial Finished Formulations",
+    subtitle: "550+ Commercial Finished Formulations",
     href: "/services?service=generic-products",
     badge: "04",
     badgeColor: "#8B5CF6",
@@ -71,8 +71,8 @@ export function Navbar() {
     if (href === "/services") {
       return pathname.startsWith("/services");
     }
-    if (href === "/categories") {
-      return pathname.startsWith("/categories");
+    if (href === "/products") {
+      return pathname.startsWith("/products") || pathname.startsWith("/categories");
     }
     if (href === "/blogs") {
       return pathname.startsWith("/blogs");
@@ -90,8 +90,7 @@ export function Navbar() {
     { label: t.nav.home, href: "/#home" },
     { label: t.nav.overview, href: "/about" },
     { label: t.nav.services, href: "/services", hasDropdown: true },
-    { label: t.nav.products, href: "/#products" },
-    { label: t.nav.categories, href: "/categories" },
+    { label: t.nav.products, href: "/products" },
     { label: t.nav.blogs, href: "/blogs" },
   ];
 
@@ -99,8 +98,7 @@ export function Navbar() {
     { label: t.nav.home, href: "/#home" },
     { label: t.nav.overview, href: "/about" },
     { label: t.nav.services, href: "/services", hasDropdown: true },
-    { label: t.nav.products, href: "/#products" },
-    { label: t.nav.categories, href: "/categories" },
+    { label: t.nav.products, href: "/products" },
     { label: t.nav.blogs, href: "/blogs" },
     { label: t.nav.contact, href: "/contact" },
   ];
@@ -141,7 +139,13 @@ export function Navbar() {
     const handleHashChange = () => {
       if (typeof window !== "undefined" && window.location.pathname === "/") {
         const hash = window.location.hash;
-        setActiveHash(hash === "#products" ? "/#products" : "/#home");
+        if (hash === "#categories") {
+          setActiveHash("/#categories");
+        } else if (hash === "#products") {
+          setActiveHash("/#products");
+        } else {
+          setActiveHash("/#home");
+        }
       }
     };
 
@@ -484,7 +488,7 @@ export function Navbar() {
       </div>
 
       {/* ── Standalone Contact Button (button-17 style) ── */}
-      <div className="pointer-events-auto shrink-0 flex items-center">
+      <div className="pointer-events-auto shrink-0 hidden sm:flex items-center">
         <Link
           href="/contact"
           onClick={() => setActiveHash("/contact")}

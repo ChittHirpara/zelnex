@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat, Outfit } from "next/font/google";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { RfqCartProvider } from "@/context/RfqCartContext";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -25,9 +26,14 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Zelnex Pharmaceuticals Pvt. Ltd. | Global Generic Formulations & Export",
+  metadataBase: new URL("https://zelnexpharma.com"),
+  title: {
+    default: "Zelnex Pharmaceuticals Pvt. Ltd. | Global Generic Formulations & Export",
+    template: "%s | Zelnex Pharmaceuticals",
+  },
   description:
     "Zelnex Pharmaceuticals is a premier export-oriented pharmaceutical powerhouse delivering high-quality, WHO-GMP certified generic formulations, CTD/eCTD dossiers, and turnkey supply to 50+ countries worldwide.",
+  applicationName: "Zelnex Pharmaceuticals",
   keywords: [
     "Zelnex Pharmaceuticals",
     "Pharmaceutical Manufacturer India",
@@ -40,11 +46,17 @@ export const metadata: Metadata = {
     "Lyophilized Vials",
     "Zone IVb Stability Testing",
     "Pharmaceutical Contract Manufacturing",
+    "Pharma Exporter Surat Gujarat",
+    "Finished Generics Supplier Africa Asia LATAM",
   ],
   authors: [{ name: "Zelnex Pharmaceuticals Pvt. Ltd." }],
   creator: "Zelnex Pharmaceuticals Pvt. Ltd.",
   publisher: "Zelnex Pharmaceuticals Pvt. Ltd.",
-  metadataBase: new URL("https://zelnexpharma.com"),
+  formatDetection: {
+    email: true,
+    address: true,
+    telephone: true,
+  },
   alternates: {
     canonical: "/",
   },
@@ -58,10 +70,10 @@ export const metadata: Metadata = {
       "Delivering high-quality, affordable, and globally compliant healthcare solutions across 50+ countries. WHO-GMP, ISO 9001:2015, and complete CTD dossier readiness.",
     images: [
       {
-        url: "/brand/zelnex-logo.png",
-        width: 800,
-        height: 600,
-        alt: "Zelnex Pharmaceuticals Logo",
+        url: "/brand/zelnex-hd-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Zelnex Pharmaceuticals - Global Pharmaceutical Exporter",
       },
     ],
   },
@@ -70,10 +82,13 @@ export const metadata: Metadata = {
     title: "Zelnex Pharmaceuticals Pvt. Ltd. | Caring for Life",
     description:
       "Export-oriented pharmaceutical powerhouse delivering WHO-GMP certified generic medicines & eCTD dossiers worldwide.",
-    images: ["/brand/zelnex-logo.png"],
+    images: ["/brand/zelnex-hd-logo.png"],
   },
   icons: {
-    icon: "/brand/zelnex-icon.png",
+    icon: [
+      { url: "/brand/zelnex-icon.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
     shortcut: "/brand/zelnex-icon.png",
     apple: "/brand/zelnex-icon.png",
   },
@@ -90,29 +105,12 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Zelnex Pharmaceuticals Pvt. Ltd.",
-  url: "https://zelnexpharma.com",
-  logo: "https://zelnexpharma.com/brand/zelnex-logo.png",
-  description:
-    "Leading export-oriented pharmaceutical company delivering WHO-GMP certified generic medicines and CTD/eCTD dossiers to 50+ global markets.",
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "India",
-  },
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "Customer Support & Export Inquiries",
-    email: "export@zelnexpharma.com",
-  },
-  sameAs: [
-    "https://www.linkedin.com/company/zelnex-pharmaceuticals",
-  ],
-};
+import dynamic from "next/dynamic";
+import { CorporationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 
-import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+const FloatingWhatsApp = dynamic(
+  () => import("@/components/FloatingWhatsApp").then((m) => m.FloatingWhatsApp)
+);
 
 export default function RootLayout({
   children,
@@ -125,20 +123,18 @@ export default function RootLayout({
       className={`${outfit.variable} ${montserrat.variable} h-full antialiased`}
     >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://unpkg.com" />
         <link rel="dns-prefetch" href="https://raw.githubusercontent.com" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <CorporationJsonLd />
+        <WebSiteJsonLd />
       </head>
       <body className="min-h-full flex flex-col font-sans text-slate overflow-x-hidden">
         <LanguageProvider>
-          {children}
-          <FloatingWhatsApp />
+          <RfqCartProvider>
+            {children}
+            <FloatingWhatsApp />
+          </RfqCartProvider>
         </LanguageProvider>
       </body>
     </html>
