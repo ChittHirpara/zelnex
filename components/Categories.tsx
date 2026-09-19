@@ -20,12 +20,16 @@ const CARD_IMAGES = [
 ];
 
 const FLOATING_CHIPS = [
-  { label: "Anti-Infectives", count: "60+ SKUs", color: "#006EDC" },
-  { label: "Cardiovascular", count: "45+ SKUs", color: "#0284C7" },
-  { label: "Gastrointestinal", count: "50+ SKUs", color: "#0D9488" },
-  { label: "CNS & Neuro", count: "35+ SKUs", color: "#7C3AED" },
-  { label: "Sterile Injections", count: "40+ SKUs", color: "#EA580C" },
-  { label: "Analgesics & NSAIDs", count: "30+ SKUs", color: "#2563EB" },
+  { label: "Anti-Infectives", count: "85 Products", color: "#006EDC" },
+  { label: "Pain Management", count: "58 Products", color: "#2563EB" },
+  { label: "Gastrointestinal", count: "44 Products", color: "#0D9488" },
+  { label: "Dermatology & Topical", count: "41 Products", color: "#E11D48" },
+  { label: "Respiratory & Allergy", count: "31 Products", color: "#0284C7" },
+  { label: "Cardiovascular", count: "28 Products", color: "#082B61" },
+  { label: "Urology & Nephrology", count: "18 Products", color: "#7C3AED" },
+  { label: "Vitamins & Minerals", count: "16 Products", color: "#D97706" },
+  { label: "General Therapeutics", count: "14 Products", color: "#475569" },
+  { label: "Neurology & CNS", count: "11 Products", color: "#9333EA" },
 ];
 
 export function Categories() {
@@ -123,7 +127,7 @@ export function Categories() {
 
             {/* Refined Descriptive Copy */}
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-              Engineered for global healthcare systems. Browse over <strong className="font-bold text-[#0B1E48]">355+ approved generic molecules</strong> categorized by therapeutic action, active APIs, stability validation, and specialized dosage delivery formats.
+              Engineered for global healthcare systems. Browse over <strong className="font-bold text-[#0B1E48]">355+ approved generic molecules</strong> across 13 therapeutic categories and 6 certified dosage forms, validated for Zone IVb stability and backed by complete WHO-GMP CTD documentation.
             </p>
 
             {/* Micro Metadata Indicator Line */}
@@ -135,7 +139,12 @@ export function Categories() {
               <span className="text-slate-300">/</span>
               <span className="flex items-center gap-1.5 text-[#0D9488]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#0D9488]" />
-                10+ THERAPEUTIC SPECTRUMS
+                13 THERAPEUTIC SPECTRUMS
+              </span>
+              <span className="text-slate-300">/</span>
+              <span className="flex items-center gap-1.5 text-[#0284C7]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0284C7]" />
+                6 CERTIFIED DOSAGE FORMS
               </span>
               <span className="text-slate-300">/</span>
               <span className="flex items-center gap-1.5 text-[#7C3AED]">

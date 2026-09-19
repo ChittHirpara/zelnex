@@ -291,7 +291,7 @@ export function Expertise() {
                   className="mt-auto w-full h-44 sm:h-48 rounded-2xl overflow-hidden relative border shadow-2xs group/img"
                   style={{ borderColor: card.borderColor }}
                 >
-                  {/* Background Photo from ASSTES */}
+                  {/* Background Photo from ASSETS */}
                   <Image
                     src={card.image}
                     alt={card.title}
