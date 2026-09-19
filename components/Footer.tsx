@@ -83,13 +83,24 @@ export function Footer() {
         {/* ── Top Context Bar ── */}
         <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/15">
           <div className="flex items-center gap-3">
-            <div className="relative px-3 py-1.5 rounded-xl bg-white/95 border border-white/40 shadow-sm backdrop-blur-md">
+            <div
+              className="relative px-3.5 py-1.5 rounded-xl transition-all duration-300 flex items-center group cursor-pointer hover:scale-[1.02]"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.14) 50%, rgba(56, 189, 248, 0.22) 100%)",
+                backdropFilter: "blur(20px) saturate(1.8)",
+                WebkitBackdropFilter: "blur(20px) saturate(1.8)",
+                border: "1px solid rgba(255, 255, 255, 0.42)",
+                boxShadow:
+                  "0 8px 32px -4px rgba(0, 12, 40, 0.35), inset 0 1.5px 2px rgba(255, 255, 255, 0.75), inset 0 -1px 2px rgba(56, 189, 248, 0.3)",
+              }}
+            >
               <Image
                 src="/brand/zelnex-official-logo.png"
                 alt="Zelnex Pharmaceuticals Pvt. Ltd."
                 width={130}
                 height={36}
-                className="h-6 w-auto object-contain"
+                className="h-6 w-auto object-contain drop-shadow-[0_1px_3px_rgba(255,255,255,0.5)]"
               />
             </div>
             <span className="text-xs font-semibold tracking-wide text-cyan-100">
