@@ -13,11 +13,6 @@ import {
   Factory,
   Layers,
   Check,
-  CheckCircle2,
-  Sparkles,
-  ArrowRight,
-  FileSpreadsheet,
-  Building2,
 } from "lucide-react";
 
 interface ServiceItem {
@@ -138,14 +133,14 @@ const SERVICES_DATA: ServiceItem[] = [
     ],
     specs: [
       { label: "Commercial Formulary", value: "355+ Formulations" },
-      { label: "Therapeutic Breadth", value: "10+ Categories" },
-      { label: "Documentation", value: "Full CTD / eCTD Files" },
-      { label: "Global Reach", value: "10+ Destinations" },
+      { label: "Dosage Forms", value: "6 Formats" },
+      { label: "Target Markets", value: "10+ Countries" },
+      { label: "Packaging Barrier", value: "Alu-Alu / Blister" },
     ],
     metrics: [
-      { label: "Active SKUs", value: "355+" },
-      { label: "Therapeutic Classes", value: "10+" },
-      { label: "Destinations", value: "10+" },
+      { label: "Formulations", value: "355+" },
+      { label: "Therapeutics", value: "13 Segments" },
+      { label: "Shelf Life", value: "24–36 Mo" },
     ],
     ctaText: "Download Product Catalog",
   },
@@ -182,7 +177,7 @@ function ServicesModernistContent() {
 
   return (
     <div
-      className="min-h-screen relative bg-white text-[#0B1E48] font-[family-name:var(--font-montserrat)] selection:bg-[#006EDC] selection:text-white antialiased overflow-x-hidden"
+      className="min-h-screen relative bg-white text-[#082B61] font-['Outfit',sans-serif] selection:bg-[#006EDC] selection:text-white antialiased overflow-x-hidden"
       style={{
         backgroundColor: "#FFFFFF",
         backgroundImage: `
@@ -204,15 +199,15 @@ function ServicesModernistContent() {
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/30 mb-4">
               <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
               <p className="text-[11px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.15em] text-[#006EDC]">
-                02.00 // PHARMACEUTICAL CAPABILITIES & REGULATORY SERVICES
+                02.00 // PHARMACEUTICAL CAPABILITIES &amp; REGULATORY SERVICES
               </p>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-[52px] font-extrabold text-[#0B1E48] tracking-tight leading-[1.08] mb-4">
-              Enterprise Formulations & <span className="text-[#006EDC]">Global Licensing</span>
+            <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-extrabold text-[#082B61] tracking-tight leading-[1.08] mb-4 font-['Outfit',sans-serif]">
+              Enterprise Formulations &amp; <span className="text-[#006EDC]">Global Licensing</span>
             </h1>
 
-            <p className="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed max-w-3xl">
+            <p className="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed max-w-3xl font-normal">
               End-to-end pharmaceutical manufacturing, institutional tender supply, and expedited
               CTD/eCTD dossier submissions engineered for health ministries across 10+ global export markets.
             </p>
@@ -231,7 +226,7 @@ function ServicesModernistContent() {
                   className={`py-3.5 px-4 rounded-xl text-left transition-all duration-200 cursor-pointer flex flex-col justify-center relative overflow-hidden group ${
                     isSelected
                       ? "bg-gradient-to-r from-[#006EDC] to-[#0052B4] text-white shadow-md shadow-[#006EDC]/25 border border-[#006EDC]"
-                      : "bg-white hover:bg-blue-50/70 text-[#0B1E48] border border-slate-200/80 hover:border-blue-300/80 shadow-xs"
+                      : "bg-white hover:bg-blue-50/70 text-[#082B61] border border-slate-200/80 hover:border-blue-300/80 shadow-xs"
                   }`}
                 >
                   <div className="flex items-center justify-between w-full mb-1">
@@ -247,8 +242,8 @@ function ServicesModernistContent() {
                     )}
                   </div>
                   <span
-                    className={`text-xs sm:text-[13px] font-bold uppercase tracking-tight truncate ${
-                      isSelected ? "text-white" : "text-slate-700 group-hover:text-[#0B1E48]"
+                    className={`text-xs sm:text-[13px] font-bold uppercase tracking-tight truncate font-['Outfit',sans-serif] ${
+                      isSelected ? "text-white" : "text-slate-700 group-hover:text-[#082B61]"
                     }`}
                   >
                     {svc.badge}
@@ -270,7 +265,7 @@ function ServicesModernistContent() {
                       <span className="inline-block text-[10.5px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.2em] text-[#006EDC] bg-blue-50/80 border border-blue-200/60 px-2.5 py-0.5 rounded-md">
                         SERVICE {currentService.num} OF 04
                       </span>
-                      <span className="block text-xs font-bold text-[#0B1E48] uppercase tracking-wide">
+                      <span className="block text-xs font-bold text-[#082B61] uppercase tracking-wide font-['Outfit',sans-serif]">
                         WHO-GMP &amp; CTD VERIFIED
                       </span>
                     </div>
@@ -288,8 +283,8 @@ function ServicesModernistContent() {
                     <div className="divide-y divide-blue-100/80 border-y border-blue-100/80">
                       {currentService.specs.map((s, idx) => (
                         <div key={idx} className="py-2.5 flex items-center justify-between text-xs">
-                          <span className="text-slate-600 font-medium">{s.label}</span>
-                          <span className="font-bold text-[#0B1E48] font-['JetBrains_Mono',monospace] bg-white px-2.5 py-0.5 rounded-md border border-blue-100/90 shadow-2xs">
+                          <span className="text-slate-600 font-medium font-['Outfit',sans-serif]">{s.label}</span>
+                          <span className="font-bold text-[#082B61] font-['JetBrains_Mono',monospace] bg-white px-2.5 py-0.5 rounded-md border border-blue-100/90 shadow-2xs">
                             {s.value}
                           </span>
                         </div>
@@ -308,7 +303,7 @@ function ServicesModernistContent() {
                       <div className="text-sm sm:text-base font-black text-[#006EDC] font-['JetBrains_Mono',monospace]">
                         {m.value}
                       </div>
-                      <div className="text-[9px] font-bold text-slate-500 uppercase tracking-tight mt-0.5">
+                      <div className="text-[9.5px] font-bold text-slate-500 uppercase tracking-tight mt-0.5 font-['Outfit',sans-serif]">
                         {m.label}
                       </div>
                     </div>
@@ -326,7 +321,7 @@ function ServicesModernistContent() {
                       {currentService.tagline}
                     </span>
 
-                    <h2 className="text-2xl sm:text-4xl lg:text-[42px] font-black text-[#0B1E48] uppercase tracking-tight leading-[1.08] mt-2">
+                    <h2 className="text-2xl sm:text-4xl lg:text-[44px] font-extrabold text-[#082B61] uppercase tracking-tight leading-[1.08] mt-2 font-['Outfit',sans-serif]">
                       {currentService.title.split(currentService.accentWord)[0]}
                       <span className="text-[#006EDC]">{currentService.accentWord}</span>
                       {currentService.title.split(currentService.accentWord)[1]}
@@ -347,7 +342,7 @@ function ServicesModernistContent() {
                       {currentService.keyPoints.map((point, idx) => (
                         <div
                           key={idx}
-                          className="p-4 rounded-xl border border-blue-100/90 bg-[#F8FAFD] hover:bg-blue-50/60 hover:border-blue-200 transition-all flex items-start gap-3 text-xs sm:text-[13px] text-slate-700 font-medium leading-relaxed"
+                          className="p-4 rounded-xl border border-blue-100/90 bg-[#F8FAFD] hover:bg-blue-50/60 hover:border-blue-200 transition-all flex items-start gap-3 text-xs sm:text-[13px] text-slate-700 font-medium leading-relaxed font-['Outfit',sans-serif]"
                         >
                           <span className="w-5 h-5 rounded-md bg-[#006EDC]/10 text-[#006EDC] shrink-0 flex items-center justify-center text-xs font-bold mt-0.5 border border-[#006EDC]/25">
                             <Check className="w-3.5 h-3.5" />
@@ -363,14 +358,14 @@ function ServicesModernistContent() {
                 <div className="pt-6 border-t border-blue-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-xs font-bold uppercase tracking-wider text-emerald-800">
+                    <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 font-['Outfit',sans-serif]">
                       Active WHO-GMP Export Compliance
                     </span>
                   </div>
 
                   <Link
                     href="/contact"
-                    className="w-full sm:w-auto py-3.5 px-8 rounded-xl bg-gradient-to-r from-[#006EDC] to-[#0052B4] hover:from-[#005bb8] hover:to-[#082B61] text-white text-xs font-bold uppercase tracking-[0.15em] flex items-center justify-center gap-2.5 transition-all shadow-md shadow-blue-500/25 hover:shadow-lg hover:shadow-blue-500/35 active:scale-[0.98]"
+                    className="w-full sm:w-auto py-3.5 px-8 rounded-xl bg-gradient-to-r from-[#006EDC] to-[#0052B4] hover:from-[#005bb8] hover:to-[#082B61] text-white text-xs sm:text-sm font-bold uppercase tracking-[0.15em] flex items-center justify-center gap-2.5 transition-all shadow-md shadow-blue-500/25 hover:shadow-lg hover:shadow-blue-500/35 active:scale-[0.98] font-['Outfit',sans-serif]"
                   >
                     <span>{currentService.ctaText}</span>
                     <ArrowUpRight className="w-4 h-4" />

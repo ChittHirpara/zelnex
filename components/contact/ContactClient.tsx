@@ -154,7 +154,7 @@ export default function ContactClient() {
 
   return (
     <div
-      className="min-h-screen relative bg-white text-[#0B1E48] font-[family-name:var(--font-montserrat)] selection:bg-[#006EDC] selection:text-white antialiased overflow-x-hidden"
+      className="min-h-screen relative bg-white text-[#082B61] font-['Outfit',sans-serif] selection:bg-[#006EDC] selection:text-white antialiased overflow-x-hidden"
       style={{
         backgroundColor: "#FFFFFF",
         backgroundImage: `
@@ -181,7 +181,7 @@ export default function ContactClient() {
                 ZELNEX PHARMA
               </Link>
               <span className="text-slate-300">/</span>
-              <span className="text-[#0B1E48] font-bold">GLOBAL INQUIRIES &amp; DESKS</span>
+              <span className="text-[#082B61] font-bold">GLOBAL INQUIRIES &amp; DESKS</span>
             </div>
             <div className="flex items-center gap-3 mt-3 sm:mt-0">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-700 font-semibold">
@@ -202,11 +202,11 @@ export default function ContactClient() {
               </p>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-[52px] font-extrabold text-[#0B1E48] tracking-tight leading-[1.08] mb-4">
+            <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-extrabold text-[#082B61] tracking-tight leading-[1.08] mb-4 font-['Outfit',sans-serif]">
               Connect With Zelnex for <span className="text-[#006EDC]">Global Pharmaceutical Supply</span>
             </h1>
 
-            <p className="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed max-w-3xl">
+            <p className="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed max-w-3xl font-normal">
               Share your product requirements, target market, dosage form, packaging needs, or manufacturing specifications with our international commercial and regulatory export team.
             </p>
           </div>
@@ -225,7 +225,7 @@ export default function ContactClient() {
                   <span className="font-['JetBrains_Mono',monospace] text-[11px] text-[#006EDC] font-bold uppercase tracking-[0.2em] block">
                     01 // CORPORATE CHANNELS
                   </span>
-                  <h3 className="text-2xl font-extrabold text-[#0B1E48] tracking-tight">
+                  <h3 className="text-2xl font-extrabold text-[#082B61] tracking-tight uppercase font-['Outfit',sans-serif]">
                     GLOBAL EXPORT DESK
                   </h3>
                   <p className="text-xs text-slate-500 font-normal leading-relaxed">
@@ -238,7 +238,7 @@ export default function ContactClient() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-3.5 bg-[#006EDC] rounded-full inline-block" />
-                      <span className="font-['JetBrains_Mono',monospace] text-[11px] font-bold tracking-[0.15em] text-[#0B1E48] uppercase">
+                      <span className="font-['JetBrains_Mono',monospace] text-[11px] font-bold tracking-[0.15em] text-[#082B61] uppercase">
                         HEADQUARTERS &amp; R&amp;D
                       </span>
                     </div>
@@ -248,7 +248,7 @@ export default function ContactClient() {
                   </div>
 
                   <div className="space-y-1 pt-0.5">
-                    <h4 className="text-sm font-bold text-[#0B1E48]">
+                    <h4 className="text-sm font-bold text-[#082B61] font-['Outfit',sans-serif]">
                       Zelnex Pharmaceuticals Pvt. Ltd.
                     </h4>
                     <p className="text-xs text-slate-600 font-normal leading-relaxed">
@@ -261,7 +261,7 @@ export default function ContactClient() {
                       href="https://maps.app.goo.gl/uiLQiWR9muJXici28"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#006EDC] hover:text-[#0052B4] group/map transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#006EDC] hover:text-[#0052B4] group/map transition-colors font-['Outfit',sans-serif]"
                     >
                       <span>Locate On Google Maps</span>
                       <ArrowUpRight className="w-3.5 h-3.5 text-[#006EDC] group-hover/map:translate-x-0.5 group-hover/map:-translate-y-0.5 transition-transform" />
@@ -274,7 +274,7 @@ export default function ContactClient() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-3.5 bg-[#006EDC] rounded-full inline-block" />
-                      <span className="font-['JetBrains_Mono',monospace] text-[11px] font-bold tracking-[0.15em] text-[#0B1E48] uppercase">
+                      <span className="font-['JetBrains_Mono',monospace] text-[11px] font-bold tracking-[0.15em] text-[#082B61] uppercase">
                         TELEPHONY &amp; DISPATCH
                       </span>
                     </div>
@@ -288,7 +288,7 @@ export default function ContactClient() {
                     <div className="space-y-0.5">
                       <a
                         href="tel:+919328286164"
-                        className="font-['JetBrains_Mono',monospace] text-base font-bold text-[#0B1E48] hover:text-[#006EDC] transition-colors block tracking-tight"
+                        className="font-['JetBrains_Mono',monospace] text-base font-bold text-[#082B61] hover:text-[#006EDC] transition-colors block tracking-tight"
                       >
                         +91 93282 86164
                       </a>
@@ -329,7 +329,7 @@ export default function ContactClient() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-3.5 bg-[#006EDC] rounded-full inline-block" />
-                      <span className="font-['JetBrains_Mono',monospace] text-[11px] font-bold tracking-[0.15em] text-[#0B1E48] uppercase">
+                      <span className="font-['JetBrains_Mono',monospace] text-[11px] font-bold tracking-[0.15em] text-[#082B61] uppercase">
                         OFFICIAL EMAIL
                       </span>
                     </div>
@@ -343,7 +343,7 @@ export default function ContactClient() {
                     className="group/mail flex items-center justify-between p-3.5 rounded-xl bg-[#F8FAFD] border border-blue-100 hover:border-[#006EDC] hover:bg-white transition-all"
                   >
                     <div className="space-y-0.5">
-                      <span className="font-['JetBrains_Mono',monospace] text-xs sm:text-sm font-bold text-[#0B1E48] group-hover/mail:text-[#006EDC] transition-colors block tracking-tight">
+                      <span className="font-['JetBrains_Mono',monospace] text-xs sm:text-sm font-bold text-[#082B61] group-hover/mail:text-[#006EDC] transition-colors block tracking-tight">
                         info@zelnexpharmaceuticals.com
                       </span>
                       <span className="text-[11px] text-slate-500 font-normal block">
@@ -363,7 +363,7 @@ export default function ContactClient() {
                       <Clock className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-[#0B1E48]">
+                      <p className="text-xs font-bold text-[#082B61] font-['Outfit',sans-serif]">
                         Mon – Sat: 09:00 – 19:00 IST
                       </p>
                       <p className="text-[10px] text-slate-500 font-normal">
@@ -396,7 +396,7 @@ export default function ContactClient() {
                   <span className="font-['JetBrains_Mono',monospace] text-[11px] text-[#006EDC] font-bold uppercase tracking-[0.2em] block">
                     COMMERCIAL &amp; REGULATORY TRANSMISSION
                   </span>
-                  <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B1E48] tracking-tight uppercase">
+                  <h2 className="text-2xl sm:text-3xl font-extrabold text-[#082B61] tracking-tight uppercase font-['Outfit',sans-serif]">
                     Contact <span className="text-[#006EDC]">Export Desk</span>
                   </h2>
                   <p className="text-xs sm:text-sm text-slate-500 font-normal leading-relaxed">
@@ -416,20 +416,20 @@ export default function ContactClient() {
                         INQUIRY REFERENCE: {ticketId}
                       </span>
 
-                      <h3 className="text-2xl font-extrabold text-[#0B1E48] tracking-tight">
+                      <h3 className="text-2xl font-extrabold text-[#082B61] tracking-tight font-['Outfit',sans-serif]">
                         Message Received Successfully
                       </h3>
                     </div>
 
                     <p className="text-sm text-slate-600 font-normal leading-relaxed">
-                      Thank you, <strong className="text-[#0B1E48]">{formData.name}</strong>. Your correspondence has been routed directly to our international regulatory and commercial export team. We will review and reply to <strong className="text-[#0B1E48]">{formData.email}</strong> within 4 business hours.
+                      Thank you, <strong className="text-[#082B61]">{formData.name}</strong>. Your correspondence has been routed directly to our international regulatory and commercial export team. We will review and reply to <strong className="text-[#082B61]">{formData.email}</strong> within 4 business hours.
                     </p>
 
                     <div className="pt-4">
                       <button
                         type="button"
                         onClick={handleReset}
-                        className="py-3.5 px-8 rounded-xl bg-gradient-to-r from-[#006EDC] to-[#0052B4] hover:from-[#005bb8] hover:to-[#082B61] text-white text-xs font-bold uppercase tracking-[0.15em] flex items-center gap-2 transition-all shadow-md shadow-blue-500/25 hover:shadow-lg active:scale-[0.98] cursor-pointer"
+                        className="py-3.5 px-8 rounded-xl bg-gradient-to-r from-[#006EDC] to-[#0052B4] hover:from-[#005bb8] hover:to-[#082B61] text-white text-xs font-bold uppercase tracking-[0.15em] flex items-center gap-2 transition-all shadow-md shadow-blue-500/25 hover:shadow-lg active:scale-[0.98] cursor-pointer font-['Outfit',sans-serif]"
                       >
                         Send Another Message
                       </button>
@@ -440,7 +440,7 @@ export default function ContactClient() {
                   <form onSubmit={handleSubmit} noValidate className="space-y-5">
                     {/* Field 1: Name */}
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-[#0B1E48] uppercase tracking-wider block">
+                      <label className="text-xs font-bold text-[#082B61] uppercase tracking-wider block font-['Outfit',sans-serif]">
                         Full Name <span className="text-rose-500">*</span>
                       </label>
                       <input
@@ -451,7 +451,7 @@ export default function ContactClient() {
                           if (errors.name) setErrors({ ...errors, name: "" });
                         }}
                         placeholder="Dr. / Mr. / Ms. Full Name"
-                        className="w-full px-4 py-3 rounded-xl bg-[#F8FAFD] border border-slate-200 focus:bg-white focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/10 text-sm text-[#0B1E48] placeholder:text-slate-400 font-medium transition-all outline-none"
+                        className="w-full px-4 py-3 rounded-xl bg-[#F8FAFD] border border-slate-200 focus:bg-white focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/10 text-sm text-[#082B61] placeholder:text-slate-400 font-medium transition-all outline-none font-['Outfit',sans-serif]"
                       />
                       {errors.name && (
                         <p className="text-[11px] text-rose-500 font-medium mt-1">{errors.name}</p>
@@ -462,7 +462,7 @@ export default function ContactClient() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {/* Field 2: Phone Number */}
                       <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-[#0B1E48] uppercase tracking-wider block">
+                        <label className="text-xs font-bold text-[#082B61] uppercase tracking-wider block font-['Outfit',sans-serif]">
                           Phone Number
                         </label>
                         <input
@@ -470,13 +470,13 @@ export default function ContactClient() {
                           value={formData.phoneNumber}
                           onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
                           placeholder="+1 (555) 000-0000"
-                          className="w-full px-4 py-3 rounded-xl bg-[#F8FAFD] border border-slate-200 focus:bg-white focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/10 text-sm text-[#0B1E48] placeholder:text-slate-400 font-medium transition-all outline-none"
+                          className="w-full px-4 py-3 rounded-xl bg-[#F8FAFD] border border-slate-200 focus:bg-white focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/10 text-sm text-[#082B61] placeholder:text-slate-400 font-medium transition-all outline-none font-['Outfit',sans-serif]"
                         />
                       </div>
 
                       {/* Field 3: Email */}
                       <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-[#0B1E48] uppercase tracking-wider block">
+                        <label className="text-xs font-bold text-[#082B61] uppercase tracking-wider block font-['Outfit',sans-serif]">
                           Official Email <span className="text-rose-500">*</span>
                         </label>
                         <input
@@ -487,7 +487,7 @@ export default function ContactClient() {
                             if (errors.email) setErrors({ ...errors, email: "" });
                           }}
                           placeholder="name@company.com"
-                          className="w-full px-4 py-3 rounded-xl bg-[#F8FAFD] border border-slate-200 focus:bg-white focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/10 text-sm text-[#0B1E48] placeholder:text-slate-400 font-medium transition-all outline-none"
+                          className="w-full px-4 py-3 rounded-xl bg-[#F8FAFD] border border-slate-200 focus:bg-white focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/10 text-sm text-[#082B61] placeholder:text-slate-400 font-medium transition-all outline-none font-['Outfit',sans-serif]"
                         />
                         {errors.email && (
                           <p className="text-[11px] text-rose-500 font-medium mt-1">{errors.email}</p>
@@ -497,7 +497,7 @@ export default function ContactClient() {
 
                     {/* Field 4: Subject */}
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-[#0B1E48] uppercase tracking-wider block">
+                      <label className="text-xs font-bold text-[#082B61] uppercase tracking-wider block font-['Outfit',sans-serif]">
                         Inquiry Subject <span className="text-rose-500">*</span>
                       </label>
                       <input
@@ -508,7 +508,7 @@ export default function ContactClient() {
                           if (errors.subject) setErrors({ ...errors, subject: "" });
                         }}
                         placeholder="e.g., 355+ Formulations Catalogue / CTD Dossier Licensing / Contract Manufacturing"
-                        className="w-full px-4 py-3 rounded-xl bg-[#F8FAFD] border border-slate-200 focus:bg-white focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/10 text-sm text-[#0B1E48] placeholder:text-slate-400 font-medium transition-all outline-none"
+                        className="w-full px-4 py-3 rounded-xl bg-[#F8FAFD] border border-slate-200 focus:bg-white focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/10 text-sm text-[#082B61] placeholder:text-slate-400 font-medium transition-all outline-none font-['Outfit',sans-serif]"
                       />
                       {errors.subject && (
                         <p className="text-[11px] text-rose-500 font-medium mt-1">{errors.subject}</p>
@@ -517,7 +517,7 @@ export default function ContactClient() {
 
                     {/* Field 5: Message */}
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-[#0B1E48] uppercase tracking-wider block">
+                      <label className="text-xs font-bold text-[#082B61] uppercase tracking-wider block font-['Outfit',sans-serif]">
                         Requirements &amp; Technical Scope <span className="text-rose-500">*</span>
                       </label>
                       <textarea
@@ -528,7 +528,7 @@ export default function ContactClient() {
                           if (errors.message) setErrors({ ...errors, message: "" });
                         }}
                         placeholder="Please specify therapeutic molecules, batch sizing, destination country, or regulatory requirements..."
-                        className="w-full px-4 py-3 rounded-xl bg-[#F8FAFD] border border-slate-200 focus:bg-white focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/10 text-sm text-[#0B1E48] placeholder:text-slate-400 font-medium transition-all outline-none resize-y"
+                        className="w-full px-4 py-3 rounded-xl bg-[#F8FAFD] border border-slate-200 focus:bg-white focus:border-[#006EDC] focus:ring-4 focus:ring-[#006EDC]/10 text-sm text-[#082B61] placeholder:text-slate-400 font-medium transition-all outline-none resize-y font-['Outfit',sans-serif]"
                       />
                       {errors.message && (
                         <p className="text-[11px] text-rose-500 font-medium mt-1">{errors.message}</p>
@@ -537,7 +537,7 @@ export default function ContactClient() {
 
                     {/* Field 6: Terms & Privacy Policy Checkbox */}
                     <div className="pt-1">
-                      <label className="flex items-start gap-2.5 text-xs text-slate-600 font-normal cursor-pointer select-none">
+                      <label className="flex items-start gap-2.5 text-xs text-slate-600 font-normal cursor-pointer select-none font-['Outfit',sans-serif]">
                         <input
                           type="checkbox"
                           checked={formData.agreedToTerms}
@@ -583,7 +583,7 @@ export default function ContactClient() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full py-4 rounded-xl bg-gradient-to-r from-[#006EDC] via-[#0284C7] to-[#0052B4] hover:from-[#005bb8] hover:via-[#0275af] hover:to-[#082B61] text-white text-xs sm:text-sm font-bold uppercase tracking-[0.2em] transition-all cursor-pointer flex items-center justify-center gap-2.5 shadow-lg shadow-[#006EDC]/25 hover:shadow-xl hover:shadow-[#006EDC]/35 active:scale-[0.99] disabled:opacity-60"
+                        className="w-full py-4 rounded-xl bg-gradient-to-r from-[#006EDC] via-[#0284C7] to-[#0052B4] hover:from-[#005bb8] hover:via-[#0275af] hover:to-[#082B61] text-white text-xs sm:text-sm font-bold uppercase tracking-[0.2em] transition-all cursor-pointer flex items-center justify-center gap-2.5 shadow-lg shadow-[#006EDC]/25 hover:shadow-xl hover:shadow-[#006EDC]/35 active:scale-[0.99] disabled:opacity-60 font-['Outfit',sans-serif]"
                       >
                         {isSubmitting ? (
                           <>
@@ -611,7 +611,7 @@ export default function ContactClient() {
               <span className="font-['JetBrains_Mono',monospace] text-xs text-[#006EDC] font-bold uppercase tracking-[0.2em] block mb-1">
                 02 // CAPABILITIES &amp; CHANNELS
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0B1E48] uppercase tracking-tight">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#082B61] uppercase tracking-tight font-['Outfit',sans-serif]">
                 Inquiry <span className="text-[#006EDC]">Classification</span>
               </h2>
             </div>
@@ -639,7 +639,7 @@ export default function ContactClient() {
                     </div>
 
                     <div>
-                      <h3 className="text-lg font-bold text-[#0B1E48] group-hover:text-[#006EDC] transition-colors leading-snug">
+                      <h3 className="text-lg font-bold text-[#082B61] group-hover:text-[#006EDC] transition-colors leading-snug font-['Outfit',sans-serif] tracking-tight">
                         {stream.title}
                       </h3>
                       <p className="text-[11px] font-['JetBrains_Mono',monospace] text-[#006EDC] font-semibold mt-1">
