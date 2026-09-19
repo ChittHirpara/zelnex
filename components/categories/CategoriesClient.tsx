@@ -334,6 +334,7 @@ function CategoriesContent() {
               src="/brand/zelnex-hd-logo.png"
               alt="Zelnex Pharmaceuticals Pvt. Ltd."
               fill
+              sizes="(max-width: 640px) 288px, (max-width: 768px) 320px, 384px"
               className="object-contain"
               priority
             />
