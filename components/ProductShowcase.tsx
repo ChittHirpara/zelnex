@@ -34,7 +34,7 @@ const MATTE_GLASS_PRODUCTS: ProductCardItem[] = [
     image: "/products/tablets-capsules.jpg",
     description:
       "Film-coated, sustained-release, and hard-gelatin capsule formulations manufactured in WHO-GMP cleanrooms with high-barrier Alu-Alu packaging.",
-    specs: "Alu-Alu & PVDC Blisters · 550+ SKUs",
+    specs: "Alu-Alu & PVDC Blisters · 355+ SKUs",
     href: "/contact",
   },
   {

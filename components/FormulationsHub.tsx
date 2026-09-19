@@ -482,7 +482,7 @@ export function FormulationsHub() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 max-w-xl mx-auto">
             <div className="bg-white border border-slate-200/80 rounded-lg px-2.5 py-1.5 text-center shadow-2xs">
               <span className="block text-xs font-bold text-[#082B61] font-[family-name:var(--font-outfit)]">
-                550+
+                355+
               </span>
               <span className="text-[9.5px] text-slate-500 font-medium uppercase tracking-wider">
                 Molecules

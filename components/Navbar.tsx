@@ -45,7 +45,7 @@ export const SERVICES_LIST = [
   {
     id: "generic-products",
     title: "Generic Products",
-    subtitle: "550+ Commercial Finished Formulations",
+    subtitle: "355+ Commercial Finished Formulations",
     href: "/services?service=generic-products",
     badge: "04",
     badgeColor: "#8B5CF6",

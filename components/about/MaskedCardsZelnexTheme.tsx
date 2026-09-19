@@ -23,7 +23,7 @@ const SECTION3_BG =
 // Zelnex Core Feature Bars & Formulations
 const featureBars = [
   '10+ GLOBAL MARKETS SERVED',
-  '550+ FINISHED FORMULATIONS',
+  '355+ FINISHED FORMULATIONS',
   'PRIVATE LABEL • REGULATORY • EXPORT SUPPORT',
 ];
 
@@ -542,10 +542,10 @@ export function MaskedCardsZelnexTheme() {
                   {/* Divider */}
                   <div className="h-8 w-px bg-slate-200/80 shrink-0" />
 
-                  {/* 550+ Finished Formulations */}
+                  {/* 355+ Finished Formulations */}
                   <div className="shrink-0">
                     <div className="text-xl sm:text-2xl font-black text-[#082B61] tracking-tight leading-none mb-1">
-                      550+
+                      355+
                     </div>
                     <div className="text-[10px] sm:text-[11px] font-medium text-slate-500 leading-tight">
                       Finished Formulations
@@ -708,7 +708,7 @@ export function MaskedCardsZelnexTheme() {
                 </h3>
               </div>
               <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed font-[family-name:var(--font-outfit)] pl-4">
-                Directly addressing international procurement requirements with export-focused supply, 550+ finished formulations, turnkey private labeling, and full regulatory dossiers.
+                Directly addressing international procurement requirements with export-focused supply, 355+ finished formulations, turnkey private labeling, and full regulatory dossiers.
               </p>
             </div>
           </div>
@@ -716,7 +716,7 @@ export function MaskedCardsZelnexTheme() {
           {/* Bottom Row */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-4 mt-3 border-t border-neutral-200/70 text-xs md:text-sm font-bold uppercase tracking-wider font-[family-name:var(--font-outfit)]">
             <span className="text-[#082B61]">
-              EXPORT SUPPLY • 550+ FORMULATIONS • PRIVATE LABEL • REGULATORY
+              EXPORT SUPPLY • 355+ FORMULATIONS • PRIVATE LABEL • REGULATORY
             </span>
             <span className="text-slate-500 font-semibold text-[10px] md:text-xs">
               Direct Buyer Value Matrix
@@ -769,7 +769,7 @@ export function MaskedCardsZelnexTheme() {
                   <Package className="w-6 h-6 text-[#0D9488]" strokeWidth={1.8} />
                 </div>
                 <span className="text-[9.5px] sm:text-[10px] font-bold uppercase tracking-wider text-[#0D9488] bg-teal-50/90 px-2.5 py-1 rounded-full border border-teal-200/80 font-[family-name:var(--font-outfit)]">
-                  550+ Products
+                  355+ Products
                 </span>
               </div>
 
@@ -778,7 +778,7 @@ export function MaskedCardsZelnexTheme() {
               </h3>
 
               <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed font-[family-name:var(--font-outfit)]">
-                550+ finished formulations across multiple therapeutic categories and dosage forms.
+                355+ finished formulations across multiple therapeutic categories and dosage forms.
               </p>
             </div>
 

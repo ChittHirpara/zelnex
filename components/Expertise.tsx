@@ -113,7 +113,7 @@ const EXPERTISE_CARDS = [
     description:
       "Extensive export catalogue covering tablets, capsules, dry injections, syrups, sachets, and specialized combination therapies.",
     bullets: [
-      "550+ Commercial Products",
+      "355+ Commercial Products",
       "Multiple Dosage Formats",
       "Custom Export Artwork Branding",
     ],
@@ -121,7 +121,7 @@ const EXPERTISE_CARDS = [
     icon: Layers,
     image: "/services/generic-products-pills.png",
     widget: {
-      title: "550+ Generic Molecules",
+      title: "355+ Generic Molecules",
       subtitle: "Cardio, Antibiotics, CNS, GI",
       status: "Commercial Ready",
       metric: "10+ Categories",

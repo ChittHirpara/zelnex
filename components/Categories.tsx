@@ -123,7 +123,7 @@ export function Categories() {
 
             {/* Refined Descriptive Copy */}
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-              Engineered for global healthcare systems. Browse over <strong className="font-bold text-[#0B1E48]">550+ approved generic molecules</strong> categorized by therapeutic action, active APIs, stability validation, and specialized dosage delivery formats.
+              Engineered for global healthcare systems. Browse over <strong className="font-bold text-[#0B1E48]">355+ approved generic molecules</strong> categorized by therapeutic action, active APIs, stability validation, and specialized dosage delivery formats.
             </p>
 
             {/* Micro Metadata Indicator Line */}
@@ -207,7 +207,7 @@ export function Categories() {
             ZELNEX // THERAPEUTIC SPECTRUM ARCHIVE
           </div>
           <div className="pointer-events-none absolute top-6 right-8 text-[11px] font-['JetBrains_Mono',monospace] font-bold text-[#006EDC] bg-blue-50 border border-blue-200/60 px-2.5 py-0.5 rounded-md">
-            550+ FINISHED FORMULATIONS
+            355+ FINISHED FORMULATIONS
           </div>
 
           {/* Interactive Fan Carousel */}
@@ -221,7 +221,7 @@ export function Categories() {
               href="/products"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#006EDC] hover:bg-[#005bb8] text-white font-bold font-['Outfit',sans-serif] text-xs transition-all shadow-xs hover:shadow-md hover:scale-[1.02] self-start sm:self-auto cursor-pointer"
             >
-              <span>Explore Complete 550+ Formulation Directory</span>
+              <span>Explore Complete 355+ Formulation Directory</span>
               <span>→</span>
             </Link>
           </div>

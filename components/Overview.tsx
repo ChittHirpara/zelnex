@@ -275,7 +275,7 @@ export function Overview() {
                               Wide Product Portfolio
                             </span>
                             <span className="text-[10px] sm:text-[10.5px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 whitespace-nowrap">
-                              550+ Finished Formulations
+                              355+ Finished Formulations
                             </span>
                           </div>
                         </div>

@@ -31,7 +31,7 @@ export function BrowserFrame({
   const tabs = [
     { title: "zelnex.portal [HQ]", path: "/#home" },
     { title: "services.ectd [MOH]", path: "/services" },
-    { title: "formulary.catalog [550+]", path: "/#products" },
+    { title: "formulary.catalog [355+]", path: "/#products" },
     { title: "network.telemetry [50+]", path: "/#network" },
   ];
 

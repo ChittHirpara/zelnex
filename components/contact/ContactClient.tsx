@@ -34,7 +34,7 @@ const INQUIRY_STREAMS = [
   {
     number: "01",
     title: "Commercial Formulations",
-    subtitle: "550+ Finished Molecules",
+    subtitle: "355+ Finished Molecules",
     description:
       "Generic pharmaceutical products for international markets.",
     icon: Boxes,

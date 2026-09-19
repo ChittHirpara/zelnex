@@ -5,7 +5,7 @@ import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "Contract Manufacturing & Drug Regulatory Affairs (eCTD Dossiers)",
   description:
-    "End-to-end pharmaceutical manufacturing and regulatory affairs services. CTD/eCTD Modules 1-5 ready for MOH submissions, WHO-GMP contract formulation, private label supply for institutional hospital tenders, and 550+ generic formulations.",
+    "End-to-end pharmaceutical manufacturing and regulatory affairs services. CTD/eCTD Modules 1-5 ready for MOH submissions, WHO-GMP contract formulation, private label supply for institutional hospital tenders, and 355+ generic formulations.",
   keywords: [
     "pharmaceutical contract manufacturing India",
     "eCTD dossier licensing",

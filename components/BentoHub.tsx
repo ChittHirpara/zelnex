@@ -281,7 +281,7 @@ export function BentoHub() {
 
           <div>
             <h4 className="font-['Space_Grotesk'] text-base font-bold text-[#17181c] leading-tight">
-              Explore 581+ Formulations
+              Explore 355+ Formulations
             </h4>
             <p className="text-[11.5px] font-semibold text-[#17181c]/75 mt-1 flex items-center gap-1">
               <span>View Full Directory</span>
