@@ -55,7 +55,7 @@ const SERVICES_DATA: ServiceItem[] = [
       { label: "Dossier Format", value: "eCTD v4.0 / ACTD / NeeS" },
       { label: "Available Dossiers", value: "150+ Ready Files" },
       { label: "Stability Standard", value: "Zone IVb (36 Months)" },
-      { label: "Export Footprint", value: "50+ Global Markets" },
+      { label: "Export Footprint", value: "10+ Global Markets" },
     ],
     metrics: [
       { label: "Ready Dossiers", value: "150+" },
@@ -140,12 +140,12 @@ const SERVICES_DATA: ServiceItem[] = [
       { label: "Commercial Formulary", value: "355+ Formulations" },
       { label: "Therapeutic Breadth", value: "10+ Categories" },
       { label: "Documentation", value: "Full CTD / eCTD Files" },
-      { label: "Global Reach", value: "50+ Destinations" },
+      { label: "Global Reach", value: "10+ Destinations" },
     ],
     metrics: [
       { label: "Active SKUs", value: "355+" },
       { label: "Therapeutic Classes", value: "10+" },
-      { label: "Destinations", value: "50+" },
+      { label: "Destinations", value: "10+" },
     ],
     ctaText: "Download Product Catalog",
   },
@@ -214,7 +214,7 @@ function ServicesModernistContent() {
 
             <p className="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed max-w-3xl">
               End-to-end pharmaceutical manufacturing, institutional tender supply, and expedited
-              CTD/eCTD dossier submissions engineered for health ministries across 50+ global export markets.
+              CTD/eCTD dossier submissions engineered for health ministries across 10+ global export markets.
             </p>
           </div>
 

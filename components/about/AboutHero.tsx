@@ -14,14 +14,14 @@ import {
 export function AboutHero() {
   const stats = [
     {
-      num: "65+",
+      num: "10+",
       label: "Export Markets",
       sub: "Sovereign Nations",
       icon: Globe2,
       accent: "#006EDC",
     },
     {
-      num: "350+",
+      num: "355+",
       label: "Quality Products",
       sub: "Commercial Molecules",
       icon: Boxes,
@@ -109,7 +109,7 @@ export function AboutHero() {
 
             {/* Lead Narrative */}
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-3xl mb-8 font-normal">
-              <strong>Zelnex Pharmaceuticals Pvt. Ltd.</strong> is an export-oriented Indian pharmaceutical powerhouse delivering high-potency finished dosage formulations, comprehensive CTD/eCTD dossier libraries, and turnkey supply chain integration to health ministries, institutional tenders, and commercial distributor networks across 65+ sovereign nations.
+              <strong>Zelnex Pharmaceuticals Pvt. Ltd.</strong> is an export-oriented Indian pharmaceutical powerhouse delivering high-potency finished dosage formulations, comprehensive CTD/eCTD dossier libraries, and turnkey supply chain integration to health ministries, institutional tenders, and commercial distributor networks across 10+ sovereign nations.
             </p>
 
             {/* Quick Action CTAs */}

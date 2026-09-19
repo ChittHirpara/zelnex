@@ -97,7 +97,7 @@ export function BrowserHero() {
             {/* Monospaced Metadata Callout */}
             <div className="border-l-2 border-[#06B6D4] pl-4 sm:pl-5 my-2">
               <p className="text-xs sm:text-[13px] font-['JetBrains_Mono',monospace] uppercase text-[#0891B2] tracking-wider font-semibold leading-relaxed">
-                INTEGRATED REGULATORY DOSSIER REPOSITORY, FINISHED FORMULATION DISPATCH & CONTRACT MANUFACTURING INFRASTRUCTURE FOR 50+ GLOBAL DESTINATIONS.
+                INTEGRATED REGULATORY DOSSIER REPOSITORY, FINISHED FORMULATION DISPATCH & CONTRACT MANUFACTURING INFRASTRUCTURE FOR 10+ GLOBAL DESTINATIONS.
               </p>
             </div>
 

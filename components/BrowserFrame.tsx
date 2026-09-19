@@ -32,7 +32,7 @@ export function BrowserFrame({
     { title: "zelnex.portal [HQ]", path: "/#home" },
     { title: "services.ectd [MOH]", path: "/services" },
     { title: "formulary.catalog [355+]", path: "/#products" },
-    { title: "network.telemetry [50+]", path: "/#network" },
+    { title: "network.telemetry [10+]", path: "/#network" },
   ];
 
   const handleCopy = () => {

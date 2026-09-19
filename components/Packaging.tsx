@@ -138,8 +138,8 @@ const ROW_DATA: {
         highlight: "uniform droplet distribution.",
       },
       {
-        text: "Custom localized packaging artwork meeting 50+ country MOH mandates.",
-        highlight: "50+ country MOH mandates.",
+        text: "Custom localized packaging artwork meeting 10+ country MOH mandates.",
+        highlight: "10+ country MOH mandates.",
       },
     ],
   },

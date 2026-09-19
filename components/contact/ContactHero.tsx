@@ -95,7 +95,7 @@ export function ContactHero() {
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/90 border border-blue-100 shadow-2xs text-[#7C3AED]">
                 <Globe2 className="w-3.5 h-3.5" />
-                50+ EXPORT CORRIDORS
+                10+ EXPORT CORRIDORS
               </span>
             </div>
 

@@ -853,7 +853,7 @@ export function MaskedCardsZelnexTheme() {
       </section>
 
       {/* ══════════════════════════════════════════════════
-          SECTION 4: 65+ GLOBAL EXPORT FOOTPRINT & DOSSIERS
+          SECTION 4: 10+ GLOBAL EXPORT FOOTPRINT & DOSSIERS
           ══════════════════════════════════════════════════ */}
       <section
         ref={(el) => {
@@ -862,7 +862,7 @@ export function MaskedCardsZelnexTheme() {
         className="w-full flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-1.5 md:gap-2">
-          {/* Card A: 65+ Sovereign Export Corridors */}
+          {/* Card A: 10+ Sovereign Export Corridors */}
           <div
             style={s4Reveal.getAnimStyle(0)}
             className="md:col-span-2 rounded-xl md:rounded-2xl bg-stone-50 p-6 md:p-10 flex flex-col justify-between min-h-[260px] md:min-h-[320px] border border-neutral-200/60"
@@ -872,7 +872,7 @@ export function MaskedCardsZelnexTheme() {
                 International Regulatory Filings
               </span>
               <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.92] text-black tracking-tight">
-                65+ Sovereign
+                10+ Sovereign
                 <br />
                 Export Corridors
               </h2>

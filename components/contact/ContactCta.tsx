@@ -43,7 +43,7 @@ export function ContactCta() {
 
         {/* Subtitle */}
         <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal">
-          Connect with Zelnex Pharmaceuticals to explore high-potency finished generic formulations, reliable contract manufacturing, and international MOH dossier licensing across 50+ countries.
+          Connect with Zelnex Pharmaceuticals to explore high-potency finished generic formulations, reliable contract manufacturing, and international MOH dossier licensing across 10+ countries.
         </p>
 
         {/* Action Buttons */}
@@ -78,7 +78,7 @@ export function ContactCta() {
           </span>
           <span className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-cyan-400" />
-            50+ GLOBAL NATIONS
+            10+ GLOBAL NATIONS
           </span>
         </div>
 

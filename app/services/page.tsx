@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contract Manufacturing & Regulatory Affairs | Zelnex Pharmaceuticals",
     description:
-      "WHO-GMP validated contract manufacturing, private-label supply for tenders, and complete CTD/eCTD dossier licensing across 50+ global export markets.",
+      "WHO-GMP validated contract manufacturing, private-label supply for tenders, and complete CTD/eCTD dossier licensing across 10+ global export markets.",
     url: "https://zelnexpharma.com/services",
     type: "website",
   },

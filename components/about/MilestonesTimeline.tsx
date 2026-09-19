@@ -47,7 +47,7 @@ export function MilestonesTimeline() {
       ],
       badge: "GMP_ACCREDITED",
       accent: "#0284C7",
-      stats: { markets: "18+", products: "120+", dossiers: "45+" },
+      stats: { markets: "6+", products: "120+", dossiers: "45+" },
     },
     {
       year: 2022,
@@ -63,15 +63,15 @@ export function MilestonesTimeline() {
       ],
       badge: "ECTD_EXPANSION",
       accent: "#0D9488",
-      stats: { markets: "35+", products: "240+", dossiers: "90+" },
+      stats: { markets: "8+", products: "240+", dossiers: "90+" },
     },
     {
       year: 2024,
       tag: "GLOBAL EXPANSION",
-      title: "65+ Sovereign Nations Footprint",
-      subtitle: "350+ Formulations & 150+ Ready CTD Dossiers",
+      title: "10+ Sovereign Nations Footprint",
+      subtitle: "355+ Formulations & 150+ Ready CTD Dossiers",
       description:
-        "Scaled global export corridors to over 65 countries worldwide with 350+ commercial molecules and 150+ active international pharmaceutical clients. Continuous air and ocean freight corridors from Surat and Mumbai to major international medical transit hubs.",
+        "Scaled global export corridors to over 10 countries worldwide with 355+ commercial molecules and 150+ active international pharmaceutical clients. Continuous air and ocean freight corridors from Surat and Mumbai to major international medical transit hubs.",
       highlights: [
         "Active market presence across Africa, Asia, Middle East, CIS & LATAM",
         "150+ ready-to-file CTD/eCTD registration dossiers",
@@ -79,7 +79,7 @@ export function MilestonesTimeline() {
       ],
       badge: "GLOBAL_PRESENCE",
       accent: "#4F46E5",
-      stats: { markets: "65+", products: "350+", dossiers: "150+" },
+      stats: { markets: "10+", products: "355+", dossiers: "150+" },
     },
     {
       year: 2026,
@@ -95,7 +95,7 @@ export function MilestonesTimeline() {
       ],
       badge: "INNOVATION_NEXT",
       accent: "#10B981",
-      stats: { markets: "80+", products: "500+", dossiers: "220+" },
+      stats: { markets: "25+", products: "500+", dossiers: "220+" },
     },
   ];
 
@@ -116,7 +116,7 @@ export function MilestonesTimeline() {
             </h2>
           </div>
           <p className="text-sm text-slate-500 max-w-md">
-            From our founding in Surat to a global footprint spanning 65+ sovereign nations, discover the key milestones that define our journey.
+            From our founding in Surat to a global footprint spanning 10+ sovereign nations, discover the key milestones that define our journey.
           </p>
         </div>
 

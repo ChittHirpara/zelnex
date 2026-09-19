@@ -11,7 +11,7 @@ export function CorporationJsonLd() {
     logo: "https://zelnexpharma.com/brand/zelnex-official-logo.png",
     image: "https://zelnexpharma.com/brand/zelnex-hd-logo.png",
     description:
-      "Zelnex Pharmaceuticals Pvt. Ltd. is an export-oriented pharmaceutical powerhouse delivering WHO-GMP certified finished generic formulations, CTD/eCTD dossiers, and turnkey pharmaceutical supplies across 50+ countries worldwide.",
+      "Zelnex Pharmaceuticals Pvt. Ltd. is an export-oriented pharmaceutical powerhouse delivering WHO-GMP certified finished generic formulations, CTD/eCTD dossiers, and turnkey pharmaceutical supplies across 10+ countries worldwide.",
     telephone: "+919328286164",
     email: "info@zelnexpharmaceuticals.com",
     address: {

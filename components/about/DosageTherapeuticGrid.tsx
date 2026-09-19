@@ -56,7 +56,7 @@ export function DosageTherapeuticGrid() {
               06.00 // DOSAGE FORMS &amp; THERAPEUTIC SPECTRUM
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B1E48] tracking-tight font-['Inter',sans-serif]">
-              350+ Formulations Across Key Clinical Categories
+              355+ Formulations Across Key Clinical Categories
             </h2>
           </div>
           <p className="text-sm text-slate-500 max-w-md">

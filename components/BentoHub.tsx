@@ -101,7 +101,7 @@ export function BentoHub() {
               Global Pharmaceutical Manufacturer & Exporter
             </p>
             <p className="text-xs sm:text-[13px] leading-relaxed text-[#5b5e68] mt-2.5 max-w-md">
-              We engineer accredited oral solids, sterile injectables, and specialized therapeutics for hospitals and distributors across 50+ countries.
+              We engineer accredited oral solids, sterile injectables, and specialized therapeutics for hospitals and distributors across 10+ countries.
             </p>
           </div>
 
@@ -190,7 +190,7 @@ export function BentoHub() {
 
           <div>
             <div className="font-['Space_Grotesk'] text-4xl font-bold tracking-tight leading-none">
-              50+
+              10+
             </div>
             <p className="text-xs font-semibold text-white/80 mt-1">
               Countries Cleared

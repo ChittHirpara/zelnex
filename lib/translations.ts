@@ -335,7 +335,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       titleLine1: "Better Health",
       titleLine2: "for a Better World",
       subheading:
-        "We are committed to improving lives through innovative medicines and trusted healthcare solutions across 50+ global export destinations.",
+        "We are committed to improving lives through innovative medicines and trusted healthcare solutions across 10+ global export destinations.",
       exploreProducts: "Explore Our Products",
       contactDesk: "Export Desk",
       sidebar: {
@@ -345,10 +345,10 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         location: "Location",
       },
       stats: {
-        stat1Number: "65+",
+        stat1Number: "10+",
         stat1Top: "Countries",
         stat1Bottom: "Worldwide",
-        stat2Number: "350+",
+        stat2Number: "355+",
         stat2Top: "Quality",
         stat2Bottom: "Products",
         stat3Number: "150+",
@@ -373,7 +373,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         stat2Number: "355+",
         stat2Top: "Commercial",
         stat2Bottom: "Formulations",
-        stat3Number: "50+",
+        stat3Number: "10+",
         stat3Top: "Export Country",
         stat3Bottom: "Global Reach",
         stat4Number: "100%",
@@ -464,7 +464,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       button: "Get in Touch",
       cards: {
         card1Title: "Advanced Manufacturing",
-        card2Title: "50+ Countries",
+        card2Title: "10+ Countries",
         card2Subtitle:
           "Expanding access to essential medicines across international markets.",
         card3Title: "300+ Quality Products",
@@ -530,7 +530,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       careers: {
         badge: "Careers & Global Partnerships",
         title: "Build your global healthcare footprint with Zelnex",
-        desc: "Join a dynamic pharmaceutical export powerhouse dedicated to quality, compliance, and expanding international healthcare access across 50+ countries.",
+        desc: "Join a dynamic pharmaceutical export powerhouse dedicated to quality, compliance, and expanding international healthcare access across 10+ countries.",
         cta1: "Enquire for Partnership",
         cta2: "Join Our Export Network",
       },
@@ -608,12 +608,12 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       badge: "Regulatory Accreditations",
       title: "Where Global Quality Meets Regulatory Compliance",
       subtitle:
-        "Sourced strictly from WHO-GMP accredited facilities with verified CTD/eCTD dossier readiness across 50+ international health ministries.",
+        "Sourced strictly from WHO-GMP accredited facilities with verified CTD/eCTD dossier readiness across 10+ international health ministries.",
       metrics: [
         { label: "Manufacturing Facility", value: "WHO-GMP & ISO 9001" },
         { label: "Export Stability", value: "Zone IVb (30°C / 75% RH)" },
         { label: "Dossier Readiness", value: "CTD / eCTD Modules 1–5" },
-        { label: "Active Registrations", value: "50+ Global Health Ministries" },
+        { label: "Active Registrations", value: "10+ Global Health Ministries" },
       ],
       tabs: {
         all: "All Regions",
@@ -643,14 +643,14 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     network: {
       badge: "Global Footprint",
-      title: "Exporting to 50+ Countries Worldwide",
+      title: "Exporting to 10+ Countries Worldwide",
       subtitle:
         "Our robust international supply chain connects healthcare providers, ministries of health, and commercial distributors across 4 continents.",
-      stat1Label: "50+ Countries",
+      stat1Label: "10+ Countries",
       stat1Desc: "Active international markets served",
       stat2Label: "4 Continents",
       stat2Desc: "Africa, Asia, CIS & Latin America",
-      stat3Label: "50+ Health Ministries",
+      stat3Label: "10+ Health Ministries",
       stat3Desc: "MOH registered dossiers & visas",
       stat4Label: "24/7 Logistics",
       stat4Desc: "Monitored international dispatch",
@@ -746,7 +746,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
             "Antiviral, Antimalarial, Antifungal & Oncology",
             "Cardiovascular, Beta-Lactam, NSAIDs & Antidiabetic",
             "Anti-Asthmatic, Antiemetic, Anesthetic & Antacids",
-            "Deep customer relationships across 50+ countries",
+            "Deep customer relationships across 10+ countries",
           ],
         },
       ],
@@ -882,7 +882,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       titleLine1: "Mejor Salud",
       titleLine2: "para un Mundo Mejor",
       subheading:
-        "Comprometidos con mejorar vidas a través de medicamentos genéricos de alta calidad y soluciones confiables para más de 50 países.",
+        "Comprometidos con mejorar vidas a través de medicamentos genéricos de alta calidad y soluciones confiables para más de 10 países.",
       exploreProducts: "Explorar Productos",
       contactDesk: "Mesa de Exportación",
       sidebar: {
@@ -892,10 +892,10 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         location: "Ubicación",
       },
       stats: {
-        stat1Number: "65+",
+        stat1Number: "10+",
         stat1Top: "Países",
         stat1Bottom: "en el Mundo",
-        stat2Number: "350+",
+        stat2Number: "355+",
         stat2Top: "Productos",
         stat2Bottom: "Certificados",
         stat3Number: "150+",
@@ -920,7 +920,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         stat2Number: "355+",
         stat2Top: "Fórmulas",
         stat2Bottom: "Comerciales",
-        stat3Number: "50+",
+        stat3Number: "10+",
         stat3Top: "Países de",
         stat3Bottom: "Exportación",
         stat4Number: "100%",
@@ -1011,7 +1011,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       button: "Contáctenos",
       cards: {
         card1Title: "Manufactura Avanzada",
-        card2Title: "50+ Países",
+        card2Title: "10+ Países",
         card2Subtitle:
           "Ampliando el acceso a medicamentos esenciales en mercados internacionales.",
         card3Title: "300+ Productos de Calidad",
@@ -1077,7 +1077,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       careers: {
         badge: "Carreras y Alianzas Globales",
         title: "Construya su presencia en salud global con Zelnex",
-        desc: "Únase a una potencia exportadora farmacéutica dinámica dedicada a la calidad, la normativa y la expansión en más de 50 países.",
+        desc: "Únase a una potencia exportadora farmacéutica dinámica dedicada a la calidad, la normativa y la expansión en más de 10 países.",
         cta1: "Consultar para Alianza",
         cta2: "Unirse a Nuestra Red",
       },
@@ -1155,12 +1155,12 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       badge: "Acreditaciones Regulatorias",
       title: "Donde la Calidad Global se Une al Cumplimiento Normativo",
       subtitle:
-        "Suministro exclusivo desde plantas certificadas OMS-GMP con dossiers CTD/eCTD aprobados en más de 50 ministerios de salud.",
+        "Suministro exclusivo desde plantas certificadas OMS-GMP con dossiers CTD/eCTD aprobados en más de 10 ministerios de salud.",
       metrics: [
         { label: "Planta de Fabricación", value: "OMS-GMP e ISO 9001" },
         { label: "Estabilidad de Exportación", value: "Zona IVb (30°C / 75% HR)" },
         { label: "Disponibilidad de Dossier", value: "CTD / eCTD Módulos 1–5" },
-        { label: "Registros Sanitarios Activos", value: "50+ Ministerios de Salud" },
+        { label: "Registros Sanitarios Activos", value: "10+ Ministerios de Salud" },
       ],
       tabs: {
         all: "Todas las Regiones",
@@ -1190,14 +1190,14 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     network: {
       badge: "Alcance Internacional",
-      title: "Exportando a Más de 50 Países",
+      title: "Exportando a Más de 10 Países",
       subtitle:
         "Nuestra cadena de suministro conecta ministerios de salud y distribuidores mayoristas en 4 continentes.",
-      stat1Label: "50+ Países",
+      stat1Label: "10+ Países",
       stat1Desc: "Mercados internacionales activos",
       stat2Label: "4 Continentes",
       stat2Desc: "África, Asia, CEI y América Latina",
-      stat3Label: "50+ Ministerios de Salud",
+      stat3Label: "10+ Ministerios de Salud",
       stat3Desc: "Dossiers y registros aprobados",
       stat4Label: "Logística 24/7",
       stat4Desc: "Despacho internacional monitoreado",
@@ -1300,7 +1300,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
             "Antivirales, Antipalúdicos, Antifúngicos y Oncológicos",
             "Cardiovascular, Betalactámicos, AINEs y Antidiabéticos",
             "Antiasmáticos, Antieméticos, Anestésicos y Antiácidos",
-            "Sólidas relaciones comerciales en más de 50 países",
+            "Sólidas relaciones comerciales en más de 10 países",
           ],
         },
       ],
@@ -1436,7 +1436,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       titleLine1: "Melhor Saúde",
       titleLine2: "para um Mundo Melhor",
       subheading:
-        "Estamos comprometidos em melhorar vidas por meio de medicamentos inovadores e soluções confiáveis de saúde com certificação internacional em mais de 50 países.",
+        "Estamos comprometidos em melhorar vidas por meio de medicamentos inovadores e soluções confiáveis de saúde com certificação internacional em mais de 10 países.",
       exploreProducts: "Explorar Nossos Produtos",
       contactDesk: "Mesa de Exportação",
       sidebar: {
@@ -1446,10 +1446,10 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         location: "Localização",
       },
       stats: {
-        stat1Number: "65+",
+        stat1Number: "10+",
         stat1Top: "Países",
         stat1Bottom: "Atendidos",
-        stat2Number: "350+",
+        stat2Number: "355+",
         stat2Top: "Produtos",
         stat2Bottom: "de Qualidade",
         stat3Number: "150+",
@@ -1474,7 +1474,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         stat2Number: "355+",
         stat2Top: "Formulações",
         stat2Bottom: "Comerciais",
-        stat3Number: "50+",
+        stat3Number: "10+",
         stat3Top: "Países de",
         stat3Bottom: "Exportação",
         stat4Number: "100%",
@@ -1565,7 +1565,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       button: "Entrar em Contato",
       cards: {
         card1Title: "Fabricação Avançada",
-        card2Title: "50+ Países",
+        card2Title: "10+ Países",
         card2Subtitle:
           "Ampliando o acesso a medicamentos essenciais nos mercados internacionais.",
         card3Title: "300+ Produtos de Qualidade",
@@ -1631,7 +1631,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       careers: {
         badge: "Carreiras e Parcerias Globais",
         title: "Construa sua presença em saúde global com a Zelnex",
-        desc: "Junte-se a uma potência exportadora farmacêutica dinâmica dedicada à qualidade, conformidade e expansão em mais de 50 países.",
+        desc: "Junte-se a uma potência exportadora farmacêutica dinâmica dedicada à qualidade, conformidade e expansão em mais de 10 países.",
         cta1: "Consultar para Parceria",
         cta2: "Juntar-se à Nossa Rede",
       },
@@ -1709,12 +1709,12 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       badge: "Acreditações Regulatórias",
       title: "Onde a Qualidade Global Encontra a Conformidade Regulatória",
       subtitle:
-        "Fornecido estritamente a partir de instalações credenciadas WHO-GMP com prontidão comprovada de dossiês CTD/eCTD em mais de 50 ministérios da saúde.",
+        "Fornecido estritamente a partir de instalações credenciadas WHO-GMP com prontidão comprovada de dossiês CTD/eCTD em mais de 10 ministérios da saúde.",
       metrics: [
         { label: "Instalação de Fabricação", value: "WHO-GMP e ISO 9001" },
         { label: "Estabilidade de Exportação", value: "Zona IVb (30°C / 75% UR)" },
         { label: "Prontidão de Dossiê", value: "CTD / eCTD Módulos 1–5" },
-        { label: "Registros Sanitários Ativos", value: "50+ Ministérios da Saúde" },
+        { label: "Registros Sanitários Ativos", value: "10+ Ministérios da Saúde" },
       ],
       tabs: {
         all: "Todas as Regiões",
@@ -1744,14 +1744,14 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     network: {
       badge: "Presença Mundial",
-      title: "Exportando para Mais de 50 Países",
+      title: "Exportando para Mais de 10 Países",
       subtitle:
         "Nossa robusta cadeia de suprimentos conecta provedores de saúde, ministérios e distribuidores comerciais em 4 continentes.",
-      stat1Label: "50+ Países",
+      stat1Label: "10+ Países",
       stat1Desc: "Mercados internacionais atendidos",
       stat2Label: "4 Continentes",
       stat2Desc: "África, Ásia, CEI e América Latina",
-      stat3Label: "50+ Ministérios da Saúde",
+      stat3Label: "10+ Ministérios da Saúde",
       stat3Desc: "Dossiês e registros aprovados",
       stat4Label: "Logística 24/7",
       stat4Desc: "Despacho internacional monitorado",
@@ -1842,7 +1842,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
             "Antivirais, Antimaláricos, Antifúngicos e Oncológicos",
             "Cardiovascular, Betalactâmicos, AINEs e Antidiabéticos",
             "Antiasmáticos, Antieméticos, Anestésicos e Antiácidos",
-            "Sólidas parcerias comerciais em mais de 50 países",
+            "Sólidas parcerias comerciais em mais de 10 países",
           ],
         },
       ],
@@ -1978,7 +1978,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       titleLine1: "Une Meilleure Santé",
       titleLine2: "pour un Monde Meilleur",
       subheading:
-        "Nous nous engageons à améliorer des vies grâce à des médicaments génériques de haute qualité et des solutions de santé fiables dans plus de 50 pays.",
+        "Nous nous engageons à améliorer des vies grâce à des médicaments génériques de haute qualité et des solutions de santé fiables dans plus de 10 pays.",
       exploreProducts: "Explorer Nos Produits",
       contactDesk: "Pôle Export",
       sidebar: {
@@ -1988,10 +1988,10 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         location: "Localisation",
       },
       stats: {
-        stat1Number: "65+",
+        stat1Number: "10+",
         stat1Top: "Pays",
         stat1Bottom: "dans le Monde",
-        stat2Number: "350+",
+        stat2Number: "355+",
         stat2Top: "Produits",
         stat2Bottom: "de Qualité",
         stat3Number: "150+",
@@ -2016,7 +2016,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         stat2Number: "355+",
         stat2Top: "Formulations",
         stat2Bottom: "Commerciales",
-        stat3Number: "50+",
+        stat3Number: "10+",
         stat3Top: "Pays d'",
         stat3Bottom: "Exportation",
         stat4Number: "100%",
@@ -2107,7 +2107,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       button: "Nous Contacter",
       cards: {
         card1Title: "Fabrication Avancée",
-        card2Title: "50+ Pays",
+        card2Title: "10+ Pays",
         card2Subtitle:
           "Élargir l'accès aux médicaments essentiels sur les marchés internationaux.",
         card3Title: "300+ Produits de Qualité",
@@ -2173,7 +2173,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       careers: {
         badge: "Carrières et Partenariats Mondiaux",
         title: "Développez votre empreinte dans la santé avec Zelnex",
-        desc: "Rejoignez un laboratoire d'exportation pharmaceutique dynamique engagé dans la qualité, la conformité et l'accès aux soins dans plus de 50 pays.",
+        desc: "Rejoignez un laboratoire d'exportation pharmaceutique dynamique engagé dans la qualité, la conformité et l'accès aux soins dans plus de 10 pays.",
         cta1: "Demande de Partenariat",
         cta2: "Rejoindre Notre Réseau",
       },
@@ -2251,12 +2251,12 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       badge: "Accréditations Réglementaires",
       title: "L'Alliance de la Qualité Mondiale et de la Conformité",
       subtitle:
-        "Approvisionnement strict auprès d'usines accréditées OMS-GMP avec dossiers CTD/eCTD validés dans plus de 50 ministères de la santé.",
+        "Approvisionnement strict auprès d'usines accréditées OMS-GMP avec dossiers CTD/eCTD validés dans plus de 10 ministères de la santé.",
       metrics: [
         { label: "Usine de Fabrication", value: "OMS-GMP et ISO 9001" },
         { label: "Stabilité d'Exportation", value: "Zone IVb (30°C / 75% HR)" },
         { label: "Disponibilité des Dossiers", value: "CTD / eCTD Modules 1–5" },
-        { label: "Homologations Actives", value: "50+ Ministères de la Santé" },
+        { label: "Homologations Actives", value: "10+ Ministères de la Santé" },
       ],
       tabs: {
         all: "Toutes Régions",
@@ -2286,14 +2286,14 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     network: {
       badge: "Rayonnement Mondial",
-      title: "Présence dans Plus de 50 Pays",
+      title: "Présence dans Plus de 10 Pays",
       subtitle:
         "Notre réseau logistique relie hôpitaux, ministères et distributeurs sur 4 continents.",
-      stat1Label: "50+ Pays",
+      stat1Label: "10+ Pays",
       stat1Desc: "Marchés internationaux actifs",
       stat2Label: "4 Continents",
       stat2Desc: "Afrique, Asie, CEI et Amérique Latine",
-      stat3Label: "50+ Ministères de la Santé",
+      stat3Label: "10+ Ministères de la Santé",
       stat3Desc: "Dossiers et visas approuvés",
       stat4Label: "Logistique 24/7",
       stat4Desc: "Expéditions internationales suivies",
@@ -2384,7 +2384,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
             "Antiviraux, Antipaludéens, Antifongiques et Oncologie",
             "Cardiovasculaire, Bêta-lactamines, AINS et Antidiabétiques",
             "Antiasthmatiques, Antiémétiques, Anesthésiques et Antiémétiques",
-            "Partenariats commerciaux solides dans plus de 50 pays",
+            "Partenariats commerciaux solides dans plus de 10 pays",
           ],
         },
       ],

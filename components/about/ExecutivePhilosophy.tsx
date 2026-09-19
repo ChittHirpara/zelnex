@@ -66,7 +66,7 @@ export function ExecutivePhilosophy() {
     governance: {
       badge: "01.04 // GLOBAL COMPLIANCE",
       title: "Seamless International Regulatory & CTD/eCTD Dossier Integration",
-      lead: "Maintaining seamless alignment with foreign health ministries and regional regulatory authorities through ready Common Technical Document (CTD) and electronic CTD (eCTD) dossiers across 65+ countries.",
+      lead: "Maintaining seamless alignment with foreign health ministries and regional regulatory authorities through ready Common Technical Document (CTD) and electronic CTD (eCTD) dossiers across 10+ countries.",
       points: [
         "Ready Modules 1–5 eCTD, ACTD, and NeeS format dossier packages.",
         "Direct facilitation of COPP (Certificate of Pharmaceutical Product) and FSC.",

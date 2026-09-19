@@ -171,7 +171,7 @@ export function Certifications() {
     { label: t.certifications.metrics[0]?.label || "Manufacturing Facility", value: t.certifications.metrics[0]?.value || "WHO-GMP & ISO 9001", icon: ShieldCheck },
     { label: t.certifications.metrics[1]?.label || "Export Stability", value: t.certifications.metrics[1]?.value || "Zone IVb (30°C / 75% RH)", icon: Award },
     { label: t.certifications.metrics[2]?.label || "Dossier Readiness", value: t.certifications.metrics[2]?.value || "CTD / eCTD Modules 1–5", icon: FileCheck2 },
-    { label: t.certifications.metrics[3]?.label || "Active Registrations", value: t.certifications.metrics[3]?.value || "50+ Global Health Ministries", icon: Globe2 },
+    { label: t.certifications.metrics[3]?.label || "Active Registrations", value: t.certifications.metrics[3]?.value || "10+ Global Health Ministries", icon: Globe2 },
   ];
 
   const categories = [

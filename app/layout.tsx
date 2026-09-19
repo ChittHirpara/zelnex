@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s | Zelnex Pharmaceuticals",
   },
   description:
-    "Zelnex Pharmaceuticals is a premier export-oriented pharmaceutical powerhouse delivering high-quality, WHO-GMP certified generic formulations, CTD/eCTD dossiers, and turnkey supply to 50+ countries worldwide.",
+    "Zelnex Pharmaceuticals is a premier export-oriented pharmaceutical powerhouse delivering high-quality, WHO-GMP certified generic formulations, CTD/eCTD dossiers, and turnkey supply to 10+ countries worldwide.",
   applicationName: "Zelnex Pharmaceuticals",
   keywords: [
     "Zelnex Pharmaceuticals",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     siteName: "Zelnex Pharmaceuticals",
     title: "Zelnex Pharmaceuticals Pvt. Ltd. | Global Generic Formulations & Export",
     description:
-      "Delivering high-quality, affordable, and globally compliant healthcare solutions across 50+ countries. WHO-GMP, ISO 9001:2015, and complete CTD dossier readiness.",
+      "Delivering high-quality, affordable, and globally compliant healthcare solutions across 10+ countries. WHO-GMP, ISO 9001:2015, and complete CTD dossier readiness.",
     images: [
       {
         url: "/brand/zelnex-hd-logo.png",

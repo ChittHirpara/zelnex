@@ -65,7 +65,7 @@ ZELNEX/
 │   ├── Navbar.tsx                       # Dual-mode header: transparent at top vs. floating glass capsule on scroll
 │   ├── Hero.tsx                         # Parallax hero section with brand taglines and CTA buttons
 │   ├── TrustBanner.tsx                  # Key capabilities bar (Research Driven, Quality Assured, Global, Patient-Focused)
-│   ├── Overview.tsx                     # Mission overview + 3 glass stats cards (8+ Yrs, 355+ Products, 50+ Countries)
+│   ├── Overview.tsx                     # Mission overview + 3 glass stats cards (8+ Yrs, 355+ Products, 10+ Countries)
 │   ├── Expertise.tsx                    # 3D interactive tilt cards (Regulatory, Contract Mfg, 3rd Party, Generics)
 │   ├── Categories.tsx                   # 20 therapeutic category glass pills (Antibiotics, Cardiac, Derma, etc.)
 │   ├── Packaging.tsx                    # Packaging format indicators (Alu-Alu, Blisters, HDPE, Softgels, etc.)
@@ -123,13 +123,13 @@ ZELNEX/
 
 ### 4.4. Key Capabilities Trust Bar ([`TrustBanner.tsx`](file:///c:/Users/CHITT/OneDrive/Desktop/freelance/ZELNEX/components/TrustBanner.tsx))
 - Overlaps the bottom of the hero section with a clean white glass card (`shadow-[0_16px_50px_rgba(11,30,72,0.08)]`).
-- Features 4 value pillars: Research Driven, Quality Assured (WHO-GMP), Global Presence (50+ Countries), and Patient-Focused.
+- Features 4 value pillars: Research Driven, Quality Assured (WHO-GMP), Global Presence (10+ Countries), and Patient-Focused.
 
 ### 4.5. Company Overview ([`Overview.tsx`](file:///c:/Users/CHITT/OneDrive/Desktop/freelance/ZELNEX/components/Overview.tsx))
 - Grid layout pairing executive company summary copy with 3 statistics glass cards:
   - **8+ Years** of Pharmaceutical Expertise
   - **355+** Quality Products
-  - **50+** Target Export Countries
+  - **10+** Target Export Countries
 - Includes a direct link to the dedicated `/overview` sub-page.
 
 ### 4.6. Our Expertise ([`Expertise.tsx`](file:///c:/Users/CHITT/OneDrive/Desktop/freelance/ZELNEX/components/Expertise.tsx))

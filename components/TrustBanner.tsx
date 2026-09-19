@@ -20,7 +20,7 @@ const FEATURES = [
   },
   {
     title: "Global Presence",
-    desc: "Trusted supply across 50+ international markets.",
+    desc: "Trusted supply across 10+ international markets.",
     icon: PeopleIcon,
   },
   {

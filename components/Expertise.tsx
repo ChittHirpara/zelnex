@@ -43,7 +43,7 @@ const EXPERTISE_CARDS = [
       title: "eCTD Module 1–5",
       subtitle: "Zone IVb Stability Validation",
       status: "Ready for Filing",
-      metric: "50+ Countries",
+      metric: "10+ Countries",
     },
   },
   {
@@ -192,7 +192,7 @@ export function Expertise() {
           <div className="my-3.5 h-[3px] w-12 rounded-full bg-[#006EDC]" />
 
           <p className="text-sm sm:text-base leading-relaxed text-[#4B5563] max-w-2xl font-normal">
-            From regulatory dossier readiness to contract manufacturing and finished generics, Zelnex is built for scalable, compliant collaboration across 50+ international markets.
+            From regulatory dossier readiness to contract manufacturing and finished generics, Zelnex is built for scalable, compliant collaboration across 10+ international markets.
           </p>
         </div>
 

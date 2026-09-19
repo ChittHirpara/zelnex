@@ -49,7 +49,7 @@ export function CertificationsGrid() {
       title: "Star Export House Protocol",
       authority: "Directorate General of Foreign Trade (DGFT)",
       badge: "GLOBAL TRADE CORRIDORS",
-      desc: "Export-oriented institutional framework certified for high-frequency ocean and air freight shipments to 65+ sovereign health ministries.",
+      desc: "Export-oriented institutional framework certified for high-frequency ocean and air freight shipments to 10+ sovereign health ministries.",
       image: "/certificates/star-export.png",
       accent: "#10B981",
     },

@@ -5,7 +5,7 @@ import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "About Zelnex | WHO-GMP Certified Pharmaceutical Manufacturer & Exporter",
   description:
-    "Zelnex Pharmaceuticals Pvt. Ltd. is a premier WHO-GMP certified manufacturer and exporter based in Surat, Gujarat, India. Supplying 355+ finished formulations, 150+ ready CTD/eCTD dossiers, and turnkey global supply chain across 50+ countries.",
+    "Zelnex Pharmaceuticals Pvt. Ltd. is a premier WHO-GMP certified manufacturer and exporter based in Surat, Gujarat, India. Supplying 355+ finished formulations, 150+ ready CTD/eCTD dossiers, and turnkey global supply chain across 10+ countries.",
   keywords: [
     "Zelnex Pharmaceuticals",
     "About Zelnex",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About Zelnex Pharmaceuticals | WHO-GMP Certified Manufacturer",
     description:
-      "WHO-GMP certified finished generic pharmaceutical formulations, 150+ ready CTD/eCTD dossiers, and turnkey global supply chain across 50+ countries.",
+      "WHO-GMP certified finished generic pharmaceutical formulations, 150+ ready CTD/eCTD dossiers, and turnkey global supply chain across 10+ countries.",
     url: "https://zelnexpharma.com/about",
     siteName: "Zelnex Pharmaceuticals Pvt. Ltd.",
     locale: "en_US",

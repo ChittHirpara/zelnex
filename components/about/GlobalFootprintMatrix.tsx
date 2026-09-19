@@ -13,8 +13,8 @@ export function GlobalFootprintMatrix() {
   const regions = {
     africa: {
       name: "Africa & ECOWAS",
-      badge: "30+ MARKETS",
-      count: "30+ Countries",
+      badge: "CORE MARKETS",
+      count: "Key Markets",
       summary:
         "Extensive institutional supply and commercial distribution network across West, East, Central, and Southern Africa. Fast-track NAFDAC, TMDA, PPB, and FDA dossier approvals.",
       countries: [
@@ -32,8 +32,8 @@ export function GlobalFootprintMatrix() {
     },
     asia: {
       name: "Asia & ASEAN",
-      badge: "15+ MARKETS",
-      count: "15+ Countries",
+      badge: "TARGET MARKETS",
+      count: "Regional Markets",
       summary:
         "Strategic penetration across Southeast and South Asian health markets with complete ACTD / eCTD regulatory submissions and localized bioequivalence packages.",
       countries: [
@@ -49,8 +49,8 @@ export function GlobalFootprintMatrix() {
     },
     gcc: {
       name: "Middle East & GCC",
-      badge: "8+ MARKETS",
-      count: "8+ Countries",
+      badge: "GCC REGION",
+      count: "Middle East",
       summary:
         "High-compliance finished dosage exports to GCC and Middle Eastern health ministries. Turnkey COPP documentation and localized Arabic artwork packaging compliance.",
       countries: [
@@ -65,8 +65,8 @@ export function GlobalFootprintMatrix() {
     },
     cis: {
       name: "CIS & Central Asia",
-      badge: "7+ MARKETS",
-      count: "7+ Countries",
+      badge: "CIS REGION",
+      count: "Central Asia",
       summary:
         "Expanding generic pharmaceutical supply lines across Central Asian republics with customized Russian language CTD dossiers and Zone IVb stability packages.",
       countries: [
@@ -81,8 +81,8 @@ export function GlobalFootprintMatrix() {
     },
     latam: {
       name: "LATAM & Caribbean",
-      badge: "6+ MARKETS",
-      count: "6+ Countries",
+      badge: "LATAM REGION",
+      count: "Latin America",
       summary:
         "Regulatory alliances delivering Spanish-language eCTD dossiers, Free Sale Certificates, and bioequivalence study summaries to Latin American health authorities.",
       countries: [
@@ -110,7 +110,7 @@ export function GlobalFootprintMatrix() {
               05.00 // GLOBAL EXPORT FOOTPRINT &amp; MOH MATRIX
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B1E48] tracking-tight font-['Inter',sans-serif]">
-              Serving 65+ Sovereign Healthcare Jurisdictions
+              Serving 10+ Sovereign Healthcare Jurisdictions
             </h2>
           </div>
           <p className="text-sm text-slate-500 max-w-md">

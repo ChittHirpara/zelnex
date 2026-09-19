@@ -31,7 +31,7 @@ export function TechnicalChangelog() {
       items: [
         "+ WHO-GMP cleanroom renewal and ISO 9001:2015 / ISO 14001 integrated quality audit.",
         "+ Released interactive formulation catalog with 355+ commercial finished dosage forms.",
-        "+ Expanded air/sea export dispatch corridors to 50+ international sovereign ports.",
+        "+ Expanded air/sea export dispatch corridors to 10+ international sovereign ports.",
       ],
     },
   ];
