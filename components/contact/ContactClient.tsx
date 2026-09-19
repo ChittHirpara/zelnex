@@ -175,7 +175,7 @@ export default function ContactClient() {
         ══════════════════════════════════════════════════════════════ */}
         <section className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-12">
           {/* Breadcrumb & Live Status Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-blue-100 text-xs font-['JetBrains_Mono',monospace] text-slate-500">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-blue-100 text-xs font-['Outfit',sans-serif] font-medium text-slate-500">
             <div className="flex items-center gap-2">
               <Link href="/" className="hover:text-[#006EDC] transition-colors">
                 ZELNEX PHARMA
@@ -195,9 +195,9 @@ export default function ContactClient() {
 
           {/* Clinical Badge & Title */}
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/30 mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/30 mb-4">
               <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-              <p className="text-[11px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.15em] text-[#006EDC]">
+              <p className="text-[11px] font-['Outfit',sans-serif] font-bold uppercase tracking-[0.14em] text-[#006EDC]">
                 03.00 // INTERNATIONAL EXPORT DESK &amp; LIAISON
               </p>
             </div>
@@ -222,7 +222,7 @@ export default function ContactClient() {
               <div className="space-y-5">
                 {/* Section Header */}
                 <div className="space-y-1.5 pb-2">
-                  <span className="font-['JetBrains_Mono',monospace] text-[11px] text-[#006EDC] font-bold uppercase tracking-[0.2em] block">
+                  <span className="font-['Outfit',sans-serif] text-[11px] text-[#006EDC] font-bold uppercase tracking-[0.15em] block">
                     01 // CORPORATE CHANNELS
                   </span>
                   <h3 className="text-2xl font-extrabold text-[#082B61] tracking-tight uppercase font-['Outfit',sans-serif]">
@@ -238,7 +238,7 @@ export default function ContactClient() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-3.5 bg-[#006EDC] rounded-full inline-block" />
-                      <span className="font-['JetBrains_Mono',monospace] text-[11px] font-bold tracking-[0.15em] text-[#082B61] uppercase">
+                      <span className="font-['Outfit',sans-serif] text-[11px] font-bold tracking-[0.12em] text-[#082B61] uppercase">
                         HEADQUARTERS &amp; R&amp;D
                       </span>
                     </div>
@@ -274,7 +274,7 @@ export default function ContactClient() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-3.5 bg-[#006EDC] rounded-full inline-block" />
-                      <span className="font-['JetBrains_Mono',monospace] text-[11px] font-bold tracking-[0.15em] text-[#082B61] uppercase">
+                      <span className="font-['Outfit',sans-serif] text-[11px] font-bold tracking-[0.12em] text-[#082B61] uppercase">
                         TELEPHONY &amp; DISPATCH
                       </span>
                     </div>
@@ -288,7 +288,7 @@ export default function ContactClient() {
                     <div className="space-y-0.5">
                       <a
                         href="tel:+919328286164"
-                        className="font-['JetBrains_Mono',monospace] text-base font-bold text-[#082B61] hover:text-[#006EDC] transition-colors block tracking-tight"
+                        className="font-['Outfit',sans-serif] text-base font-bold text-[#082B61] hover:text-[#006EDC] transition-colors block tracking-tight"
                       >
                         +91 93282 86164
                       </a>
@@ -309,7 +309,7 @@ export default function ContactClient() {
                           <MessageCircle className="w-4 h-4" />
                         </div>
                         <div>
-                          <span className="font-['JetBrains_Mono',monospace] text-xs font-bold text-emerald-950 block">
+                          <span className="font-['Outfit',sans-serif] text-xs font-bold text-emerald-950 block">
                             +91 93282 86164
                           </span>
                           <span className="text-[10px] text-emerald-700 font-medium block">
@@ -317,7 +317,7 @@ export default function ContactClient() {
                           </span>
                         </div>
                       </div>
-                      <span className="text-[10px] font-['JetBrains_Mono',monospace] font-bold px-2 py-0.5 rounded bg-emerald-600 text-white uppercase tracking-wider">
+                      <span className="text-[10px] font-['Outfit',sans-serif] font-bold px-2.5 py-0.5 rounded bg-emerald-600 text-white uppercase tracking-wider">
                         WhatsApp
                       </span>
                     </a>
@@ -329,7 +329,7 @@ export default function ContactClient() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-3.5 bg-[#006EDC] rounded-full inline-block" />
-                      <span className="font-['JetBrains_Mono',monospace] text-[11px] font-bold tracking-[0.15em] text-[#082B61] uppercase">
+                      <span className="font-['Outfit',sans-serif] text-[11px] font-bold tracking-[0.12em] text-[#082B61] uppercase">
                         OFFICIAL EMAIL
                       </span>
                     </div>
@@ -343,14 +343,14 @@ export default function ContactClient() {
                     className="group/mail flex items-center justify-between p-3.5 rounded-xl bg-[#F8FAFD] border border-blue-100 hover:border-[#006EDC] hover:bg-white transition-all"
                   >
                     <div className="space-y-0.5">
-                      <span className="font-['JetBrains_Mono',monospace] text-xs sm:text-sm font-bold text-[#082B61] group-hover/mail:text-[#006EDC] transition-colors block tracking-tight">
+                      <span className="font-['Outfit',sans-serif] text-xs sm:text-sm font-bold text-[#082B61] group-hover/mail:text-[#006EDC] transition-colors block tracking-tight">
                         info@zelnexpharmaceuticals.com
                       </span>
                       <span className="text-[11px] text-slate-500 font-normal block">
                         Global export, regulatory inquiries &amp; commercial supply
                       </span>
                     </div>
-                    <span className="text-[10px] font-['JetBrains_Mono',monospace] text-[#006EDC] font-bold bg-[#006EDC]/10 border border-[#006EDC]/25 px-2.5 py-1 rounded-full uppercase tracking-wider flex-shrink-0 ml-2">
+                    <span className="text-[10px] font-['Outfit',sans-serif] text-[#006EDC] font-bold bg-[#006EDC]/10 border border-[#006EDC]/25 px-2.5 py-1 rounded-full uppercase tracking-wider flex-shrink-0 ml-2">
                       Official
                     </span>
                   </a>
@@ -371,7 +371,7 @@ export default function ContactClient() {
                       </p>
                     </div>
                   </div>
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-['JetBrains_Mono',monospace] text-[10px] font-bold">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-['Outfit',sans-serif] text-[10px] font-bold">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                     <span>ONLINE</span>
                   </div>
@@ -379,12 +379,12 @@ export default function ContactClient() {
               </div>
 
               {/* Bottom Institutional Quality Note */}
-              <div className="pt-6 border-t border-blue-100 flex items-center justify-between text-[11px] font-['JetBrains_Mono',monospace] text-slate-500 font-semibold">
+              <div className="pt-6 border-t border-blue-100 flex items-center justify-between text-[11px] font-['Outfit',sans-serif] text-slate-500 font-semibold">
                 <span className="flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#006EDC]" />
                   WHO-GMP &amp; ISO CERTIFIED
                 </span>
-                <span className="text-[#006EDC]">355+ APPROVED SKUs</span>
+                <span className="text-[#006EDC] font-bold">355+ APPROVED SKUs</span>
               </div>
             </div>
 
@@ -393,7 +393,7 @@ export default function ContactClient() {
               <div className="max-w-xl">
                 {/* Header */}
                 <div className="space-y-2 mb-8">
-                  <span className="font-['JetBrains_Mono',monospace] text-[11px] text-[#006EDC] font-bold uppercase tracking-[0.2em] block">
+                  <span className="font-['Outfit',sans-serif] text-[11px] text-[#006EDC] font-bold uppercase tracking-[0.15em] block">
                     COMMERCIAL &amp; REGULATORY TRANSMISSION
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-[#082B61] tracking-tight uppercase font-['Outfit',sans-serif]">
@@ -412,7 +412,7 @@ export default function ContactClient() {
                     </div>
 
                     <div>
-                      <span className="font-['JetBrains_Mono',monospace] text-xs font-bold text-[#006EDC] bg-[#006EDC]/10 border border-[#006EDC]/25 px-3 py-1 rounded-full inline-block uppercase tracking-wider mb-2">
+                      <span className="font-['Outfit',sans-serif] text-xs font-bold text-[#006EDC] bg-[#006EDC]/10 border border-[#006EDC]/25 px-3 py-1 rounded-full inline-block uppercase tracking-wider mb-2">
                         INQUIRY REFERENCE: {ticketId}
                       </span>
 
@@ -608,7 +608,7 @@ export default function ContactClient() {
         <section className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-12">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-blue-100 gap-4">
             <div>
-              <span className="font-['JetBrains_Mono',monospace] text-xs text-[#006EDC] font-bold uppercase tracking-[0.2em] block mb-1">
+              <span className="font-['Outfit',sans-serif] text-xs text-[#006EDC] font-bold uppercase tracking-[0.15em] block mb-1">
                 02 // CAPABILITIES &amp; CHANNELS
               </span>
               <h2 className="text-2xl sm:text-4xl font-extrabold text-[#082B61] uppercase tracking-tight font-['Outfit',sans-serif]">
@@ -630,7 +630,7 @@ export default function ContactClient() {
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="font-['JetBrains_Mono',monospace] text-xs font-bold text-[#006EDC] px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200/60">
+                      <span className="font-['Outfit',sans-serif] text-xs font-bold text-[#006EDC] px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200/60">
                         {stream.number}
                       </span>
                       <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#006EDC] group-hover:bg-[#006EDC] group-hover:text-white transition-all flex items-center justify-center border border-blue-100">
@@ -642,7 +642,7 @@ export default function ContactClient() {
                       <h3 className="text-lg font-bold text-[#082B61] group-hover:text-[#006EDC] transition-colors leading-snug font-['Outfit',sans-serif] tracking-tight">
                         {stream.title}
                       </h3>
-                      <p className="text-[11px] font-['JetBrains_Mono',monospace] text-[#006EDC] font-semibold mt-1">
+                      <p className="text-[11px] font-['Outfit',sans-serif] font-bold text-[#006EDC] mt-1">
                         {stream.subtitle}
                       </p>
                     </div>
@@ -652,7 +652,7 @@ export default function ContactClient() {
                     </p>
                   </div>
 
-                  <div className="pt-4 mt-6 border-t border-blue-50 flex items-center justify-between text-[11px] font-['JetBrains_Mono',monospace] font-bold text-slate-700">
+                  <div className="pt-4 mt-6 border-t border-blue-50 flex items-center justify-between text-[11px] font-['Outfit',sans-serif] font-bold text-slate-700">
                     <span>WHO-GMP Backed</span>
                     <span className="w-4 h-4 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center text-[10px]">
                       <Check className="w-2.5 h-2.5" />

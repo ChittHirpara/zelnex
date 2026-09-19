@@ -196,9 +196,9 @@ function ServicesModernistContent() {
         <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8">
           {/* ── Top Clinical Header Banner ── */}
           <div className="max-w-4xl mb-10 sm:mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/30 mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/30 mb-4">
               <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-              <p className="text-[11px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.15em] text-[#006EDC]">
+              <p className="text-[11px] font-['Outfit',sans-serif] font-bold uppercase tracking-[0.14em] text-[#006EDC]">
                 02.00 // PHARMACEUTICAL CAPABILITIES &amp; REGULATORY SERVICES
               </p>
             </div>
@@ -231,7 +231,7 @@ function ServicesModernistContent() {
                 >
                   <div className="flex items-center justify-between w-full mb-1">
                     <span
-                      className={`text-[10px] font-['JetBrains_Mono',monospace] font-bold tracking-widest ${
+                      className={`text-[11px] font-['Outfit',sans-serif] font-bold tracking-wider ${
                         isSelected ? "text-blue-100" : "text-[#006EDC]"
                       }`}
                     >
@@ -262,7 +262,7 @@ function ServicesModernistContent() {
                   {/* Badge & Icon */}
                   <div className="flex items-center justify-between border-b border-blue-100/80 pb-5">
                     <div className="space-y-1.5">
-                      <span className="inline-block text-[10.5px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.2em] text-[#006EDC] bg-blue-50/80 border border-blue-200/60 px-2.5 py-0.5 rounded-md">
+                      <span className="inline-block text-[11px] font-['Outfit',sans-serif] font-bold uppercase tracking-[0.14em] text-[#006EDC] bg-blue-50/80 border border-blue-200/60 px-2.5 py-0.5 rounded-md">
                         SERVICE {currentService.num} OF 04
                       </span>
                       <span className="block text-xs font-bold text-[#082B61] uppercase tracking-wide font-['Outfit',sans-serif]">
@@ -277,14 +277,14 @@ function ServicesModernistContent() {
 
                   {/* Specifications List */}
                   <div className="space-y-3">
-                    <span className="block text-[11px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.2em] text-slate-500">
-                      [ SPECIFICATIONS ]
+                    <span className="block text-[11px] font-['Outfit',sans-serif] font-bold uppercase tracking-[0.15em] text-slate-500">
+                      SPECIFICATIONS &amp; STANDARDS
                     </span>
                     <div className="divide-y divide-blue-100/80 border-y border-blue-100/80">
                       {currentService.specs.map((s, idx) => (
                         <div key={idx} className="py-2.5 flex items-center justify-between text-xs">
                           <span className="text-slate-600 font-medium font-['Outfit',sans-serif]">{s.label}</span>
-                          <span className="font-bold text-[#082B61] font-['JetBrains_Mono',monospace] bg-white px-2.5 py-0.5 rounded-md border border-blue-100/90 shadow-2xs">
+                          <span className="font-bold text-[#082B61] font-['Outfit',sans-serif] text-xs bg-white px-3 py-1 rounded-lg border border-blue-100/90 shadow-2xs">
                             {s.value}
                           </span>
                         </div>
@@ -300,7 +300,7 @@ function ServicesModernistContent() {
                       key={idx}
                       className="p-2.5 rounded-xl border border-blue-100 bg-white/90 shadow-2xs hover:border-blue-300 transition-colors"
                     >
-                      <div className="text-sm sm:text-base font-black text-[#006EDC] font-['JetBrains_Mono',monospace]">
+                      <div className="text-sm sm:text-base font-extrabold text-[#006EDC] font-['Outfit',sans-serif]">
                         {m.value}
                       </div>
                       <div className="text-[9.5px] font-bold text-slate-500 uppercase tracking-tight mt-0.5 font-['Outfit',sans-serif]">
@@ -316,7 +316,7 @@ function ServicesModernistContent() {
                 <div className="space-y-6">
                   {/* Headline & Tagline */}
                   <div>
-                    <span className="inline-flex items-center gap-2 text-xs font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.15em] text-[#006EDC] bg-blue-50 border border-blue-200/70 px-3 py-1.5 rounded-full mb-3">
+                    <span className="inline-flex items-center gap-2 text-xs font-['Outfit',sans-serif] font-bold uppercase tracking-[0.12em] text-[#006EDC] bg-blue-50 border border-blue-200/70 px-3.5 py-1.5 rounded-full mb-3">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#006EDC]" />
                       {currentService.tagline}
                     </span>
@@ -335,8 +335,8 @@ function ServicesModernistContent() {
 
                   {/* Core Highlights Checklist */}
                   <div className="space-y-3 pt-2">
-                    <span className="block text-[11px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.2em] text-slate-500">
-                      [ CORE CAPABILITIES &amp; DELIVERABLES ]
+                    <span className="block text-[11px] font-['Outfit',sans-serif] font-bold uppercase tracking-[0.15em] text-slate-500">
+                      CORE CAPABILITIES &amp; DELIVERABLES
                     </span>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                       {currentService.keyPoints.map((point, idx) => (
