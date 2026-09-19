@@ -38,7 +38,7 @@ const EXPERTISE_CARDS = [
     ],
     href: "/services?service=regulatory",
     icon: FileCheck2,
-    image: "/services/regulatory-dossier.png",
+    image: "/services/regulatory-services.jpg",
     widget: {
       title: "eCTD Module 1–5",
       subtitle: "Zone IVb Stability Validation",
@@ -65,7 +65,7 @@ const EXPERTISE_CARDS = [
     ],
     href: "/services?service=contract-manufacturing",
     icon: Factory,
-    image: "/services/contract-manufacturing-line.png",
+    image: "/services/contract-manufacturing.png",
     widget: {
       title: "High-Speed Automated Lines",
       subtitle: "Blister, Strip & Alu-Alu",
@@ -92,7 +92,7 @@ const EXPERTISE_CARDS = [
     ],
     href: "/services?service=third-party-manufacturing",
     icon: ShieldCheck,
-    image: "/services/sterile-facility-tank.png",
+    image: "/services/third-party-manufacturing.png",
     widget: {
       title: "Sterile & Oral Facilities",
       subtitle: "HPLC 99.8% Assay Purity",
@@ -119,7 +119,7 @@ const EXPERTISE_CARDS = [
     ],
     href: "/services?service=generic-products",
     icon: Layers,
-    image: "/services/generic-products-pills.png",
+    image: "/services/generic-products.png",
     widget: {
       title: "355+ Generic Molecules",
       subtitle: "Cardio, Antibiotics, CNS, GI",
