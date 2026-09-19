@@ -400,18 +400,6 @@ export function Footer() {
               © {new Date().getFullYear()} Zelnex Pharmaceuticals Pvt. Ltd. {t.footer.allRightsReserved}
             </p>
 
-            {/* Legal Links */}
-            <div className="flex flex-wrap items-center justify-center gap-5 text-cyan-100/75">
-              <Link href="/#certifications" className="hover:text-white transition-colors">
-                {t.footer.privacy}
-              </Link>
-              <Link href="/#certifications" className="hover:text-white transition-colors">
-                {t.footer.terms}
-              </Link>
-              <Link href="/#certifications" className="hover:text-white transition-colors">
-                {t.footer.whoGmp}
-              </Link>
-            </div>
 
             {/* Circular Social / Contact Chips that Lift on Hover */}
             <div className="flex flex-wrap items-center justify-center gap-2">
