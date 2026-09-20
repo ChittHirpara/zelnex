@@ -46,10 +46,15 @@ export const GLOBAL_MARKETS: DestinationMarket[] = [
   mk("ghana","Ghana","GH","Accra","Africa","FDA Ghana","WHO-GMP Validated","Zone IVb Validated","75M Units / yr",["Antidiabetics","Cephalosporins","Syrups"],-0.187,5.6037),
   mk("kenya","Kenya","KE","Nairobi","Africa","PPB Ministry of Health","Fast-Track eCTD","Zone IVb Validated","95M Units / yr",["Cardiovascular","Antibiotics","IV Fluids"],36.8219,-1.2921),
   mk("nigeria","Nigeria","NG","Lagos","Africa","NAFDAC Approved","CTD Module 1–5 Active","Zone IVb · 30°C / 75% RH","180M Units / yr",["Anti-Infectives","Analgesics","Antimalarials"],3.3792,6.5244),
-  mk("afghanistan","Afghanistan","AF","Kabul","Middle East & CIS","AFDA Health Ministry","Full CTD Dossier Active","Zone IVb Climatic Stability","65M Units / yr",["Essential Antibiotics","Analgesics","Injectables"],69.1723,34.5553),
-  mk("cambodia","Cambodia","KH","Phnom Penh","Asia","DDF Cambodia (MOH)","ACTD Dossier Approved","Zone IVb Validated","45M Units / yr",["Antipyretics","Anti-Infective Capsules","Syrups"],104.9282,11.5564),
   mk("tanzania","Tanzania","TZ","Dar es Salaam","Africa","TMDA Clearance","Full CTD Validated","Zone IVb Tested","60M Units / yr",["Gastrointestinal","Injectables","Oral Solids"],39.2842,-6.7924),
+  mk("afghanistan","Afghanistan","AF","Kabul","Middle East & CIS","AFDA Health Ministry","Full CTD Dossier Active","Zone IVb Climatic Stability","65M Units / yr",["Essential Antibiotics","Analgesics","Injectables"],69.1723,34.5553),
+  mk("yemen","Yemen","YE","Aden / Sanaa","Middle East & CIS","SBDMA / MOH Yemen","Institutional Supply Dossier","Zone IVb High Heat & Humidity","70M Units / yr",["Anti-Infectives","IV Infusions","Oral Rehydration"],44.2064,15.3694),
+  mk("cambodia","Cambodia","KH","Phnom Penh","Asia","DDF Cambodia (MOH)","ACTD Dossier Approved","Zone IVb Validated","45M Units / yr",["Antipyretics","Anti-Infective Capsules","Syrups"],104.9282,11.5564),
   mk("philippines","Philippines","PH","Manila","Asia","FDA Philippines","Certificate of Registration (CPR)","Zone IVb · 30°C / 75% RH","135M Units / yr",["Antibiotics","Nutraceuticals","Cardiovascular"],120.9842,14.5995),
+  mk("venezuela","Venezuela","VE","Caracas","Americas","INHRR / MPPS Authority","Sanitary Registration Dossier","Zone IVb Tropical Testing","85M Units / yr",["Critical Care","Cardiovascular","Specialty Solids"],-66.9036,10.4806),
+  mk("ecuador","Ecuador","EC","Quito / Guayaquil","Americas","ARCSA Authority","Validated Spanish CTD Dossier","Zone IVb Validated","60M Units / yr",["Gastrointestinal","Antibiotics","Topicals"],-78.4678,-0.1807),
+  mk("peru","Peru","PE","Lima","Americas","DIGEMID Registry","Sanitary Registration Approved","Zone IVb Validated","70M Units / yr",["Antibiotics","Injectables","Cardiovascular"],-77.0428,-12.0464),
+  mk("bolivia","Bolivia","BO","La Paz / Santa Cruz","Americas","AGEMED Bolivia","Sanitary Registration Approved","Zone IVb Validated","55M Units / yr",["Pain Management","Anti-Infectives","Respiratory"],-68.1193,-16.4897),
 ];
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -144,10 +149,10 @@ export function DynamicFlatMap() {
               DISPATCH DESTINATION:
             </span>
             <span className="text-xs font-extrabold text-[#006EDC] bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
-              {active.country.toUpperCase()} [{active.code}]
+              {active.country.toUpperCase()}
             </span>
             <span className="hidden sm:inline text-xs text-slate-500 font-medium">
-              · {active.authority} · {active.volume}
+              · {active.city} · {active.authority} · {active.volume}
             </span>
           </div>
         </div>
@@ -305,26 +310,46 @@ export function DynamicFlatMap() {
                     {/* Center Core */}
                     {isActive && <circle cx={m.x} cy={m.y} r="1.8" fill="#FFFFFF" />}
                     
-                    {/* Country Code Pill — active only */}
-                    {isActive && (
-                      <g>
-                        <rect
-                          x={m.x - 22} y={m.y - 26}
-                          width="44" height="14" rx="4"
-                          fill="#006EDC" stroke="#FFFFFF" strokeWidth="1"
-                          filter="url(#f-glow)"
-                        />
-                        <text
-                          x={m.x} y={m.y - 16}
-                          textAnchor="middle"
-                          fill="#FFFFFF" fontSize="8" fontWeight="700"
-                          fontFamily="Inter, sans-serif"
-                          letterSpacing="0.1em"
-                        >
-                          {m.code}
-                        </text>
-                      </g>
-                    )}
+                    {/* Full Country Name Pill — active/hovered only */}
+                    {isActive && (() => {
+                      const fullName = m.country.toUpperCase();
+                      const pillWidth = Math.max(54, fullName.length * 6.5 + 18);
+                      const pillHeight = 16;
+                      const pillX = m.x - pillWidth / 2;
+                      const pillY = m.y - 25;
+                      return (
+                        <g>
+                          {/* Pointer Triangle */}
+                          <polygon
+                            points={`${m.x - 3.5},${pillY + pillHeight} ${m.x + 3.5},${pillY + pillHeight} ${m.x},${pillY + pillHeight + 3.5}`}
+                            fill="#006EDC"
+                          />
+                          <rect
+                            x={pillX}
+                            y={pillY}
+                            width={pillWidth}
+                            height={pillHeight}
+                            rx="4"
+                            fill="#006EDC"
+                            stroke="#FFFFFF"
+                            strokeWidth="1.2"
+                            filter="url(#f-glow)"
+                          />
+                          <text
+                            x={m.x}
+                            y={pillY + 11.5}
+                            textAnchor="middle"
+                            fill="#FFFFFF"
+                            fontSize="7.5"
+                            fontWeight="800"
+                            fontFamily="Inter, sans-serif"
+                            letterSpacing="0.06em"
+                          >
+                            {fullName}
+                          </text>
+                        </g>
+                      );
+                    })()}
                   </g>
                 );
               })}
@@ -354,6 +379,85 @@ export function DynamicFlatMap() {
 
           </g>
         </svg>
+      </div>
+
+      {/* ══════════════════════════════════════════
+          BOTTOM CORRIDOR SELECTOR & TELEMETRY STRIP
+          Shows all 12 destination countries fully named
+      ══════════════════════════════════════════ */}
+      <div className="border-t border-blue-100 bg-[#F8FAFD] p-3 sm:p-4">
+        <div className="flex items-center justify-between mb-2.5">
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-['JetBrains_Mono',monospace] font-bold text-[#0B1E48] uppercase tracking-wider">
+              ALL 12 EXPORT DESTINATIONS
+            </span>
+            <span className="text-[10px] text-slate-400 font-medium hidden md:inline">
+              · Select any corridor for live route telemetry & regulatory metrics
+            </span>
+          </div>
+          <div className="text-[11px] font-['JetBrains_Mono',monospace] text-[#006EDC] font-semibold">
+            REGION: {region.toUpperCase()}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+          {GLOBAL_MARKETS.map((m) => {
+            const isSelected = active.id === m.id;
+            const isInCurrentRegion = region === "All" || m.region === region;
+            return (
+              <button
+                key={m.id}
+                onClick={() => {
+                  setHovered(m);
+                  setRotating(false);
+                }}
+                className={`flex items-center justify-between px-3 py-2 rounded-lg text-left border transition-all duration-200 cursor-pointer ${
+                  isSelected
+                    ? "bg-[#006EDC] border-[#006EDC] text-white shadow-xs"
+                    : isInCurrentRegion
+                    ? "bg-white border-blue-100 hover:border-[#006EDC]/40 text-slate-700 hover:bg-blue-50/50"
+                    : "bg-white/60 border-slate-100 text-slate-400 opacity-60 hover:opacity-100"
+                }`}
+              >
+                <div className="min-w-0 pr-1">
+                  <div className={`text-xs font-bold truncate ${isSelected ? "text-white" : "text-[#0B1E48]"}`}>
+                    {m.country}
+                  </div>
+                  <div className={`text-[10px] truncate ${isSelected ? "text-blue-100" : "text-slate-500"}`}>
+                    {m.city} · {m.authority}
+                  </div>
+                </div>
+                <span
+                  className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                    isSelected ? "bg-white animate-pulse" : "bg-[#006EDC]/40"
+                  }`}
+                />
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Active Country Extended Telemetry Details */}
+        <div className="mt-3 pt-3 border-t border-blue-100/70 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <span className="text-slate-500">
+              <strong className="text-[#0B1E48]">Authority:</strong> {active.authority}
+            </span>
+            <span className="text-slate-500">
+              <strong className="text-[#0B1E48]">Dossier:</strong> {active.dossierStatus}
+            </span>
+            <span className="text-slate-500">
+              <strong className="text-[#0B1E48]">Climatic Stability:</strong> {active.stability}
+            </span>
+            <span className="text-slate-500">
+              <strong className="text-[#0B1E48]">Annual Volume:</strong> {active.volume}
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5 text-[11px] text-slate-600">
+            <span className="font-semibold text-[#0B1E48]">Therapeutics:</span>
+            <span className="text-[#006EDC] font-medium">{active.keyClasses.join(", ")}</span>
+          </div>
+        </div>
       </div>
 
     </div>

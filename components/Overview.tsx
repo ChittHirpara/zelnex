@@ -146,144 +146,136 @@ export function Overview() {
             </div>
           </div>
 
-          {/* Right: Our Strengths Network Topology Card with Continuous Orbital Rotation */}
+          {/* Right: Our Strengths Network Topology Card */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="orbit-pause-group relative w-full max-w-[450px] aspect-square border border-slate-200/90 bg-white rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-sm overflow-hidden select-none">
-              
-              <style>{`
-                @keyframes orbitTrackSpin {
-                  from { transform: rotate(0deg); }
-                  to { transform: rotate(360deg); }
-                }
-                @keyframes orbitNodeCounterSpin {
-                  from { transform: rotate(0deg); }
-                  to { transform: rotate(-360deg); }
-                }
-                .orbit-track {
-                  animation: orbitTrackSpin 26s linear infinite;
-                }
-                .orbit-counter {
-                  animation: orbitNodeCounterSpin 26s linear infinite;
-                }
-                .orbit-pause-group:hover .orbit-track,
-                .orbit-pause-group:hover .orbit-counter {
-                  animation-play-state: paused;
-                }
-              `}</style>
-
+            <div
+              className="relative w-full max-w-[460px] aspect-square border border-slate-200/90 bg-white rounded-3xl shadow-[0_4px_24px_rgba(0,110,220,0.06)] overflow-hidden select-none"
+              style={{
+                backgroundImage: `
+                  linear-gradient(to right, rgba(0, 110, 220, 0.04) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(0, 110, 220, 0.04) 1px, transparent 1px)
+                `,
+                backgroundSize: "24px 24px",
+              }}
+            >
               {/* Corner L-Markers */}
-              <div className="absolute top-3 left-3 w-3 h-3 border-t-2 border-l-2 border-[#006EDC]" />
-              <div className="absolute top-3 right-3 w-3 h-3 border-t-2 border-r-2 border-[#006EDC]" />
-              <div className="absolute bottom-3 left-3 w-3 h-3 border-b-2 border-l-2 border-[#006EDC]" />
-              <div className="absolute bottom-3 right-3 w-3 h-3 border-b-2 border-r-2 border-[#006EDC]" />
+              <div className="absolute top-4 left-4 w-3.5 h-3.5 border-t-2 border-l-2 border-[#006EDC] pointer-events-none z-20" />
+              <div className="absolute top-4 right-4 w-3.5 h-3.5 border-t-2 border-r-2 border-[#006EDC] pointer-events-none z-20" />
+              <div className="absolute bottom-4 left-4 w-3.5 h-3.5 border-b-2 border-l-2 border-[#006EDC] pointer-events-none z-20" />
+              <div className="absolute bottom-4 right-4 w-3.5 h-3.5 border-b-2 border-r-2 border-[#006EDC] pointer-events-none z-20" />
 
-              {/* Card Header */}
-              <div className="flex flex-wrap items-center justify-between gap-1 text-[10px] sm:text-xs font-[family-name:var(--font-outfit)] tracking-wider mb-1 z-20">
-                <span className="font-bold text-slate-600 uppercase tracking-wider">OUR STRENGTHS</span>
-                <span className="font-bold text-[#006EDC] uppercase tracking-wider">GLOBAL PHARMACEUTICAL SUPPLY</span>
+              {/* Card Header Labels (Aligned with corner brackets) */}
+              <div className="absolute top-5 left-5 right-5 flex items-center justify-between pointer-events-none z-20">
+                <span className="text-[11px] sm:text-xs font-bold text-slate-700 uppercase tracking-wider font-[family-name:var(--font-outfit)] pl-1">
+                  OUR STRENGTHS
+                </span>
+                <span className="text-[11px] sm:text-xs font-bold text-[#006EDC] uppercase tracking-wider font-[family-name:var(--font-outfit)] pr-1">
+                  GLOBAL PHARMACEUTICAL SUPPLY
+                </span>
               </div>
 
-              {/* Circular Network Canvas */}
-              <div className="relative w-full flex-1 flex items-center justify-center my-auto min-h-[300px]">
-                {/* Dotted Orbit Path */}
-                <svg viewBox="0 0 320 320" className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="xMidYMid meet">
+              {/* Circular Network Canvas: Exact 1:1 Center */}
+              <div className="absolute inset-0 w-full h-full">
+                {/* Dotted Orbit Circle */}
+                <svg
+                  viewBox="0 0 400 400"
+                  className="absolute inset-0 w-full h-full pointer-events-none"
+                  preserveAspectRatio="xMidYMid meet"
+                >
                   <circle
-                    cx="160"
-                    cy="160"
-                    r="122"
+                    cx="200"
+                    cy="200"
+                    r="132"
                     fill="none"
                     stroke="#93C5FD"
-                    strokeWidth="1.2"
-                    strokeDasharray="4 4"
+                    strokeWidth="1.5"
+                    strokeDasharray="5 5"
                     className="opacity-75"
                   />
                 </svg>
 
                 {/* Subtle Pulse Ring behind central hub */}
                 <div
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-28 sm:h-28 rounded-full border border-blue-400/30 animate-ping pointer-events-none"
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 sm:w-32 sm:h-32 rounded-full border border-blue-400/25 animate-ping pointer-events-none"
                   style={{ animationDuration: "3.5s" }}
                 />
 
-                {/* Center Hub: Compact Official Zelnex Logo Badge */}
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white border border-slate-200/90 shadow-[0_4px_20px_rgba(0,110,220,0.08)] flex items-center justify-center p-2.5 z-10 pointer-events-none">
+                {/* Center Hub: Official Zelnex Logo Badge */}
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border border-slate-200/90 shadow-[0_4px_24px_rgba(0,110,220,0.10)] flex items-center justify-center p-3 z-10">
                   <Image
                     src="/brand/zelnex-official-logo.png"
                     alt="Zelnex Pharmaceuticals"
-                    width={96}
-                    height={28}
-                    className="w-14 sm:w-16 h-auto object-contain"
+                    width={110}
+                    height={32}
+                    className="w-16 sm:w-20 h-auto object-contain"
                     priority
                   />
                 </div>
 
-                {/* Continuously Rotating Orbital Track */}
-                <div className="orbit-track absolute inset-0 pointer-events-none">
-                  
-                  {/* Node 1: 0 deg (Top -> Global Reach) */}
-                  <div className="absolute inset-0 pointer-events-none" style={{ transform: "rotate(0deg)" }}>
-                    <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto" style={{ top: "11.875%" }}>
-                      <div style={{ transform: "rotate(0deg)" }}>
-                        <div className="orbit-counter flex flex-col items-center text-center select-none group/node">
-                          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0070DF] ring-4 ring-blue-100/90 flex items-center justify-center text-white shadow-md shadow-blue-500/25 transition-transform duration-200 group-hover/node:scale-110">
-                            <Globe className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white" strokeWidth={1.8} />
-                          </div>
-                          <div className="mt-1 flex flex-col items-center max-w-[105px]">
-                            <span className="font-bold text-slate-900 text-xs sm:text-[12.5px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap">
-                              Global Reach
-                            </span>
-                            <span className="text-[10px] sm:text-[10.5px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 whitespace-nowrap">
-                              10+ Markets Served
-                            </span>
-                          </div>
-                        </div>
-                      </div>
+                {/* 3 Orbital Nodes (Precisely placed along r=132/33% orbit line) */}
+
+                {/* Node 1: Wide Product Portfolio (Top-Left / ~11:15, 245 deg) */}
+                <Link
+                  href="/products"
+                  className="absolute pointer-events-auto group cursor-pointer"
+                  style={{ left: "36.1%", top: "20.1%" }}
+                >
+                  <div className="relative -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#10B981] ring-8 ring-emerald-100/90 shadow-md shadow-emerald-500/20 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-110 group-hover:shadow-emerald-500/35">
+                      <Package className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.9} />
+                    </div>
+                    <div className="absolute top-full pt-1.5 flex flex-col items-center text-center select-none">
+                      <span className="font-bold text-slate-900 text-xs sm:text-[13px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap group-hover:text-[#10B981] transition-colors">
+                        Wide Product Portfolio
+                      </span>
+                      <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 whitespace-nowrap">
+                        355+ Finished Formulations
+                      </span>
                     </div>
                   </div>
+                </Link>
 
-                  {/* Node 2: 120 deg (Bottom Right -> Trusted Quality Supply) */}
-                  <div className="absolute inset-0 pointer-events-none" style={{ transform: "rotate(120deg)" }}>
-                    <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto" style={{ top: "11.875%" }}>
-                      <div style={{ transform: "rotate(-120deg)" }}>
-                        <div className="orbit-counter flex flex-col items-center text-center select-none max-w-[110px] sm:max-w-[115px] group/node">
-                          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#8B5CF6] ring-4 ring-purple-100/90 flex items-center justify-center text-white shadow-md shadow-purple-500/25 transition-transform duration-200 group-hover/node:scale-110">
-                            <ShieldCheck className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white" strokeWidth={1.8} />
-                          </div>
-                          <div className="mt-1 flex flex-col items-center">
-                            <span className="font-bold text-slate-900 text-xs sm:text-[12.5px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap">
-                              Trusted Quality Supply
-                            </span>
-                            <span className="text-[9px] sm:text-[9.5px] text-slate-500 font-medium leading-tight font-[family-name:var(--font-outfit)] mt-0.5 text-center">
-                              GMP-Compliant &amp; Regulatory Support
-                            </span>
-                          </div>
-                        </div>
-                      </div>
+                {/* Node 2: Global Reach (Right / ~3:15, 355 deg) */}
+                <Link
+                  href="/about"
+                  className="absolute pointer-events-auto group cursor-pointer"
+                  style={{ left: "82.9%", top: "47.1%" }}
+                >
+                  <div className="relative -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#0070DF] ring-8 ring-blue-100/90 shadow-md shadow-blue-500/20 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-110 group-hover:shadow-blue-500/35">
+                      <Globe className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.9} />
+                    </div>
+                    <div className="absolute top-full pt-1.5 flex flex-col items-center text-center select-none">
+                      <span className="font-bold text-slate-900 text-xs sm:text-[13px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap group-hover:text-[#0070DF] transition-colors">
+                        Global Reach
+                      </span>
+                      <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 whitespace-nowrap">
+                        10+ Markets Served
+                      </span>
                     </div>
                   </div>
+                </Link>
 
-                  {/* Node 3: 240 deg (Bottom Left -> Wide Product Portfolio) */}
-                  <div className="absolute inset-0 pointer-events-none" style={{ transform: "rotate(240deg)" }}>
-                    <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto" style={{ top: "11.875%" }}>
-                      <div style={{ transform: "rotate(-240deg)" }}>
-                        <div className="orbit-counter flex flex-col items-center text-center select-none max-w-[110px] sm:max-w-[115px] group/node">
-                          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#10B981] ring-4 ring-emerald-100/90 flex items-center justify-center text-white shadow-md shadow-emerald-500/25 transition-transform duration-200 group-hover/node:scale-110">
-                            <Package className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white" strokeWidth={1.8} />
-                          </div>
-                          <div className="mt-1 flex flex-col items-center">
-                            <span className="font-bold text-slate-900 text-xs sm:text-[12.5px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap">
-                              Wide Product Portfolio
-                            </span>
-                            <span className="text-[10px] sm:text-[10.5px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 whitespace-nowrap">
-                              355+ Finished Formulations
-                            </span>
-                          </div>
-                        </div>
-                      </div>
+                {/* Node 3: Trusted Quality Supply (Bottom-Left / ~7:15, 125 deg) */}
+                <Link
+                  href="/about"
+                  className="absolute pointer-events-auto group cursor-pointer"
+                  style={{ left: "31.1%", top: "77.0%" }}
+                >
+                  <div className="relative -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#8B5CF6] ring-8 ring-purple-100/90 shadow-md shadow-purple-500/20 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-110 group-hover:shadow-purple-500/35">
+                      <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.9} />
+                    </div>
+                    <div className="absolute top-full pt-1.5 flex flex-col items-center text-center select-none max-w-[145px]">
+                      <span className="font-bold text-slate-900 text-xs sm:text-[13px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap group-hover:text-[#8B5CF6] transition-colors">
+                        Trusted Quality Supply
+                      </span>
+                      <span className="text-[9.5px] sm:text-[10.5px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 text-center leading-tight">
+                        GMP-Compliant &amp; Regulatory Support
+                      </span>
                     </div>
                   </div>
-
-                </div>
+                </Link>
               </div>
             </div>
           </div>

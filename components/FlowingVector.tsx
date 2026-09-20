@@ -70,34 +70,20 @@ export function FlowingVector() {
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none absolute inset-0 z-[1] w-full h-full overflow-hidden hidden md:block"
+      className="pointer-events-none absolute inset-0 z-30 w-full h-full overflow-hidden hidden md:block"
       style={{
         clipPath: "inset(0 0 100% 0)",
         willChange: "clip-path",
       }}
     >
-      {/* 1. First iteration of new.svg (Top Half: Overview -> Product Showcase)
-          Scaled to 131% so active artwork fills 100% of the top half with no blank bottom gap */}
-      <div className="absolute top-0 left-0 w-full h-[50%] overflow-hidden">
+      {/* Complete continuous SVG vector art layered naturally above all sections */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
         <Image
           src="/new.svg"
-          alt="Zelnex Vector Art Top"
+          alt="Zelnex Continuous Flowing Vector Art"
           fill
-          loading="lazy"
-          className="w-full h-[131%] object-fill pointer-events-none select-none opacity-95"
-          style={{ objectPosition: "top" }}
-        />
-      </div>
-
-      {/* 2. Repeated iteration of new.svg (Bottom Half: Categories -> Digital Epoch)
-          Scaled to 131% so active artwork fills 100% of the bottom half with no missing sections */}
-      <div className="absolute top-[50%] left-0 w-full h-[50%] overflow-hidden">
-        <Image
-          src="/new.svg"
-          alt="Zelnex Vector Art Bottom"
-          fill
-          loading="lazy"
-          className="w-full h-[131%] object-fill pointer-events-none select-none opacity-95"
+          priority
+          className="w-full h-full object-fill pointer-events-none select-none opacity-45 mix-blend-multiply transition-opacity duration-300"
           style={{ objectPosition: "top" }}
         />
       </div>
