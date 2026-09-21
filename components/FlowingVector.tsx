@@ -82,9 +82,10 @@ export function FlowingVector() {
           src="/new.svg"
           alt="Zelnex Continuous Flowing Vector Art"
           fill
+          unoptimized
           priority
-          className="w-full h-full object-fill pointer-events-none select-none opacity-45 mix-blend-multiply transition-opacity duration-300"
-          style={{ objectPosition: "top" }}
+          className="w-full h-full object-fill pointer-events-none select-none opacity-50 mix-blend-multiply transition-opacity duration-300"
+          style={{ objectPosition: "top", imageRendering: "-webkit-optimize-contrast" }}
         />
       </div>
     </div>
