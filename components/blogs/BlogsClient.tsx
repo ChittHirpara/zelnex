@@ -211,12 +211,6 @@ export default function BlogsClient() {
 
           {/* Hero Content */}
           <div className="relative z-10 space-y-5">
-            {/* Pill Tag */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8EFE8] border border-[#D8E3D8] text-[#292524] text-xs font-semibold shadow-xs font-mono">
-              <span className="w-2 h-2 rounded-full bg-[#006EDC]" />
-              <span>ZELNEX // KNOWLEDGE &amp; REGULATORY DESK</span>
-            </div>
-
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#292524] leading-[1.08] max-w-4xl mx-auto">
               Pharmaceutical Insights for{" "}
@@ -272,11 +266,11 @@ export default function BlogsClient() {
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#006EDC]" />
-                <span className="text-xs font-bold uppercase tracking-wider text-[#78716C] font-mono">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#78716C]">
                   FEATURED TOPICS
                 </span>
               </div>
-              <span className="text-xs text-[#78716C] font-mono hidden sm:inline">
+              <span className="text-xs text-[#78716C] font-normal hidden sm:inline">
                 Click a topic to filter articles
               </span>
             </div>
@@ -308,7 +302,7 @@ export default function BlogsClient() {
                         >
                           <Icon className="w-4 h-4" />
                         </div>
-                        <span className="text-[10px] font-mono font-bold text-[#78716C] group-hover:text-[#006EDC] transition-colors flex items-center gap-1">
+                        <span className="text-[10px] font-bold text-[#78716C] group-hover:text-[#006EDC] transition-colors flex items-center gap-1">
                           <span>Explore</span>
                           <span>→</span>
                         </span>
@@ -374,7 +368,7 @@ export default function BlogsClient() {
                       <span className="px-3 py-1 rounded-full bg-[#E8EFE8] text-[#292524] text-[11px] font-semibold tracking-wide">
                         {post.category}
                       </span>
-                      <span className="text-xs text-[#78716C] font-mono flex items-center gap-1">
+                      <span className="text-xs text-[#78716C] font-normal flex items-center gap-1">
                         <Clock className="w-3 h-3" />
                         {post.readTime}
                       </span>
@@ -406,7 +400,7 @@ export default function BlogsClient() {
                           <span className="text-xs font-semibold text-[#292524] block">
                             {post.author.name}
                           </span>
-                          <span className="text-[10px] text-[#78716C] font-mono">
+                          <span className="text-[10px] text-[#78716C] font-normal">
                             {post.date}
                           </span>
                         </div>
@@ -525,7 +519,7 @@ export default function BlogsClient() {
                     aria-expanded={isOpen}
                   >
                     <div className="space-y-1">
-                      <span className="inline-block text-[10.5px] font-semibold text-[#006EDC] uppercase font-mono tracking-wider">
+                      <span className="inline-block text-[10.5px] font-semibold text-[#006EDC] uppercase tracking-wider">
                         {faq.badge}
                       </span>
                       <h3 className="text-base sm:text-lg font-medium text-[#292524] leading-snug">
@@ -558,7 +552,7 @@ export default function BlogsClient() {
                               {faq.tags.map((tag) => (
                                 <span
                                   key={tag}
-                                  className="text-[11px] font-mono text-[#006EDC] bg-blue-50 px-2.5 py-0.5 rounded-md border border-blue-100"
+                                  className="text-[11px] font-medium text-[#006EDC] bg-blue-50 px-2.5 py-0.5 rounded-md border border-blue-100"
                                 >
                                   #{tag}
                                 </span>

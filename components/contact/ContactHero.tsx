@@ -56,15 +56,6 @@ export function ContactHero() {
           
           {/* Left Column: Heading & Executive Narrative */}
           <div className="lg:col-span-8 flex flex-col items-start">
-            
-            {/* Top Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/25 mb-4 shadow-2xs">
-              <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-              <span className="text-[11px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.16em] text-[#006EDC]">
-                09.00 // GLOBAL CORRESPONDENCE & INSTITUTIONAL DESK
-              </span>
-            </div>
-
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-[#0B1E48] tracking-tight leading-[1.08] font-['Space_Grotesk',sans-serif]">
               Get in Touch <br className="hidden sm:inline" />
@@ -82,18 +73,18 @@ export function ContactHero() {
             </p>
 
             {/* Telemetry Micro Badges */}
-            <div className="flex flex-wrap items-center gap-3 pt-4 text-[11px] font-['JetBrains_Mono',monospace] text-slate-500 font-semibold">
+            <div className="flex flex-wrap items-center gap-3 pt-4 text-xs text-slate-600 font-medium">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/90 border border-blue-100 shadow-2xs text-[#006EDC]">
                 <Clock className="w-3.5 h-3.5" />
-                AVG RESPONSE &lt; 4 HOURS
+                Avg Response &lt; 4 Hours
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/90 border border-blue-100 shadow-2xs text-[#0D9488]">
                 <ShieldCheck className="w-3.5 h-3.5" />
-                WHO-GMP VERIFIED ROUTING
+                WHO-GMP Verified Routing
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/90 border border-blue-100 shadow-2xs text-[#7C3AED]">
                 <Globe2 className="w-3.5 h-3.5" />
-                10+ EXPORT CORRIDORS
+                10+ Export Corridors
               </span>
             </div>
 

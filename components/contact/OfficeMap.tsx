@@ -19,7 +19,7 @@ export function OfficeMap() {
       coords: "21.2294° N, 72.8837° E",
       airport: "Surat International Airport (STV) — 18 km",
       port: "Hazira Container Port & JNPT Marine Corridor",
-      hours: "Mon – Sat: 09:00 – 18:30 IST",
+      hours: "Mon – Sat: 9:00 AM – 6:00 PM IST",
       mapSrc:
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119066.41709405072!2d72.80287865!3d21.2294246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04f4450700001%3A0x6b872f23246a48d!2sPlatinum%20Plaza%2C%20Surat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
       directionsUrl: "https://maps.app.goo.gl/uiLQiWR9muJXici28",
@@ -57,13 +57,6 @@ export function OfficeMap() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-slate-200 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/25 mb-3 shadow-2xs">
-              <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-              <span className="text-[11px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.15em] text-[#006EDC]">
-                09.02 // GEOGRAPHIC HUBS & LOGISTICS
-              </span>
-            </div>
-
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1E48] tracking-tight font-['Space_Grotesk',sans-serif]">
               Find Our Global Offices
             </h2>

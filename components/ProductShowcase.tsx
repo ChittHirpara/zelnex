@@ -124,12 +124,6 @@ export function ProductShowcase() {
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
         <div className="product-header-anim text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/20 mb-3.5 shadow-2xs">
-            <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#006EDC]">
-              05.00 // PACKAGING EXCELLENCE &amp; STABILITY
-            </p>
-          </div>
 
           <h2
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0B1E48] tracking-tight leading-[1.08] mb-4"

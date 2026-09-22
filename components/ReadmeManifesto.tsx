@@ -21,12 +21,6 @@ export function ReadmeManifesto() {
   return (
     <section id="readme" className="py-16 sm:py-20 border-b border-[#E5E7EB] bg-[#f3f4f6]">
       <div className="mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="flex items-center gap-2 px-3 py-1 rounded bg-[#06B6D4]/10 border border-[#06B6D4]/30 text-xs font-['JetBrains_Mono',monospace] font-bold text-[#0891B2] uppercase w-fit mb-6">
-          <FileText className="w-3.5 h-3.5 text-[#06B6D4]" />
-          <span>05.00 // SYSTEM MANIFESTO & REPO</span>
-        </div>
 
         {/* ── Dark-Themed Container (#0d1117) Styled as GitHub README ── */}
         <div className="bg-[#0d1117] border border-slate-700 rounded-xl overflow-hidden shadow-2xl text-slate-300 font-['JetBrains_Mono',monospace]">

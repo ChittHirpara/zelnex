@@ -66,41 +66,7 @@ const PHARMA_STANDARDS: PharmaBrandItem[] = [
       </svg>
     ),
   },
-  {
-    name: "Zone IVb",
-    badge: "Stability Tested",
-    sub: "Tropical Climate",
-    gradient: "linear-gradient(135deg, #ea580c 0%, #f97316 100%)",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-        <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />
-      </svg>
-    ),
-  },
-  {
-    name: "COPP Ready",
-    badge: "Cert of Product",
-    sub: "WHO Standard",
-    gradient: "linear-gradient(135deg, #059669 0%, #10b981 100%)",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-        <circle cx="12" cy="8" r="7" />
-        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
-      </svg>
-    ),
-  },
-  {
-    name: "FSC Validated",
-    badge: "Free Sale Cert",
-    sub: "Export Clearance",
-    gradient: "linear-gradient(135deg, #d97706 0%, #f59e0b 100%)",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-        <polyline points="22 4 12 14.01 9 11.01" />
-      </svg>
-    ),
-  },
+
   {
     name: "Cold-Chain",
     badge: "Aseptic Freight",
@@ -161,16 +127,11 @@ export function DigitalEpochSection() {
         {/* 3. Hero Text Content */}
         <div className="relative z-20 flex-1 px-8 md:px-16 pt-12 md:pt-16 flex flex-col items-start">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-2xl flex flex-col items-start"
           >
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#006EDC]/10 px-3.5 py-1 text-xs font-bold text-[#006EDC] border border-[#006EDC]/20 mb-3.5 backdrop-blur-md">
-              <span className="h-2 w-2 rounded-full bg-[#006EDC] animate-pulse" />
-              <span>{t.contact.badge}</span>
-            </div>
-
             <h2 className="font-display text-[28px] sm:text-[36px] md:text-[56px] font-medium tracking-tight text-[#0a1b33] leading-[1.1]">
               {t.contact.title}
             </h2>
@@ -240,8 +201,8 @@ export function DigitalEpochSection() {
           }}
         >
           <div className="animate-marquee flex items-center gap-5">
-            {/* Render list twice inline to ensure seamless loop */}
-            {[...PHARMA_STANDARDS, ...PHARMA_STANDARDS].map((item, idx) => (
+            {/* Render list repeats to ensure seamless loop */}
+            {[...PHARMA_STANDARDS, ...PHARMA_STANDARDS, ...PHARMA_STANDARDS].map((item, idx) => (
               <Link
                 key={`${item.name}-${idx}`}
                 href="/contact"

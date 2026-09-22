@@ -297,7 +297,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: "choosing-the-right-pharmaceutical-dosage-form",
     title: "Choosing the Right Pharmaceutical Dosage Form",
     excerpt:
-      "A technical evaluation of tablets, capsules, softgels, syrups, sachets, sterile injectables, and sprays to select the optimal delivery system for commercial success.",
+      "A technical evaluation of tablets, capsules, syrups, sachets, effervescent tablets, and topical preparations to select the optimal delivery system for commercial success.",
     category: "Manufacturing",
     date: "September 08, 2026",
     readTime: "5 min read",
@@ -307,10 +307,10 @@ export const BLOG_POSTS: BlogPost[] = [
       avatar: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=150&h=150&fit=crop&crop=faces",
     },
     coverImage: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=1200&h=650&fit=crop",
-    tags: ["Dosage Forms", "Tablets", "Capsules", "Softgels", "Sterile Products", "Manufacturing"],
+    tags: ["Dosage Forms", "Tablets", "Capsules", "Oral Liquids", "Powders", "Manufacturing"],
     content: {
       summary:
-        "The dosage form is one of the first decisions involved in developing or sourcing a pharmaceutical product. Tablets, capsules, softgels, syrups, powders, sterile products, sprays, and other dosage forms each have different manufacturing, packaging, stability, storage, and market considerations. Choosing the right format requires more than considering appearance or consumer preference.",
+        "The dosage form is one of the first decisions involved in developing or sourcing a pharmaceutical product. Tablets, capsules, syrups, powders, effervescent formulations, and topical preparations each have different manufacturing, packaging, stability, storage, and market considerations. Choosing the right format requires more than considering appearance or consumer preference.",
       sections: [
         {
           heading: "Tablets",
@@ -329,11 +329,11 @@ export const BLOG_POSTS: BlogPost[] = [
           ],
         },
         {
-          heading: "Softgels",
+          heading: "Effervescent Formulations",
           paragraphs: [
-            "Softgel capsules typically contain a liquid or semi-solid fill enclosed within a soft capsule shell.",
-            "They can be useful for oil-based formulations, lipid-based formulations, nutraceutical products, vitamins, and certain specialized pharmaceutical formulations.",
-            "The formulation must be compatible with the capsule shell and manufacturing process.",
+            "Effervescent tablets are designed to dissolve rapidly in water, releasing carbon dioxide to create a palatable solution.",
+            "They provide rapid drug dispersion and absorption, improved patient compliance for large-dose actives, and enhanced bioavailability for analgesics and vitamins.",
+            "Specialized environmental humidity control is essential during manufacturing to maintain product stability.",
           ],
         },
         {
@@ -352,11 +352,11 @@ export const BLOG_POSTS: BlogPost[] = [
           ],
         },
         {
-          heading: "Sterile Products",
+          heading: "Topical and Tube Preparations",
           paragraphs: [
-            "Sterile dosage forms include products such as certain injections and other sterile preparations.",
-            "These products require specialized manufacturing and quality controls, including sterility assurance, environmental cleanroom controls, container closure integrity, sterilization processes, microbiological controls, and rigorous testing.",
-            "Sterile products should only be manufactured through appropriately qualified facilities and processes.",
+            "Topical preparations include pharmaceutical creams, ointments, gels, and lotions designed for direct localized application.",
+            "They deliver targeted therapeutic efficacy with minimal systemic side effects, providing high patient convenience in dermatological care.",
+            "Formulations require specialized emulsification, rheology optimization, and multi-layer barrier tube packaging to ensure stability and microbial purity.",
           ],
         },
         {

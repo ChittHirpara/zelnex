@@ -8,7 +8,6 @@ import {
   Boxes,
   Users2,
   ArrowRight,
-  Sparkles,
 } from "lucide-react";
 
 export function AboutHero() {
@@ -90,15 +89,6 @@ export function AboutHero() {
         {/* ── Hero Title & Headline Grid ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-16">
           <div className="lg:col-span-8 flex flex-col">
-            
-            {/* Status Pill Badge */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white border border-blue-200/80 shadow-[0_2px_10px_rgba(0,110,220,0.06)] w-fit mb-6">
-              <Sparkles className="w-4 h-4 text-[#006EDC]" />
-              <span className="text-[11px] font-['JetBrains_Mono',monospace] font-bold tracking-[0.14em] uppercase text-[#006EDC]">
-                01.00 // ENTERPRISE PROFILE &amp; GLOBAL HEALTHCARE ARCHITECTURE
-              </span>
-            </div>
-
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#0B1E48] tracking-tight leading-[1.08] mb-6 font-['Inter',sans-serif]">
               Architecting the Future of{" "}

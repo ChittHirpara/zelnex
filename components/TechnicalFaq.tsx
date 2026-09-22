@@ -1,5 +1,5 @@
 import React from "react";
-import { HelpCircle, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 export function TechnicalFaq() {
   const faqs = [
@@ -31,10 +31,6 @@ export function TechnicalFaq() {
         
         {/* Section Header */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#06B6D4]/10 border border-[#06B6D4]/30 text-xs font-['JetBrains_Mono',monospace] font-bold text-[#0891B2] uppercase mb-2">
-            <HelpCircle className="w-3.5 h-3.5 text-[#06B6D4]" />
-            <span>06.00 // TECHNICAL FAQ & DOCUMENTATION</span>
-          </div>
           <h2
             className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#111827] tracking-tight"
             style={{ fontFamily: "'Syne', sans-serif" }}

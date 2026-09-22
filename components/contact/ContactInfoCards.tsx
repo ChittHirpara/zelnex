@@ -80,7 +80,7 @@ export function ContactInfoCards() {
       badge: "INSTITUTIONAL HOTLINE",
       mainText: "+91 93282 86164",
       subText: "+91 93282 86164 (Global WhatsApp & Export Desk)",
-      telemetry: "IVR: Mon–Sat 09:00–18:30 IST",
+      telemetry: "IVR: Mon–Sat 9:00 AM–6:00 PM IST",
       actionText: "Call Head Office",
       actionHref: "tel:+919328286164",
       copyText: "+919328286164",
@@ -108,12 +108,12 @@ export function ContactInfoCards() {
       iconBg: "rgba(234, 88, 12, 0.1)",
       iconBorder: "rgba(234, 88, 12, 0.25)",
       badge: "GLOBAL TIMEZONE COMPLIANT",
-      mainText: "Monday – Saturday: 09:00 – 18:30 IST",
+      mainText: "Monday – Saturday: 9:00 AM – 6:00 PM IST",
       subText: "Sunday: Closed (Emergency MOH tender support online)",
       telemetry: "Timezone: Indian Standard Time (UTC+05:30)",
       actionText: "Check Local Time",
       actionHref: "#",
-      copyText: "Monday – Saturday: 09:00 – 18:30 IST (UTC+05:30)",
+      copyText: "Monday – Saturday: 9:00 AM – 6:00 PM IST (UTC+05:30)",
     },
   ];
 

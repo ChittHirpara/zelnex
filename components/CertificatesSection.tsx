@@ -60,12 +60,6 @@ export function CertificatesSection() {
         
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/25 mb-3 shadow-2xs">
-            <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-            <span className="text-[11px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.15em] text-[#006EDC]">
-              07.00 // ACCREDITATIONS &amp; REGULATORY LICENSURE
-            </span>
-          </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#0B1E48] tracking-tight leading-[1.15]">
             Accreditations, Registrations &amp; Certifications

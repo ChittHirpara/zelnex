@@ -140,7 +140,17 @@ function CategoriesContent() {
   const dosageParam = searchParams.get("dosage");
   const categoryParam = searchParams.get("category");
 
-  const [selectedCategory, setSelectedCategory] = useState<string>(categoryParam || "all");
+  const resolveCategoryParam = (param: string | null) => {
+    if (!param) return "all";
+    const aliases: Record<string, string> = {
+      "pain-management-musculoskeletal": "pain-musculoskeletal",
+      "diabetes-metabolic-care": "diabetes-metabolic",
+      "hematology-supportive-care": "hematology-supportive",
+    };
+    return aliases[param] || param;
+  };
+
+  const [selectedCategory, setSelectedCategory] = useState<string>(resolveCategoryParam(categoryParam));
   const [selectedDosage, setSelectedDosage] = useState<string>(() => {
     if (dosageParam) {
       const exists = DOSAGE_OPTIONS.some((d) => d.id === dosageParam);
@@ -165,24 +175,27 @@ function CategoriesContent() {
   if (categoryParam !== prevCategoryParam) {
     setPrevCategoryParam(categoryParam);
     if (categoryParam) {
-      setSelectedCategory(categoryParam);
+      setSelectedCategory(resolveCategoryParam(categoryParam));
     }
   }
 
-  // Flatten all formulations from 21 categories
+  // Flatten all formulations from categories, sorted in ABCD (alphabetical) order
   const allFormulations: FormulationItem[] = useMemo(() => {
-    return PHARMACEUTICAL_PORTFOLIO.flatMap((cat) =>
+    const items = PHARMACEUTICAL_PORTFOLIO.flatMap((cat) =>
       cat.products.map((p) => ({
         ...p,
         categoryName: cat.name,
         categorySlug: cat.slug,
       }))
     );
+    return items.sort((a, b) =>
+      a.composition.localeCompare(b.composition, undefined, { sensitivity: "base" })
+    );
   }, []);
 
-  // Filter formulations by Category, Dosage Form, and Search Query
+  // Filter formulations by Category, Dosage Form, and Search Query, preserving ABCD order
   const filteredFormulations = useMemo(() => {
-    return allFormulations.filter((item) => {
+    const results = allFormulations.filter((item) => {
       // 1. Category Filter
       if (selectedCategory !== "all") {
         const matchesCategory =
@@ -205,19 +218,30 @@ function CategoriesContent() {
         }
       }
 
-      // 3. Search Query Filter
+      // 3. Search Query Filter with exact word-boundary category matching (prevents urology matching neurology)
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase().trim();
+        const escapedQ = q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const catWordRegex = new RegExp(`(^|\\s|[-&/,])${escapedQ}($|\\s|[-&/,])`, "i");
+        const matchesCategoryName =
+          item.categorySlug === q ||
+          catWordRegex.test(item.categoryName);
+
         const matchesSearch =
           item.composition.toLowerCase().includes(q) ||
           item.moleculeGroup.toLowerCase().includes(q) ||
           item.dosage.toLowerCase().includes(q) ||
-          item.categoryName.toLowerCase().includes(q);
+          matchesCategoryName;
         if (!matchesSearch) return false;
       }
 
       return true;
     });
+
+    // Ensure strict ABCD alphabetical order across all views
+    return results.sort((a, b) =>
+      a.composition.localeCompare(b.composition, undefined, { sensitivity: "base" })
+    );
   }, [allFormulations, selectedCategory, selectedDosage, searchQuery]);
 
   // Section Heading Label & Color
@@ -342,7 +366,7 @@ function CategoriesContent() {
 
           {/* 2. Main Title */}
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1B324F] tracking-tight uppercase">
-            INTERNATIONAL PRODUCT CATALOGUE
+            PRODUCT CATALOGUE
           </h1>
 
           {/* 3. Subtitle */}

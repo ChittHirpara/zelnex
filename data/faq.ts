@@ -13,16 +13,16 @@ export const FAQ_DATA: FAQItem[] = [
     category: "products",
     question: "What pharmaceutical dosage forms do you supply?",
     answer:
-      "We support a broad range of finished pharmaceutical dosage forms, including tablets, capsules, softgels, oral liquids, powders and sachets, sterile products, and selected specialized formulations, subject to product and market requirements.",
+      "We support a broad range of finished pharmaceutical dosage forms, including tablets, capsules, oral liquids, powders and sachets, and selected specialized formulations, subject to product and market requirements.",
     badge: "Dosage Forms",
-    tags: ["Tablets", "Capsules", "Softgels", "Oral Liquids", "Powders", "Sterile"],
+    tags: ["Tablets", "Capsules", "Oral Liquids", "Powders"],
   },
   {
     id: "faq-2",
     category: "dossier",
     question: "Do you provide CTD and eCTD documentation?",
     answer:
-      "We can coordinate regulatory documentation and dossier requirements through our manufacturing and regulatory partners, depending on the product and target market.",
+      "We provide CTD and eCTD documentation and regulatory dossier support based on the specific product and target market. Our regulatory services cover dossier preparation, documentation, registration support, and coordination of market-specific regulatory requirements.",
     badge: "CTD & eCTD",
     tags: ["CTD", "eCTD", "Regulatory Dossier", "MOH Registration", "Documentation"],
   },

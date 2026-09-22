@@ -1,5 +1,4 @@
 import React from "react";
-import { GitCommit } from "lucide-react";
 
 export function TechnicalChangelog() {
   const releases = [
@@ -39,12 +38,6 @@ export function TechnicalChangelog() {
   return (
     <section id="changelog" className="py-16 sm:py-20 border-b border-[#E5E7EB] bg-[#F9FAFB]">
       <div className="mx-auto max-w-[1340px] px-4 sm:px-6 lg:px-8 font-['Inter',sans-serif]">
-        
-        {/* Section Header */}
-        <div className="flex items-center gap-2 px-3 py-1 rounded bg-[#06B6D4]/10 border border-[#06B6D4]/30 text-xs font-['JetBrains_Mono',monospace] font-bold text-[#0891B2] uppercase w-fit mb-6">
-          <GitCommit className="w-3.5 h-3.5 text-[#06B6D4]" />
-          <span>04.00 // RELEASE NOTES & AUDIT TRAIL</span>
-        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           

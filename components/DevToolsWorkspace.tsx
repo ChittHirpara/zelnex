@@ -27,9 +27,6 @@ export function DevToolsWorkspace() {
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#E5E7EB] gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#06B6D4]/10 border border-[#06B6D4]/30 text-xs font-['JetBrains_Mono',monospace] font-bold text-[#0891B2] uppercase mb-2">
-              <span>03.00 // INTERACTIVE IDE WORKSPACE</span>
-            </div>
             <h2
               className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#111827] tracking-tight"
               style={{ fontFamily: "'Syne', sans-serif" }}

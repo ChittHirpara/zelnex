@@ -12,7 +12,6 @@ import {
   ShieldCheck,
   Layers,
   ArrowRight,
-  Sparkles,
 } from "lucide-react";
 
 if (typeof window !== "undefined") {
@@ -167,13 +166,6 @@ export function Expertise() {
         
         {/* Section Header matching Zelnex Theme */}
         <div className="expertise-header max-w-3xl mb-12 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 border border-[#006EDC]/20 bg-blue-50/70 rounded-full w-fit mb-4 shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5 text-[#006EDC]" />
-            <span className="text-[11px] font-[family-name:var(--font-outfit)] font-bold tracking-[0.14em] uppercase text-[#006EDC]">
-              CORE CAPABILITIES
-            </span>
-          </div>
-
           <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-[#082B61] tracking-tight leading-[1.14] mb-4 font-[family-name:var(--font-outfit)]">
             Capabilities That Power <span className="text-[#006EDC]">Global Supply</span>
           </h2>

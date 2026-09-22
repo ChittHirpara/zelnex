@@ -58,12 +58,6 @@ export function GrowingNetwork() {
         
         {/* Section Header */}
         <div className="network-header flex flex-col items-center text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/25 mb-3 shadow-2xs">
-            <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-            <span className="text-[11px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.15em] text-[#006EDC]">
-              06.00 // GLOBAL LOGISTICS & CORRIDORS
-            </span>
-          </div>
 
           {/* Hero Headline */}
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#0B1E48] mb-3">

@@ -3,11 +3,11 @@ import CategoriesClient from "@/components/categories/CategoriesClient";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "International Product Catalogue | Dosage & Category Wise Formulations",
+  title: "Product Catalogue | Dosage & Category Wise Formulations",
   description:
     "Explore 355+ WHO-GMP certified finished formulations across 6 dosage forms and 13 broad therapeutic categories: Tablets, Capsules, Effervescent Tablets, Syrups & Suspensions, Dry Powders, and Topical Preparations. CTD Dossiers available.",
   keywords: [
-    "international product catalogue",
+    "product catalogue",
     "pharmaceutical product portfolio",
     "WHO-GMP formulations India",
     "finished dosage forms",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     canonical: "/categories",
   },
   openGraph: {
-    title: "International Product Catalogue | Zelnex Pharmaceuticals",
+    title: "Product Catalogue | Zelnex Pharmaceuticals",
     description:
       "Browse 355+ WHO-GMP certified pharmaceutical formulations categorized by dosage form and therapeutic segment. CTD Dossiers available for worldwide registration.",
     url: "https://zelnexpharma.com/categories",

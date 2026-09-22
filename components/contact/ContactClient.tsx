@@ -193,15 +193,8 @@ export default function ContactClient() {
             </div>
           </div>
 
-          {/* Clinical Badge & Title */}
+          {/* Clinical Title */}
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/30 mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-              <p className="text-[11px] font-['Outfit',sans-serif] font-bold uppercase tracking-[0.14em] text-[#006EDC]">
-                03.00 // INTERNATIONAL EXPORT DESK &amp; LIAISON
-              </p>
-            </div>
-
             <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-extrabold text-[#082B61] tracking-tight leading-[1.08] mb-4 font-['Outfit',sans-serif]">
               Connect With Zelnex for <span className="text-[#006EDC]">Global Pharmaceutical Supply</span>
             </h1>
@@ -364,7 +357,7 @@ export default function ContactClient() {
                     </div>
                     <div>
                       <p className="text-xs font-bold text-[#082B61] font-['Outfit',sans-serif]">
-                        Mon – Sat: 09:00 – 19:00 IST
+                        Mon – Sat: 9:00 AM – 6:00 PM IST
                       </p>
                       <p className="text-[10px] text-slate-500 font-normal">
                         Export hotline open 24/7 for overseas timezones

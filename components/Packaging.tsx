@@ -254,18 +254,6 @@ export function Packaging({ className = "" }: { className?: string }) {
     >
       {/* ── Header Block ── */}
       <div className="flex flex-col items-center gap-4 max-w-[920px] text-center mb-[35px] md:mb-[60px] px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/20 mb-1 shadow-xs"
-        >
-          <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#006EDC]">
-            {t.packaging.badge}
-          </p>
-        </motion.div>
 
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

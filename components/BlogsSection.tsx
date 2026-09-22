@@ -41,12 +41,6 @@ export function BlogsSection() {
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* ── Section Header ── */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/20 mb-3.5 shadow-xs">
-            <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#006EDC]">
-              Pharmaceutical Knowledge & Insights
-            </p>
-          </div>
 
           <h2
             className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#111111] tracking-tight leading-[1.15]"

@@ -183,11 +183,8 @@ function ServicesModernistContent() {
         backgroundImage: `
           radial-gradient(ellipse 75% 45% at 50% -5%, rgba(186, 230, 253, 0.45) 0%, rgba(224, 242, 254, 0.18) 55%, transparent 80%),
           radial-gradient(circle at 90% 75%, rgba(199, 210, 254, 0.22) 0%, transparent 45%),
-          radial-gradient(circle at 10% 40%, rgba(186, 230, 253, 0.2) 0%, transparent 40%),
-          linear-gradient(to right, rgba(0, 110, 220, 0.08) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(0, 110, 220, 0.08) 1px, transparent 1px)
+          radial-gradient(circle at 10% 40%, rgba(186, 230, 253, 0.2) 0%, transparent 40%)
         `,
-        backgroundSize: "100% 100%, 100% 100%, 100% 100%, 32px 32px, 32px 32px",
       }}
     >
       <Navbar />
@@ -199,7 +196,7 @@ function ServicesModernistContent() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/30 mb-4">
               <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
               <p className="text-[11px] font-['Outfit',sans-serif] font-bold uppercase tracking-[0.14em] text-[#006EDC]">
-                02.00 // PHARMACEUTICAL CAPABILITIES &amp; REGULATORY SERVICES
+                PHARMACEUTICAL CAPABILITIES &amp; REGULATORY SERVICES
               </p>
             </div>
 

@@ -110,13 +110,6 @@ export function HowWeHelp({
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-slate-200 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/25 mb-3 shadow-2xs">
-              <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
-              <span className="text-[11px] font-['JetBrains_Mono',monospace] font-bold uppercase tracking-[0.15em] text-[#006EDC]">
-                09.01 // INSTITUTIONAL SUPPORT MATRIX
-              </span>
-            </div>
-
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1E48] tracking-tight font-['Space_Grotesk',sans-serif]">
               How Can We Help You?
             </h2>

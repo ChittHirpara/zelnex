@@ -98,9 +98,6 @@ export function MilestonesTimeline() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 pb-6 border-b border-slate-200 gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-50 border border-blue-200 text-[#006EDC] font-['JetBrains_Mono',monospace] text-xs font-bold uppercase tracking-wider mb-3">
-              03.00 // CORPORATE EVOLUTION &amp; MILESTONES
-            </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B1E48] tracking-tight font-['Inter',sans-serif]">
               A Trajectory of Relentless Global Growth
             </h2>

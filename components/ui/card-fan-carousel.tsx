@@ -56,14 +56,27 @@ function getHeightMultiplier(width: number) {
 
 function getSlotConfig(totalCards: number, slot: number) {
   if (totalCards >= MAX_VISIBLE) return FAN_POSITIONS[slot];
+  if (totalCards === 1) {
+    return { rot: 0, scale: 1.0, x: 0, y: 0, zIndex: 10 };
+  }
+  if (totalCards === 2) {
+    return slot === 0
+      ? { rot: -6, scale: 0.95, x: -14, y: 1.5, zIndex: 5 }
+      : { rot: 6, scale: 0.95, x: 14, y: 1.5, zIndex: 5 };
+  }
+  if (totalCards === 3) {
+    if (slot === 0) return { rot: -12, scale: 0.88, x: -20, y: 3.5, zIndex: 3 };
+    if (slot === 1) return { rot: 0, scale: 1.0, x: 0, y: 0, zIndex: 10 };
+    return { rot: 12, scale: 0.88, x: 20, y: 3.5, zIndex: 3 };
+  }
   const center = totalCards >> 1;
   const distance = totalCards > 1 ? (slot - center) / center : 0;
   const absDistance = Math.abs(distance);
   return {
-    rot: distance * 21,
-    scale: 1.0 - 0.2244 * absDistance * absDistance,
-    x: distance * 30,
-    y: absDistance * absDistance * 7.3,
+    rot: distance * 18,
+    scale: 1.0 - 0.2 * absDistance * absDistance,
+    x: distance * 28,
+    y: absDistance * absDistance * 6,
     zIndex: 10 - Math.abs(slot - center),
   };
 }
@@ -81,6 +94,12 @@ export default function SocialCards({ cards, className = "" }: SocialCardsProps)
   const totalCards = cards.length;
   const needsPagination = totalCards > MAX_VISIBLE;
   const [centerIndex, setCenterIndex] = useState(needsPagination ? HALF : totalCards >> 1);
+
+  const [prevCards, setPrevCards] = useState(cards);
+  if (cards !== prevCards) {
+    setPrevCards(cards);
+    setCenterIndex(needsPagination ? HALF : totalCards >> 1);
+  }
 
   const getVisibleMap = useCallback(
     (center: number) => {
@@ -401,9 +420,10 @@ export default function SocialCards({ cards, className = "" }: SocialCardsProps)
               </div>
             );
 
+            const cardKey = card.title || card.category || index;
             return card.linkUrl ? (
               <a
-                key={index}
+                key={cardKey}
                 href={card.linkUrl}
                 target={card.linkUrl.startsWith("http") ? "_blank" : "_self"}
                 rel="noopener noreferrer"
@@ -413,7 +433,7 @@ export default function SocialCards({ cards, className = "" }: SocialCardsProps)
               </a>
             ) : (
               <div
-                key={index}
+                key={cardKey}
                 className="fan-card absolute w-[190px] h-[270px] sm:w-[220px] sm:h-[310px] md:w-[245px] md:h-[345px] cursor-pointer origin-center"
               >
                 {cardContent}

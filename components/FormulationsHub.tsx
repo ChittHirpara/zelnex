@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -13,8 +13,6 @@ const SIX_DOSAGE_CARDS = [
   // 1. TABLETS
   {
     id: "cat-tablet",
-    tag: "SOLID ORAL",
-    tagColor: "#F59E0B",
     title: "Tablets",
     image: "/products/tablets-blister.jpg",
     href: "/products?dosage=tablet",
@@ -22,8 +20,6 @@ const SIX_DOSAGE_CARDS = [
   // 2. CAPSULES
   {
     id: "cat-capsule",
-    tag: "ENCAPSULATION",
-    tagColor: "#0088CC",
     title: "Capsules",
     image: "/products/hard-capsules.jpg",
     href: "/products?dosage=capsule",
@@ -31,8 +27,6 @@ const SIX_DOSAGE_CARDS = [
   // 3. EFFERVESCENT
   {
     id: "cat-effervescent",
-    tag: "RAPID DISSOLUTION",
-    tagColor: "#00A0A2",
     title: "Effervescent Tablets",
     image: "/products/effervescent-tablets.jpg",
     href: "/products?dosage=effervescent",
@@ -40,8 +34,6 @@ const SIX_DOSAGE_CARDS = [
   // 4. SYRUPS & SUSPENSIONS
   {
     id: "cat-suspension",
-    tag: "ORAL LIQUIDS",
-    tagColor: "#80276C",
     title: "Syrups & Suspensions",
     image: "/products/syrup-suspension.jpg",
     href: "/products?dosage=suspension",
@@ -49,8 +41,6 @@ const SIX_DOSAGE_CARDS = [
   // 5. DRY POWDERS
   {
     id: "cat-dry-powder",
-    tag: "RECONSTITUTION SACHETS",
-    tagColor: "#D97706",
     title: "Dry Powders",
     image: "/products/powder-sachets.jpg",
     href: "/products?dosage=dry-powder",
@@ -58,8 +48,6 @@ const SIX_DOSAGE_CARDS = [
   // 6. TOPICAL / TUBE
   {
     id: "cat-topical",
-    tag: "OINTMENTS & GELS",
-    tagColor: "#059669",
     title: "Topical / Tube",
     image: "/products/topical-tube.jpg",
     href: "/products?dosage=topical",
@@ -92,14 +80,6 @@ export function FormulationsHub() {
           1. STREAMLINED EXECUTIVE HEADER & LIVE KPI STRIP
          ════════════════════════════════════════════════════════════════ */}
       <div className="relative z-10 text-center max-w-3xl mx-auto mb-8 sm:mb-10 px-4 sm:px-6">
-        {/* Metadata Pill */}
-        <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#006EDC]/10 border border-[#006EDC]/25 mb-3 shadow-2xs">
-          <Sparkles className="w-3.5 h-3.5 text-[#006EDC]" />
-          <span className="text-[10.5px] font-bold uppercase tracking-[0.15em] text-[#006EDC] font-[family-name:var(--font-outfit)]">
-            Finished Formulations &amp; Dosage Capabilities
-          </span>
-        </div>
-
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-extrabold text-[#082B61] tracking-tight leading-[1.15] mb-3 font-[family-name:var(--font-outfit)]">
           Commercial Formulations &amp; Certified Dosage Formats
         </h2>
@@ -192,12 +172,12 @@ export function FormulationsHub() {
                 />
               </div>
 
-              {/* ── MATTE GLASS FLOATING PANEL (PILL BADGE & TITLE) ── */}
+              {/* ── MATTE GLASS FLOATING PANEL (TITLE ONLY) ── */}
               <div
-                className="relative z-10 -mt-9 sm:-mt-11 w-full rounded-[18px] flex flex-col gap-1 p-3 sm:p-3.5 flex-1 transition-all duration-300"
+                className="relative z-10 -mt-8 sm:-mt-9 w-full rounded-[16px] flex items-center justify-between gap-2 p-3 sm:p-3.5 transition-all duration-300"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.90) 25%, rgba(255, 255, 255, 0.98) 70%, rgba(255, 255, 255, 1) 100%)",
+                    "linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.92) 35%, rgba(255, 255, 255, 1) 100%)",
                   backdropFilter: "blur(20px) saturate(190%)",
                   WebkitBackdropFilter: "blur(20px) saturate(190%)",
                   border: "1px solid rgba(255, 255, 255, 0.95)",
@@ -205,28 +185,11 @@ export function FormulationsHub() {
                     "0 10px 24px -4px rgba(8, 43, 97, 0.08), inset 0 1.5px 0.5px 0 rgba(255, 255, 255, 1)",
                 }}
               >
-                {/* Badge — Frosted Pill */}
-                <span
-                  className="inline-block self-start text-[8.5px] font-bold uppercase tracking-[0.08em] px-2.5 py-[2px] rounded-full border transition-all duration-200 font-[family-name:var(--font-outfit)]"
-                  style={{
-                    color: product.tagColor || "#006EDC",
-                    borderColor: `${product.tagColor || "#006EDC"}45`,
-                    background: "rgba(255, 255, 255, 0.95)",
-                    backdropFilter: "blur(8px)",
-                    WebkitBackdropFilter: "blur(8px)",
-                    boxShadow: `0 1px 3px ${product.tagColor || "#006EDC"}20, inset 0 1px 0 rgba(255, 255, 255, 0.95)`,
-                  }}
-                >
-                  {product.tag}
-                </span>
-
                 {/* Title */}
-                <div className="flex items-center justify-between gap-1.5 pt-0.5">
-                  <h3 className="font-[family-name:var(--font-outfit)] text-[15px] sm:text-[16px] font-bold leading-tight text-[#082B61] tracking-tight group-hover:text-[#006EDC] transition-colors duration-200 truncate">
-                    {product.title}
-                  </h3>
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#006EDC] group-hover:translate-x-0.5 transition-all duration-200 shrink-0" />
-                </div>
+                <h3 className="font-[family-name:var(--font-outfit)] text-[15px] sm:text-[16px] font-bold leading-tight text-[#082B61] tracking-tight group-hover:text-[#006EDC] transition-colors duration-200 truncate">
+                  {product.title}
+                </h3>
+                <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#006EDC] group-hover:translate-x-0.5 transition-all duration-200 shrink-0" />
               </div>
             </Link>
           ))}

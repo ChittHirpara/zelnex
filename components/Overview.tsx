@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Sparkles, Globe, Package, ShieldCheck } from "lucide-react";
+import { ArrowRight, Globe, Package, ShieldCheck } from "lucide-react";
 
 export function Overview() {
 
@@ -49,8 +49,7 @@ export function Overview() {
       id="overview"
       className="relative scroll-mt-24 py-16 sm:py-24 bg-[#F8FAFC] text-slate-900 overflow-hidden font-[family-name:var(--font-montserrat)] border-b border-slate-200/80"
     >
-      {/* Subtle Pattern Grid Background */}
-      <div className="pointer-events-none absolute inset-0 z-0 opacity-30 devtools-grid-20" aria-hidden />
+
 
       {/* Main Structural Container */}
       <div className="relative z-10 mx-auto max-w-[1340px] px-4 sm:px-6 md:px-8">
@@ -82,14 +81,6 @@ export function Overview() {
           
           {/* Left: Headline & Corporate Narrative */}
           <div className="lg:col-span-7 flex flex-col">
-            {/* Status Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 border border-[#006EDC]/20 bg-blue-50/70 rounded-full w-fit mb-5 shadow-2xs">
-              <Sparkles className="w-3.5 h-3.5 text-[#006EDC]" />
-              <span className="text-[11px] font-[family-name:var(--font-outfit)] font-bold tracking-[0.14em] uppercase text-[#006EDC]">
-                COMPANY OVERVIEW
-              </span>
-            </div>
-
             {/* Main Editorial Headline */}
             <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-[#082B61] tracking-tight leading-[1.14] mb-5 font-[family-name:var(--font-outfit)]">
               Pharmaceutical Supply <br className="hidden sm:inline" />
@@ -150,13 +141,6 @@ export function Overview() {
           <div className="lg:col-span-5 flex justify-center">
             <div
               className="relative w-full max-w-[460px] aspect-square border border-slate-200/90 bg-white rounded-3xl shadow-[0_4px_24px_rgba(0,110,220,0.06)] overflow-hidden select-none"
-              style={{
-                backgroundImage: `
-                  linear-gradient(to right, rgba(0, 110, 220, 0.04) 1px, transparent 1px),
-                  linear-gradient(to bottom, rgba(0, 110, 220, 0.04) 1px, transparent 1px)
-                `,
-                backgroundSize: "24px 24px",
-              }}
             >
               {/* Corner L-Markers */}
               <div className="absolute top-4 left-4 w-3.5 h-3.5 border-t-2 border-l-2 border-[#006EDC] pointer-events-none z-20" />

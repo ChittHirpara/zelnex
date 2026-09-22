@@ -22,9 +22,6 @@ export function AboutCTA() {
             
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/10 border border-white/20 text-cyan-300 font-['JetBrains_Mono',monospace] text-xs font-bold uppercase tracking-wider">
-                08.00 // GLOBAL PARTNERSHIP &amp; REGISTRATION DESK
-              </div>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.12] font-['Inter',sans-serif]">
                 Ready to Expand Healthcare Access in Your Market?
