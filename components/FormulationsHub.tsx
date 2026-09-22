@@ -16,8 +16,6 @@ const SIX_DOSAGE_CARDS = [
     tag: "SOLID ORAL",
     tagColor: "#F59E0B",
     title: "Tablets",
-    description:
-      "High-speed rotary tableting with precision aqueous film coating, controlled dissolution and Alu-Alu blister sealing.",
     image: "/products/tablets-blister.jpg",
     href: "/products?dosage=tablet",
   },
@@ -27,8 +25,6 @@ const SIX_DOSAGE_CARDS = [
     tag: "ENCAPSULATION",
     tagColor: "#0088CC",
     title: "Capsules",
-    description:
-      "100% checkweighed precision hard gelatin and HPMC vegetarian encapsulation protecting hygroscopic active molecules.",
     image: "/products/hard-capsules.jpg",
     href: "/products?dosage=capsule",
   },
@@ -38,8 +34,6 @@ const SIX_DOSAGE_CARDS = [
     tag: "RAPID DISSOLUTION",
     tagColor: "#00A0A2",
     title: "Effervescent Tablets",
-    description:
-      "Direct-compression effervescent formulations with instant carbonation and moisture-tight barrier aluminium tube packaging.",
     image: "/products/effervescent-tablets.jpg",
     href: "/products?dosage=effervescent",
   },
@@ -49,8 +43,6 @@ const SIX_DOSAGE_CARDS = [
     tag: "ORAL LIQUIDS",
     tagColor: "#80276C",
     title: "Syrups & Suspensions",
-    description:
-      "Automated liquid formulations with uniform active dispersion, pleasant flavor masking and calibrated dosing cups.",
     image: "/products/syrup-suspension.jpg",
     href: "/products?dosage=suspension",
   },
@@ -60,8 +52,6 @@ const SIX_DOSAGE_CARDS = [
     tag: "RECONSTITUTION SACHETS",
     tagColor: "#D97706",
     title: "Dry Powders",
-    description:
-      "VFFS-packed reconstitution granules, WHO-standard oral salts and antibiotic dry syrups in multi-barrier moisture foil.",
     image: "/products/powder-sachets.jpg",
     href: "/products?dosage=dry-powder",
   },
@@ -71,8 +61,6 @@ const SIX_DOSAGE_CARDS = [
     tag: "OINTMENTS & GELS",
     tagColor: "#059669",
     title: "Topical / Tube",
-    description:
-      "High-absorption micro-emulsion gels, vanishing creams and antiseptic ointments in sterile collapsible barrier tubes.",
     image: "/products/topical-tube.jpg",
     href: "/products?dosage=topical",
   },
@@ -204,12 +192,12 @@ export function FormulationsHub() {
                 />
               </div>
 
-              {/* ── MATTE GLASS FLOATING PANEL (30% OF CARD OVERLAY) ── */}
+              {/* ── MATTE GLASS FLOATING PANEL (PILL BADGE & TITLE) ── */}
               <div
-                className="relative z-10 -mt-12 sm:-mt-14 w-full rounded-[18px] flex flex-col gap-1.5 p-3.5 flex-1 transition-all duration-300"
+                className="relative z-10 -mt-9 sm:-mt-11 w-full rounded-[18px] flex flex-col gap-1 p-3 sm:p-3.5 flex-1 transition-all duration-300"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(255, 255, 255, 0.60) 0%, rgba(255, 255, 255, 0.88) 25%, rgba(255, 255, 255, 0.98) 70%, rgba(255, 255, 255, 1) 100%)",
+                    "linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.90) 25%, rgba(255, 255, 255, 0.98) 70%, rgba(255, 255, 255, 1) 100%)",
                   backdropFilter: "blur(20px) saturate(190%)",
                   WebkitBackdropFilter: "blur(20px) saturate(190%)",
                   border: "1px solid rgba(255, 255, 255, 0.95)",
@@ -233,14 +221,12 @@ export function FormulationsHub() {
                 </span>
 
                 {/* Title */}
-                <h3 className="font-[family-name:var(--font-outfit)] text-[15.5px] font-bold leading-tight text-[#082B61] tracking-tight group-hover:text-[#006EDC] transition-colors duration-200 truncate">
-                  {product.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-[11.5px] leading-[1.45] text-[#475569] font-normal line-clamp-2">
-                  {product.description}
-                </p>
+                <div className="flex items-center justify-between gap-1.5 pt-0.5">
+                  <h3 className="font-[family-name:var(--font-outfit)] text-[15px] sm:text-[16px] font-bold leading-tight text-[#082B61] tracking-tight group-hover:text-[#006EDC] transition-colors duration-200 truncate">
+                    {product.title}
+                  </h3>
+                  <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#006EDC] group-hover:translate-x-0.5 transition-all duration-200 shrink-0" />
+                </div>
               </div>
             </Link>
           ))}
