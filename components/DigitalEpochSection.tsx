@@ -66,18 +66,6 @@ const PHARMA_STANDARDS: PharmaBrandItem[] = [
       </svg>
     ),
   },
-
-  {
-    name: "Cold-Chain",
-    badge: "Aseptic Freight",
-    sub: "Strict Temperature",
-    gradient: "linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%)",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-        <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14" />
-      </svg>
-    ),
-  },
 ];
 
 export function DigitalEpochSection() {
@@ -232,10 +220,9 @@ export function DigitalEpochSection() {
           <div className="animate-marquee flex items-center gap-5">
             {/* Render list repeats to ensure seamless loop */}
             {[...PHARMA_STANDARDS, ...PHARMA_STANDARDS, ...PHARMA_STANDARDS].map((item, idx) => (
-              <Link
+              <div
                 key={`${item.name}-${idx}`}
-                href="/contact"
-                className="group relative h-24 w-44 shrink-0 flex flex-col items-center justify-center rounded-full bg-white border border-slate-200/60 shadow-sm hover:border-slate-300 transition-all overflow-hidden cursor-pointer select-none px-4"
+                className="group relative h-24 w-44 shrink-0 flex flex-col items-center justify-center rounded-full bg-white border border-slate-200/60 shadow-sm hover:border-slate-300 transition-all overflow-hidden cursor-default select-none px-4"
               >
                 {/* Background Gradient Drop on Hover */}
                 <div
@@ -259,7 +246,7 @@ export function DigitalEpochSection() {
                     {item.badge}
                   </span>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
