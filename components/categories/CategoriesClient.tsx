@@ -361,12 +361,12 @@ function CategoriesContent() {
           </div>
 
           {/* 2. Main Title */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1B324F] tracking-tight uppercase">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1B324F] tracking-tight uppercase font-syne">
             PRODUCT CATALOGUE
           </h1>
 
           {/* 3. Subtitle */}
-          <div className="text-sm sm:text-base font-semibold text-[#00A0A2] tracking-wide mt-2">
+          <div className="text-sm sm:text-base font-semibold text-[#00A0A2] tracking-wide mt-2 font-syne">
             Dosage Form &amp; Therapeutic Category Wise Portfolio
           </div>
 
@@ -374,19 +374,19 @@ function CategoriesContent() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5 max-w-4xl w-full mt-6 mb-3">
             <div className="bg-white border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200 flex flex-col justify-center">
               <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Portfolio Overview</span>
-              <span className="text-lg sm:text-xl font-bold text-[#082B61] tracking-tight block">355 Products</span>
+              <span className="text-lg sm:text-xl font-bold text-[#082B61] tracking-tight font-syne block">355 Products</span>
             </div>
             <div className="bg-white border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200 flex flex-col justify-center">
               <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Dosage Forms</span>
-              <span className="text-lg sm:text-xl font-bold text-[#006EDC] tracking-tight block">6 Forms</span>
+              <span className="text-lg sm:text-xl font-bold text-[#006EDC] tracking-tight font-syne block">6 Forms</span>
             </div>
             <div className="bg-white border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200 flex flex-col justify-center">
               <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Therapeutic Categories</span>
-              <span className="text-lg sm:text-xl font-bold text-[#00A6A6] tracking-tight block">13 Categories</span>
+              <span className="text-lg sm:text-xl font-bold text-[#00A6A6] tracking-tight font-syne block">13 Categories</span>
             </div>
             <div className="bg-white border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200 flex flex-col justify-center">
               <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Catalogue Structure</span>
-              <span className="text-xs sm:text-sm font-bold text-[#082B61] tracking-tight block">
+              <span className="text-xs sm:text-sm font-bold text-[#082B61] tracking-tight font-syne block">
                 Dosage Form <span className="text-[#006EDC]">→</span> Category
               </span>
             </div>
@@ -521,7 +521,7 @@ function CategoriesContent() {
               
               {/* Clean Section Title */}
               <div>
-                <h3 className={`text-2xl font-bold tracking-tight ${activeColorClass}`}>
+                <h3 className={`text-2xl font-bold tracking-tight font-syne ${activeColorClass}`}>
                   {activeTitle}
                 </h3>
                 <p className="text-xs text-slate-500 font-medium mt-0.5">

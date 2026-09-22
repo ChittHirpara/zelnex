@@ -56,6 +56,11 @@
   --color-mist: var(--zelnex-mist);
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
+  --font-syne: 'Syne', sans-serif;
+}
+
+.font-syne {
+  font-family: 'Syne', sans-serif;
 }
 
 @keyframes marquee {
