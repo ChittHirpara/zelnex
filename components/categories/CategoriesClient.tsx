@@ -370,14 +370,14 @@ function CategoriesContent() {
           </div>
 
           {/* 2. Main Title */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#082B61] tracking-tight uppercase leading-[1.08] font-['Space_Grotesk',sans-serif]">
+          <h1 className="text-3xl sm:text-4xl md:text-[44px] font-bold text-[#082B61] tracking-tight uppercase leading-tight font-['Outfit',sans-serif]">
             PRODUCT CATALOGUE
           </h1>
 
           {/* 3. Subtitle */}
-          <div className="text-sm sm:text-base font-semibold text-[#00A0A2] tracking-wide mt-2">
+          <p className="text-sm sm:text-base font-medium text-[#008A8A] tracking-wide mt-2 font-['Outfit',sans-serif]">
             Dosage Form &amp; Therapeutic Category Wise Portfolio
-          </div>
+          </p>
 
           {/* 4. Executive Telemetry Metric Badges */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-3.5 max-w-5xl w-full mt-7 mb-4">
