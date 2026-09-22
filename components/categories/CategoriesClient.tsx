@@ -323,16 +323,10 @@ function CategoriesContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFFFF] text-[#1E293B] antialiased selection:bg-[#0088CC] selection:text-white font-['Outfit',sans-serif]">
+    <div className="min-h-screen bg-[#FFFFFF] text-[#1E293B] antialiased selection:bg-[#0088CC] selection:text-white font-[family-name:var(--font-montserrat),sans-serif]">
       
       {/* ── Global Font Styles ── */}
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
-
-        .font-mono {
-          font-family: 'JetBrains Mono', monospace;
-        }
-
         .clean-scroll::-webkit-scrollbar {
           width: 4px;
         }
@@ -377,26 +371,24 @@ function CategoriesContent() {
           </div>
 
           {/* 4. Portfolio Overview Metric Badges (From PDF Page 1 & 2) */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5 max-w-3xl w-full mt-6 mb-3">
-            <div className="bg-white/95 border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5 max-w-4xl w-full mt-6 mb-3">
+            <div className="bg-white border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200 flex flex-col justify-center">
               <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Portfolio Overview</span>
-              <span className="text-xl sm:text-2xl font-extrabold text-[#082B61] tracking-tight block">355 Products</span>
+              <span className="text-lg sm:text-xl font-bold text-[#082B61] tracking-tight block">355 Products</span>
             </div>
-            <div className="bg-white/95 border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200">
+            <div className="bg-white border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200 flex flex-col justify-center">
               <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Dosage Forms</span>
-              <span className="text-xl sm:text-2xl font-extrabold text-[#006EDC] tracking-tight block">6 Forms</span>
+              <span className="text-lg sm:text-xl font-bold text-[#006EDC] tracking-tight block">6 Forms</span>
             </div>
-            <div className="bg-white/95 border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200">
+            <div className="bg-white border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200 flex flex-col justify-center">
               <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Therapeutic Categories</span>
-              <span className="text-xl sm:text-2xl font-extrabold text-[#00A6A6] tracking-tight block">13 Categories</span>
+              <span className="text-lg sm:text-xl font-bold text-[#00A6A6] tracking-tight block">13 Categories</span>
             </div>
-            <div className="bg-white/95 border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200">
+            <div className="bg-white border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200 flex flex-col justify-center">
               <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Catalogue Structure</span>
-              <div className="mt-0.5 inline-flex items-center justify-center gap-1 text-xs sm:text-[13px] font-bold text-[#082B61] bg-slate-50 border border-slate-200/80 px-2.5 py-1 rounded-md">
-                <span>Dosage Form</span>
-                <span className="text-[#006EDC] font-black">→</span>
-                <span>Category</span>
-              </div>
+              <span className="text-xs sm:text-sm font-bold text-[#082B61] tracking-tight block">
+                Dosage Form <span className="text-[#006EDC]">→</span> Category
+              </span>
             </div>
           </div>
 
