@@ -622,18 +622,6 @@ function CategoriesContent() {
                   <span>Download 355+ Catalog (CSV)</span>
                 </button>
 
-                <button
-                  type="button"
-                  onClick={openDrawer}
-                  className={`inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-md transition-colors shadow-xs cursor-pointer ${
-                    rfqItems.length > 0
-                      ? "bg-[#0088CC] text-white hover:bg-[#0077b3]"
-                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-                  }`}
-                >
-                  <Package className="w-3.5 h-3.5" />
-                  <span>Tender RFQ ({rfqItems.length})</span>
-                </button>
 
                 <div className="relative w-full sm:w-60">
                   <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
