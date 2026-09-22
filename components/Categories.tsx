@@ -157,38 +157,21 @@ export function Categories() {
   return (
     <section
       id="categories"
-      className="relative w-full overflow-hidden py-16 sm:py-24 text-[#0B1E48] select-none z-10 font-['Inter',sans-serif] border-b border-blue-100"
-      style={{
-        background: "linear-gradient(180deg, #F8FAFC 0%, #EFF6FF 40%, #EBF4FE 75%, #F4F8FD 100%)",
-      }}
+      className="relative w-full overflow-hidden py-16 sm:py-24 text-[#0B1E48] select-none z-10 font-['Inter',sans-serif] bg-[#FAFCFF] border-y border-blue-100/80 shadow-[0_10px_40px_rgba(8,43,97,0.03)]"
     >
-
-      {/* ── Soft Ethereal Sky & Sapphire Aura Lighting ── */}
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
-        {/* Central Luminous Spotlight */}
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[650px] rounded-full blur-[130px] opacity-45"
-          style={{
-            background: "radial-gradient(ellipse at center, rgba(56, 189, 248, 0.35) 0%, rgba(0, 110, 220, 0.18) 50%, transparent 75%)",
-          }}
-        />
-
-        {/* Top-Right Soft Cyan Flare */}
-        <div
-          className="absolute top-10 right-10 w-[500px] h-[350px] rounded-full blur-[100px] opacity-30"
-          style={{
-            background: "radial-gradient(circle, rgba(0, 191, 181, 0.3) 0%, transparent 70%)",
-          }}
-        />
-
-        {/* Bottom-Left Ice Blue Glow */}
-        <div
-          className="absolute bottom-10 left-10 w-[500px] h-[350px] rounded-full blur-[100px] opacity-35"
-          style={{
-            background: "radial-gradient(circle, rgba(30, 89, 212, 0.25) 0%, transparent 70%)",
-          }}
-        />
-      </div>
+      {/* Soft Ambient Glows — Blue & White Theme */}
+      <div
+        className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[850px] h-[340px] rounded-full blur-[130px] opacity-20 bg-[#006EDC]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 left-10 w-[550px] h-[260px] rounded-full blur-[110px] opacity-15 bg-[#00A0A2]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute top-1/3 -right-20 w-[500px] h-[280px] rounded-full blur-[120px] opacity-15 bg-[#00B8F2]"
+        aria-hidden
+      />
 
       <div className="relative z-10 mx-auto max-w-[1380px] px-4 sm:px-6 lg:px-8">
         

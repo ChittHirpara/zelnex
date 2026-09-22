@@ -460,12 +460,21 @@ export function OurPackagingSection() {
   return (
     <section
       id="our-packaging"
-      className="relative z-10 w-full py-16 sm:py-24 bg-[#F8FAFC] select-none font-['Inter',sans-serif] border-b border-slate-200/80 overflow-hidden"
+      className="relative z-10 w-full py-16 sm:py-24 bg-[#FAFCFF] select-none font-['Inter',sans-serif] border-y border-blue-100/80 shadow-[0_10px_40px_rgba(0,110,220,0.03)] overflow-hidden"
     >
-      {/* Background ambient lighting */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-gradient-to-r from-blue-50/60 via-purple-50/50 to-amber-50/60 blur-3xl rounded-full" />
-      </div>
+      {/* Soft Ambient Glows — Blue & White Theme */}
+      <div
+        className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[850px] h-[340px] rounded-full blur-[130px] opacity-20 bg-[#006EDC]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 right-10 w-[550px] h-[280px] rounded-full blur-[110px] opacity-15 bg-[#00B8F2]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute top-1/2 -left-20 w-[450px] h-[250px] rounded-full blur-[100px] opacity-10 bg-[#006EDC]"
+        aria-hidden
+      />
 
       <div className="relative z-10 max-w-[1340px] mx-auto px-4 sm:px-6 lg:px-8">
         

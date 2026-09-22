@@ -104,9 +104,23 @@ export function DigitalEpochSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="contact" className="relative w-full py-16 px-4 md:px-8 overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="contact"
+      className="relative w-full py-16 sm:py-20 px-4 md:px-8 bg-[#FAFCFF] border-t border-blue-100/80 shadow-[0_10px_40px_rgba(8,43,97,0.02)] overflow-hidden"
+    >
+      {/* Soft Ambient Glows — Blue & White Theme */}
+      <div
+        className="pointer-events-none absolute -top-24 left-1/4 -translate-x-1/2 w-[750px] h-[320px] rounded-full blur-[130px] opacity-20 bg-[#006EDC]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 right-1/4 w-[600px] h-[280px] rounded-full blur-[110px] opacity-15 bg-[#00B8F2]"
+        aria-hidden
+      />
+
       {/* 2. Main Hero Container & Video Background */}
-      <div className="relative w-full max-w-[1400px] mx-auto rounded-[32px] md:rounded-[48px] bg-white border border-slate-200/50 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)] overflow-hidden min-h-[480px] sm:min-h-[560px] md:h-[600px] flex flex-col">
+      <div className="relative w-full max-w-[1400px] mx-auto rounded-[32px] md:rounded-[48px] bg-gradient-to-br from-white via-[#F8FBFF] to-[#EFF6FF] border border-blue-200/80 shadow-[0_25px_60px_rgba(0,110,220,0.08)] overflow-hidden min-h-[480px] sm:min-h-[560px] md:h-[600px] flex flex-col">
         {/* Absolutely positioned underlying layer for the background video */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none bg-slate-50">
           {inView && (
@@ -123,6 +137,21 @@ export function DigitalEpochSection() {
             />
           )}
         </div>
+
+        {/* Luminous Inner Atmosphere */}
+        <div
+          className="pointer-events-none absolute -top-20 -right-20 w-[450px] h-[300px] rounded-full blur-[100px] opacity-25 bg-[#006EDC] z-10"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute -bottom-20 -left-20 w-[400px] h-[260px] rounded-full blur-[90px] opacity-20 bg-[#00B8F2] z-10"
+          aria-hidden
+        />
+        {/* Soft Blue & White Translucent Scrim ensuring high contrast and theme harmony */}
+        <div
+          className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-white/95 via-white/80 to-transparent sm:via-white/70"
+          aria-hidden
+        />
 
         {/* 3. Hero Text Content */}
         <div className="relative z-20 flex-1 px-5 sm:px-8 md:px-16 pt-10 sm:pt-12 md:pt-16 pb-10 sm:pb-14 flex flex-col items-start">
