@@ -35,12 +35,6 @@ const EXPERTISE_CARDS = [
     href: "/services?service=regulatory",
     icon: FileCheck2,
     image: "/services/regulatory-services.jpg",
-    widget: {
-      title: "eCTD Module 1–5",
-      subtitle: "Zone IVb Stability Validation",
-      status: "Ready for Filing",
-      metric: "10+ Countries",
-    },
   },
   {
     num: "02",
@@ -58,12 +52,6 @@ const EXPERTISE_CARDS = [
     href: "/services?service=contract-manufacturing",
     icon: Factory,
     image: "/services/contract-manufacturing.png",
-    widget: {
-      title: "High-Speed Automated Lines",
-      subtitle: "Blister, Strip & Alu-Alu",
-      status: "100% On-Time",
-      metric: "Custom MOQs",
-    },
   },
   {
     num: "03",
@@ -81,12 +69,6 @@ const EXPERTISE_CARDS = [
     href: "/services?service=third-party-manufacturing",
     icon: ShieldCheck,
     image: "/services/third-party-manufacturing.png",
-    widget: {
-      title: "Sterile & Oral Facilities",
-      subtitle: "HPLC 99.8% Assay Purity",
-      status: "ISO 9001:2015",
-      metric: "Grade A Clean",
-    },
   },
   {
     num: "04",
@@ -104,12 +86,6 @@ const EXPERTISE_CARDS = [
     href: "/services?service=generic-products",
     icon: Layers,
     image: "/services/generic-products.png",
-    widget: {
-      title: "355+ Generic Molecules",
-      subtitle: "Cardio, Antibiotics, CNS, GI",
-      status: "Commercial Ready",
-      metric: "10+ Categories",
-    },
   },
 ] as const;
 
@@ -237,9 +213,8 @@ export function Expertise() {
                   </div>
                 </div>
 
-                {/* Bottom Visual Widget with Real Pharmaceutical Image */}
+                {/* Bottom Real Pharmaceutical Image */}
                 <div className="mt-auto w-full h-44 sm:h-48 rounded-2xl overflow-hidden relative border border-slate-200/80 shadow-2xs group/img">
-                  {/* Background Photo from ASSETS */}
                   <Image
                     src={card.image}
                     alt={card.title}
@@ -247,30 +222,6 @@ export function Expertise() {
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover object-center group-hover/img:scale-105 transition-transform duration-500"
                   />
-
-                  {/* Subtle gradient overlay at bottom so the pill floats seamlessly */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/35 to-transparent pointer-events-none" />
-
-                  {/* Floating Technical Status Pill */}
-                  <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-white/95 backdrop-blur-md rounded-xl p-2.5 sm:p-3 border border-blue-100/90 shadow-sm font-[family-name:var(--font-outfit)]">
-                    <div className="flex items-center justify-between gap-1 mb-1.5">
-                      <span className="text-[11.5px] font-bold text-[#082B61] truncate max-w-[130px]">
-                        {card.widget.title}
-                      </span>
-                      <span className="text-[9.5px] font-bold px-2 py-0.5 rounded-full shrink-0 bg-[#006EDC]/10 text-[#006EDC] border border-[#006EDC]/25">
-                        {card.widget.status}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center justify-between gap-1 text-[10.5px] pt-1 border-t border-slate-100">
-                      <span className="text-slate-500 font-medium truncate max-w-[130px]">
-                        {card.widget.subtitle}
-                      </span>
-                      <span className="font-bold shrink-0 text-[11.5px] text-[#006EDC]">
-                        {card.widget.metric}
-                      </span>
-                    </div>
-                  </div>
                 </div>
 
               </div>

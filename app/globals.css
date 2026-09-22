@@ -848,5 +848,45 @@ h4,
   outline-offset: 2px;
 }
 
+/* ═══════════════════════════════════════
+   ORBITAL NETWORK ANIMATIONS (Overview)
+   ═══════════════════════════════════════ */
+@keyframes zelnex-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
+@keyframes zelnex-counter-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
 
+.animate-zelnex-orbit {
+  animation: zelnex-orbit 28s linear infinite;
+  transform-origin: center center;
+}
+
+.animate-zelnex-counter-orbit {
+  animation: zelnex-counter-orbit 28s linear infinite;
+  transform-origin: center center;
+}
+
+.orbit-network-card:hover .animate-zelnex-orbit,
+.orbit-network-card:hover .animate-zelnex-counter-orbit {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-zelnex-orbit,
+  .animate-zelnex-counter-orbit {
+    animation: none !important;
+  }
+}

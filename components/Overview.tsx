@@ -140,7 +140,7 @@ export function Overview() {
           {/* Right: Our Strengths Network Topology Card */}
           <div className="lg:col-span-5 flex justify-center">
             <div
-              className="relative w-full max-w-[460px] aspect-square border border-slate-200/90 bg-white rounded-3xl shadow-[0_4px_24px_rgba(0,110,220,0.06)] overflow-hidden select-none"
+              className="relative w-full max-w-[460px] aspect-square border border-slate-200/90 bg-white rounded-3xl shadow-[0_4px_24px_rgba(0,110,220,0.06)] overflow-hidden select-none orbit-network-card"
             >
               {/* Corner L-Markers */}
               <div className="absolute top-4 left-4 w-3.5 h-3.5 border-t-2 border-l-2 border-[#006EDC] pointer-events-none z-20" />
@@ -160,7 +160,7 @@ export function Overview() {
 
               {/* Circular Network Canvas: Exact 1:1 Center */}
               <div className="absolute inset-0 w-full h-full">
-                {/* Dotted Orbit Circle */}
+                {/* Dotted Orbit Circle (r=125 in 400px viewBox = 31.25% radius) */}
                 <svg
                   viewBox="0 0 400 400"
                   className="absolute inset-0 w-full h-full pointer-events-none"
@@ -169,7 +169,7 @@ export function Overview() {
                   <circle
                     cx="200"
                     cy="200"
-                    r="132"
+                    r="125"
                     fill="none"
                     stroke="#93C5FD"
                     strokeWidth="1.5"
@@ -196,70 +196,109 @@ export function Overview() {
                   />
                 </div>
 
-                {/* 3 Orbital Nodes (Precisely placed along r=132/33% orbit line) */}
-
-                {/* Node 1: Wide Product Portfolio (Top-Left / ~11:15, 245 deg) */}
-                <Link
-                  href="/products"
-                  className="absolute pointer-events-auto group cursor-pointer"
-                  style={{ left: "36.1%", top: "20.1%" }}
+                {/* Orbital Motion System (31.25% radius = 62.5% diameter, centered at 50% 50%) */}
+                <div
+                  className="absolute pointer-events-none"
+                  style={{
+                    left: "50%",
+                    top: "50%",
+                    width: "62.5%",
+                    height: "62.5%",
+                    transform: "translate(-50%, -50%)",
+                  }}
                 >
-                  <div className="relative -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#10B981] ring-8 ring-emerald-100/90 shadow-md shadow-emerald-500/20 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-110 group-hover:shadow-emerald-500/35">
-                      <Package className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.9} />
-                    </div>
-                    <div className="absolute top-full pt-1.5 flex flex-col items-center text-center select-none">
-                      <span className="font-bold text-slate-900 text-xs sm:text-[13px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap group-hover:text-[#10B981] transition-colors">
-                        Wide Product Portfolio
-                      </span>
-                      <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 whitespace-nowrap">
-                        355+ Finished Formulations
-                      </span>
+                  {/* 3 Orbital Nodes (Smooth continuous orbit with counter-rotation to stay permanently upright) */}
+
+                  {/* Node 1: Wide Product Portfolio (Starts Top-Left ~11:00, 330 deg) */}
+                  <div
+                    className="absolute inset-0 pointer-events-none animate-zelnex-orbit"
+                    style={{ animationDelay: "-25.667s" }}
+                  >
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+                      <div
+                        className="w-11 h-11 sm:w-12 sm:h-12 relative animate-zelnex-counter-orbit"
+                        style={{ animationDelay: "-25.667s" }}
+                      >
+                        <Link
+                          href="/products"
+                          className="group/node block w-full h-full cursor-pointer"
+                        >
+                          <div className="w-full h-full rounded-full bg-[#10B981] ring-8 ring-emerald-100/90 shadow-md shadow-emerald-500/20 flex items-center justify-center text-white transition-all duration-300 group-hover/node:scale-110 group-hover/node:shadow-emerald-500/35">
+                            <Package className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.9} />
+                          </div>
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 pt-1.5 flex flex-col items-center text-center select-none w-max">
+                            <span className="font-bold text-slate-900 text-xs sm:text-[13px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap group-hover/node:text-[#10B981] transition-colors">
+                              Wide Product Portfolio
+                            </span>
+                            <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 whitespace-nowrap">
+                              355+ Finished Formulations
+                            </span>
+                          </div>
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </Link>
 
-                {/* Node 2: Global Reach (Right / ~3:15, 355 deg) */}
-                <Link
-                  href="/about"
-                  className="absolute pointer-events-auto group cursor-pointer"
-                  style={{ left: "82.9%", top: "47.1%" }}
-                >
-                  <div className="relative -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#0070DF] ring-8 ring-blue-100/90 shadow-md shadow-blue-500/20 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-110 group-hover:shadow-blue-500/35">
-                      <Globe className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.9} />
-                    </div>
-                    <div className="absolute top-full pt-1.5 flex flex-col items-center text-center select-none">
-                      <span className="font-bold text-slate-900 text-xs sm:text-[13px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap group-hover:text-[#0070DF] transition-colors">
-                        Global Reach
-                      </span>
-                      <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 whitespace-nowrap">
-                        10+ Markets Served
-                      </span>
+                  {/* Node 2: Global Reach (Starts Right ~3:00, 90 deg) */}
+                  <div
+                    className="absolute inset-0 pointer-events-none animate-zelnex-orbit"
+                    style={{ animationDelay: "-7.0s" }}
+                  >
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+                      <div
+                        className="w-11 h-11 sm:w-12 sm:h-12 relative animate-zelnex-counter-orbit"
+                        style={{ animationDelay: "-7.0s" }}
+                      >
+                        <Link
+                          href="/about"
+                          className="group/node block w-full h-full cursor-pointer"
+                        >
+                          <div className="w-full h-full rounded-full bg-[#0070DF] ring-8 ring-blue-100/90 shadow-md shadow-blue-500/20 flex items-center justify-center text-white transition-all duration-300 group-hover/node:scale-110 group-hover/node:shadow-blue-500/35">
+                            <Globe className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.9} />
+                          </div>
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 pt-1.5 flex flex-col items-center text-center select-none w-max">
+                            <span className="font-bold text-slate-900 text-xs sm:text-[13px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap group-hover/node:text-[#0070DF] transition-colors">
+                              Global Reach
+                            </span>
+                            <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 whitespace-nowrap">
+                              10+ Markets Served
+                            </span>
+                          </div>
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </Link>
 
-                {/* Node 3: Trusted Quality Supply (Bottom-Left / ~7:15, 125 deg) */}
-                <Link
-                  href="/about"
-                  className="absolute pointer-events-auto group cursor-pointer"
-                  style={{ left: "31.1%", top: "77.0%" }}
-                >
-                  <div className="relative -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#8B5CF6] ring-8 ring-purple-100/90 shadow-md shadow-purple-500/20 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-110 group-hover:shadow-purple-500/35">
-                      <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.9} />
-                    </div>
-                    <div className="absolute top-full pt-1.5 flex flex-col items-center text-center select-none max-w-[145px]">
-                      <span className="font-bold text-slate-900 text-xs sm:text-[13px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap group-hover:text-[#8B5CF6] transition-colors">
-                        Trusted Quality Supply
-                      </span>
-                      <span className="text-[9.5px] sm:text-[10.5px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 text-center leading-tight">
-                        GMP-Compliant &amp; Regulatory Support
-                      </span>
+                  {/* Node 3: Trusted Quality Supply (Starts Bottom-Left ~7:00, 210 deg) */}
+                  <div
+                    className="absolute inset-0 pointer-events-none animate-zelnex-orbit"
+                    style={{ animationDelay: "-16.333s" }}
+                  >
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+                      <div
+                        className="w-11 h-11 sm:w-12 sm:h-12 relative animate-zelnex-counter-orbit"
+                        style={{ animationDelay: "-16.333s" }}
+                      >
+                        <Link
+                          href="/about"
+                          className="group/node block w-full h-full cursor-pointer"
+                        >
+                          <div className="w-full h-full rounded-full bg-[#8B5CF6] ring-8 ring-purple-100/90 shadow-md shadow-purple-500/20 flex items-center justify-center text-white transition-all duration-300 group-hover/node:scale-110 group-hover/node:shadow-purple-500/35">
+                            <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.9} />
+                          </div>
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 pt-1.5 flex flex-col items-center text-center select-none w-max max-w-[140px]">
+                            <span className="font-bold text-slate-900 text-xs sm:text-[13px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap group-hover/node:text-[#8B5CF6] transition-colors">
+                              Trusted Quality Supply
+                            </span>
+                            <span className="text-[9.5px] sm:text-[10.5px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 text-center leading-tight">
+                              GMP-Compliant &amp; Regulatory Support
+                            </span>
+                          </div>
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               </div>
             </div>
           </div>
