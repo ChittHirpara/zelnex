@@ -19,6 +19,9 @@ import {
   FileCheck2,
   FileDown,
   Package,
+  Layers,
+  ShieldCheck,
+  Sparkles,
   ChevronDown,
 } from "lucide-react";
 import { useRfqCart } from "@/context/RfqCartContext";
@@ -360,35 +363,113 @@ function CategoriesContent() {
             />
           </div>
 
+          {/* 2. Clinical Indicator Badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50/90 border border-blue-200/70 text-[#006EDC] text-[11px] font-bold tracking-wide uppercase mb-3 shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-[#006EDC] animate-pulse" />
+            <span>WHO-GMP Validated Finished Formulations</span>
+          </div>
+
           {/* 2. Main Title */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1B324F] tracking-tight uppercase font-syne">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#082B61] tracking-tight uppercase leading-[1.08] font-['Space_Grotesk',sans-serif]">
             PRODUCT CATALOGUE
           </h1>
 
           {/* 3. Subtitle */}
-          <div className="text-sm sm:text-base font-semibold text-[#00A0A2] tracking-wide mt-2 font-syne">
+          <div className="text-sm sm:text-base font-semibold text-[#00A0A2] tracking-wide mt-2">
             Dosage Form &amp; Therapeutic Category Wise Portfolio
           </div>
 
-          {/* 4. Portfolio Overview Metric Badges (From PDF Page 1 & 2) */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5 max-w-4xl w-full mt-6 mb-3">
-            <div className="bg-white border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200 flex flex-col justify-center">
-              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Portfolio Overview</span>
-              <span className="text-lg sm:text-xl font-bold text-[#082B61] tracking-tight font-syne block">355 Products</span>
+          {/* 4. Executive Telemetry Metric Badges */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-3.5 max-w-5xl w-full mt-7 mb-4">
+            {/* Card 1: 355+ Products */}
+            <div className="group relative bg-white border border-slate-200/90 hover:border-blue-300 rounded-2xl p-4 sm:p-4.5 shadow-[0_2px_12px_-2px_rgba(8,43,97,0.06)] hover:shadow-[0_12px_28px_-4px_rgba(0,110,220,0.12)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between text-left">
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#006EDC] group-hover:scale-110 group-hover:bg-[#006EDC] group-hover:text-white transition-all duration-300">
+                  <Package className="w-5 h-5" />
+                </div>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                  PORTFOLIO
+                </span>
+              </div>
+              <div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-2xl sm:text-3xl font-extrabold text-[#082B61] tracking-tight font-['Space_Grotesk',sans-serif]">
+                    355+
+                  </span>
+                  <span className="text-xs sm:text-sm font-bold text-slate-600">Products</span>
+                </div>
+                <span className="text-[11px] text-slate-500 font-medium block mt-0.5">
+                  Finished Generic Molecules
+                </span>
+              </div>
             </div>
-            <div className="bg-white border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200 flex flex-col justify-center">
-              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Dosage Forms</span>
-              <span className="text-lg sm:text-xl font-bold text-[#006EDC] tracking-tight font-syne block">6 Forms</span>
+
+            {/* Card 2: 6 Dosage Forms */}
+            <div className="group relative bg-white border border-slate-200/90 hover:border-sky-300 rounded-2xl p-4 sm:p-4.5 shadow-[0_2px_12px_-2px_rgba(8,43,97,0.06)] hover:shadow-[0_12px_28px_-4px_rgba(2,132,199,0.12)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between text-left">
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center text-[#0284C7] group-hover:scale-110 group-hover:bg-[#0284C7] group-hover:text-white transition-all duration-300">
+                  <Layers className="w-5 h-5" />
+                </div>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                  DOSAGE
+                </span>
+              </div>
+              <div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-2xl sm:text-3xl font-extrabold text-[#006EDC] tracking-tight font-['Space_Grotesk',sans-serif]">
+                    6
+                  </span>
+                  <span className="text-xs sm:text-sm font-bold text-slate-600">Forms</span>
+                </div>
+                <span className="text-[11px] text-slate-500 font-medium block mt-0.5">
+                  Solid, Liquid &amp; Topicals
+                </span>
+              </div>
             </div>
-            <div className="bg-white border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200 flex flex-col justify-center">
-              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Therapeutic Categories</span>
-              <span className="text-lg sm:text-xl font-bold text-[#00A6A6] tracking-tight font-syne block">13 Categories</span>
+
+            {/* Card 3: 13 Categories */}
+            <div className="group relative bg-white border border-slate-200/90 hover:border-teal-300 rounded-2xl p-4 sm:p-4.5 shadow-[0_2px_12px_-2px_rgba(8,43,97,0.06)] hover:shadow-[0_12px_28px_-4px_rgba(13,148,136,0.12)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between text-left">
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-10 h-10 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center text-[#0D9488] group-hover:scale-110 group-hover:bg-[#0D9488] group-hover:text-white transition-all duration-300">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                  THERAPEUTIC
+                </span>
+              </div>
+              <div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-2xl sm:text-3xl font-extrabold text-[#0D9488] tracking-tight font-['Space_Grotesk',sans-serif]">
+                    13
+                  </span>
+                  <span className="text-xs sm:text-sm font-bold text-slate-600">Categories</span>
+                </div>
+                <span className="text-[11px] text-slate-500 font-medium block mt-0.5">
+                  Broad Clinical Spectrums
+                </span>
+              </div>
             </div>
-            <div className="bg-white border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200 flex flex-col justify-center">
-              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Catalogue Structure</span>
-              <span className="text-xs sm:text-sm font-bold text-[#082B61] tracking-tight font-syne block">
-                Dosage Form <span className="text-[#006EDC]">→</span> Category
-              </span>
+
+            {/* Card 4: Catalogue Structure */}
+            <div className="group relative bg-white border border-slate-200/90 hover:border-indigo-300 rounded-2xl p-4 sm:p-4.5 shadow-[0_2px_12px_-2px_rgba(8,43,97,0.06)] hover:shadow-[0_12px_28px_-4px_rgba(99,102,241,0.12)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between text-left">
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-[#6366F1] group-hover:scale-110 group-hover:bg-[#6366F1] group-hover:text-white transition-all duration-300">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                  STRUCTURE
+                </span>
+              </div>
+              <div>
+                <div className="inline-flex items-center gap-1.5 text-xs sm:text-[13px] font-bold text-[#082B61] bg-[#F8FAFD] border border-blue-100 px-2 py-1 rounded-lg">
+                  <span>Dosage</span>
+                  <span className="text-[#006EDC] font-extrabold">→</span>
+                  <span>Category</span>
+                </div>
+                <span className="text-[11px] text-slate-500 font-medium block mt-1.5">
+                  Direct Buyer Hierarchy
+                </span>
+              </div>
             </div>
           </div>
 
