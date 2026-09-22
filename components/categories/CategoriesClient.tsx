@@ -377,22 +377,26 @@ function CategoriesContent() {
           </div>
 
           {/* 4. Portfolio Overview Metric Badges (From PDF Page 1 & 2) */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 max-w-3xl w-full mt-6 mb-3">
-            <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">
-              <span className="text-[11px] text-slate-500 font-medium block">Portfolio Overview</span>
-              <span className="text-lg sm:text-xl font-extrabold text-[#082B61] font-mono">355 Products</span>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5 max-w-3xl w-full mt-6 mb-3">
+            <div className="bg-white/95 border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200">
+              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Portfolio Overview</span>
+              <span className="text-xl sm:text-2xl font-extrabold text-[#082B61] tracking-tight block">355 Products</span>
             </div>
-            <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">
-              <span className="text-[11px] text-slate-500 font-medium block">Dosage Forms</span>
-              <span className="text-lg sm:text-xl font-extrabold text-[#0088CC] font-mono">6 Forms</span>
+            <div className="bg-white/95 border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200">
+              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Dosage Forms</span>
+              <span className="text-xl sm:text-2xl font-extrabold text-[#006EDC] tracking-tight block">6 Forms</span>
             </div>
-            <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">
-              <span className="text-[11px] text-slate-500 font-medium block">Therapeutic Categories</span>
-              <span className="text-lg sm:text-xl font-extrabold text-[#0D9488] font-mono">13 Categories</span>
+            <div className="bg-white/95 border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200">
+              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Therapeutic Categories</span>
+              <span className="text-xl sm:text-2xl font-extrabold text-[#00A6A6] tracking-tight block">13 Categories</span>
             </div>
-            <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">
-              <span className="text-[11px] text-slate-500 font-medium block">Catalogue Structure</span>
-              <span className="text-xs sm:text-sm font-bold text-[#70B31E] block mt-1">Dosage Form → Category</span>
+            <div className="bg-white/95 border border-slate-200/90 hover:border-blue-200 rounded-xl p-3 sm:p-3.5 text-center shadow-[0_2px_8px_-2px_rgba(8,43,97,0.05)] hover:shadow-[0_4px_12px_-2px_rgba(8,43,97,0.08)] transition-all duration-200">
+              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Catalogue Structure</span>
+              <div className="mt-0.5 inline-flex items-center justify-center gap-1 text-xs sm:text-[13px] font-bold text-[#082B61] bg-slate-50 border border-slate-200/80 px-2.5 py-1 rounded-md">
+                <span>Dosage Form</span>
+                <span className="text-[#006EDC] font-black">→</span>
+                <span>Category</span>
+              </div>
             </div>
           </div>
 
@@ -528,7 +532,7 @@ function CategoriesContent() {
                 <h3 className={`text-2xl font-bold tracking-tight ${activeColorClass}`}>
                   {activeTitle}
                 </h3>
-                <p className="text-xs text-slate-500 font-mono mt-0.5">
+                <p className="text-xs text-slate-500 font-medium mt-0.5">
                   Showing {filteredFormulations.length} formulations
                 </p>
               </div>
@@ -647,7 +651,7 @@ function CategoriesContent() {
             )}
 
             {/* ── Bottom Simple Technical Assurance Bar ── */}
-            <div className="pt-4 border-t border-[#E5E7EB] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 font-mono">
+            <div className="pt-4 border-t border-[#E5E7EB] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 font-medium">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#70B31E]" />
                 <span>WHO-GMP Validated Finished Formulations</span>
