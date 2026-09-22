@@ -145,13 +145,13 @@ export function DynamicFlatMap() {
         <div className="flex items-center gap-2.5">
           <span className="w-2.5 h-2.5 rounded-full bg-[#006EDC] animate-pulse" />
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-[#0B1E48] tracking-wider uppercase font-['JetBrains_Mono',monospace]">
+            <span className="text-xs font-bold text-[#0B1E48] tracking-wider uppercase font-[family-name:var(--font-outfit)]">
               DISPATCH DESTINATION:
             </span>
-            <span className="text-xs font-extrabold text-[#006EDC] bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
+            <span className="text-xs font-extrabold text-[#006EDC] bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200 font-[family-name:var(--font-outfit)]">
               {active.country.toUpperCase()}
             </span>
-            <span className="hidden sm:inline text-xs text-slate-500 font-medium">
+            <span className="hidden sm:inline text-xs text-slate-500 font-medium font-[family-name:var(--font-montserrat)]">
               · {active.city} · {active.authority}
             </span>
           </div>
