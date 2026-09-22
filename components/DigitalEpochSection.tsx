@@ -209,19 +209,55 @@ export function DigitalEpochSection() {
       {/* 5. Seamless Marquee Pharma Standards Scroller Component */}
       <div className="mt-10 w-full overflow-hidden">
         <div
-          className="relative w-full overflow-hidden py-4"
+          className="marquee-container relative w-full overflow-hidden py-4 flex"
           style={{
             maskImage:
-              "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
+              "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
             WebkitMaskImage:
-              "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
+              "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
           }}
         >
-          <div className="animate-marquee flex items-center gap-5">
-            {/* Render list repeats to ensure seamless loop */}
+          {/* Primary Track */}
+          <div className="animate-marquee-track flex shrink-0 items-center gap-5 pr-5">
             {[...PHARMA_STANDARDS, ...PHARMA_STANDARDS, ...PHARMA_STANDARDS].map((item, idx) => (
               <div
-                key={`${item.name}-${idx}`}
+                key={`track-1-${item.name}-${idx}`}
+                className="group relative h-24 w-44 shrink-0 flex flex-col items-center justify-center rounded-full bg-white border border-slate-200/60 shadow-sm hover:border-slate-300 transition-all overflow-hidden cursor-default select-none px-4"
+              >
+                {/* Background Gradient Drop on Hover */}
+                <div
+                  className="absolute inset-0 transition-all duration-300 scale-150 opacity-0 group-hover:scale-100 group-hover:opacity-100"
+                  style={{
+                    background: item.gradient,
+                  }}
+                />
+
+                {/* Content */}
+                <div className="relative z-10 flex flex-col items-center justify-center transition-all duration-300 group-hover:text-white text-center">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[#006EDC] group-hover:text-white transition-colors">
+                      {item.icon}
+                    </span>
+                    <span className="font-display text-[13.5px] font-extrabold tracking-tight text-[#0a1b33] group-hover:text-white transition-colors">
+                      {item.name}
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-semibold text-[#64748b] group-hover:text-white/90 transition-colors mt-0.5">
+                    {item.badge}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Secondary Duplicate Track (For mathematically seamless infinite loop) */}
+          <div
+            className="animate-marquee-track flex shrink-0 items-center gap-5 pr-5"
+            aria-hidden="true"
+          >
+            {[...PHARMA_STANDARDS, ...PHARMA_STANDARDS, ...PHARMA_STANDARDS].map((item, idx) => (
+              <div
+                key={`track-2-${item.name}-${idx}`}
                 className="group relative h-24 w-44 shrink-0 flex flex-col items-center justify-center rounded-full bg-white border border-slate-200/60 shadow-sm hover:border-slate-300 transition-all overflow-hidden cursor-default select-none px-4"
               >
                 {/* Background Gradient Drop on Hover */}
