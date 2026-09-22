@@ -380,7 +380,7 @@ export function MaskedCardsZelnexTheme() {
         ref={(el) => {
           s3Reveal.setContainerRef(el);
         }}
-        className="min-h-screen w-full flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
+        className="min-h-screen md:min-h-[820px] lg:min-h-[860px] h-auto w-full flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
       >
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2">
           {/* LEFT COLUMN */}
@@ -388,7 +388,7 @@ export function MaskedCardsZelnexTheme() {
             {/* 1. Heading Card */}
             <div
               style={s3Reveal.getAnimStyle(0)}
-              className="rounded-xl md:rounded-2xl bg-stone-50 p-5 md:p-7 flex flex-col justify-between flex-[1.25] min-h-[220px] md:min-h-0 border border-neutral-200/60"
+              className="rounded-xl md:rounded-2xl bg-stone-50 p-5 md:p-6 flex flex-col justify-between flex-[1.1] min-h-[200px] border border-neutral-200/60"
             >
               {/* Heading and Description stacked: description directly after heading */}
               <div className="flex flex-col gap-3 md:gap-3.5">
@@ -426,7 +426,7 @@ export function MaskedCardsZelnexTheme() {
             {/* 2. Two Image Cards (side by side) */}
             <div
               style={s3Reveal.getAnimStyle(1)}
-              className="flex gap-1.5 md:gap-2 flex-1 min-h-[160px] sm:min-h-[200px] md:min-h-0"
+              className="flex gap-1.5 md:gap-2 h-[125px] sm:h-[140px] md:h-[140px] lg:h-[150px] shrink-0"
             >
               <div className="flex-1 rounded-xl md:rounded-2xl overflow-hidden relative group border border-black/5 bg-slate-100 shadow-sm">
                 <Image
@@ -452,7 +452,7 @@ export function MaskedCardsZelnexTheme() {
             {/* 3. Turnkey Pharmaceutical Supply Chain Card */}
             <div
               style={s3Reveal.getAnimStyle(2)}
-              className="rounded-xl md:rounded-2xl bg-gradient-to-br from-white via-[#F8FBFF] to-[#EFF6FF] p-6 sm:p-7 md:p-8 flex flex-col justify-between flex-[1.4] min-h-[260px] md:min-h-0 border border-blue-100/80 shadow-sm relative overflow-hidden group"
+              className="rounded-xl md:rounded-2xl bg-gradient-to-br from-white via-[#F8FBFF] to-[#EFF6FF] p-5 sm:p-6 md:p-6 lg:p-7 flex flex-col justify-between flex-1 min-h-[310px] md:min-h-[320px] border border-blue-100/80 shadow-sm relative overflow-hidden group"
             >
               {/* Subtle Dotted World Map Vector Background */}
               <div className="absolute right-0 top-0 w-full sm:w-[68%] lg:w-[60%] h-full pointer-events-none select-none overflow-hidden">
@@ -482,11 +482,11 @@ export function MaskedCardsZelnexTheme() {
 
               {/* Top Text Content */}
               <div className="relative z-10 max-w-xl">
-                <p className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5 font-[family-name:var(--font-outfit)]">
+                <p className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-1 font-[family-name:var(--font-outfit)]">
                   Surat Global Operations
                 </p>
 
-                <h3 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold text-[#082B61] leading-[1.08] tracking-tight mb-2.5 font-[family-name:var(--font-outfit)]">
+                <h3 className="text-2xl sm:text-[26px] md:text-[28px] lg:text-[30px] font-extrabold text-[#082B61] leading-[1.1] tracking-tight mb-2 font-[family-name:var(--font-outfit)]">
                   Turnkey
                   <br />
                   Pharmaceutical
@@ -500,11 +500,11 @@ export function MaskedCardsZelnexTheme() {
               </div>
 
               {/* Bottom Row: CTA Button + Export Metrics */}
-              <div className="relative z-10 mt-6 pt-5 border-t border-slate-200/70 flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+              <div className="relative z-10 mt-4 sm:mt-5 pt-3.5 sm:pt-4 border-t border-slate-200/70 flex flex-col lg:flex-row lg:items-center justify-between gap-4 lg:gap-5 pb-1">
                 {/* CTA Button */}
                 <Link
                   href="/contact"
-                  className="px-6 py-3 bg-[#082B61] hover:bg-[#006EDC] text-white rounded-full text-xs sm:text-sm font-bold transition-all shadow-md hover:shadow-lg inline-flex items-center gap-2.5 group/btn w-fit shrink-0 font-[family-name:var(--font-outfit)]"
+                  className="px-5 sm:px-6 py-2.5 sm:py-3 bg-[#082B61] hover:bg-[#006EDC] text-white rounded-full text-xs sm:text-sm font-semibold transition-all shadow-md hover:shadow-lg inline-flex items-center gap-2 group/btn w-fit shrink-0 font-[family-name:var(--font-outfit)]"
                 >
                   <span>Partner With Us</span>
                   <svg
@@ -525,7 +525,7 @@ export function MaskedCardsZelnexTheme() {
                 </Link>
 
                 {/* Metrics Row */}
-                <div className="flex items-center gap-3 sm:gap-5 flex-wrap sm:flex-nowrap font-[family-name:var(--font-outfit)]">
+                <div className="flex items-center gap-3 sm:gap-4 lg:gap-5 flex-wrap sm:flex-nowrap font-[family-name:var(--font-outfit)]">
                   {/* 10+ Global Markets */}
                   <div className="shrink-0">
                     <div className="text-xl sm:text-2xl font-black text-[#082B61] tracking-tight leading-none mb-1">
@@ -537,7 +537,7 @@ export function MaskedCardsZelnexTheme() {
                   </div>
 
                   {/* Divider */}
-                  <div className="h-8 w-px bg-slate-200/80 shrink-0" />
+                  <div className="h-7 w-px bg-slate-200/80 shrink-0" />
 
                   {/* 355+ Finished Formulations */}
                   <div className="shrink-0">
@@ -550,13 +550,13 @@ export function MaskedCardsZelnexTheme() {
                   </div>
 
                   {/* Divider */}
-                  <div className="h-8 w-px bg-slate-200/80 shrink-0" />
+                  <div className="h-7 w-px bg-slate-200/80 shrink-0" />
 
                   {/* Export Support Icon & Label */}
-                  <div className="flex items-center gap-2.5 shrink-0">
+                  <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
                     <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-[#006EDC] shrink-0 border border-blue-100">
                       <svg
-                        className="w-5 h-5"
+                        className="w-4.5 h-4.5"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
