@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import SocialCards, { type CardItem } from "@/components/ui/card-fan-carousel";
 import { useLanguage } from "@/context/LanguageContext";
-import { Search, Layers, Sparkles, ShieldCheck, Activity, Pill, FlaskConical } from "lucide-react";
+import { Search } from "lucide-react";
 
 const CARD_IMAGES = [
   "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&h=850&fit=crop",

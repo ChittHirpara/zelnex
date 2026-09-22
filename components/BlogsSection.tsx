@@ -14,7 +14,6 @@ import {
   FileCheck2,
   ShieldCheck,
   Truck,
-  Globe2,
   Factory,
 } from "lucide-react";
 

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import {
   Lock,
   RotateCw,
@@ -10,10 +9,6 @@ import {
   Plus,
   X,
   Puzzle,
-  ExternalLink,
-  ShieldCheck,
-  Globe2,
-  Terminal,
 } from "lucide-react";
 
 interface BrowserFrameProps {

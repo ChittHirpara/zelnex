@@ -215,10 +215,10 @@ export default function ContactClient() {
         {/* ══════════════════════════════════════════════════════════════
             2. MODERN 2-COLUMN SPLIT FORM (White & Technical Blue)
         ══════════════════════════════════════════════════════════════ */}
-        <section className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 mb-16 sm:mb-20">
+        <section id="contact-form-section" className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 mb-16 sm:mb-20 scroll-mt-24">
           <div className="w-full grid grid-cols-1 lg:grid-cols-12 rounded-3xl border border-blue-100 bg-white/95 backdrop-blur-md shadow-[0_12px_45px_rgba(0,110,220,0.08)] overflow-hidden">
             {/* ── LEFT COLUMN: CORPORATE CHANNELS (Frosted Technical Blue Panel) ── */}
-            <div className="lg:col-span-5 bg-gradient-to-b from-[#F8FAFD] via-white to-[#F0F6FD] p-6 sm:p-10 lg:p-12 flex flex-col justify-between space-y-8 lg:border-r border-blue-100">
+            <div className="lg:col-span-5 bg-gradient-to-b from-[#F8FAFD] via-white to-[#F0F6FD] p-5 sm:p-10 lg:p-12 flex flex-col justify-between space-y-8 lg:border-r border-blue-100">
               <div className="space-y-5">
                 {/* Section Header */}
                 <div className="space-y-1.5 pb-2">
@@ -389,7 +389,7 @@ export default function ContactClient() {
             </div>
 
             {/* ── RIGHT COLUMN: CLINICAL INQUIRY FORM (Crisp White + Blue Focus) ── */}
-            <div className="lg:col-span-7 bg-white p-8 sm:p-12 lg:p-14 xl:p-16 flex flex-col justify-center">
+            <div className="lg:col-span-7 bg-white p-5 sm:p-10 lg:p-14 xl:p-16 flex flex-col justify-center">
               <div className="max-w-xl">
                 {/* Header */}
                 <div className="space-y-2 mb-8">

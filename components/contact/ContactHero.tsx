@@ -2,11 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowDown, Mail, Phone, Clock, ShieldCheck, Globe2, Sparkles, Building2 } from "lucide-react";
-import { useLanguage } from "@/context/LanguageContext";
+import { Clock, ShieldCheck, Globe2, Building2 } from "lucide-react";
 
 export function ContactHero() {
-  const { t } = useLanguage();
 
   return (
     <section className="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-20 border-b border-blue-100 font-['Inter',sans-serif] select-none"

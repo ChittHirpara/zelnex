@@ -6,9 +6,6 @@ import {
   Mail,
   ArrowRight,
   MessageCircle,
-  FileCheck2,
-  ShieldCheck,
-  Globe2,
 } from "lucide-react";
 
 export function AboutCTA() {

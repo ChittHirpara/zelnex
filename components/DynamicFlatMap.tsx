@@ -152,18 +152,18 @@ export function DynamicFlatMap() {
               {active.country.toUpperCase()}
             </span>
             <span className="hidden sm:inline text-xs text-slate-500 font-medium">
-              · {active.city} · {active.authority} · {active.volume}
+              · {active.city} · {active.authority}
             </span>
           </div>
         </div>
 
         {/* Region Filter Pills */}
-        <div className="flex items-center gap-1 sm:gap-1.5 text-xs">
+        <div className="flex items-center gap-1 sm:gap-1.5 text-xs overflow-x-auto max-w-full pb-1 sm:pb-0 scrollbar-none shrink-0">
           {REGIONS.map(r => (
             <button
               key={r}
               onClick={() => { setRegion(r); setIdx(0); }}
-              className={`px-3 py-1 rounded-lg text-xs transition-all duration-150 cursor-pointer font-medium ${
+              className={`px-3 py-1 rounded-lg text-xs transition-all duration-150 cursor-pointer font-medium whitespace-nowrap ${
                 region === r
                   ? "bg-[#006EDC] text-white font-bold shadow-2xs"
                   : "bg-white text-slate-600 hover:text-[#006EDC] hover:bg-blue-50 border border-blue-100"
@@ -175,7 +175,7 @@ export function DynamicFlatMap() {
 
           <button
             onClick={() => setRotating(!rotating)}
-            className="ml-1 px-2.5 py-1 rounded-lg text-[11px] text-[#006EDC] font-semibold bg-white border border-blue-200 hover:bg-blue-50 transition-colors cursor-pointer"
+            className="ml-1 px-2.5 py-1 rounded-lg text-[11px] text-[#006EDC] font-semibold bg-white border border-blue-200 hover:bg-blue-50 transition-colors cursor-pointer whitespace-nowrap"
             title={rotating ? "Pause Rotation" : "Play Rotation"}
           >
             {rotating ? "PAUSE" : "PLAY"}
@@ -186,7 +186,7 @@ export function DynamicFlatMap() {
       {/* ══════════════════════════════════════════
           FULL-WIDTH MAP CANVAS (Edge-to-Edge)
       ══════════════════════════════════════════ */}
-      <div className="relative w-full min-h-[460px] sm:min-h-[520px] lg:min-h-[580px] flex items-center justify-center p-0 overflow-hidden bg-[#F0F7FF]">
+      <div className="relative w-full min-h-[260px] sm:min-h-[380px] md:min-h-[480px] lg:min-h-[560px] flex items-center justify-center p-0 overflow-hidden bg-[#F0F7FF]">
         
         {/* Subtle Grid Pattern in Ocean */}
         <div
@@ -201,7 +201,7 @@ export function DynamicFlatMap() {
 
         <svg
           viewBox="20 35 960 440"
-          className="relative z-10 w-full h-full min-h-[440px] sm:min-h-[500px] lg:min-h-[560px] object-contain"
+          className="relative z-10 w-full h-full min-h-[250px] sm:min-h-[360px] md:min-h-[460px] lg:min-h-[540px] object-contain"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>

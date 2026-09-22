@@ -334,7 +334,7 @@ export function FAQSection() {
         {/* ── Link to Dedicated Full FAQ Page ── */}
         <div className="mt-10 text-center">
           <Link
-            href="/faq"
+            href="/contact"
             className="inline-flex items-center gap-2 text-xs font-bold text-[#006EDC] hover:text-[#082B61] transition-colors py-2.5 px-5 rounded-full bg-[#006EDC]/5 hover:bg-[#006EDC]/10 border border-[#006EDC]/15 cursor-pointer shadow-xs"
           >
             <span>Explore Complete Regulatory Knowledge Base & FAQs</span>

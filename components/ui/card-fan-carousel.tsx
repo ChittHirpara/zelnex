@@ -109,6 +109,31 @@ export default function SocialCards({ cards, className = "" }: SocialCardsProps)
     [totalCards, needsPagination]
   );
 
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+    const deltaY = e.changedTouches[0].clientY - touchStartY.current;
+
+    // Trigger swipe if horizontal drag exceeds 40px and dominates vertical scroll
+    if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.4) {
+      if (deltaX > 0) {
+        cycle("left");
+      } else {
+        cycle("right");
+      }
+    }
+    touchStartX.current = null;
+    touchStartY.current = null;
+  };
+
   useEffect(() => {
     const container = containerRef.current;
     if (!container || !totalCards) return;
@@ -316,7 +341,9 @@ export default function SocialCards({ cards, className = "" }: SocialCardsProps)
         {/* Fan Layout Stage */}
         <div
           ref={containerRef}
-          className="fan-layout relative flex justify-center items-center w-full max-w-[78rem] h-[330px] sm:h-[370px] md:h-[410px]"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="fan-layout relative flex justify-center items-center w-full max-w-[78rem] h-[330px] sm:h-[370px] md:h-[410px] touch-pan-y"
         >
           {cards.map((card, index) => {
             const cardContent = (

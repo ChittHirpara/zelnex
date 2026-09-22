@@ -6,12 +6,7 @@ import {
   ArrowRight,
   Terminal,
   Layers,
-  Sparkles,
-  ShieldCheck,
-  Globe2,
   MousePointer2,
-  Code2,
-  Cpu,
 } from "lucide-react";
 
 export function BrowserHero() {

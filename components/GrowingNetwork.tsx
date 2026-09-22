@@ -77,26 +77,6 @@ export function GrowingNetwork() {
 
         {/* ── High-Tech Aviation/Pharma Radar Frame Container (Crisp White & Blue) ── */}
         <div className="w-full bg-white border border-blue-200/80 rounded-2xl sm:rounded-3xl shadow-[0_20px_50px_rgba(0,110,220,0.08)] overflow-hidden relative mb-0">
-          
-          {/* Top Radar Status Bar */}
-          <div className="flex items-center justify-between px-4 sm:px-6 py-3 bg-[#F4F8FD] border-b border-blue-100 text-xs font-['JetBrains_Mono',monospace]">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#006EDC]" />
-                <span className="w-2.5 h-2.5 rounded-full bg-[#38BDF8]" />
-                <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]" />
-              </div>
-              <span className="text-[#0B1E48] font-bold ml-1">ZELNEX_FLIGHT_RADAR_v2.0</span>
-            </div>
-
-            <div className="flex items-center gap-4 text-slate-500">
-              <span className="hidden sm:inline font-medium">ORIGIN: SURAT [21.1702° N, 72.8311° E]</span>
-              <span className="text-[#006EDC] font-bold bg-[#006EDC]/10 px-2 py-0.5 rounded border border-[#006EDC]/20">
-                LIVE TELEMETRY
-              </span>
-            </div>
-          </div>
-
           {/* Dynamic Vector Map */}
           <div className="w-full">
             <DynamicFlatMap />

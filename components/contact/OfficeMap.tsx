@@ -2,11 +2,8 @@
 
 import React, { useState } from "react";
 import {
-  MapPin,
   Navigation,
-  Compass,
   Building,
-  Phone,
   Clock,
   ExternalLink,
   ShieldCheck,

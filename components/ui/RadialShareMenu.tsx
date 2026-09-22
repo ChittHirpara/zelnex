@@ -180,6 +180,7 @@ export function RadialShareMenu({ isOpen, onClose }: RadialShareMenuProps) {
                       onClick={(e) => {
                         e.stopPropagation();
                         item.action();
+                        onClose?.();
                       }}
                       whileHover={{ scale: 1.15, rotate: 6 }}
                       whileTap={{ scale: 0.92 }}

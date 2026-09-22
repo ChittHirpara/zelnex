@@ -29,17 +29,25 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 );
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<LanguageCode>("en");
+  const [language, setLanguageState] = useState<LanguageCode>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("zelnex_language") as LanguageCode | null;
+        if (saved && translations[saved]) {
+          return saved;
+        }
+      } catch {
+        // Ignore
+      }
+    }
+    return "en";
+  });
 
   useEffect(() => {
-    try {
-      localStorage.removeItem("zelnex_language");
-      document.documentElement.lang = "en";
-      document.documentElement.dir = "ltr";
-    } catch {
-      // Ignore
-    }
-  }, []);
+    const info = SUPPORTED_LANGUAGES.find((l) => l.code === language);
+    document.documentElement.lang = language;
+    document.documentElement.dir = info?.dir || "ltr";
+  }, [language]);
 
   const setLanguage = (code: LanguageCode) => {
     if (translations[code]) {

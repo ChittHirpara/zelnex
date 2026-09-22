@@ -144,7 +144,7 @@ ZELNEX/
   - *Antibiotics, Antidepressant, Antifungal, Bone & Joint, Cardiac Care, Chronic Care, CNS, Cough & Cold, Derma Care, Diabetic Care, Female Care, Gastro Care, Gut Health, Hematinic, Infertility, Laxatives, Pain Management, Anti-Infectives, Lifestyle Care, Gastrointestinal.*
 
 ### 4.8. Packaging Formats ([`Packaging.tsx`](file:///c:/Users/CHITT/OneDrive/Desktop/freelance/ZELNEX/components/Packaging.tsx))
-- Highlights 14 distinct packaging options: *Alu-Alu, Blisters, Aluminium Strips, HDPE Bottles, Glass Bottles, Dry Injection, Sachets, Liquid Syrup, Food Products, Soft Gel, Tubes, Pet Jar, Carton, Oral Spray.*
+- Highlights 9 distinct packaging options: *Alu-Alu, Blisters, Aluminium Strips, HDPE Bottles, Glass Bottles, Sachets, Liquid Syrup, Tubes, Pill Jar.*
 - Uses custom pastel badge tones and hover elevation physics (`pack-circle`).
 
 ### 4.9. Certifications & Accreditations ([`Certifications.tsx`](file:///c:/Users/CHITT/OneDrive/Desktop/freelance/ZELNEX/components/Certifications.tsx))

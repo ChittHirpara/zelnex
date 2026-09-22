@@ -1,16 +1,12 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import {
   Pill,
   Handshake,
   Microscope,
   Headphones,
   ArrowRight,
-  ShieldCheck,
-  FileCheck2,
-  Globe2,
 } from "lucide-react";
 
 interface HelpTopic {

@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { ShieldCheck, Award, FileCheck2, CheckCircle2, Building2 } from "lucide-react";
-import Link from "next/link";
+import { CheckCircle2 } from "lucide-react";
 
 export function CertificationsGrid() {
   const certifications = [

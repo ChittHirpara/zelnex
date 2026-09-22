@@ -558,7 +558,6 @@ export function Hero() {
                         fontSize: "clamp(9.5px, 0.84vw, 12px)",
                         color: "#5b6089",
                         lineHeight: 1.22,
-                        whiteSpace: "nowrap",
                       }}
                     >
                       {stat.labelTop}

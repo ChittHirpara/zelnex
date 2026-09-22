@@ -22,7 +22,6 @@ import {
   X,
   Plus,
   Boxes,
-  FileText,
   HelpCircle,
   CheckCircle2,
 } from "lucide-react";
@@ -83,7 +82,7 @@ const FEATURED_TOPICS = [
 ];
 
 // ── FAQ DATA IMPORT ──
-import { FAQ_DATA, type FAQItem } from "@/data/faq";
+import { FAQ_DATA } from "@/data/faq";
 
 const FAQ_CATEGORIES = [
   { id: "all", label: "All Questions", icon: HelpCircle },

@@ -1,17 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  Calendar,
-  Sparkles,
-  ArrowRight,
-  ShieldCheck,
-  Globe2,
-  FileCheck2,
-  Factory,
-  Boxes,
-  CheckCircle2,
-} from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 export function MilestonesTimeline() {
   const [activeYear, setActiveYear] = useState(2024);
@@ -122,13 +112,15 @@ export function MilestonesTimeline() {
 
         {/* Year Selector Bar */}
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-10">
-          {milestones.map((m) => {
+          {milestones.map((m, idx) => {
             const isActive = activeYear === m.year;
             return (
               <button
                 key={m.year}
                 onClick={() => setActiveYear(m.year)}
                 className={`flex flex-col p-4 rounded-2xl border text-left transition-all duration-200 cursor-pointer relative overflow-hidden ${
+                  idx === 4 ? "col-span-2 sm:col-span-1" : ""
+                } ${
                   isActive
                     ? "bg-[#0B1E48] border-[#0B1E48] text-white shadow-lg shadow-blue-900/15 -translate-y-1"
                     : "bg-white border-slate-200/80 text-slate-700 hover:border-slate-300 hover:bg-slate-50"

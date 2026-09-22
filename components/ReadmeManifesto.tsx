@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { FileText, Copy, Check, Terminal, GitBranch } from "lucide-react";
+import { FileText, Copy, Check, GitBranch } from "lucide-react";
 
 export function ReadmeManifesto() {
   const [copied, setCopied] = useState(false);

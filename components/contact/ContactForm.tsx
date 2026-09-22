@@ -11,8 +11,6 @@ import {
   Mail,
   User,
   Phone,
-  MessageSquare,
-  HelpCircle,
   FileCheck2,
   Sparkles,
 } from "lucide-react";

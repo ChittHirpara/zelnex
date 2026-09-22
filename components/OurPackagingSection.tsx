@@ -282,57 +282,6 @@ export const PACKAGING_LIST: PackagingItem[] = [
     ),
   },
   {
-    id: "dry-injection",
-    name: "Dry Injection",
-    subtitle: "Sterile & hermetic lyophilized vials",
-    displayLines: ["Dry", "Injection"],
-    image: "/packaging/dry-injection.png",
-    glowColor: "rgba(52, 211, 153, 0.35)",
-    borderColor: "#A7F3D0",
-    bgGradient: "radial-gradient(135% 135% at 30% 25%, #FFFFFF 15%, #ECFDF5 75%, #D1FAE5 100%)",
-    accentColor: "#059669",
-    badge: "GRADE A STERILE VIAL FILL",
-    summary:
-      "Aseptic lyophilized powder vials sealed with chlorobutyl rubber stoppers and tamper-evident flip-off aluminum crimp seals.",
-    material: "Type I Borosilicate Glass Vial + Bromobutyl/Chlorobutyl Stopper",
-    barrierRating: "Grade A Hermetic Sterile Barrier (< 1x10⁻⁶ mbar·l/s leak rate)",
-    commonUses: [
-      "Ceftriaxone & Ceftazidime Injections",
-      "Meropenem & Imipenem Carbapenems",
-      "Pantoprazole Lyophilized Injections",
-      "Hospital Critical Care Infusions",
-    ],
-    certifications: ["WHO-GMP Grade A Cleanroom", "ISO 13408", "EU Annex 1 Sterile"],
-    renderVectorIcon: () => (
-      <svg
-        viewBox="0 0 48 48"
-        fill="none"
-        stroke="#1E293B"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="w-8 h-8 sm:w-10 sm:h-10"
-      >
-        {/* Small vial */}
-        <rect x="27" y="19" width="11" height="19" rx="2" />
-        <rect x="29.5" y="15" width="6" height="4" rx="1" />
-        <line x1="29" y1="26" x2="36" y2="26" strokeWidth="1" />
-        <line x1="29" y1="30" x2="34" y2="30" strokeWidth="1" />
-        {/* Syringe angled */}
-        <g transform="rotate(-38 16 22)">
-          <rect x="13" y="8" width="6" height="18" rx="1" />
-          <line x1="16" y1="8" x2="16" y2="2" strokeWidth="1.5" />
-          <line x1="14" y1="26" x2="18" y2="26" strokeWidth="2" />
-          <line x1="16" y1="26" x2="16" y2="33" strokeWidth="1.6" />
-          <line x1="13" y1="33" x2="19" y2="33" strokeWidth="2" />
-          <line x1="13" y1="13" x2="15" y2="13" strokeWidth="1" />
-          <line x1="13" y1="17" x2="15" y2="17" strokeWidth="1" />
-          <line x1="13" y1="21" x2="15" y2="21" strokeWidth="1" />
-        </g>
-      </svg>
-    ),
-  },
-  {
     id: "sachets",
     name: "Sachets",
     subtitle: "Convenient single-dose packs",
@@ -413,91 +362,6 @@ export const PACKAGING_LIST: PackagingItem[] = [
         <path d="M33 27 L38 27 L37.5 35 C37.5 36, 36.5 37, 35.5 37 C34.5 37, 33.5 36, 33.5 35 Z" strokeWidth="1.5" />
         <line x1="33.5" y1="30" x2="35.5" y2="30" strokeWidth="1" />
         <line x1="33.5" y1="33" x2="35.5" y2="33" strokeWidth="1" />
-      </svg>
-    ),
-  },
-  {
-    id: "food-products",
-    name: "Food Products",
-    subtitle: "Nutraceutical & food-grade barrier",
-    displayLines: ["Food", "Products"],
-    image: "/packaging/food-products.png",
-    glowColor: "rgba(251, 113, 133, 0.35)",
-    borderColor: "#FECDD3",
-    bgGradient: "radial-gradient(135% 135% at 30% 25%, #FFFFFF 15%, #FFF1F2 75%, #FFE4E6 100%)",
-    accentColor: "#E11D48",
-    badge: "NUTRACEUTICAL & NUTRITION",
-    summary:
-      "Flexible stand-up barrier pouches, composite hermetic canisters, and portion-control stick packs for dietary supplements and functional foods.",
-    material: "Multi-Barrier Metallized Mylar Foil / Food-Grade Kraft Laminate",
-    barrierRating: "Aroma, Moisture, and Oxygen Preservation (< 0.2 cc/m²/day OTR)",
-    commonUses: [
-      "Protein & Meal Replacement Powders",
-      "Functional Plant Protein & Botanical Blends",
-      "Herbal Tea Granules & Energy Sticks",
-      "Fortified Cereal & Mineral Formulas",
-    ],
-    certifications: ["FSSAI / ISO 22000", "HACCP Certified", "BRCGS Packaging Compliant"],
-    renderVectorIcon: () => (
-      <svg
-        viewBox="0 0 48 48"
-        fill="none"
-        stroke="#1E293B"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="w-8 h-8 sm:w-10 sm:h-10"
-      >
-        {/* Pouch */}
-        <path d="M9 16 L12 38 C12 40, 14 41, 16 41 L22 41 C24 41, 25 40, 25 38 L27 16 L18 13 Z" />
-        <line x1="12" y1="18" x2="24" y2="18" strokeWidth="1.2" />
-        {/* Bottle behind */}
-        <rect x="26" y="22" width="13" height="19" rx="2" fill="white" />
-        <rect x="28.5" y="18" width="8" height="4" rx="1" />
-        <line x1="28" y1="30" x2="37" y2="30" strokeWidth="1.2" />
-      </svg>
-    ),
-  },
-  {
-    id: "soft-gel",
-    name: "Soft Gel",
-    subtitle: "Moisture & light-protected encapsulation",
-    displayLines: ["Soft Gel"],
-    image: "/packaging/soft-gel.png",
-    glowColor: "rgba(250, 204, 21, 0.35)",
-    borderColor: "#FEF08A",
-    bgGradient: "radial-gradient(135% 135% at 30% 25%, #FFFFFF 15%, #FEFCE8 75%, #FEF08A 100%)",
-    accentColor: "#CA8A04",
-    badge: "LIPID ROTARY ENCAPSULATION",
-    summary:
-      "Specialized thermoform blisters and moisture-desiccant jars engineered to prevent softgel shell stickiness or deformation in tropical heat.",
-    material: "Alu-Alu Cold Form or PVDC 90g with Desiccant Molecular Sieve",
-    barrierRating: "Tropical Climate Zone IVb Humidity & Heat Shielded",
-    commonUses: [
-      "Omega-3 Fish Oil & Krill Oil 1000mg",
-      "Vitamin D3 & Vitamin E Lipid Capsules",
-      "Coenzyme Q10 & Lecithin Softgels",
-      "Dietary Carotenoid Complex",
-    ],
-    certifications: ["Halal / Kosher Gelatin Available", "USP <2040>", "WHO-GMP Encapsulation"],
-    renderVectorIcon: () => (
-      <svg
-        viewBox="0 0 48 48"
-        fill="none"
-        stroke="#1E293B"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="w-8 h-8 sm:w-10 sm:h-10"
-      >
-        <g transform="rotate(-30 20 22)">
-          <rect x="11" y="14" width="18" height="10" rx="5" />
-          <line x1="20" y1="14" x2="20" y2="24" strokeWidth="1.5" />
-        </g>
-        <g transform="rotate(25 30 32)">
-          <rect x="20" y="26" width="18" height="10" rx="5" fill="white" />
-          <line x1="29" y1="26" x2="29" y2="36" strokeWidth="1.5" />
-        </g>
       </svg>
     ),
   },
@@ -590,89 +454,6 @@ export const PACKAGING_LIST: PackagingItem[] = [
       </svg>
     ),
   },
-  {
-    id: "carton",
-    name: "Carton",
-    subtitle: "Protective & serialised secondary packaging",
-    displayLines: ["Carton"],
-    image: "/packaging/carton.png",
-    glowColor: "rgba(56, 189, 248, 0.35)",
-    borderColor: "#BAE6FD",
-    bgGradient: "radial-gradient(135% 135% at 30% 25%, #FFFFFF 15%, #F0F9FF 75%, #E0F2FE 100%)",
-    accentColor: "#0284C7",
-    badge: "SECONDARY PHARMA CARTONING",
-    summary:
-      "High-yield virgin SBS folding boxboard secondary cartons with Braille embossing, tamper-evident security tear strips, and 2D DataMatrix serialization.",
-    material: "300 – 350 GSM Virgin Solid Bleached Sulfate (SBS) / FBB Board",
-    barrierRating: "Rigid Crush-Resistance & Moisture-Resistant Aqueous Coating",
-    commonUses: [
-      "Unit-Dose Blister Packs with Patient Info Leaflets (PIL)",
-      "Injectable Ampoule & Vial Unit Cartons",
-      "Institutional Tender Multi-Packs",
-      "Multilingual Export Packaging (English / French / Arabic)",
-    ],
-    certifications: ["EU FMD Directive 2011/62/EU Serialized", "ISO 12647-2", "Braille Compliant"],
-    renderVectorIcon: () => (
-      <svg
-        viewBox="0 0 48 48"
-        fill="none"
-        stroke="#1E293B"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="w-8 h-8 sm:w-10 sm:h-10"
-      >
-        <path d="M24 8 L38 15 L24 22 L10 15 Z" />
-        <path d="M10 15 L10 32 L24 40 L24 22 Z" />
-        <path d="M38 15 L38 32 L24 40 L24 22 Z" />
-        <line x1="10" y1="15" x2="24" y2="22" strokeWidth="1.2" />
-        <line x1="38" y1="15" x2="24" y2="22" strokeWidth="1.2" />
-      </svg>
-    ),
-  },
-  {
-    id: "oral-spray",
-    name: "Oral Spray",
-    subtitle: "Targeted & metered-dose delivery",
-    displayLines: ["Oral Spray"],
-    image: "/packaging/oral-spray.png",
-    glowColor: "rgba(244, 114, 182, 0.35)",
-    borderColor: "#FECDD3",
-    bgGradient: "radial-gradient(135% 135% at 30% 25%, #FFFFFF 15%, #FFF1F2 75%, #FFE4E6 100%)",
-    accentColor: "#DB2777",
-    badge: "METERED DOSE DISPENSING",
-    summary:
-      "Calibrated 50µl – 140µl metered dose micro-pumps providing uniform spray geometry for targeted buccal, sublingual, and throat applications.",
-    material: "Type III Amber Glass / Pharma PET with PP Swivel Nozzle Pump",
-    barrierRating: "Airless Closed-System Dispenser (Prevents Microbiological Contamination)",
-    commonUses: [
-      "Antiseptic & Analgesic Throat Sprays",
-      "Sublingual Vitamin B12 & Melatonin Sprays",
-      "Nasal Saline & Decongestant Micro-Mists",
-      "Pediatric Oral Suspension Drops",
-    ],
-    certifications: ["ISO 13485 Spray Device", "USP <601> Aerosols", "Food Grade Nozzle"],
-    renderVectorIcon: () => (
-      <svg
-        viewBox="0 0 48 48"
-        fill="none"
-        stroke="#1E293B"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="w-8 h-8 sm:w-10 sm:h-10"
-      >
-        <rect x="18" y="20" width="16" height="20" rx="3" />
-        <rect x="23" y="16" width="6" height="4" />
-        <path d="M23 16 L23 12 L30 12 L30 16 Z" />
-        <path d="M30 13 L37 13 L37 16 L30 16" />
-        <circle cx="41" cy="14" r="0.9" fill="#1E293B" />
-        <circle cx="43" cy="11" r="0.7" fill="#1E293B" />
-        <circle cx="43" cy="17" r="0.7" fill="#1E293B" />
-        <rect x="10" y="32" width="6" height="8" rx="1" strokeWidth="1.4" />
-      </svg>
-    ),
-  },
 ];
 
 export function OurPackagingSection() {
@@ -721,8 +502,8 @@ export function OurPackagingSection() {
           />
         </div>
 
-        {/* ── 14 Circular Packaging Cards Grid (2 Rows of 7 on desktop) ── */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-7 gap-x-4 sm:gap-x-6 lg:gap-x-8 gap-y-10 sm:gap-y-12 items-start justify-center">
+        {/* ── Circular Packaging Cards Grid (Symmetrically Centered) ── */}
+        <div className="flex flex-wrap items-start justify-center gap-x-4 sm:gap-x-6 md:gap-x-8 lg:gap-x-10 gap-y-10 sm:gap-y-12 max-w-[1150px] mx-auto">
           {PACKAGING_LIST.map((item, index) => {
             return (
               <motion.div
@@ -731,7 +512,7 @@ export function OurPackagingSection() {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.025 }}
-                className="flex flex-col items-center group"
+                className="flex flex-col items-center group w-28 sm:w-32 md:w-36"
               >
                 {/* Outer Circular Container with subtle pastel glow rim */}
                 <div
@@ -756,7 +537,7 @@ export function OurPackagingSection() {
                         fill
                         sizes="(max-width: 640px) 96px, (max-width: 768px) 112px, 128px"
                         className="object-contain transition-transform duration-300 group-hover:scale-105"
-                        priority={index < 7}
+                        priority={index < 5}
                       />
                     </div>
                   </div>
@@ -778,15 +559,6 @@ export function OurPackagingSection() {
           })}
         </div>
 
-        {/* ── Packaging Tagline Banner ── */}
-        <div className="mt-12 sm:mt-16 pt-8 border-t border-slate-200/80 text-center">
-          <p
-            className="text-sm sm:text-base md:text-lg font-extrabold uppercase tracking-[0.22em] text-[#082B61]"
-            style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
-          >
-            PACKAGING TODAY FOR A HEALTHIER TOMORROW
-          </p>
-        </div>
 
       </div>
     </section>

@@ -10,8 +10,6 @@ import {
   Loader2,
   CheckCircle2,
   Building2,
-  Globe,
-  FileCheck2,
   ExternalLink,
   ShieldCheck,
   Package,
@@ -146,7 +144,7 @@ export function RfqDrawer() {
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden bg-slate-900/50 backdrop-blur-xs transition-opacity animate-in fade-in duration-200">
-      <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
         <div className="w-screen max-w-xl bg-white shadow-2xl flex flex-col font-['Outfit',sans-serif]">
           {/* Header */}
           <div className="py-5 px-6 bg-[#F8FAFC] border-b border-[#E2E8F0] flex items-center justify-between">

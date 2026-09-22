@@ -1,5 +1,5 @@
 import React from "react";
-import { GitCommit, Tag, Sparkles } from "lucide-react";
+import { GitCommit } from "lucide-react";
 
 export function TechnicalChangelog() {
   const releases = [

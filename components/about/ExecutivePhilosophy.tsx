@@ -8,9 +8,7 @@ import {
   FileCheck2,
   CheckCircle2,
   Quote,
-  Sparkles,
   ArrowRight,
-  Award,
 } from "lucide-react";
 import Link from "next/link";
 

@@ -10,9 +10,7 @@ import {
   Check,
   ExternalLink,
   MessageCircle,
-  Globe,
   Share2,
-  Building,
 } from "lucide-react";
 
 function LinkedinIcon({ className = "w-4 h-4" }: { className?: string }) {

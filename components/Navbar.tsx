@@ -389,7 +389,7 @@ export function Navbar() {
           }`}
         >
           <div className="overflow-hidden">
-            <div className="p-4 pt-3">
+            <div className="p-4 pt-3 max-h-[calc(100vh-90px)] overflow-y-auto">
               <ul className="flex flex-col gap-1">
                 {mobileNavLinks.map((link) => {
                   const isActive = isLinkActive(link.href);

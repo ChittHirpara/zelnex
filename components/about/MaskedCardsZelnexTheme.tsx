@@ -883,7 +883,7 @@ export function MaskedCardsZelnexTheme() {
                 Supplying sovereign Ministries of Health, healthcare distributors, and institutional tenders across LATAM, Africa, CIS, Southeast Asia, and Middle East.
               </p>
               <Link
-                href="/global-presence"
+                href="/#network"
                 className="px-6 py-3.5 bg-black rounded-full text-white text-sm font-bold hover:bg-neutral-800 transition-colors inline-flex items-center gap-2"
               >
                 <span>View Country Matrix</span>
