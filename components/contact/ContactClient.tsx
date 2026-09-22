@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SectionDivider } from "@/components/SectionDivider";
@@ -172,25 +171,6 @@ export default function ContactClient() {
             1. TOP HERO HEADER (Signature White & Technical Blue)
         ══════════════════════════════════════════════════════════════ */}
         <section className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-12">
-          {/* Breadcrumb & Live Status Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-blue-100 text-xs font-['Outfit',sans-serif] font-medium text-slate-500">
-            <div className="flex items-center gap-2">
-              <Link href="/" className="hover:text-[#006EDC] transition-colors">
-                ZELNEX PHARMA
-              </Link>
-              <span className="text-slate-300">/</span>
-              <span className="text-[#082B61] font-bold">GLOBAL INQUIRIES &amp; DESKS</span>
-            </div>
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-3 sm:mt-0 text-[11px] sm:text-xs">
-              <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-700 font-semibold">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                <span>DESKS ACTIVE ACROSS 10+ MARKETS</span>
-              </span>
-              <span className="text-slate-300 hidden sm:inline">·</span>
-              <span className="font-semibold text-slate-600">SLA &lt; 4 HOURS</span>
-            </div>
-          </div>
-
           {/* Clinical Title */}
           <div className="max-w-4xl">
             <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-extrabold text-[#082B61] tracking-tight leading-[1.08] mb-4 font-['Outfit',sans-serif]">
