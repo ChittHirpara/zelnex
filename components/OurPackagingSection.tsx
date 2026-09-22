@@ -502,10 +502,11 @@ export function OurPackagingSection() {
           />
         </div>
 
-        {/* ── Circular Packaging Cards Grid (Symmetrically Centered) ── */}
-        <div className="flex flex-wrap items-start justify-center gap-x-4 sm:gap-x-6 md:gap-x-8 lg:gap-x-10 gap-y-10 sm:gap-y-12 max-w-[1150px] mx-auto">
-          {PACKAGING_LIST.map((item, index) => {
-            return (
+        {/* ── Circular Packaging Cards Grid (2 Rows: 5 in Row 1, 4 in Row 2 with Sachets on Line 2) ── */}
+        <div className="flex flex-col items-center gap-y-10 sm:gap-y-12 max-w-[1200px] mx-auto">
+          {/* Row 1: 5 items (Alu-Alu, Blisters, Aluminium Strips, HDPE Bottles, Glass Bottles) */}
+          <div className="flex flex-wrap items-start justify-center gap-x-4 sm:gap-x-6 md:gap-x-8 lg:gap-x-10 gap-y-8 w-full">
+            {PACKAGING_LIST.slice(0, 5).map((item, index) => (
               <motion.div
                 key={item.id}
                 initial={{ opacity: 0, scale: 0.92, y: 15 }}
@@ -555,8 +556,62 @@ export function OurPackagingSection() {
                   ))}
                 </div>
               </motion.div>
-            );
-          })}
+            ))}
+          </div>
+
+          {/* Row 2: 4 items (Sachets, Liquid Syrup, Tubes, Pill Jar) */}
+          <div className="flex flex-wrap items-start justify-center gap-x-4 sm:gap-x-6 md:gap-x-8 lg:gap-x-10 gap-y-8 w-full">
+            {PACKAGING_LIST.slice(5).map((item, index) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, scale: 0.92, y: 15 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: (index + 5) * 0.025 }}
+                className="flex flex-col items-center group w-28 sm:w-32 md:w-36"
+              >
+                {/* Outer Circular Container with subtle pastel glow rim */}
+                <div
+                  className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full p-[2px] transition-all duration-300 group-hover:scale-108 group-hover:-translate-y-1"
+                  style={{
+                    boxShadow: `0 10px 25px ${item.glowColor}, 0 2px 8px rgba(0,0,0,0.04)`,
+                  }}
+                >
+                  {/* Subtle 3D convex gradient ring matching reference image */}
+                  <div
+                    className="w-full h-full rounded-full flex items-center justify-center transition-all duration-300 border overflow-hidden relative shadow-inner p-2.5"
+                    style={{
+                      borderColor: item.borderColor,
+                      background: item.bgGradient,
+                    }}
+                  >
+                    {/* 3D Photorealistic Render */}
+                    <div className="relative w-full h-full rounded-full overflow-hidden flex items-center justify-center">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        sizes="(max-width: 640px) 96px, (max-width: 768px) 112px, 128px"
+                        className="object-contain transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Packaging Label underneath with aligned baseline */}
+                <div className="mt-3.5 text-center min-h-[36px] flex flex-col items-center justify-start">
+                  {item.displayLines.map((line, lIdx) => (
+                    <span
+                      key={lIdx}
+                      className="block text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 tracking-tight leading-snug group-hover:text-[#006EDC] transition-colors"
+                    >
+                      {line}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
 
