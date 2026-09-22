@@ -254,7 +254,7 @@ function ServicesModernistContent() {
           <div className="rounded-3xl border border-blue-100/90 bg-white/95 backdrop-blur-md shadow-[0_16px_50px_rgba(0,110,220,0.08)] overflow-hidden transition-all duration-300 mb-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-blue-100/80">
               {/* Left Sidebar (Cols 1-4): Metadata & Technical Specifications */}
-              <div className="lg:col-span-4 p-6 sm:p-8 flex flex-col justify-between space-y-8 bg-gradient-to-b from-[#F8FAFD] via-[#F4F8FD] to-[#FFFFFF]">
+              <div className="lg:col-span-4 p-4 sm:p-8 flex flex-col justify-between space-y-6 sm:space-y-8 bg-gradient-to-b from-[#F8FAFD] via-[#F4F8FD] to-[#FFFFFF]">
                 <div className="space-y-6">
                   {/* Badge & Icon */}
                   <div className="flex items-center justify-between border-b border-blue-100/80 pb-5">
@@ -279,9 +279,9 @@ function ServicesModernistContent() {
                     </span>
                     <div className="divide-y divide-blue-100/80 border-y border-blue-100/80">
                       {currentService.specs.map((s, idx) => (
-                        <div key={idx} className="py-2.5 flex items-center justify-between text-xs">
-                          <span className="text-slate-600 font-medium font-['Outfit',sans-serif]">{s.label}</span>
-                          <span className="font-bold text-[#082B61] font-['Outfit',sans-serif] text-xs bg-white px-3 py-1 rounded-lg border border-blue-100/90 shadow-2xs">
+                        <div key={idx} className="py-2.5 flex items-center justify-between text-xs gap-2">
+                          <span className="text-slate-600 font-medium font-['Outfit',sans-serif] shrink-0">{s.label}</span>
+                          <span className="font-bold text-[#082B61] font-['Outfit',sans-serif] text-xs bg-white px-2.5 sm:px-3 py-1 rounded-lg border border-blue-100/90 shadow-2xs text-right truncate">
                             {s.value}
                           </span>
                         </div>
@@ -295,12 +295,12 @@ function ServicesModernistContent() {
                   {currentService.metrics.map((m, idx) => (
                     <div
                       key={idx}
-                      className="p-2.5 rounded-xl border border-blue-100 bg-white/90 shadow-2xs hover:border-blue-300 transition-colors"
+                      className="p-2 sm:p-2.5 rounded-xl border border-blue-100 bg-white/90 shadow-2xs hover:border-blue-300 transition-colors"
                     >
                       <div className="text-sm sm:text-base font-extrabold text-[#006EDC] font-['Outfit',sans-serif]">
                         {m.value}
                       </div>
-                      <div className="text-[9.5px] font-bold text-slate-500 uppercase tracking-tight mt-0.5 font-['Outfit',sans-serif]">
+                      <div className="text-[9px] sm:text-[9.5px] font-bold text-slate-500 uppercase tracking-tight mt-0.5 font-['Outfit',sans-serif] truncate">
                         {m.label}
                       </div>
                     </div>
@@ -309,13 +309,13 @@ function ServicesModernistContent() {
               </div>
 
               {/* Right Content Area (Cols 5-12): Headline, Description & Highlights */}
-              <div className="lg:col-span-8 p-6 sm:p-10 space-y-8 flex flex-col justify-between bg-white">
+              <div className="lg:col-span-8 p-4 sm:p-8 lg:p-10 space-y-6 sm:space-y-8 flex flex-col justify-between bg-white">
                 <div className="space-y-6">
                   {/* Headline & Tagline */}
                   <div>
-                    <span className="inline-flex items-center gap-2 text-xs font-['Outfit',sans-serif] font-bold uppercase tracking-[0.12em] text-[#006EDC] bg-blue-50 border border-blue-200/70 px-3.5 py-1.5 rounded-full mb-3">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#006EDC]" />
-                      {currentService.tagline}
+                    <span className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-['Outfit',sans-serif] font-bold uppercase tracking-[0.12em] text-[#006EDC] bg-blue-50 border border-blue-200/70 px-3 sm:px-3.5 py-1.5 rounded-full mb-3 max-w-full leading-snug">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#006EDC] shrink-0" />
+                      <span className="truncate sm:whitespace-normal">{currentService.tagline}</span>
                     </span>
 
                     <h2 className="text-2xl sm:text-4xl lg:text-[44px] font-extrabold text-[#082B61] uppercase tracking-tight leading-[1.08] mt-2 font-['Outfit',sans-serif]">

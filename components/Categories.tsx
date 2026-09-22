@@ -162,16 +162,6 @@ export function Categories() {
         background: "linear-gradient(180deg, #F8FAFC 0%, #EFF6FF 40%, #EBF4FE 75%, #F4F8FD 100%)",
       }}
     >
-      {/* 20px Pattern Grid with soft blue lines */}
-      <div
-        className="pointer-events-none absolute inset-0 z-0 opacity-30"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(0, 110, 220, 0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 110, 220, 0.15) 1px, transparent 1px)",
-          backgroundSize: "24px 24px",
-        }}
-        aria-hidden
-      />
 
       {/* ── Soft Ethereal Sky & Sapphire Aura Lighting ── */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>

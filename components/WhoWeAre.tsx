@@ -41,25 +41,7 @@ export function WhoWeAre() {
       className="relative scroll-mt-24 py-10 sm:py-14 md:py-16 px-4 sm:px-6 lg:px-8 max-w-[1340px] mx-auto z-10"
     >
       <div className="who-card-content relative overflow-hidden rounded-[28px] sm:rounded-[36px] border border-[#D5E4C8] bg-gradient-to-br from-[#FAFDF6] via-[#F4F9EE] to-[#EBF4E2] p-8 sm:p-12 md:p-16 shadow-[0_12px_44px_rgba(110,140,80,0.07)]">
-        {/* Halftone Dot Matrix Pattern (Top Left) */}
-        <div
-          className="pointer-events-none absolute -left-4 -top-4 w-72 h-72 opacity-35"
-          style={{
-            backgroundImage: "radial-gradient(#7E9A60 1.8px, transparent 1.8px)",
-            backgroundSize: "14px 14px",
-          }}
-          aria-hidden
-        />
 
-        {/* Halftone Dot Matrix Pattern (Bottom Right) */}
-        <div
-          className="pointer-events-none absolute -right-8 -bottom-8 w-64 h-64 opacity-25"
-          style={{
-            backgroundImage: "radial-gradient(#7E9A60 1.8px, transparent 1.8px)",
-            backgroundSize: "14px 14px",
-          }}
-          aria-hidden
-        />
 
         {/* Delicate Botanical Vine / Petal Outline on Left Edge */}
         <div className="pointer-events-none absolute -left-6 top-1/2 -translate-y-1/2 hidden md:block opacity-60">

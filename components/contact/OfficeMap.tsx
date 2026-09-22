@@ -41,16 +41,7 @@ export function OfficeMap() {
 
   return (
     <section className="relative py-16 sm:py-24 bg-[#F8FAFC] border-b border-blue-100 font-['Inter',sans-serif] select-none">
-      {/* Subtle Pattern Grid */}
-      <div
-        className="pointer-events-none absolute inset-0 z-0 opacity-20"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(0, 110, 220, 0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 110, 220, 0.15) 1px, transparent 1px)",
-          backgroundSize: "24px 24px",
-        }}
-        aria-hidden
-      />
+
 
       <div className="relative z-10 mx-auto max-w-[1340px] px-4 sm:px-6 lg:px-8">
         

@@ -43,16 +43,7 @@ export function GrowingNetwork() {
         background: "linear-gradient(180deg, #F4F8FD 0%, #EFF6FF 50%, #F8FAFC 100%)",
       }}
     >
-      {/* 20px Pattern Grid Background in Soft Blue */}
-      <div
-        className="pointer-events-none absolute inset-0 z-0 opacity-25"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(0, 110, 220, 0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 110, 220, 0.15) 1px, transparent 1px)",
-          backgroundSize: "24px 24px",
-        }}
-        aria-hidden
-      />
+
 
       <div className="relative z-20 w-full px-4 sm:px-8 max-w-7xl mx-auto">
         

@@ -158,7 +158,7 @@ export function DynamicFlatMap() {
         </div>
 
         {/* Region Filter Pills */}
-        <div className="flex items-center gap-1 sm:gap-1.5 text-xs overflow-x-auto max-w-full pb-1 sm:pb-0 scrollbar-none shrink-0">
+        <div className="flex items-center gap-1 sm:gap-1.5 text-xs overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
           {REGIONS.map(r => (
             <button
               key={r}
@@ -175,7 +175,7 @@ export function DynamicFlatMap() {
 
           <button
             onClick={() => setRotating(!rotating)}
-            className="ml-1 px-2.5 py-1 rounded-lg text-[11px] text-[#006EDC] font-semibold bg-white border border-blue-200 hover:bg-blue-50 transition-colors cursor-pointer whitespace-nowrap"
+            className="ml-1 px-2.5 py-1 rounded-lg text-[11px] text-[#006EDC] font-semibold bg-white border border-blue-200 hover:bg-blue-50 transition-colors cursor-pointer whitespace-nowrap shrink-0"
             title={rotating ? "Pause Rotation" : "Play Rotation"}
           >
             {rotating ? "PAUSE" : "PLAY"}
@@ -188,16 +188,7 @@ export function DynamicFlatMap() {
       ══════════════════════════════════════════ */}
       <div className="relative w-full min-h-[260px] sm:min-h-[380px] md:min-h-[480px] lg:min-h-[560px] flex items-center justify-center p-0 overflow-hidden bg-[#F0F7FF]">
         
-        {/* Subtle Grid Pattern in Ocean */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-20"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(0, 110, 220, 0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 110, 220, 0.2) 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
-          }}
-          aria-hidden
-        />
+
 
         <svg
           viewBox="20 35 960 440"

@@ -19,6 +19,7 @@ import {
   FileCheck2,
   FileDown,
   Package,
+  ChevronDown,
 } from "lucide-react";
 import { useRfqCart } from "@/context/RfqCartContext";
 import { RfqDrawer } from "@/components/categories/RfqDrawer";
@@ -161,6 +162,7 @@ function CategoriesContent() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeModalItem, setActiveModalItem] = useState<FormulationItem | null>(null);
   const [copied, setCopied] = useState(false);
+  const [mobileCategoryOpen, setMobileCategoryOpen] = useState(false);
 
   const [prevDosageParam, setPrevDosageParam] = useState(dosageParam);
   if (dosageParam !== prevDosageParam) {
@@ -409,20 +411,35 @@ function CategoriesContent() {
           ══════════════════════════════════════════════════════════════ */}
           <aside className="w-full lg:w-60 xl:w-64 shrink-0 bg-white border border-[#E5E7EB] rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.05)] overflow-hidden lg:sticky lg:top-24">
             
-            {/* Header: "Category" */}
-            <div className="py-3 px-4 bg-[#F8FAFC] border-b border-[#E5E7EB] text-center">
-              <h2 className="text-[#0088CC] font-bold text-lg tracking-wide">
-                Category
-              </h2>
+            {/* Header: "Category" - interactive accordion on mobile, static on desktop */}
+            <div
+              onClick={() => setMobileCategoryOpen((v) => !v)}
+              className="py-3 px-4 bg-[#F8FAFC] border-b border-[#E5E7EB] flex items-center justify-between cursor-pointer lg:cursor-default"
+            >
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#0088CC]" />
+                <h2 className="text-[#0088CC] font-bold text-base sm:text-lg tracking-wide">
+                  Categories ({allFormulations.length})
+                </h2>
+              </div>
+              <div className="lg:hidden flex items-center gap-1.5 text-xs text-[#0088CC] font-semibold">
+                <span className="truncate max-w-[130px]">
+                  {selectedCategory === "all" ? "All Categories" : PHARMACEUTICAL_PORTFOLIO.find(c => c.slug === selectedCategory)?.name || "Selected"}
+                </span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 shrink-0 ${mobileCategoryOpen ? "rotate-180" : ""}`} />
+              </div>
             </div>
 
-            {/* Category List */}
-            <div className="divide-y divide-[#E5E7EB] max-h-[75vh] overflow-y-auto clean-scroll">
+            {/* Category List - collapsible on mobile, always visible on desktop */}
+            <div className={`divide-y divide-[#E5E7EB] max-h-[60vh] sm:max-h-[75vh] overflow-y-auto clean-scroll transition-all duration-200 ${mobileCategoryOpen ? "block" : "hidden lg:block"}`}>
               
               {/* "All" Button (Active Green State matching reference) */}
               <button
                 type="button"
-                onClick={() => setSelectedCategory("all")}
+                onClick={() => {
+                  setSelectedCategory("all");
+                  setMobileCategoryOpen(false);
+                }}
                 className={`w-full py-2.5 px-4 text-left text-sm font-semibold transition-colors cursor-pointer flex items-center justify-between ${
                   selectedCategory === "all"
                     ? "bg-[#70B31E] text-white font-bold"
@@ -442,7 +459,10 @@ function CategoriesContent() {
                   <button
                     key={cat.id}
                     type="button"
-                    onClick={() => setSelectedCategory(cat.slug)}
+                    onClick={() => {
+                      setSelectedCategory(cat.slug);
+                      setMobileCategoryOpen(false);
+                    }}
                     className={`w-full py-2.5 px-4 text-left text-xs sm:text-[13px] transition-colors cursor-pointer flex items-center justify-between ${
                       isActive
                         ? "bg-[#70B31E] text-white font-bold"
@@ -467,7 +487,10 @@ function CategoriesContent() {
           <div className="flex-1 w-full space-y-6">
             
             {/* ── TOP DOSAGE FORM BUTTONS (Exact Reference Match) ── */}
-            <div className="flex sm:grid sm:grid-cols-4 md:grid-cols-7 gap-2 sm:gap-2.5 overflow-x-auto pb-2 sm:pb-0 scrollbar-none -mx-1 px-1">
+            <div
+              className="flex sm:grid sm:grid-cols-4 md:grid-cols-7 gap-2 sm:gap-2.5 overflow-x-auto pb-2 sm:pb-0 scrollbar-none -mx-1 px-1"
+              style={{ WebkitOverflowScrolling: "touch" }}
+            >
               {DOSAGE_OPTIONS.map((dosage) => {
                 const isSelected = selectedDosage === dosage.id;
                 return (

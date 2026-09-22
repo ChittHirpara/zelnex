@@ -463,9 +463,6 @@ export function MaskedCardsZelnexTheme() {
                   aria-hidden="true"
                 >
                   <defs>
-                    <pattern id="turnkey-dot-pattern" width="5.5" height="5.5" patternUnits="userSpaceOnUse">
-                      <circle cx="2.75" cy="2.75" r="1.1" fill="#64748B" />
-                    </pattern>
                     <linearGradient id="turnkey-map-fade" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" stopColor="white" stopOpacity="0" />
                       <stop offset="25%" stopColor="white" stopOpacity="0.4" />
@@ -475,9 +472,9 @@ export function MaskedCardsZelnexTheme() {
                       <rect x="0" y="0" width="1000" height="500" fill="url(#turnkey-map-fade)" />
                     </mask>
                   </defs>
-                  <g mask="url(#turnkey-map-mask)" opacity="0.4" className="transition-opacity duration-500 group-hover:opacity-55">
+                  <g mask="url(#turnkey-map-mask)" opacity="0.18" className="transition-opacity duration-500 group-hover:opacity-30">
                     {WORLD_PATHS.map((c, i) => (
-                      <path key={`turnkey-map-path-${i}`} d={c.d} fill="url(#turnkey-dot-pattern)" />
+                      <path key={`turnkey-map-path-${i}`} d={c.d} fill="#006EDC" />
                     ))}
                   </g>
                 </svg>

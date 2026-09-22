@@ -13,14 +13,6 @@ export function ContactCta() {
             background: "radial-gradient(ellipse at center, rgba(0, 110, 220, 0.8) 0%, rgba(13, 148, 136, 0.4) 50%, transparent 75%)",
           }}
         />
-        <div
-          className="absolute inset-0 opacity-15"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
-          }}
-        />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1140px] px-4 sm:px-6 lg:px-8 text-center">

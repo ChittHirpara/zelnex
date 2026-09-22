@@ -223,20 +223,20 @@ export function Certifications() {
         </div>
 
         {/* ── Ultra-Clean 4-Item Proof Bar ── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 mb-12">
           {metrics.map((m, i) => {
             const Icon = m.icon;
             return (
               <div
                 key={i}
-                className="flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-[#FAFBF9] border border-[#EBEBEB] shadow-xs"
+                className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[#FAFBF9] border border-[#EBEBEB] shadow-xs"
               >
-                <div className="w-9 h-9 rounded-xl bg-white border border-[#E0E0E0] flex items-center justify-center text-[#006EDC] shrink-0 shadow-xs">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white border border-[#E0E0E0] flex items-center justify-center text-[#006EDC] shrink-0 shadow-xs">
                   <Icon className="w-4 h-4" />
                 </div>
                 <div className="min-w-0">
                   <div className="text-xs font-bold text-[#111111] truncate">{m.value}</div>
-                  <div className="text-[11px] text-slate-500 truncate">{m.label}</div>
+                  <div className="text-[10px] sm:text-[11px] text-slate-500 truncate">{m.label}</div>
                 </div>
               </div>
             );
@@ -333,7 +333,7 @@ export function Certifications() {
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
               transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-lg bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-y-auto max-h-[85vh]"
+              className="relative w-full max-w-lg bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-2xl overflow-y-auto max-h-[85vh]"
             >
               {/* Close Button */}
               <button

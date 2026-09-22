@@ -160,11 +160,9 @@ export default function ContactClient() {
         backgroundImage: `
           radial-gradient(ellipse 75% 45% at 50% -5%, rgba(186, 230, 253, 0.45) 0%, rgba(224, 242, 254, 0.18) 55%, transparent 80%),
           radial-gradient(circle at 90% 75%, rgba(199, 210, 254, 0.22) 0%, transparent 45%),
-          radial-gradient(circle at 10% 40%, rgba(186, 230, 253, 0.2) 0%, transparent 40%),
-          linear-gradient(to right, rgba(0, 110, 220, 0.08) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(0, 110, 220, 0.08) 1px, transparent 1px)
+          radial-gradient(circle at 10% 40%, rgba(186, 230, 253, 0.2) 0%, transparent 40%)
         `,
-        backgroundSize: "100% 100%, 100% 100%, 100% 100%, 32px 32px, 32px 32px",
+        backgroundSize: "100% 100%, 100% 100%, 100% 100%",
       }}
     >
       <Navbar />
@@ -183,12 +181,12 @@ export default function ContactClient() {
               <span className="text-slate-300">/</span>
               <span className="text-[#082B61] font-bold">GLOBAL INQUIRIES &amp; DESKS</span>
             </div>
-            <div className="flex items-center gap-3 mt-3 sm:mt-0">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-700 font-semibold">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                DESKS ACTIVE ACROSS 10+ MARKETS
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-3 sm:mt-0 text-[11px] sm:text-xs">
+              <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-700 font-semibold">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                <span>DESKS ACTIVE ACROSS 10+ MARKETS</span>
               </span>
-              <span className="text-slate-300">·</span>
+              <span className="text-slate-300 hidden sm:inline">·</span>
               <span className="font-semibold text-slate-600">SLA &lt; 4 HOURS</span>
             </div>
           </div>
@@ -209,9 +207,9 @@ export default function ContactClient() {
             2. MODERN 2-COLUMN SPLIT FORM (White & Technical Blue)
         ══════════════════════════════════════════════════════════════ */}
         <section id="contact-form-section" className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 mb-16 sm:mb-20 scroll-mt-24">
-          <div className="w-full grid grid-cols-1 lg:grid-cols-12 rounded-3xl border border-blue-100 bg-white/95 backdrop-blur-md shadow-[0_12px_45px_rgba(0,110,220,0.08)] overflow-hidden">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-12 rounded-2xl sm:rounded-3xl border border-blue-100 bg-white/95 backdrop-blur-md shadow-[0_12px_45px_rgba(0,110,220,0.08)] overflow-hidden">
             {/* ── LEFT COLUMN: CORPORATE CHANNELS (Frosted Technical Blue Panel) ── */}
-            <div className="lg:col-span-5 bg-gradient-to-b from-[#F8FAFD] via-white to-[#F0F6FD] p-5 sm:p-10 lg:p-12 flex flex-col justify-between space-y-8 lg:border-r border-blue-100">
+            <div className="lg:col-span-5 bg-gradient-to-b from-[#F8FAFD] via-white to-[#F0F6FD] p-4 sm:p-8 lg:p-12 flex flex-col justify-between space-y-6 sm:space-y-8 lg:border-r border-blue-100">
               <div className="space-y-5">
                 {/* Section Header */}
                 <div className="space-y-1.5 pb-2">
@@ -333,17 +331,17 @@ export default function ContactClient() {
 
                   <a
                     href="mailto:info@zelnexpharmaceuticals.com"
-                    className="group/mail flex items-center justify-between p-3.5 rounded-xl bg-[#F8FAFD] border border-blue-100 hover:border-[#006EDC] hover:bg-white transition-all"
+                    className="group/mail flex items-center justify-between p-3 sm:p-3.5 rounded-xl bg-[#F8FAFD] border border-blue-100 hover:border-[#006EDC] hover:bg-white transition-all"
                   >
-                    <div className="space-y-0.5">
-                      <span className="font-['Outfit',sans-serif] text-xs sm:text-sm font-bold text-[#082B61] group-hover/mail:text-[#006EDC] transition-colors block tracking-tight">
+                    <div className="space-y-0.5 min-w-0 flex-1">
+                      <span className="font-['Outfit',sans-serif] text-xs sm:text-sm font-bold text-[#082B61] group-hover/mail:text-[#006EDC] transition-colors block tracking-tight break-all sm:break-normal">
                         info@zelnexpharmaceuticals.com
                       </span>
                       <span className="text-[11px] text-slate-500 font-normal block">
                         Global export, regulatory inquiries &amp; commercial supply
                       </span>
                     </div>
-                    <span className="text-[10px] font-['Outfit',sans-serif] text-[#006EDC] font-bold bg-[#006EDC]/10 border border-[#006EDC]/25 px-2.5 py-1 rounded-full uppercase tracking-wider flex-shrink-0 ml-2">
+                    <span className="text-[10px] font-['Outfit',sans-serif] text-[#006EDC] font-bold bg-[#006EDC]/10 border border-[#006EDC]/25 px-2 sm:px-2.5 py-1 rounded-full uppercase tracking-wider shrink-0 ml-2">
                       Official
                     </span>
                   </a>
@@ -382,7 +380,7 @@ export default function ContactClient() {
             </div>
 
             {/* ── RIGHT COLUMN: CLINICAL INQUIRY FORM (Crisp White + Blue Focus) ── */}
-            <div className="lg:col-span-7 bg-white p-5 sm:p-10 lg:p-14 xl:p-16 flex flex-col justify-center">
+            <div className="lg:col-span-7 bg-white p-4 sm:p-8 lg:p-14 xl:p-16 flex flex-col justify-center">
               <div className="max-w-xl">
                 {/* Header */}
                 <div className="space-y-2 mb-8">
@@ -613,13 +611,13 @@ export default function ContactClient() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {INQUIRY_STREAMS.map((stream) => {
               const Icon = stream.icon;
               return (
                 <div
                   key={stream.number}
-                  className="bg-white/90 backdrop-blur-xs p-7 rounded-2xl border border-blue-100 hover:border-[#006EDC] hover:shadow-[0_12px_30px_rgba(0,110,220,0.12)] transition-all duration-300 flex flex-col justify-between group"
+                  className="bg-white/90 backdrop-blur-xs p-5 sm:p-7 rounded-2xl border border-blue-100 hover:border-[#006EDC] hover:shadow-[0_12px_30px_rgba(0,110,220,0.12)] transition-all duration-300 flex flex-col justify-between group"
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">

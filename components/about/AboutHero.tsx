@@ -51,8 +51,7 @@ export function AboutHero() {
 
   return (
     <section className="relative pt-32 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-gradient-to-b from-[#F4F8FD] via-[#FAFDFE] to-white">
-      {/* Subtle Background Circuit & Grid */}
-      <div className="pointer-events-none absolute inset-0 z-0 opacity-40 devtools-grid-20" aria-hidden />
+      {/* Subtle Background Lighting */}
       <div
         className="pointer-events-none absolute -top-24 -left-24 w-96 h-96 rounded-full bg-blue-200/40 blur-3xl"
         aria-hidden
@@ -166,29 +165,32 @@ export function AboutHero() {
         </div>
 
         {/* ── 5-Stat Glass Telemetry Bar ── */}
-        <div className="w-full bg-white/95 border border-blue-200/80 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-[0_15px_40px_rgba(0,110,220,0.06)] backdrop-blur-md">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
+        <div className="w-full bg-white/95 border border-blue-200/80 rounded-2xl sm:rounded-3xl p-3 sm:p-5 lg:p-6 shadow-[0_15px_40px_rgba(0,110,220,0.06)] backdrop-blur-md">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3 lg:gap-4">
             {stats.map((item, idx) => {
               const Icon = item.icon;
+              const isLastOdd = idx === 4;
               return (
                 <div
                   key={idx}
-                  className="flex items-center gap-3.5 pt-3 sm:pt-0 sm:px-4 first:pl-0 first:pt-0"
+                  className={`flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-100/80 hover:border-blue-200/70 transition-all ${
+                    isLastOdd ? "col-span-2 sm:col-span-1" : "col-span-1"
+                  }`}
                 >
                   <div
-                    className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 shadow-xs"
+                    className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 shadow-xs"
                     style={{ backgroundColor: `${item.accent}12`, color: item.accent }}
                   >
-                    <Icon className="w-5 h-5" />
+                    <Icon className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
                   </div>
                   <div className="flex flex-col min-w-0">
-                    <span className="text-xl sm:text-2xl font-extrabold text-[#0B1E48] tracking-tight leading-none">
+                    <span className="text-lg sm:text-2xl font-extrabold text-[#0B1E48] tracking-tight leading-none">
                       {item.num}
                     </span>
-                    <span className="text-xs font-bold text-slate-700 mt-1 leading-tight truncate">
+                    <span className="text-[11px] sm:text-xs font-bold text-slate-700 mt-1 leading-tight truncate">
                       {item.label}
                     </span>
-                    <span className="text-[11px] font-['JetBrains_Mono',monospace] text-slate-500 truncate">
+                    <span className="text-[10px] sm:text-[11px] font-['JetBrains_Mono',monospace] text-slate-500 truncate">
                       {item.sub}
                     </span>
                   </div>

@@ -125,24 +125,24 @@ export function DigitalEpochSection() {
         </div>
 
         {/* 3. Hero Text Content */}
-        <div className="relative z-20 flex-1 px-8 md:px-16 pt-12 md:pt-16 flex flex-col items-start">
+        <div className="relative z-20 flex-1 px-5 sm:px-8 md:px-16 pt-10 sm:pt-12 md:pt-16 pb-10 sm:pb-14 flex flex-col items-start">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-2xl flex flex-col items-start"
           >
-            <h2 className="font-display text-[28px] sm:text-[36px] md:text-[56px] font-medium tracking-tight text-[#0a1b33] leading-[1.1]">
+            <h2 className="font-display text-[26px] sm:text-[36px] md:text-[56px] font-medium tracking-tight text-[#0a1b33] leading-[1.1]">
               {t.contact.title}
             </h2>
 
-            <p className="font-sans text-[14px] md:text-[15px] text-[#64748b] mt-4 max-w-xl leading-relaxed">
+            <p className="font-sans text-[13px] sm:text-[14px] md:text-[15px] text-[#64748b] mt-3 sm:mt-4 max-w-xl leading-relaxed">
               {t.contact.subtitle}
             </p>
 
             <Link
               href="/contact"
-              className="mt-8 px-7 py-3 rounded-full bg-[#0a152d] hover:bg-[#006EDC] text-white text-[14px] font-medium shadow-sm transition-all inline-flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
+              className="mt-6 sm:mt-8 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full bg-[#0a152d] hover:bg-[#006EDC] text-white text-[13px] sm:text-[14px] font-medium shadow-sm transition-all inline-flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
             >
               <span>{t.contact.submitBtn}</span>
               <span>→</span>
@@ -150,13 +150,13 @@ export function DigitalEpochSection() {
           </motion.div>
         </div>
 
-        {/* 4. Floating Bottom Navbar */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30">
+        {/* 4. Floating Bottom Navbar (Desktop & Tablet) */}
+        <div className="hidden sm:flex absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-30 max-w-[calc(100%-2rem)]">
           <motion.nav
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center bg-white/90 backdrop-blur-2xl px-1.5 py-1.5 rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.08)] border border-slate-200/40 gap-1.5"
+            className="flex items-center bg-white/90 backdrop-blur-2xl px-1.5 py-1.5 rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.08)] border border-slate-200/40 gap-1.5 whitespace-nowrap"
           >
             {/* Small circular logo placeholder */}
             <div className="w-9 h-9 bg-white border border-slate-100 shadow-sm flex items-center justify-center rounded-full text-slate-800 text-sm font-bold">

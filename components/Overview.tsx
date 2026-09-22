@@ -185,13 +185,13 @@ export function Overview() {
                 />
 
                 {/* Center Hub: Official Zelnex Logo Badge */}
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border border-slate-200/90 shadow-[0_4px_24px_rgba(0,110,220,0.10)] flex items-center justify-center p-3 z-10">
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full bg-white border border-slate-200/90 shadow-[0_4px_24px_rgba(0,110,220,0.10)] flex items-center justify-center p-2.5 sm:p-3 z-10">
                   <Image
                     src="/brand/zelnex-official-logo.png"
                     alt="Zelnex Pharmaceuticals"
                     width={110}
                     height={32}
-                    className="w-16 sm:w-20 h-auto object-contain"
+                    className="w-14 sm:w-16 md:w-20 h-auto object-contain"
                     priority
                   />
                 </div>
@@ -216,21 +216,21 @@ export function Overview() {
                   >
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
                       <div
-                        className="w-11 h-11 sm:w-12 sm:h-12 relative animate-zelnex-counter-orbit"
+                        className="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 relative animate-zelnex-counter-orbit"
                         style={{ animationDelay: "-25.667s" }}
                       >
                         <Link
                           href="/products"
                           className="group/node block w-full h-full cursor-pointer"
                         >
-                          <div className="w-full h-full rounded-full bg-[#10B981] ring-8 ring-emerald-100/90 shadow-md shadow-emerald-500/20 flex items-center justify-center text-white transition-all duration-300 group-hover/node:scale-110 group-hover/node:shadow-emerald-500/35">
-                            <Package className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.9} />
+                          <div className="w-full h-full rounded-full bg-[#10B981] ring-4 sm:ring-6 md:ring-8 ring-emerald-100/90 shadow-md shadow-emerald-500/20 flex items-center justify-center text-white transition-all duration-300 group-hover/node:scale-110 group-hover/node:shadow-emerald-500/35">
+                            <Package className="w-4.5 h-4.5 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" strokeWidth={1.9} />
                           </div>
-                          <div className="absolute top-full left-1/2 -translate-x-1/2 pt-1.5 flex flex-col items-center text-center select-none w-max">
-                            <span className="font-bold text-slate-900 text-xs sm:text-[13px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap group-hover/node:text-[#10B981] transition-colors">
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 pt-1 sm:pt-1.5 flex flex-col items-center text-center select-none w-max max-w-[105px] sm:max-w-[130px] md:max-w-[140px]">
+                            <span className="font-bold text-slate-900 text-[11px] sm:text-xs md:text-[13px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap group-hover/node:text-[#10B981] transition-colors">
                               Wide Product Portfolio
                             </span>
-                            <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 whitespace-nowrap">
+                            <span className="text-[9px] sm:text-[10px] md:text-[11px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 whitespace-nowrap">
                               355+ Finished Formulations
                             </span>
                           </div>
@@ -246,21 +246,21 @@ export function Overview() {
                   >
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
                       <div
-                        className="w-11 h-11 sm:w-12 sm:h-12 relative animate-zelnex-counter-orbit"
+                        className="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 relative animate-zelnex-counter-orbit"
                         style={{ animationDelay: "-7.0s" }}
                       >
                         <Link
                           href="/about"
                           className="group/node block w-full h-full cursor-pointer"
                         >
-                          <div className="w-full h-full rounded-full bg-[#0070DF] ring-8 ring-blue-100/90 shadow-md shadow-blue-500/20 flex items-center justify-center text-white transition-all duration-300 group-hover/node:scale-110 group-hover/node:shadow-blue-500/35">
-                            <Globe className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.9} />
+                          <div className="w-full h-full rounded-full bg-[#0070DF] ring-4 sm:ring-6 md:ring-8 ring-blue-100/90 shadow-md shadow-blue-500/20 flex items-center justify-center text-white transition-all duration-300 group-hover/node:scale-110 group-hover/node:shadow-blue-500/35">
+                            <Globe className="w-4.5 h-4.5 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" strokeWidth={1.9} />
                           </div>
-                          <div className="absolute top-full left-1/2 -translate-x-1/2 pt-1.5 flex flex-col items-center text-center select-none w-max">
-                            <span className="font-bold text-slate-900 text-xs sm:text-[13px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap group-hover/node:text-[#0070DF] transition-colors">
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 pt-1 sm:pt-1.5 flex flex-col items-center text-center select-none w-max max-w-[105px] sm:max-w-[130px] md:max-w-[140px]">
+                            <span className="font-bold text-slate-900 text-[11px] sm:text-xs md:text-[13px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap group-hover/node:text-[#0070DF] transition-colors">
                               Global Reach
                             </span>
-                            <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 whitespace-nowrap">
+                            <span className="text-[9px] sm:text-[10px] md:text-[11px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 whitespace-nowrap">
                               10+ Markets Served
                             </span>
                           </div>
@@ -276,21 +276,21 @@ export function Overview() {
                   >
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
                       <div
-                        className="w-11 h-11 sm:w-12 sm:h-12 relative animate-zelnex-counter-orbit"
+                        className="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 relative animate-zelnex-counter-orbit"
                         style={{ animationDelay: "-16.333s" }}
                       >
                         <Link
                           href="/about"
                           className="group/node block w-full h-full cursor-pointer"
                         >
-                          <div className="w-full h-full rounded-full bg-[#8B5CF6] ring-8 ring-purple-100/90 shadow-md shadow-purple-500/20 flex items-center justify-center text-white transition-all duration-300 group-hover/node:scale-110 group-hover/node:shadow-purple-500/35">
-                            <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.9} />
+                          <div className="w-full h-full rounded-full bg-[#8B5CF6] ring-4 sm:ring-6 md:ring-8 ring-purple-100/90 shadow-md shadow-purple-500/20 flex items-center justify-center text-white transition-all duration-300 group-hover/node:scale-110 group-hover/node:shadow-purple-500/35">
+                            <ShieldCheck className="w-4.5 h-4.5 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" strokeWidth={1.9} />
                           </div>
-                          <div className="absolute top-full left-1/2 -translate-x-1/2 pt-1.5 flex flex-col items-center text-center select-none w-max max-w-[140px]">
-                            <span className="font-bold text-slate-900 text-xs sm:text-[13px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap group-hover/node:text-[#8B5CF6] transition-colors">
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 pt-1 sm:pt-1.5 flex flex-col items-center text-center select-none w-max max-w-[105px] sm:max-w-[130px] md:max-w-[140px]">
+                            <span className="font-bold text-slate-900 text-[11px] sm:text-xs md:text-[13px] leading-tight font-[family-name:var(--font-outfit)] whitespace-nowrap group-hover/node:text-[#8B5CF6] transition-colors">
                               Trusted Quality Supply
                             </span>
-                            <span className="text-[9.5px] sm:text-[10.5px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 text-center leading-tight">
+                            <span className="text-[9px] sm:text-[9.5px] md:text-[10.5px] text-slate-500 font-medium font-[family-name:var(--font-outfit)] mt-0.5 text-center leading-tight">
                               GMP-Compliant &amp; Regulatory Support
                             </span>
                           </div>

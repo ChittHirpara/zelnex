@@ -79,7 +79,7 @@ export function Footer() {
       />
 
       {/* ── Full-Screen Width Fluid Container ── */}
-      <div className="relative z-10 w-full px-6 sm:px-12 md:px-16 lg:px-20 pt-8 sm:pt-10 pb-6 flex flex-col justify-between">
+      <div className="relative z-10 w-full px-4 sm:px-12 md:px-16 lg:px-20 pt-8 sm:pt-10 pb-6 flex flex-col justify-between">
         {/* ── Top Context Bar ── */}
         <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/15">
           <div className="flex items-center gap-3">
@@ -341,12 +341,12 @@ export function Footer() {
                   {t.footer.qualityCol}
                 </span>
                 <div className="flex flex-col gap-2 pl-2 text-xs text-white/85">
-                  <a href="mailto:info@zelnexpharmaceuticals.com" className="flex items-center gap-2 hover:text-cyan-200">
-                    <Mail className="w-3.5 h-3.5 text-cyan-300" />
-                    <span>info@zelnexpharmaceuticals.com</span>
+                  <a href="mailto:info@zelnexpharmaceuticals.com" className="flex items-center gap-2 hover:text-cyan-200 min-w-0">
+                    <Mail className="w-3.5 h-3.5 text-cyan-300 shrink-0" />
+                    <span className="truncate min-w-0">info@zelnexpharmaceuticals.com</span>
                   </a>
                   <a href="tel:+919328286164" className="flex items-center gap-2 hover:text-cyan-200">
-                    <Phone className="w-3.5 h-3.5 text-cyan-300" />
+                    <Phone className="w-3.5 h-3.5 text-cyan-300 shrink-0" />
                     <span>+91 93282 86164</span>
                   </a>
                   <a

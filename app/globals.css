@@ -738,21 +738,8 @@ h4,
   }
 }
 
-/* ═══════════════════════════════════════
-   BROWSER-CORE MODERNISM & DEVTOOLS UTILITIES
-   ═══════════════════════════════════════ */
-
 .devtools-grid-20 {
-  background-color: #f3f4f6;
-  background-image: 
-    linear-gradient(to right, rgba(229, 231, 235, 0.6) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(229, 231, 235, 0.6) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
-.devtools-scrollbar::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  background-color: #f8fafc;
 }
 
 .devtools-scrollbar::-webkit-scrollbar-track {
